@@ -47,8 +47,12 @@ class Directory extends React.Component {
   render() {
     return (
       <div className="directory-menu">
-        {this.state.sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+        {/* ES6: spreading otherSectionProps (name we created) just adds
+        remaining key/value pairs from sections state object. We can then spread those
+        same values into MenuItem. This just cleans up the syntax - no longer need
+        to list out title={title} size={size} linkUrl=(linkUrl) etc.*/}
+        {this.state.sections.map(({ id, ...otherSectionProps }) => (
+          <MenuItem key={id} {...otherSectionProps} />
         ))}
       </div>
     );
