@@ -5,7 +5,7 @@ import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
-import { auth } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 class App extends React.Component {
   constructor() {
@@ -19,16 +19,36 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    // open subscription between app and firebase - firebase lets us know when authentication state (user object) has changed - without having to fetch to see if state has changed
-    // user = user authenticated object from firebase - persists when refreshing page. Firebase keeps track of all instances of app that are open and knows if we are still signed in
-    // auth.onAuthStateChanged returns a function that when called will close the script subscription
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({ currentUser: user });
+    // onAuthStateChanged is open subscription between app and firebase which lets us know
+    //  when authentication state has changed without having to fetch manually.
+    //  auth.onAuthStateChanged returns a function which when executed will close script subscription.
+    //  @param userAuth: user authenticated object from Auth library, which persists when refreshing page.
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        // get userReference from db or create one
+        const userRef = createUserProfileDocument(userAuth);
+
+        // onSnapshot() subscribes to userRef and listens for any changes. Also returns initial state.
+        // snapShot.data() method gives us actual properties on the snapshot object (aka data)
+        (await userRef).onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          });
+          console.log("state", this.state);
+        });
+      }
+      // If user signs out, set currentUser to null
+      else {
+        this.setState({ currentUser: userAuth });
+      }
     });
   }
 
   componentWillUnmount() {
-    // close subscription to firebase to prevent memory leaks from open connection
+    // Close subscription to firebase to prevent memory leaks from open connection.
     this.unsubscribeFromAuth();
   }
 

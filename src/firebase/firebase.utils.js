@@ -13,6 +13,38 @@ const config = {
   measurementId: "G-45QGGVYL1N"
 };
 
+export const createUserProfileDocument = async (userAuth, additionalData) => {
+  // 1. Return if user signed out (null)
+  if (!userAuth) return;
+
+  // Document reference to user. uid is dynamically generated id that firestore created when user authenticated
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
+
+  // 2. Query firestore to see if object exists.
+  //    Note: .get() returns a snapshot object which represents the data at that location in db,
+  //           which we can use to see if userAuth exists
+  const snapShot = await userRef.get();
+
+  // 3. If user doesn't exist, create one in that location.
+  //    Note: use document reference object (userRef) to do CRUD operations rather than snapshot
+  if (!snapShot.exists) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      });
+    } catch (error) {
+      console.log("error creating user", error.message);
+    }
+  }
+  return userRef;
+};
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth(); // we imported firebase/auth above which gives us access to .auth() method on firebase. Export for anything we need related to authentication

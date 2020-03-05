@@ -21,10 +21,8 @@ class SignIn extends React.Component {
 
   handleChange = e => {
     const { value, name } = e.target;
-    console.log("name (input type)", name);
-    console.log("value (input value)", value);
-    /* brackets within setState will dynamically set that
-    key to the input name (email or password) */
+    // Brackets within setState will dynamically set that
+    // key to the input name (email or password)
     this.setState({ [name]: value });
   };
 
