@@ -37,7 +37,6 @@ class App extends React.Component {
               ...snapShot.data()
             }
           });
-          console.log("state", this.state);
         });
       }
       // If user signs out, set currentUser to null
