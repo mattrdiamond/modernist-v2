@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 // new syntax in React for importing SVG - imports SVG directly as React component
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
 import "./header.styles.scss";
 
 const Header = ({ currentUser }) => (
@@ -30,4 +31,9 @@ const Header = ({ currentUser }) => (
   </nav>
 );
 
-export default Header;
+// @param state - root reducer
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header);
