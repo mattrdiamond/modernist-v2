@@ -80,7 +80,7 @@ const mapStateToProps = ({ user }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  // component > dispatch(action(value)) > reducer > root-reducer(store)
+  // component > propName: payload => dispatch(action(payload)) > reducer > root-reducer(store)
   // setCurrentUser(user) returns the object from user action which includes action type and payload
   // that action is then dispatched to user reducer and then to root-reducer
   setCurrentUser: user => dispatch(setCurrentUser(user))
