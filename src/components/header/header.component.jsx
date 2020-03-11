@@ -1,5 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
+import {
+  selectCartHidden,
+  selectCartItemsCount
+} from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 // new syntax in React for importing SVG - imports SVG directly as React component
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartIcon from "../cart-icon/cart-icon.component";
@@ -36,11 +42,10 @@ const Header = ({ currentUser, hidden }) => (
   </nav>
 );
 
-// 1. nested destructuring --> {user: {currentUser}} is same as state.user.currentUser
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
-  // 2. then currentUser: state.user.currentUser becomes currentUser
-  currentUser,
-  hidden
+// createStructuredSelector passes state into multiple selectors
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  hidden: selectCartHidden
 });
 
 export default connect(mapStateToProps)(Header);
