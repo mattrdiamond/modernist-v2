@@ -8,7 +8,7 @@ export const selectCollections = createSelector(
 );
 
 // if collections exists, turn collection object into array of keys, then map over them to return array of collections
-// if null (collections initial state), return an empty version of collections []
+// if null (collections initial state), return an empty version of collections --> []
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
   collections =>
@@ -20,3 +20,8 @@ export const selectCollection = collectionUrlParam =>
   createSelector([selectCollections], collections =>
     collections ? collections[collectionUrlParam] : null
   );
+
+export const selectIsCollectionFetching = createSelector(
+  [selectShop],
+  shop => shop.isFetching
+);
