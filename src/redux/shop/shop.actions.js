@@ -4,7 +4,7 @@ import {
   convertCollectionsSnapshotToMap
 } from "../../firebase/firebase.utils";
 
-export const fetchCollectionsStart = collectionsMap => ({
+export const fetchCollectionsStart = () => ({
   type: ShopActionTypes.FETCH_COLLECTIONS_START
 });
 
@@ -18,19 +18,19 @@ export const fetchCollectionsFailure = errorMessage => ({
   payload: errorMessage
 });
 
+// async action creator - when dispatching function instead of object, redux-thunk will call that function with dispatch functionality
 export const fetchCollectionsStartAsync = () => {
   return dispatch => {
     const collectionRef = firestore.collection("collections");
-    // set isFetching to true before starting async
+    // 1. set isFetching to true before starting async
     dispatch(fetchCollectionsStart());
-
-    // .get() makes api call to fetch the data associated with collectionRef (snapshot obj from firestore)
+    // 2. fetch snapshot obj from firestore
     collectionRef
       .get()
       .then(snapshot => {
-        // convert snapshot's docs property (array) into new object and only include properties needed for front end
+        // 3. convert snapshot's docs property (array) into new object and only include properties needed for front end
         const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-        // Update reducer with collectionsMap and set isFetching to false
+        // 4. Update reducer with collectionsMap and set isFetching to false
         dispatch(fetchCollectionsSuccess(collectionsMap));
       })
       .catch(error => dispatch(fetchCollectionsFailure(error.message)));
