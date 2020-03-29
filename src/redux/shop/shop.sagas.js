@@ -12,13 +12,14 @@ import ShopActionTypes from "./shop.types";
 
 /* Redux Saga Notes
     • yield pauses execution until we call .next()
-    • takeEvery listens for specific action types and creates a non-blocking call to allow
+    • takeEvery() listens for specific action types and creates a non-blocking call to allow
       app to continue running (doesn't pause js for async fetch calls to come back)
+      • second param is another generator function that will run in response to action
     • We can also cancel yield actions -- if a second action gets called and sent to saga middleware before first
       one completes, it can then determine whether or not to cancel first one from the second action that came in
-    • second param is another generator function that will run in response to action
     • call() invokes method in first param, passing second param as argument
-    • put() is the saga effect for creating actions - exactly like dispatch, only requires yield */
+    • put() is the saga effect for creating actions - exactly like dispatch, only requires yield
+*/
 
 export function* fetchCollectionsAsync() {
   try {
