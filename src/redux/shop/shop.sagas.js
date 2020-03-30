@@ -1,5 +1,4 @@
-// listens for every action of a specific type that we pass to it
-import { takeEvery, call, put } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 import {
   firestore,
   convertCollectionsSnapshotToMap
@@ -11,12 +10,18 @@ import {
 import ShopActionTypes from "./shop.types";
 
 /* Redux Saga Notes
-    • yield pauses execution until we call .next()
-    • takeEvery() listens for specific action types and creates a non-blocking call to allow
-      app to continue running (doesn't pause js for async fetch calls to come back)
-      • second param is another generator function that will run in response to action
-    • We can also cancel yield actions -- if a second action gets called and sent to saga middleware before first
-      one completes, it can then determine whether or not to cancel first one from the second action that came in
+    • yield - yields control to saga so it can pause execution until we call .next()
+        • Also, if a second action gets called and sent to saga middleware before first one completes,
+          listener effect can then determine whether or not to cancel first one from the second action that came in
+    • Listener effects:
+        • takeEvery() - listens for specific action types and creates a non-blocking call on each action to allow
+          app to continue running (doesn't pause js for async fetch calls to come back)
+          • Allows multiple actions to be started concurrently
+          • second param is another generator function that will run in response to action
+        • take() - takes single action param. Promise resolves with payload value. Once generator function completes,
+          will not execute subsequent actions (done: true). take() is blocking vs takeEvery() which is non-blocking
+        • takeLatest() - allows only 1 task to run at a time (latest). Creates new saga instance for each action.
+          If you dispatch an action before previous API call finishes, it will automatically stop first call and only return latest
     • call() invokes method in first param, passing second param as argument
     • put() is the saga effect for creating actions - exactly like dispatch, only requires yield
 */
@@ -41,7 +46,7 @@ export function* fetchCollectionsAsync() {
 
 export function* fetchCollectionsStart() {
   // set isFetching to true, then start async saga
-  yield takeEvery(
+  yield takeLatest(
     ShopActionTypes.FETCH_COLLECTIONS_START,
     fetchCollectionsAsync
   );
