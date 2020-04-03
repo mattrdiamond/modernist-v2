@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 import FormInput from "../form-input/form-input.component";
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 import CustomButton from "../custom-button/custom-button.component";
+import { signUpStart } from "../../redux/user/user.actions";
 import "./sign-up.styles.scss";
 
 class SignUp extends React.Component {
@@ -18,6 +19,7 @@ class SignUp extends React.Component {
 
   handleSubmit = async event => {
     event.preventDefault();
+    const { signUpStart } = this.props;
     const { displayName, email, password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
@@ -25,26 +27,8 @@ class SignUp extends React.Component {
       return;
     }
 
-    try {
-      // create new user acct associated w/ email and password and sign in user
-      // returns a userAuth object in the key 'user'
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      await createUserProfileDocument(user, { displayName });
-
-      // clear form after sumitting
-      this.setState({
-        displayName: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    // create new user acct associated w/ email, password and displayName and sign in user (pass along credentials obj containing email, password and displayName to saga)
+    signUpStart({ email, password, displayName });
   };
 
   handleChange = e => {
@@ -98,4 +82,8 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+const mapDispatchToProps = dispatch => ({
+  signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);

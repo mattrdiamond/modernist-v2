@@ -1,4 +1,4 @@
-import { takeLatest, call, put } from "redux-saga/effects";
+import { takeLatest, call, put, all } from "redux-saga/effects";
 import {
   firestore,
   convertCollectionsSnapshotToMap
@@ -10,7 +10,7 @@ import {
 import ShopActionTypes from "./shop.types";
 
 /* Redux Saga Notes
-    • yield - yields control to saga so it can pause execution until we call .next()
+    • yield - yields control to saga. middleware will suspend saga until the promise completes (similar to async await)
         • Also, if a second action gets called and sent to saga middleware before first one completes,
           listener effect can then determine whether or not to cancel first one from the second action that came in
     • Listener effects:
@@ -22,6 +22,7 @@ import ShopActionTypes from "./shop.types";
           will not execute subsequent actions (done: true). take() is blocking vs takeEvery() which is non-blocking
         • takeLatest() - allows only 1 task to run at a time (latest). Creates new saga instance for each action.
           If you dispatch an action before previous API call finishes, it will automatically stop first call and only return latest
+        • note: think of take as: I'm taking an action from the regular redux flow
     • call() invokes method in first param, passing second param as argument
     • put() is the saga effect for creating actions - exactly like dispatch, only requires yield
 */
@@ -50,4 +51,8 @@ export function* fetchCollectionsStart() {
     ShopActionTypes.FETCH_COLLECTIONS_START,
     fetchCollectionsAsync
   );
+}
+
+export function* shopSagas() {
+  yield all([call(fetchCollectionsStart)]);
 }

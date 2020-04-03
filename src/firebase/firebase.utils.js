@@ -88,14 +88,26 @@ export const convertCollectionsSnapshotToMap = collections => {
   }, {});
 };
 
+// create promise oriented solution to get userAuth object from auth library that will work with sagas
+// once we get userAuth object, immediately unsubscribe
+// resolve with userAuth object or reject with null
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
+
 export const auth = firebase.auth(); // we imported firebase/auth above which gives us access to .auth() method on firebase. Export for anything we need related to authentication
 export const firestore = firebase.firestore();
 
 // set up google authentication utility
-const provider = new firebase.auth.GoogleAuthProvider(); // gives us access to googleAuthProvider class from auth library
+export const googleProvider = new firebase.auth.GoogleAuthProvider(); // gives us access to googleAuthProvider class from auth library
 // triggers google popup when we use googleAuthProvider for authentication and sign-in
-provider.setCustomParameters({ prompt: "select_account" });
+googleProvider.setCustomParameters({ prompt: "select_account" });
 // signInWithPopup contains popups for several services (sign in with twitter, facebook etc). We just want google
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 // export firebase as default in case we want entire library
 export default firebase;
