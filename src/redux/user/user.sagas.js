@@ -17,7 +17,7 @@ import {
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   try {
-    // 1. get userReference from db or create one
+    // 1. get userReference from db or create one in db
     const userRef = yield call(
       createUserProfileDocument,
       userAuth,
@@ -78,8 +78,10 @@ export function* signOut() {
 
 export function* signUp({ payload: { email, password, displayName } }) {
   try {
+    // create userAuth object with email and password
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    yield put(signUpSuccess({ user, additionalData: displayName }));
+    // if succeeds, dispatch signUpSuccess with userAuth and additionalData: {displayName: displayName} -> onSignUpSuccess saga listens for SIGN_UP_SUCCESS -> fires signInAfterSignUp saga -> yields getSnapshotFromUserAuth saga (creates user in db) -> dispatch signInSuccess action with user and update reducer
+    yield put(signUpSuccess({ user, additionalData: { displayName } }));
   } catch (error) {
     yield put(signUpFailure(error));
   }
