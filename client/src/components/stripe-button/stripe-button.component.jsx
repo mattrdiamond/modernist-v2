@@ -1,16 +1,31 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
 
 const StripeCheckoutButton = ({ price }) => {
   // Stripe needs price in cents
   const priceForStripe = price * 100;
   const publishableKey = "pk_test_q3amCytQBsYySSLChdL3bHlo00aKSAc7sW";
 
-  // token is onSuccess callback triggered when payment submitted
-  // We could pass token to back-end to create charge, but we're not actually processing a real payment
-  const onToken = token => {
-    console.log("token", token);
-    alert("Payment Successful");
+  // client submits payment request -> token object sent to express server's '/payment' route -> payment route sends payment charge to Stripe
+  const onToken = (token) => {
+    axios({
+      url: "payment", // axios takes current url and adds '/payment'
+      method: "post",
+      data: {
+        amount: priceForStripe,
+        token,
+      },
+    })
+      .then((response) => {
+        alert("Payment successful");
+      })
+      .catch((error) => {
+        console.log("Payment error: ", JSON.parse(error));
+        alert(
+          "There was an issue with your payment. Please make sure you use the test credit card number provided"
+        );
+      });
   };
 
   return (
