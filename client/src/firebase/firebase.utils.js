@@ -10,7 +10,7 @@ const config = {
   storageBucket: "e-commerce-9e6dc.appspot.com",
   messagingSenderId: "215401701740",
   appId: "1:215401701740:web:1c4078516bb4ba942f5349",
-  measurementId: "G-45QGGVYL1N"
+  measurementId: "G-45QGGVYL1N",
 };
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
@@ -36,7 +36,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createdAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (error) {
       console.log("error creating user", error.message);
@@ -57,10 +57,10 @@ export const addCollectionAndDocuments = async (
   // 1. Create firestore batch object
   const batch = firestore.batch();
 
-  objectsToAdd.forEach(obj => {
+  objectsToAdd.forEach((obj) => {
     // 2. Create a new documentReference object for each category in collection (i.e. hats). Firestore's .doc() method (without params) will generate random IDs which will also be used for url path
     const newDocRef = collectionRef.doc();
-    // 3. Set the value (title and items) for each docRef object by batching .set() calls together.
+    // 3. Set the value (title and items) for each docRef object by batching the .set() calls together.
     batch.set(newDocRef, obj);
   });
 
@@ -68,9 +68,9 @@ export const addCollectionAndDocuments = async (
   return await batch.commit();
 };
 
-export const convertCollectionsSnapshotToMap = collections => {
+export const convertCollectionsSnapshotToMap = (collections) => {
   // .docs gives us query snapshot, .data() gives us data, only need title and items
-  const transformedCollection = collections.docs.map(doc => {
+  const transformedCollection = collections.docs.map((doc) => {
     const { title, items } = doc.data();
     // return object from back end that only includes data we need for front end
     // routeName is a new property who's value will be the same string as title (ie hats). encodeURI - encodes URI by replacing characters that a URL cannot process.
@@ -78,7 +78,7 @@ export const convertCollectionsSnapshotToMap = collections => {
       routeName: encodeURI(title.toLowerCase()),
       id: doc.id,
       title,
-      items
+      items,
     };
   });
   // Convert array of objects to new object. Reduce iterates through each collection in array (ie hats) and adds collection title to new object. It then sets the property value equal to the actual collection object --> hats: {routeName: 'hats', id: 123, etc.}
@@ -89,11 +89,11 @@ export const convertCollectionsSnapshotToMap = collections => {
 };
 
 // create promise oriented solution to get userAuth object from auth library that will work with sagas
-// once we get userAuth object, immediately unsubscribe
+// once we get userAuth object, immediately unsubscribe using Firebase unsubscribe() function
 // resolve with userAuth object or reject with null
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
-    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       unsubscribe();
       resolve(userAuth);
     }, reject);

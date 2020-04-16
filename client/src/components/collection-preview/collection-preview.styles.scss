@@ -11,7 +11,20 @@
   }
 
   .preview {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .collection-preview {
+    align-items: center;
+
+    .preview {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 30px 15px;
+      width: 100%;
+    }
   }
 }

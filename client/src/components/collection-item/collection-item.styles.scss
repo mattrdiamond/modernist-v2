@@ -1,5 +1,4 @@
 .collection-item {
-  width: 22vw;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -25,6 +24,7 @@
   &:hover {
     .image {
       opacity: 0.8;
+      cursor: pointer;
     }
 
     .custom-button {
@@ -47,6 +47,29 @@
 
     .price {
       width: 10%;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .collection-item {
+    width: 100%;
+
+    &:hover {
+      .image {
+        opacity: unset;
+      }
+
+      .custom-button {
+        opacity: unset;
+      }
+    }
+
+    .custom-button {
+      display: block;
+      opacity: 0.9;
+      min-width: unset;
+      padding: 0 10px;
     }
   }
 }

@@ -8,7 +8,8 @@
   .logo-container {
     height: 100%;
     width: 70px;
-    padding: 25px;
+    display: flex;
+    align-items: center;
   }
 
   .options {
@@ -22,6 +23,27 @@
       padding: 10px 15px;
       text-transform: uppercase;
       cursor: pointer;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .header {
+    height: 60px;
+    padding: 10px;
+    margin-bottom: 20px;
+
+    .logo-container {
+      width: 30px;
+      padding: 0;
+    }
+
+    .options {
+      width: 80%;
+
+      .option {
+        padding: 10px;
+      }
     }
   }
 }
