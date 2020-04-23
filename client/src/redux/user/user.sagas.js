@@ -4,7 +4,8 @@ import {
   auth,
   googleProvider,
   createUserProfileDocument,
-  getCurrentUser
+  getCurrentUser,
+  addItemToFavorites,
 } from "../../firebase/firebase.utils";
 import {
   signInSuccess,
@@ -12,7 +13,9 @@ import {
   signOutFailure,
   signOutSuccess,
   signUpSuccess,
-  signUpFailure
+  signUpFailure,
+  addFavoriteSuccess,
+  addFavoriteFailure,
 } from "./user.actions";
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
@@ -25,11 +28,12 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
     );
     // 2. get user snapshot object, which can be used to get the user data
     const userSnapshot = yield userRef.get();
+
     // 3. dispatch signInSuccess action with user id. Also pass along rest of snapShot data (.data() method gives us actual properties on the snapshot object)
     yield put(
       signInSuccess({
         id: userSnapshot.id,
-        ...userSnapshot.data()
+        ...userSnapshot.data(),
       })
     );
   } catch (error) {
@@ -91,6 +95,15 @@ export function* signInAfterSignUp({ payload: { user, additionalData } }) {
   yield getSnapshotFromUserAuth(user, additionalData);
 }
 
+export function* addFavorite({ payload: { currentUser, item, favorites } }) {
+  try {
+    yield call(addItemToFavorites, currentUser, item, favorites);
+    yield put(addFavoriteSuccess(item));
+  } catch (error) {
+    yield put(addFavoriteFailure(error));
+  }
+}
+
 // listener effects listen for the SIGN_IN_START action, and then pass action obj into signIn saga
 export function* onGoogleSignInStart() {
   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
@@ -116,6 +129,10 @@ export function* onSignUpSuccess() {
   yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
 }
 
+export function* addFavoriteStart() {
+  yield takeLatest(UserActionTypes.ADD_FAVORITE_START, addFavorite);
+}
+
 // instantiate all of the sagas we need to call (listen for)
 export function* userSagas() {
   yield all([
@@ -124,6 +141,7 @@ export function* userSagas() {
     call(isUserAuthenticated),
     call(onSignOutStart),
     call(onSignUpStart),
-    call(onSignUpSuccess)
+    call(onSignUpSuccess),
+    call(addFavoriteStart),
   ]);
 }

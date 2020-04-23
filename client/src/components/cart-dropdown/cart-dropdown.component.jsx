@@ -13,7 +13,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
   <div className="cart-dropdown">
     <div className="cart-items">
       {cartItems.length ? (
-        cartItems.map(cartItem => (
+        cartItems.map((cartItem) => (
           <CartItem key={cartItem.id} item={cartItem} />
         ))
       ) : (
@@ -32,7 +32,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => (
 );
 
 const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems
+  cartItems: selectCartItems,
 });
 
 // Export a new component that is "connected" to the router, giving us access to history

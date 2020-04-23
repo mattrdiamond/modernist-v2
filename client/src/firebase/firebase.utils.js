@@ -13,6 +13,8 @@ const config = {
   measurementId: "G-45QGGVYL1N",
 };
 
+firebase.initializeApp(config);
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   // 1. Return if user signed out (null)
   if (!userAuth) return;
@@ -45,7 +47,18 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
-firebase.initializeApp(config);
+export const addItemToFavorites = async (currentUser, itemToAdd, favorites) => {
+  const userRef = firestore.collection("users").doc(`${currentUser.id}`);
+
+  await userRef
+    .update({
+      favorites: { ...favorites, [itemToAdd.id]: itemToAdd },
+    })
+    .catch((error) => {
+      console.log("error adding favorite", error.message);
+    });
+  return userRef;
+};
 
 // Add collection (shop.collection) and document objects (shop data) to firestore
 export const addCollectionAndDocuments = async (
