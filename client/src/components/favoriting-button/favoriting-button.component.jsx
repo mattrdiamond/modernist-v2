@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import {
@@ -23,13 +23,20 @@ const FavoritingButton = ({
 }) => {
   const [isFavorite, setFavorite] = useState(false);
 
+  useEffect(() => {
+    if (favorites[item.id]) {
+      setFavorite({ isFavorite: true });
+    }
+  }, [setFavorite]);
+
   const handleClick = () => {
     if (!currentUser) {
       modalRef.current.openModal();
     } else if (favorites[item.id]) {
       console.log("remove favorite");
     } else {
-      addFavoriteStart({ currentUser, item, favorites });
+      // addFavoriteStart({ currentUser, item, favorites });
+      handleAddFavorite();
     }
     // else if (
     //   favorites.filter((favorite) => favorite.id === item.id).length < 1
@@ -41,15 +48,25 @@ const FavoritingButton = ({
     // }
   };
 
+  const handleAddFavorite = async () => {
+    await addFavoriteStart({ currentUser, item, favorites });
+    setFavorite({ isfavorite: true });
+  };
+
   const modalRef = React.useRef();
 
   return (
     <React.Fragment>
       <div
-        className={`${isFavorite ? "favorite" : "not-favorite"}`}
+        className={`favorite-button ${isFavorite ? "is-favorite" : ""}`}
         onClick={handleClick}
       >
-        FAV
+        <svg className="heart" width="20" height="18" viewBox="0 0 20 18">
+          <path
+            d="M17.491 2.794a4.77 4.77 0 0 0-7.347.737A4.77 4.77 0 1 0 2.796 9.54l7.347 7.349L17.49 9.54a4.77 4.77 0 0 0 0-6.746z"
+            fill="none"
+          ></path>
+        </svg>
       </div>
       <Modal ref={modalRef}>
         <h1>Save this product</h1>

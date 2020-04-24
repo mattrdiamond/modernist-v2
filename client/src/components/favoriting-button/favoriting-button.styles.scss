@@ -1,9 +1,24 @@
-.not-favorite {
-  border: 1px solid red;
-  background: white;
+.favorite-button {
+  background: #fff;
   position: absolute;
   top: 1rem;
   right: 1rem;
   cursor: pointer;
-  padding: 0.5rem;
+  // padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .heart path {
+    fill: #c4c4c4;
+  }
+
+  &.is-favorite {
+    .heart path {
+      fill: red;
+    }
+  }
 }

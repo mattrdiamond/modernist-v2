@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import CollectionsOverviewContainer from "../../components/collections-overview/collections-overview.container";
 import CollectionPageContainer from "../collection/collection.container";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
-import Modal from "../../components/modal/modal.component";
 
 const ShopPage = ({ fetchCollectionsStart, match }) => {
   // will only re-render if fetchCollectionsStart changes
@@ -30,12 +29,6 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
         path={`${match.path}/:collectionId`}
         component={CollectionPageContainer}
       />
-      <button onClick={openModal}>Open Modal</button>
-      <Modal ref={modalRef}>
-        <h1>Modal Header</h1>
-        <p>Modal text</p>
-        <button onClick={() => modalRef.current.close()}>close</button>
-      </Modal>
     </div>
   );
 };

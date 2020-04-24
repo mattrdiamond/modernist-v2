@@ -1,19 +1,27 @@
 import UserActionTypes from "./user.types.js";
+import ShopActionTypes from "../shop/shop.types.js";
 
 const INITIAL_STATE = {
   currentUser: null,
   favorites: {},
+  isFetching: false,
   error: null,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case UserActionTypes.CHECK_USER_SESSION:
+      return {
+        ...state,
+        isFetching: true,
+      };
     case UserActionTypes.SIGN_IN_SUCCESS:
       const { id, displayName, email, createdAt, favorites } = action.payload;
       return {
         ...state,
         currentUser: { id, displayName, email, createdAt },
         favorites: favorites,
+        isFetching: false,
         error: null,
       };
     case UserActionTypes.SIGN_OUT_SUCCESS:

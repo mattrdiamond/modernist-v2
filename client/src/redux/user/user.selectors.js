@@ -11,3 +11,8 @@ export const selectFavorites = createSelector(
   [selectUser],
   (user) => user.favorites
 );
+
+export const selectIsUserFetching = createSelector(
+  [selectUser],
+  (user) => user.isFetching
+);
