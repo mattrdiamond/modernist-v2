@@ -4,7 +4,6 @@
   top: 1rem;
   right: 1rem;
   cursor: pointer;
-  // padding: 0.5rem;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -16,9 +15,20 @@
     fill: #c4c4c4;
   }
 
-  &.is-favorite {
+  &.favorite {
     .heart path {
       fill: red;
     }
+  }
+}
+
+.test {
+  p {
+    color: red;
+    font-size: 0.7rem;
+    position: absolute;
+    background: white;
+    right: 4rem;
+    padding: 10px;
   }
 }

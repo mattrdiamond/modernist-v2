@@ -6,18 +6,20 @@ import userReducer from "./user/user.reducer";
 import cartReducer from "./cart/cart.reducer";
 import directoryReducer from "./directory/directory.reducer";
 import shopReducer from "./shop/shop.reducer";
+import modalReducer from "./modal/modal.reducer";
 
 const persistConfig = {
   key: "root", // part of reducer object we want to start storage
   storage,
-  whitelist: ["cart"] // reducers we want to persist
+  whitelist: ["cart"], // reducers we want to persist
 };
 
 const rootReducer = combineReducers({
   user: userReducer,
   cart: cartReducer,
   directory: directoryReducer,
-  shop: shopReducer
+  shop: shopReducer,
+  modal: modalReducer,
 });
 
 // export modified version of rootReducer with persistance capabilities

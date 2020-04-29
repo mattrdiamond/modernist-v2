@@ -1,65 +1,59 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import {
-  addFavoriteStart,
-  addFavoriteSuccess,
-} from "../../redux/user/user.actions";
-import Modal from "../../components/modal/modal.component";
-import CustomButton from "../custom-button/custom-button.component";
 import { createStructuredSelector } from "reselect";
 import {
   selectCurrentUser,
   selectFavorites,
 } from "../../redux/user/user.selectors";
+import {
+  addFavoriteStart,
+  addFavoriteSuccess,
+} from "../../redux/user/user.actions";
+import { openModal } from "../../redux/modal/modal.actions";
 import "./favoriting-button.styles.scss";
 
-const FavoritingButton = ({
-  item,
-  currentUser,
-  favorites,
-  addFavoriteStart,
-  history,
-}) => {
-  const [isFavorite, setFavorite] = useState(false);
+class FavoritingButton extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFavorite: false,
+    };
+  }
 
-  useEffect(() => {
-    if (favorites[item.id]) {
-      setFavorite({ isFavorite: true });
-    }
-  }, [setFavorite]);
+  handleClick = () => {
+    const { currentUser, item, favorites, openModal } = this.props;
 
-  const handleClick = () => {
     if (!currentUser) {
-      modalRef.current.openModal();
+      openModal("SignInToAddFav");
     } else if (favorites[item.id]) {
       console.log("remove favorite");
     } else {
-      // addFavoriteStart({ currentUser, item, favorites });
-      handleAddFavorite();
+      this.handleAddFavorite();
     }
-    // else if (
-    //   favorites.filter((favorite) => favorite.id === item.id).length < 1
-    // ) {
-    //   // console.log("Add favorite!", favorites, item);
-    //   addFavoriteStart({ currentUser, item });
-    // } else {
-    //   console.log("remove favorite", favorites);
-    // }
   };
 
-  const handleAddFavorite = async () => {
+  handleAddFavorite = async () => {
+    const { currentUser, item, favorites, addFavoriteStart } = this.props;
+    // update db
     await addFavoriteStart({ currentUser, item, favorites });
-    setFavorite({ isfavorite: true });
+    // update local state
+    this.setState({ isfavorite: true });
   };
 
-  const modalRef = React.useRef();
+  shouldComponentUpdate(nextProps) {
+    const { item } = this.props;
+    return nextProps.favorites[item.id] !== this.props.favorites[item.id];
+  }
 
-  return (
-    <React.Fragment>
+  render() {
+    const { item, favorites } = this.props;
+    console.log("render favoriteButton");
+
+    return (
       <div
-        className={`favorite-button ${isFavorite ? "is-favorite" : ""}`}
-        onClick={handleClick}
+        className={`favorite-button ${favorites[item.id] ? "favorite" : ""}`}
+        onClick={this.handleClick}
       >
         <svg className="heart" width="20" height="18" viewBox="0 0 20 18">
           <path
@@ -68,21 +62,9 @@ const FavoritingButton = ({
           ></path>
         </svg>
       </div>
-      <Modal ref={modalRef}>
-        <h1>Save this product</h1>
-        <p>Login or register to save your Favorites.</p>
-        <CustomButton
-          onClick={() => {
-            history.push("/signin");
-          }}
-        >
-          Sign In
-        </CustomButton>
-        <button onClick={() => modalRef.current.close()}>Cancel</button>
-      </Modal>
-    </React.Fragment>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
@@ -92,6 +74,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   addFavoriteStart: (currentUser, item, favorites) =>
     dispatch(addFavoriteStart(currentUser, item, favorites)),
+  openModal: (modalType, modalProps) =>
+    dispatch(openModal(modalType, modalProps)),
 });
 
 export default withRouter(

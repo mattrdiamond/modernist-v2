@@ -10,6 +10,8 @@ import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import Portal from "./components/portal/portal.component";
+import ModalManager from "./components/modals/modal-manager";
 
 const App = ({ checkUserSession, currentUser }) => {
   // equivalent to componentDidMount (will only re-render if checkUserSession changes, and we know it will not)
@@ -36,16 +38,19 @@ const App = ({ checkUserSession, currentUser }) => {
           }
         />
       </Switch>
+      <Portal>
+        <ModalManager />
+      </Portal>
     </div>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
 });
 
-const mapDispatchToProps = dispatch => ({
-  checkUserSession: () => dispatch(checkUserSession())
+const mapDispatchToProps = (dispatch) => ({
+  checkUserSession: () => dispatch(checkUserSession()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
