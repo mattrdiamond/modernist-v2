@@ -57,7 +57,25 @@ export const addItemToFavorites = async (currentUser, itemToAdd, favorites) => {
     .catch((error) => {
       console.log("error adding favorite", error.message);
     });
-  return userRef;
+};
+
+export const removeItemFromFavorites = async (
+  currentUser,
+  itemToRemove,
+  favorites
+) => {
+  const userRef = firestore.collection("users").doc(`${currentUser.id}`);
+  const favoritesCopy = { ...favorites };
+  delete favoritesCopy[itemToRemove.id];
+
+  await userRef
+    .update({
+      favorites: { ...favoritesCopy },
+    })
+    .catch((error) => {
+      console.log("error adding favorite", error.message);
+    });
+  return favoritesCopy;
 };
 
 // Add collection (shop.collection) and document objects (shop data) to firestore

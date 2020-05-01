@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { closeModal } from "../../redux/modal/modal.actions";
-import "./modal.styles.scss";
+import "./modal-shell.styles.scss";
 
 const Modal = (props) => {
   const { closeModal } = props;

@@ -15,9 +15,25 @@
     fill: #c4c4c4;
   }
 
-  &.favorite {
+  &:hover {
     .heart path {
-      fill: red;
+      fill: #d86262;
+    }
+  }
+
+  &.favorite {
+    background-color: #d86262;
+
+    .heart path {
+      fill: #fff;
+    }
+
+    &:hover {
+      background: #fff;
+
+      .heart path {
+        fill: #d86262;
+      }
     }
   }
 }

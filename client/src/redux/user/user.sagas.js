@@ -6,6 +6,7 @@ import {
   createUserProfileDocument,
   getCurrentUser,
   addItemToFavorites,
+  removeItemFromFavorites,
 } from "../../firebase/firebase.utils";
 import {
   signInSuccess,
@@ -16,6 +17,8 @@ import {
   signUpFailure,
   addFavoriteSuccess,
   addFavoriteFailure,
+  removeFavoriteSuccess,
+  removeFavoriteFailure,
 } from "./user.actions";
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
@@ -104,6 +107,20 @@ export function* addFavorite({ payload: { currentUser, item, favorites } }) {
   }
 }
 
+export function* removeFavorite({ payload: { currentUser, item, favorites } }) {
+  try {
+    const newFavorites = yield call(
+      removeItemFromFavorites,
+      currentUser,
+      item,
+      favorites
+    );
+    yield put(removeFavoriteSuccess(newFavorites));
+  } catch (error) {
+    yield put(removeFavoriteFailure(error));
+  }
+}
+
 // listener effects listen for the SIGN_IN_START action, and then pass action obj into signIn saga
 export function* onGoogleSignInStart() {
   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
@@ -133,6 +150,10 @@ export function* addFavoriteStart() {
   yield takeLatest(UserActionTypes.ADD_FAVORITE_START, addFavorite);
 }
 
+export function* removeFavoriteStart() {
+  yield takeLatest(UserActionTypes.REMOVE_FAVORITE_START, removeFavorite);
+}
+
 // instantiate all of the sagas we need to call (listen for)
 export function* userSagas() {
   yield all([
@@ -143,5 +164,6 @@ export function* userSagas() {
     call(onSignUpStart),
     call(onSignUpSuccess),
     call(addFavoriteStart),
+    call(removeFavoriteStart),
   ]);
 }

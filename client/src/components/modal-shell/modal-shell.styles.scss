@@ -29,3 +29,11 @@
   z-index: 101;
   padding: 40px;
 }
+
+.modal-button-container {
+  display: flex;
+
+  .custom-button:not(:last-of-type) {
+    margin-right: 1rem;
+  }
+}

@@ -35,6 +35,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case UserActionTypes.SIGN_OUT_FAILURE:
     case UserActionTypes.SIGN_UP_FAILURE:
     case UserActionTypes.ADD_FAVORITE_FAILURE:
+    case UserActionTypes.REMOVE_FAVORITE_FAILURE:
       return {
         ...state,
         error: action.payload,
@@ -44,7 +45,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         favorites: { ...state.favorites, [action.payload.id]: action.payload },
       };
-
+    case UserActionTypes.REMOVE_FAVORITE_SUCCESS:
+      return {
+        ...state,
+        favorites: action.payload,
+      };
     default:
       return state;
   }

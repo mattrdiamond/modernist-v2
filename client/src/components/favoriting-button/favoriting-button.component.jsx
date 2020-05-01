@@ -8,7 +8,7 @@ import {
 } from "../../redux/user/user.selectors";
 import {
   addFavoriteStart,
-  addFavoriteSuccess,
+  removeFavoriteStart,
 } from "../../redux/user/user.actions";
 import { openModal } from "../../redux/modal/modal.actions";
 import "./favoriting-button.styles.scss";
@@ -27,7 +27,7 @@ class FavoritingButton extends Component {
     if (!currentUser) {
       openModal("SignInToAddFav");
     } else if (favorites[item.id]) {
-      console.log("remove favorite");
+      this.handleRemoveFavorite();
     } else {
       this.handleAddFavorite();
     }
@@ -39,6 +39,12 @@ class FavoritingButton extends Component {
     await addFavoriteStart({ currentUser, item, favorites });
     // update local state
     this.setState({ isfavorite: true });
+  };
+
+  handleRemoveFavorite = async () => {
+    const { currentUser, item, favorites, removeFavoriteStart } = this.props;
+    await removeFavoriteStart({ currentUser, item, favorites });
+    this.setState({ isFavorite: false });
   };
 
   shouldComponentUpdate(nextProps) {
@@ -74,6 +80,8 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   addFavoriteStart: (currentUser, item, favorites) =>
     dispatch(addFavoriteStart(currentUser, item, favorites)),
+  removeFavoriteStart: (currentUser, item, favorites) =>
+    dispatch(removeFavoriteStart(currentUser, item, favorites)),
   openModal: (modalType, modalProps) =>
     dispatch(openModal(modalType, modalProps)),
 });

@@ -65,3 +65,18 @@ export const addFavoriteFailure = (error) => ({
   type: UserActionTypes.ADD_FAVORITE_FAILURE,
   payload: error,
 });
+
+export const removeFavoriteStart = ({ currentUser, item, favorites }) => ({
+  type: UserActionTypes.REMOVE_FAVORITE_START,
+  payload: { currentUser, item, favorites },
+});
+
+export const removeFavoriteSuccess = (item) => ({
+  type: UserActionTypes.REMOVE_FAVORITE_SUCCESS,
+  payload: item,
+});
+
+export const removeFavoriteFailure = (error) => ({
+  type: UserActionTypes.REMOVE_FAVORITE_FAILURE,
+  payload: error,
+});
