@@ -20,8 +20,8 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
       <Link className="option" to="/shop">
         SHOP
       </Link>
-      <Link className="option" to="/shop">
-        CONTACT
+      <Link className="option" to="/favorites">
+        FAVORITES
       </Link>
       {currentUser ? (
         <div className="option" onClick={signOutStart}>
@@ -41,11 +41,11 @@ const Header = ({ currentUser, hidden, signOutStart }) => (
 // createStructuredSelector passes state into multiple selectors
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
-  hidden: selectCartHidden
+  hidden: selectCartHidden,
 });
 
-const mapDispatchToProps = dispatch => ({
-  signOutStart: () => dispatch(signOutStart())
+const mapDispatchToProps = (dispatch) => ({
+  signOutStart: () => dispatch(signOutStart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -3,7 +3,7 @@ import ShopActionTypes from "../shop/shop.types.js";
 
 const INITIAL_STATE = {
   currentUser: null,
-  favorites: {},
+  favorites: null,
   isFetching: false,
   error: null,
 };
@@ -28,7 +28,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         currentUser: null,
-        favorites: {},
+        favorites: null,
         error: null,
       };
     case UserActionTypes.SIGN_IN_FAILURE:

@@ -10,6 +10,7 @@ import { selectCurrentUser } from "./redux/user/user.selectors";
 import { checkUserSession } from "./redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import Favorites from "./pages/favorites/favorites.component";
 import Portal from "./components/portal/portal.component";
 import ModalManager from "./components/modals/modal-manager";
 
@@ -27,6 +28,7 @@ const App = ({ checkUserSession, currentUser }) => {
         <Route exact path="/" component={HomePage} />
         <Route path="/shop" component={ShopPage} />
         <Route exact path="/checkout" component={CheckoutPage} />
+        <Route exact path="/favorites" component={Favorites} />
         {/* If user signed in, redirect user to home page when clicking signin.
             also redirects to home when user signs in.
           render prop determines what component to return*/}
