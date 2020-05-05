@@ -1,0 +1,30 @@
+.newsletter-signup {
+  padding: 2rem;
+  margin: 2rem 0;
+  background: #ddd;
+  width: 100%;
+  text-align: center;
+
+  .newsletter-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mc-status {
+    font-style: italic;
+    font-size: 0.75em;
+    margin-bottom: 1em;
+
+    &:focus {
+      outline: none;
+    }
+
+    .success-message {
+      color: green;
+    }
+
+    .error-message {
+      color: red;
+    }
+  }
+}

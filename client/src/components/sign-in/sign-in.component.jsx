@@ -4,26 +4,26 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import {
   googleSignInStart,
-  emailSignInStart
+  emailSignInStart,
 } from "../../redux/user/user.actions";
 import "./sign-in.styles.scss";
 
 const SignIn = ({ emailSignInStart, googleSignInStart }) => {
   const [userCredentials, setCredentials] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const { email, password } = userCredentials;
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = userCredentials;
 
     emailSignInStart(email, password);
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { value, name } = e.target;
     // Brackets within setState will dynamically set that
     // key to the input name (email or password)
@@ -67,10 +67,10 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   googleSignInStart: () => dispatch(googleSignInStart()),
   emailSignInStart: (email, password) =>
-    dispatch(emailSignInStart({ email, password }))
+    dispatch(emailSignInStart({ email, password })),
 });
 
 export default connect(null, mapDispatchToProps)(SignIn);

@@ -18,10 +18,12 @@ a {
   color: black;
 }
 
-div > *:first-child {
+div > *:first-child,
+form > *:first-child {
   margin-top: 0;
 }
 
-div > *:last-child {
+div > *:last-child,
+form > *:last-child {
   margin-bottom: 0;
 }
