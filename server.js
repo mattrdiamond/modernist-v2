@@ -10,6 +10,29 @@ if (process.env !== "production") require("dotenv").config();
 // Immediately invoke function, which returns Stripe object that we can use to make charge
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
+//*********************************************
+
+// allows window.fetch API on Node.js runtime (for unsplash.js)
+global.fetch = require("node-fetch");
+
+// allows us to include config parameters in a more elegant way
+// const config = require("universal-config");
+
+// unsplash has multiple exports. we want default
+const Unsplash = require("unsplash-js").default;
+// gives us json from request
+const toJson = require("unsplash-js").toJson;
+
+// instantiate unsplash object - takes in all of our parameters from .env file
+// used to make requests to api
+const unsplash = new Unsplash({
+  accessKey: process.env.UNSPLASH_ACCESS_KEY,
+  secret: process.env.UNSPLASH_SECRET,
+  callbackUrl: process.env.CALLBACK_URL || "http://localhost:3000",
+});
+
+//*********************************************
+
 // Instantiate a new node server with express
 const app = express();
 
@@ -43,6 +66,19 @@ app.listen(port, (error) => {
   if (error) throw error;
   console.log("Server running on port " + port);
 });
+
+//************************************
+// get collections photos
+app.get("/api/photos", (req, res) => {
+  unsplash.collections
+    .getCollectionPhotos(req.query.id, req.query.page, req.query.perPage)
+    .then(toJson)
+    .then((json) => res.json(json))
+    .catch((error) => {
+      console.log("error", error);
+    });
+});
+//************************************
 
 // FEND sends payment req with token object -> express sends payment to Stripe -> Stripe creates charge -> res back to client
 app.post("/payment", (req, res) => {

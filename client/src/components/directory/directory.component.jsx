@@ -6,7 +6,7 @@ import { selectDirectorySections } from "../../redux/directory/directory.selecto
 import "./directory.styles.scss";
 
 const Directory = ({ sections }) => (
-  <div className="directory-menu">
+  <section className="directory-menu">
     {/* ES6: spreading otherSectionProps (name we created) just adds
     remaining key/value pairs from sections state object. We can then spread those
     same values into MenuItem. This just cleans up the syntax - no longer need
@@ -14,10 +14,10 @@ const Directory = ({ sections }) => (
     {sections.map(({ id, ...otherSectionProps }) => (
       <MenuItem key={id} {...otherSectionProps} />
     ))}
-  </div>
+  </section>
 );
 
 const mapStateToProps = createStructuredSelector({
-  sections: selectDirectorySections
+  sections: selectDirectorySections,
 });
 export default connect(mapStateToProps)(Directory);

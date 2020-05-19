@@ -1,12 +1,21 @@
 import React from "react";
 import Directory from "../../components/directory/directory.component";
 import NewsletterSignup from "../../components/newsletter-signup/newsletter-signup.component";
+import Carousel from "../../components/carousel/carousel.component";
 import "./homepage.styles.scss";
 
 const Homepage = () => (
   <div className="homepage">
     <Directory />
     <NewsletterSignup />
+    <section className="carousel-text">
+      <h2>Share the love!</h2>
+      <p>
+        This is a paragraph of placeholder content. Will soon replace with
+        meaningful content.
+      </p>
+      <Carousel />
+    </section>
   </div>
 );
 

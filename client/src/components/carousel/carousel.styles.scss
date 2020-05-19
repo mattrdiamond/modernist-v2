@@ -1,0 +1,96 @@
+// body {
+//   margin: 0;
+//   margin-bottom: 200px; //temp
+//   padding: 0;
+//   font-weight: 300;
+//   letter-spacing: 0.125px;
+//   background: #f2f1ef;
+// }
+
+.carousel-component {
+  // stretch 100vw
+  margin: 0 -60px;
+
+  .cards-slider {
+    position: relative;
+    margin: 0 0.5rem;
+  }
+
+  .cards-slider-wrapper {
+    display: flex;
+    transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  }
+
+  .circle-button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: 45px;
+    height: 45px;
+    overflow: visible;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    color: #828282;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    top: 50%;
+    // margin-bottom = 1/2 button height
+    margin-top: -22.5px;
+
+    &:hover {
+      color: #222;
+    }
+
+    &:focus {
+      color: #222;
+      outline: none;
+    }
+
+    &:disabled {
+      opacity: 0%;
+    }
+
+    &.right {
+      right: 1.2rem;
+    }
+
+    &.left {
+      left: 1.2rem;
+    }
+
+    /* Remove excess padding and border in Firefox 4+ */
+    &::-moz-focus-inner {
+      border: 0;
+      padding: 0;
+    }
+  }
+}
+
+// stretch 100vw
+@media (max-width: 800px) {
+  .carousel-component {
+    margin: 0 -10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .carousel-component {
+    .cards-slider {
+      margin: 0;
+    }
+    .circle-button {
+      &.right {
+        right: 0.75rem;
+      }
+      &.left {
+        left: 0.75rem;
+      }
+    }
+  }
+}

@@ -109,7 +109,7 @@ const NewsletterSignup = () => {
   const { message, result } = mailchimpStatus;
 
   return (
-    <div className="newsletter-signup">
+    <section className="newsletter-signup">
       <form
         action="https://gmail.us8.list-manage.com/subscribe/post?u=a826694112117741e6cd0d13f&amp;id=946b9658d7"
         onSubmit={handleSubmit}
@@ -169,7 +169,7 @@ const NewsletterSignup = () => {
           dangerouslySetInnerHTML={{ __html: message }}
         ></div>
       </form>
-    </div>
+    </section>
   );
 };
 
