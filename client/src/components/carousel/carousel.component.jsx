@@ -30,7 +30,7 @@ const Carousel = () => {
   // fetch data and set initial images based on screen size
   useEffect(() => {
     const { page, images, fetchImageCount } = sliderState;
-    const collectionId = 1118894; // superior-interior collection
+    const collectionId = 1118894; // Unsplash 'superior-interior' collection
     const imageCount = imagesFitOnScreen();
 
     axios
@@ -74,11 +74,11 @@ const Carousel = () => {
 
   const updateScreenSize = () => {
     console.log("update Screen size");
-    const { visibleImages, index, fetchImageCount, imagesLoaded } = sliderState;
+    const { visibleImages, index, fetchImageCount } = sliderState;
     const currentVisibleImages = imagesFitOnScreen();
-    // 1. only update if number of visible images changed
+    // 1. Only update if number of visible images changed
     if (visibleImages === currentVisibleImages) return;
-    // 2. when widening the screen and there are NOT enough images to display after current index,
+    // 2. When widening the screen and there are NOT enough images to display after current index,
     //    move index back and display last (n) number of visible images in fetchImageCount
     else if (
       visibleImages < currentVisibleImages &&
@@ -94,8 +94,8 @@ const Carousel = () => {
           (100 / currentVisibleImages),
       });
     }
-    // 3. when widening the screen and there ARE enough images to display after current index
-    //    or when narrowing the screen
+    // 3. When widening the screen and there ARE enough images to display after current index
+    //    or when narrowing the screen, add new images
     return setSliderState({
       ...sliderState,
       visibleImages: currentVisibleImages,
@@ -129,7 +129,7 @@ const Carousel = () => {
       sliderPosition,
     } = sliderState;
 
-    // if we've reached the end, return
+    // If we've reached the end, return
     if (index + visibleImages === fetchImageCount) return;
 
     setSliderState({
