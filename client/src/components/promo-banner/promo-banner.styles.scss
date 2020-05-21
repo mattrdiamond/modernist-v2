@@ -1,0 +1,11 @@
+.promo-banner {
+  background-color: var(--red);
+  padding: 1rem;
+  color: #fff;
+  text-align: center;
+
+  .promo-code {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}

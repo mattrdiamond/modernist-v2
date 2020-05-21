@@ -1,10 +1,12 @@
 .checkout-page {
-  width: 55%;
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 50px auto 0;
+  .checkout-wrapper {
+    width: 55%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px auto 0;
+  }
 
   .checkout-header {
     width: 100%;
@@ -23,15 +25,62 @@
     }
   }
 
-  .total {
-    margin-top: 30px;
-    margin-left: auto;
-    font-size: 36px;
+  .summary-container,
+  .promo-container {
+    font-size: 1.25rem;
+    padding: 1rem;
+    width: 100%;
   }
 
-  button {
-    margin-left: auto;
-    margin-top: 50px;
+  .summary-container {
+    margin: 30px 0;
+    display: flex;
+    background: #ddd;
+    flex-wrap: wrap;
+
+    h3 {
+      flex-basis: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .label,
+    .amount {
+      display: inline-block;
+      flex-basis: 50%;
+    }
+
+    span:not(.total) {
+      margin-bottom: 0.75rem;
+    }
+
+    .amount {
+      text-align: right;
+    }
+
+    .total {
+      border-top: 1px solid #666;
+      padding: 0.75rem 0 0;
+      font-weight: bold;
+    }
+  }
+
+  .promo-container {
+    background: #e4f5fb;
+  }
+
+  .promo-form {
+    display: flex;
+    margin: 1rem 0;
+
+    input {
+      width: 100%;
+      border: none;
+      height: 100%;
+    }
+
+    .custom-button {
+      margin-left: 0.5rem;
+    }
   }
 
   .test-warning {

@@ -1,8 +1,9 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
 
-const StripeCheckoutButton = ({ price }) => {
+const StripeCheckoutButton = ({ price, history }) => {
   // Stripe needs price in cents
   const priceForStripe = price * 100;
   const publishableKey = "pk_test_q3amCytQBsYySSLChdL3bHlo00aKSAc7sW";
@@ -19,6 +20,11 @@ const StripeCheckoutButton = ({ price }) => {
     })
       .then((response) => {
         alert("Payment successful");
+        console.log("response", response.data);
+        history.push("/confirmation", {
+          response: response.data,
+          price: price,
+        });
       })
       .catch((error) => {
         console.log("Payment error: ", JSON.parse(error));
@@ -46,4 +52,4 @@ const StripeCheckoutButton = ({ price }) => {
   );
 };
 
-export default StripeCheckoutButton;
+export default withRouter(StripeCheckoutButton);

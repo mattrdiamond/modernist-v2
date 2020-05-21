@@ -17,12 +17,12 @@
 
   &:hover {
     .heart path {
-      fill: #d86262;
+      fill: var(--red);
     }
   }
 
   &.favorite {
-    background-color: #d86262;
+    background-color: var(--red);
 
     .heart path {
       fill: #fff;
@@ -32,7 +32,7 @@
       background: #fff;
 
       .heart path {
-        fill: #d86262;
+        fill: var(--red);
       }
     }
   }
