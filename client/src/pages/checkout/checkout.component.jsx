@@ -71,103 +71,89 @@ const CheckoutPage = ({ cartItems, cartTotal, currentUser }) => {
 
   console.log("user", currentUser);
 
-  if (cartItems.length) {
-    return (
-      <div className="checkout-page">
-        <PromoBanner promoCode={validCode} />
-        <div className="checkout-wrapper">
-          <div className="checkout-header">
-            <div className="header-block">
-              <span>Product</span>
-            </div>
-            <div className="header-block">
-              <span>Description</span>
-            </div>
-            <div className="header-block">
-              <span>Quantity</span>
-            </div>
-            <div className="header-block">
-              <span>Price</span>
-            </div>
-            <div className="header-block">
-              <span>Remove</span>
-            </div>
+  return (
+    <div className="checkout-page">
+      <PromoBanner promoCode={validCode} />
+      <div className="checkout-wrapper">
+        <div className="checkout-header">
+          <div className="header-block">
+            <span>Product</span>
           </div>
-          {cartItems.map((cartItem) => (
-            <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-          ))}
-          <div className="summary-container">
-            <h3 className="">Summary</h3>
-            <span className="label">Subtotal:</span>
-            <span className="amount">${cartTotal.toFixed(2)}</span>
-            {promoCode.applied && (
-              <>
-                <span className="label">Discount:</span>
-                <span className="amount">
-                  -${(cartTotal * promoCode.discount).toFixed(2)}
-                </span>
-              </>
-            )}
-            <span className="label">Sales Tax:</span>
-            <span className="amount">${salesTax.toFixed(2)}</span>
-            <span className="label">Shipping:</span>
-            <span className="amount">${shipping.toFixed(2)}</span>
-            <span className="label total">Total:</span>
-            <span className="amount total">
-              $
-              {promoCode.applied
-                ? (
-                    cartTotal -
-                    cartTotal * promoCode.discount +
-                    salesTax +
-                    shipping
-                  ).toFixed(2)
-                : (cartTotal + salesTax + shipping).toFixed(2)}
-            </span>
+          <div className="header-block">
+            <span>Description</span>
           </div>
-          <div className="promo-container">
-            <span>Add a promo or gift card</span>
-            <form className="promo-form" onSubmit={handleSubmit}>
-              <FormInput
-                name="promo"
-                handleChange={handleChange}
-                type="text"
-                value={input}
-                placeholder="Promo or gift card"
-                required
-              />
-              <CustomButton
-                type="button"
-                onClick={handleSubmit}
-                disabled={!promoCode}
-              >
-                Apply
-              </CustomButton>
-            </form>
-            {error ? <div className="alert-container">{error}</div> : null}
+          <div className="header-block">
+            <span>Quantity</span>
           </div>
-          <div className="test-warning">
-            *Please use the following test credit card for payments*
-            <br />
-            4242 4242 4242 4242 - Exp: 01/28 - CVV: 123
+          <div className="header-block">
+            <span>Price</span>
           </div>
-          <StripeCheckoutButton price={cartTotal} />
+          <div className="header-block">
+            <span>Remove</span>
+          </div>
         </div>
+        {cartItems.map((cartItem) => (
+          <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+        ))}
+        <div className="summary-container">
+          <h3 className="">Summary</h3>
+          <span className="label">Subtotal:</span>
+          <span className="amount">${cartTotal.toFixed(2)}</span>
+          {promoCode.applied && (
+            <>
+              <span className="label">Discount:</span>
+              <span className="amount">
+                -${(cartTotal * promoCode.discount).toFixed(2)}
+              </span>
+            </>
+          )}
+          <span className="label">Sales Tax:</span>
+          <span className="amount">${salesTax.toFixed(2)}</span>
+          <span className="label">Shipping:</span>
+          <span className="amount">${shipping.toFixed(2)}</span>
+          <span className="label total">Total:</span>
+          <span className="amount total">
+            $
+            {promoCode.applied
+              ? (
+                  cartTotal -
+                  cartTotal * promoCode.discount +
+                  salesTax +
+                  shipping
+                ).toFixed(2)
+              : (cartTotal + salesTax + shipping).toFixed(2)}
+          </span>
+        </div>
+        <div className="promo-container">
+          <span>Add a promo or gift card</span>
+          <form className="promo-form" onSubmit={handleSubmit}>
+            <FormInput
+              name="promo"
+              handleChange={handleChange}
+              type="text"
+              value={input}
+              placeholder="Promo or gift card"
+              required
+            />
+            <CustomButton
+              type="button"
+              onClick={handleSubmit}
+              disabled={!promoCode}
+            >
+              Apply
+            </CustomButton>
+          </form>
+          {error ? <div className="alert-container">{error}</div> : null}
+        </div>
+        <div className="test-warning">
+          *Please use the following test credit card for payments*
+          <br />
+          4242 4242 4242 4242 - Exp: 01/28 - CVV: 123
+        </div>
+        <StripeCheckoutButton price={cartTotal} />
       </div>
-    );
-  } else {
-    return (
-      <div>
-        <h1>Your cart is empty</h1>
-        {!currentUser && (
-          <p>
-            If you have an account, sign in to see items added on earlier
-            visits.
-          </p>
-        )}
-      </div>
-    );
-  }
+    </div>
+  );
 };
 
 const mapStateToProps = createStructuredSelector({
