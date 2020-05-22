@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -13,23 +13,48 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import PromoBanner from "../../components/promo-banner/promo-banner.component";
 import "./checkout.styles.scss";
 
-const CheckoutPage = ({ cartItems, cartTotal, currentUser }) => {
-  const shipping = 99;
-  const salesTax = cartTotal * 0.0625;
+const CheckoutPage = ({ cartItems, cartTotal }) => {
+  const [totals, updateTotals] = useState({
+    discount: 0,
+    tax: 0,
+    shipping: 20,
+    total: 0,
+  });
+
+  // set initial totals on mount
+  useEffect(() => {
+    updateTotals({
+      ...totals,
+      tax: salesTax,
+      total: calculateTotal(),
+    });
+  }, []);
+
+  const { discount, tax, shipping, total } = totals;
 
   const [promoCode, setPromoCode] = useState({
     validCode: "supersale",
     input: "",
     error: null,
     applied: false,
-    discount: 0.2,
+    amount: 0.2,
   });
 
   const { validCode, input, error } = promoCode;
 
+  // calculate summary values
+  const taxRate = 0.0625;
+  const salesTax = cartTotal * taxRate;
+  const promoDiscount = cartTotal * promoCode.amount;
+  const calculateTotal = () => {
+    const total = promoCode.applied
+      ? cartTotal - promoDiscount + salesTax + shipping
+      : cartTotal + salesTax + shipping;
+    return total;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (input.toLowerCase() !== validCode.toLowerCase()) {
       return setPromoCode({
         ...promoCode,
@@ -44,10 +69,18 @@ const CheckoutPage = ({ cartItems, cartTotal, currentUser }) => {
         error: "Promo has already been applied.",
       });
     }
+    // apply promo and update totals
     setPromoCode({
       ...promoCode,
       input: "",
       applied: true,
+      error: null,
+    });
+    updateTotals({
+      ...totals,
+      discount: promoDiscount,
+      tax: salesTax,
+      total: calculateTotal(),
     });
   };
 
@@ -56,20 +89,17 @@ const CheckoutPage = ({ cartItems, cartTotal, currentUser }) => {
 
     // clear error if showing
     if (promoCode.error) {
-      setPromoCode({
+      return setPromoCode({
         ...promoCode,
         input: value,
         error: null,
       });
-    } else {
-      setPromoCode({
-        ...promoCode,
-        input: value,
-      });
     }
+    setPromoCode({
+      ...promoCode,
+      input: value,
+    });
   };
-
-  console.log("user", currentUser);
 
   return (
     <div className="checkout-page">
@@ -101,28 +131,16 @@ const CheckoutPage = ({ cartItems, cartTotal, currentUser }) => {
           <span className="amount">${cartTotal.toFixed(2)}</span>
           {promoCode.applied && (
             <>
-              <span className="label">Discount:</span>
-              <span className="amount">
-                -${(cartTotal * promoCode.discount).toFixed(2)}
-              </span>
+              <span className="label promo">Discount:</span>
+              <span className="amount promo">-${discount.toFixed(2)}</span>
             </>
           )}
           <span className="label">Sales Tax:</span>
-          <span className="amount">${salesTax.toFixed(2)}</span>
+          <span className="amount">${tax.toFixed(2)}</span>
           <span className="label">Shipping:</span>
           <span className="amount">${shipping.toFixed(2)}</span>
           <span className="label total">Total:</span>
-          <span className="amount total">
-            $
-            {promoCode.applied
-              ? (
-                  cartTotal -
-                  cartTotal * promoCode.discount +
-                  salesTax +
-                  shipping
-                ).toFixed(2)
-              : (cartTotal + salesTax + shipping).toFixed(2)}
-          </span>
+          <span className="amount total">${total.toFixed(2)}</span>
         </div>
         <div className="promo-container">
           <span>Add a promo or gift card</span>
@@ -150,7 +168,7 @@ const CheckoutPage = ({ cartItems, cartTotal, currentUser }) => {
           <br />
           4242 4242 4242 4242 - Exp: 01/28 - CVV: 123
         </div>
-        <StripeCheckoutButton price={cartTotal} />
+        <StripeCheckoutButton price={cartTotal} cartItems={cartItems} />
       </div>
     </div>
   );

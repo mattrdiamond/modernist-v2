@@ -5,7 +5,7 @@ const PromoBanner = ({ promoCode }) => (
   <div className="promo-banner">
     <span className="promo-text">
       Get 20% off your entire purchase with code{" "}
-      <span className="promo-code">{promoCode}</span>
+      <span className="promo-code">{promoCode}</span>.
     </span>
   </div>
 );
