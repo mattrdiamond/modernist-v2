@@ -131,7 +131,7 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
           <span className="amount">${cartTotal.toFixed(2)}</span>
           {promoCode.applied && (
             <>
-              <span className="label promo">Discount:</span>
+              <span className="label promo">Promo:</span>
               <span className="amount promo">-${discount.toFixed(2)}</span>
             </>
           )}
@@ -168,7 +168,11 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
           <br />
           4242 4242 4242 4242 - Exp: 01/28 - CVV: 123
         </div>
-        <StripeCheckoutButton price={cartTotal} cartItems={cartItems} />
+        <StripeCheckoutButton
+          price={cartTotal}
+          subtotal={cartTotal}
+          totals={totals}
+        />
       </div>
     </div>
   );

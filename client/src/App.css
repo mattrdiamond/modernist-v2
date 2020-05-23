@@ -1,6 +1,7 @@
 :root {
   /*-- color palette --*/
   --red: #d86262;
+  --bold: bold;
 }
 
 * {
@@ -31,4 +32,8 @@ form > *:first-child {
 div > *:last-child,
 form > *:last-child {
   margin-bottom: 0 !important;
+}
+
+.bold {
+  font-weight: bold;
 }

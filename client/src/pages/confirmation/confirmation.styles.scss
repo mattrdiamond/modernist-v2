@@ -1,3 +1,60 @@
-.confirmation-page {
-  text-align: center;
+.order-details,
+.order-details-inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order-details {
+  margin: 3rem auto;
+
+  > .label {
+    font-weight: bold;
+    font-size: 1.15rem;
+  }
+}
+
+.order-details-inner {
+  width: calc(100% - 8rem);
+  padding-left: 1rem;
+
+  .details {
+    text-align: right;
+    font-weight: bold;
+  }
+
+  .label {
+    padding-bottom: 1rem;
+  }
+
+  span:nth-last-of-type(2),
+  span:first-of-type {
+    font-weight: bold;
+  }
+}
+
+.order-details .label,
+.order-details-inner .label {
+  flex-basis: 8rem;
+}
+
+.order-details > .label {
+  padding-bottom: 2rem;
+}
+
+.order-details .details,
+.order-details-inner .details {
+  flex-basis: calc(100% - 8rem);
+  padding-left: 1rem;
+}
+
+.hr-above {
+  border-top: 1px solid lightgrey;
+  padding-top: 1rem;
+}
+
+@media and (max-width: 500px) {
+  .order-details-inner {
+    width: 100%;
+    padding-left: 0;
+  }
 }
