@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
+import { connect } from "react-redux";
+import { clearCart } from "../../redux/cart/cart.actions";
 import axios from "axios";
 import { withRouter, Redirect } from "react-router-dom";
 
-const StripeCheckoutButton = ({ price, cartItems, subtotal, totals }) => {
+const StripeCheckoutButton = ({ clearCart, totals }) => {
+  const { total } = totals;
   // Stripe needs price in cents
-  const priceForStripe = price * 100;
+  const priceForStripe = total * 100;
   const publishableKey = "pk_test_q3amCytQBsYySSLChdL3bHlo00aKSAc7sW";
 
   const [payment, setPayment] = useState({
@@ -41,14 +44,13 @@ const StripeCheckoutButton = ({ price, cartItems, subtotal, totals }) => {
 
   if (payment.success) {
     console.log("response data", payment.data);
+    clearCart();
     return (
       <Redirect
         to={{
           pathname: "/confirmation",
           state: payment.data,
-          cartItems: cartItems,
-          subtotal,
-          totals: totals,
+          totals,
         }}
       />
     );
@@ -60,7 +62,7 @@ const StripeCheckoutButton = ({ price, cartItems, subtotal, totals }) => {
         billingAddress
         shippingAddress
         image="https://svgshare.com/i/CUz.svg"
-        description={`Your total is $${price}`}
+        description={`Your total is $${total}`}
         amount={priceForStripe}
         panelLabel="Pay Now"
         token={onToken}
@@ -72,4 +74,10 @@ const StripeCheckoutButton = ({ price, cartItems, subtotal, totals }) => {
   }
 };
 
-export default withRouter(StripeCheckoutButton);
+const mapDispatchToProps = (dispatch) => ({
+  clearCart: () => dispatch(clearCart()),
+});
+
+export default withRouter(
+  connect(null, mapDispatchToProps)(StripeCheckoutButton)
+);

@@ -1,0 +1,18 @@
+.promo-container {
+  background: #e4f5fb;
+}
+
+.promo-form {
+  display: flex;
+  margin: 1rem 0;
+
+  input {
+    width: 100%;
+    border: none;
+    height: 100%;
+  }
+
+  .custom-button {
+    margin-left: 0.5rem;
+  }
+}
