@@ -52,6 +52,12 @@
   padding-top: 1rem;
 }
 
+.hr-below {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 500px) {
   .order-details-inner {
     width: 100%;

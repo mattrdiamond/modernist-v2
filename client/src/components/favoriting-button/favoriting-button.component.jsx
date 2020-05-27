@@ -47,9 +47,15 @@ class FavoritingButton extends Component {
     this.setState({ isFavorite: false });
   };
 
+  // prevent rendering all favoriting buttons when single element favorited
   shouldComponentUpdate(nextProps) {
     const { item } = this.props;
-    return nextProps.favorites[item.id] !== this.props.favorites[item.id];
+    // only render if no favorites (prior to sign in) or if a new favorite has been added
+    return (
+      !this.props.favorites ||
+      !nextProps.favorites ||
+      nextProps.favorites[item.id] !== this.props.favorites[item.id]
+    );
   }
 
   render() {
