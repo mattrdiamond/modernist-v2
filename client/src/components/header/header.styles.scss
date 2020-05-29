@@ -1,9 +1,14 @@
 .header {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.nav-wrapper {
   height: 70px;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 25px;
+  z-index: 1;
 
   .logo-container {
     height: 100%;
@@ -28,10 +33,9 @@
 }
 
 @media screen and (max-width: 800px) {
-  .header {
+  .nav-wrapper {
     height: 60px;
     padding: 10px;
-    margin-bottom: 20px;
 
     .logo-container {
       width: 30px;

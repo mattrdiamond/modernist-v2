@@ -22,8 +22,11 @@ const CartDropdown = ({ cartItems, history, dispatch }) => {
   }, []);
 
   const handleClick = (e) => {
-    if (node.current.contains(e.target)) {
-      // clicked inside dropdown
+    if (
+      node.current.contains(e.target) ||
+      e.target.classList.contains("cart-icon")
+    ) {
+      // clicked inside dropdown or clicked shopping icon
       console.log("clicked inside");
       return;
     }

@@ -25,23 +25,25 @@ const App = ({ checkUserSession, currentUser }) => {
   return (
     <div>
       <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route exact path="/checkout" component={CheckoutPage} />
-        <Route exact path="/favorites" component={Favorites} />
-        <Route exact path="/confirmation" component={Confirmation} />
-        {/* If user signed in, redirect user to home page when clicking signin.
+      <div className="content-window">
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route exact path="/checkout" component={CheckoutPage} />
+          <Route exact path="/favorites" component={Favorites} />
+          <Route exact path="/confirmation" component={Confirmation} />
+          {/* If user signed in, redirect user to home page when clicking signin.
             also redirects to home when user signs in.
           render prop determines what component to return*/}
-        <Route
-          exact
-          path="/signin"
-          render={() =>
-            currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
-          }
-        />
-      </Switch>
+          <Route
+            exact
+            path="/signin"
+            render={() =>
+              currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
+            }
+          />
+        </Switch>
+      </div>
       <Portal>
         <ModalManager />
       </Portal>

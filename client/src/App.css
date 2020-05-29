@@ -1,7 +1,10 @@
 :root {
   /*-- color palette --*/
   --red: #d86262;
+  --gray-light: #c2c2c2;
+  --gray-medium: #828282;
   --bold: bold;
+  --font-text: "Open Sans Condensed", sans-serif;
 }
 
 * {
