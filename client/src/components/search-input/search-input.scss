@@ -1,5 +1,4 @@
-.header-input-container {
-  z-index: -1;
+.search-input-container {
   animation: drop-down 0.5s ease forwards;
 
   &.hidden {
@@ -33,7 +32,7 @@
   }
 }
 
-.header-input {
+.search-input {
   border: 1px solid;
   border-color: var(--gray-light);
   font-family: var(--font-text);

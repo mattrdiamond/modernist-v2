@@ -9,5 +9,5 @@ export const selectInputHidden = createSelector(
 
 export const selectInputValue = createSelector(
   [selectSearch],
-  (search) => search.InputValue
+  (search) => search.inputValue
 );

@@ -8,7 +8,7 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
-import HeaderInput from "../header-input/header-input.component";
+import SearchInput from "../search-input/search-input.component";
 import SearchIcon from "../search-icon/search-icon.component";
 import { connect } from "react-redux";
 import { signOutStart } from "../../redux/user/user.actions";
@@ -47,7 +47,7 @@ const Header = ({ currentUser, cartHidden, inputHidden, signOutStart }) => {
           <CartIcon />
         </div>
       </div>
-      <HeaderInput inputHidden={inputHidden} inputRef={inputRef} />
+      <SearchInput inputHidden={inputHidden} inputRef={inputRef} />
       {cartHidden ? null : <CartDropdown />}
     </nav>
   );

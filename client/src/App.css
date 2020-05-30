@@ -3,6 +3,8 @@
   --red: #d86262;
   --gray-light: #c2c2c2;
   --gray-medium: #828282;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  /*-- typography --*/
   --bold: bold;
   --font-text: "Open Sans Condensed", sans-serif;
 }
