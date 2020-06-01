@@ -6,25 +6,24 @@ const SearchInputDropdown = ({
   inputValue,
   fetchCollectionsStart,
 }) => {
-  // fetch collections data if not yet available
+  // 1. fetch collections data if not yet available
   useEffect(() => {
     if (!collectionItems.length) {
       fetchCollectionsStart();
     }
   }, []);
 
-  const searchResults = collectionItems.filter((item) =>
-    item.name
-      .toLowerCase()
-      .replace(/[^a-zA-Z0-9]/gi, "")
-      .trim()
-      .includes(
-        inputValue
-          .toLowerCase()
-          .replace(/[^a-zA-Z0-9]/gi, "")
-          .trim()
-      )
-  );
+  // remove any special characters or extra spaces
+  const removeSpecialChars = (input) =>
+    input.replace(/\s\s+|[^a-zA-Z0-9 ]/gi, "");
+
+  const userInput = removeSpecialChars(inputValue.toLowerCase());
+
+  const searchResults = collectionItems.filter((item) => {
+    const itemName = removeSpecialChars(item.name.toLowerCase());
+    const wordsStartingWithInput = new RegExp("\\b" + userInput + "\\S*", "gi"); // same as /\b[input]\S*/gi
+    return itemName.match(wordsStartingWithInput);
+  });
 
   return (
     <ul className="search-results">
