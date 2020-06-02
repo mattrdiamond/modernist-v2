@@ -6,7 +6,7 @@ const SearchInputDropdown = ({
   inputValue,
   fetchCollectionsStart,
 }) => {
-  // 1. fetch collections data if not yet available
+  // fetch collections data if not yet available
   useEffect(() => {
     if (!collectionItems.length) {
       fetchCollectionsStart();
@@ -25,6 +25,7 @@ const SearchInputDropdown = ({
     return itemName.match(wordsStartingWithInput);
   });
 
+  if (!collectionItems.length) return null;
   return (
     <ul className="search-results">
       {searchResults.length ? (

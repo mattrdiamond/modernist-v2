@@ -47,7 +47,11 @@ const Header = ({ currentUser, cartHidden, inputHidden, signOutStart }) => {
           <CartIcon />
         </div>
       </div>
-      <SearchInput inputHidden={inputHidden} inputRef={inputRef} />
+      <SearchInput
+        inputHidden={inputHidden}
+        inputRef={inputRef}
+        focusOnInput={focusOnInput}
+      />
       {cartHidden ? null : <CartDropdown />}
     </nav>
   );

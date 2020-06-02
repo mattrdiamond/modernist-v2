@@ -6,6 +6,7 @@ import { selectInputValue } from "../../redux/search/search.selectors";
 import { selectCollectionItems } from "../../redux/shop/shop.selectors";
 import { setInputValue } from "../../redux/search/search.actions";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
+import Icon from "../icon/icon.component";
 import "./search-input.scss";
 
 const SearchInput = ({
@@ -15,6 +16,7 @@ const SearchInput = ({
   inputRef,
   collectionItems,
   fetchCollectionsStart,
+  focusOnInput,
 }) => {
   const handleChange = (e) => {
     const { value } = e.target;
@@ -26,9 +28,15 @@ const SearchInput = ({
     console.log("submit");
   };
 
+  const clearInput = (e) => {
+    e.preventDefault();
+    setInputValue("");
+    focusOnInput();
+  };
+
   return (
-    <div className={"search-input-container" + (inputHidden ? " hidden" : "")}>
-      <form onSubmit={handleSubmit}>
+    <div className={"search-component" + (inputHidden ? " hidden" : "")}>
+      <form className="search-form" onSubmit={handleSubmit}>
         <input
           className="search-input"
           onChange={handleChange}
@@ -38,7 +46,11 @@ const SearchInput = ({
           ref={inputRef}
           tabIndex={inputHidden ? "-1" : "0"}
         />
+        <button className="clear-button" onMouseDown={clearInput}>
+          <Icon icon="clear" />
+        </button>
       </form>
+
       {inputValue && (
         <SearchDropdown
           collectionItems={collectionItems}

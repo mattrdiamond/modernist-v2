@@ -22,8 +22,18 @@ const App = ({ checkUserSession, currentUser }) => {
     checkUserSession();
   }, [checkUserSession]);
 
+  // return (
+  //   <div id="app">
+  //     <Header />
+  //     <div className="content-window">
+  //       <div className="shopPage-test">
+  //         <div className="spinn"></div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
   return (
-    <div>
+    <div id="app">
       <Header />
       <div className="content-window">
         <Switch>

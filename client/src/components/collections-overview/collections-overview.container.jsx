@@ -13,7 +13,7 @@ import CollectionsOverview from "./collections-overview.component";
 // 2. Then pass HOC into connect which gives it the isLoading prop from mapStateToProps
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: selectIsCollectionFetching
+  isLoading: selectIsCollectionFetching,
 });
 
 const CollectionsOverviewContainer = compose(
