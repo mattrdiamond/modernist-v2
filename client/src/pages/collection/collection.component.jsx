@@ -10,7 +10,7 @@ const CollectionPage = ({ collection }) => {
     <div className="collection-page">
       <h2 className="title">{title}</h2>
       <div className="items">
-        {items.map(item => (
+        {items.map((item) => (
           <CollectionItem key={item.id} item={item} />
         ))}
       </div>
@@ -23,7 +23,7 @@ const mapStateToProps = (state, ownProps) => ({
   // selectCollection gets the collection based on the curent route
   // selectCollection returns another function (createSelector) which we then pass state into:
   // selectCollection(ownProps.collectionId) => createSelector(state) => returns collection in state corresponding to the match.params.collectionId (i.e. collections[hats])
-  collection: selectCollection(ownProps.match.params.collectionId)(state)
+  collection: selectCollection(ownProps.match.params.collectionId)(state),
 });
 
 export default connect(mapStateToProps)(CollectionPage);

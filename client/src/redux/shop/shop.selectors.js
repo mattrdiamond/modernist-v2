@@ -21,6 +21,15 @@ export const selectCollection = (collectionUrlParam) =>
     collections ? collections[collectionUrlParam] : null
   );
 
+// select collection item - first select collection and then find the item.id that matches the url (string)
+export const selectItem = (collectionUrlParam, itemUrlParam) =>
+  createSelector([selectCollection(collectionUrlParam)], (collection) =>
+    collection
+      ? collection.items.find((item) => item.id === parseInt(itemUrlParam))
+      : null
+  );
+
+// select combined items from all collections
 export const selectCollectionItems = createSelector(
   [selectCollections],
   (collections) => {

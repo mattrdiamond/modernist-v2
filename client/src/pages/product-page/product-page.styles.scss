@@ -1,0 +1,29 @@
+.product-page {
+  display: flex;
+  max-width: 1030px;
+  margin: 0 auto;
+
+  .product-img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 500px;
+  }
+
+  .col-left {
+    flex-basis: 60%;
+  }
+
+  .col-right {
+    flex-basis: 40%;
+    margin-left: 3rem;
+  }
+
+  .collection-name {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .product-description {
+    line-height: 1.75rem;
+  }
+}
