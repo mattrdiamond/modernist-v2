@@ -6,7 +6,7 @@ import { selectDirectorySections } from "../../redux/directory/directory.selecto
 import "./directory.styles.scss";
 
 const Directory = ({ sections }) => (
-  <section className="directory-menu">
+  <section className="directory-menu page-width">
     {/* ES6: spreading otherSectionProps (name we created) just adds
     remaining key/value pairs from sections state object. We can then spread those
     same values into MenuItem. This just cleans up the syntax - no longer need

@@ -23,7 +23,7 @@ const Header = ({ currentUser, cartHidden, inputHidden, signOutStart }) => {
 
   return (
     <nav className="header">
-      <div className="nav-wrapper">
+      <div className="nav-wrapper page-width">
         <Link className="logo-container" to="/">
           <Logo className="logo" />
         </Link>
@@ -43,15 +43,11 @@ const Header = ({ currentUser, cartHidden, inputHidden, signOutStart }) => {
               Sign In
             </Link>
           )}
-          <SearchIcon focusOnInput={focusOnInput} />
+          <SearchIcon focusOnInput={focusOnInput} inputHidden={inputHidden} />
           <CartIcon />
         </div>
       </div>
-      <SearchInput
-        inputHidden={inputHidden}
-        inputRef={inputRef}
-        focusOnInput={focusOnInput}
-      />
+      <SearchInput inputHidden={inputHidden} inputRef={inputRef} />
       {cartHidden ? null : <CartDropdown />}
     </nav>
   );

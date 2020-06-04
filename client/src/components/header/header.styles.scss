@@ -5,15 +5,15 @@
 }
 
 .nav-wrapper {
-  height: 70px;
-  width: 100%;
+  height: var(--nav-height);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   z-index: 1;
 
   .logo-container {
     height: 100%;
-    width: 70px;
+    width: 35px;
     display: flex;
     align-items: center;
   }
@@ -35,14 +35,6 @@
 
 @media screen and (max-width: 800px) {
   .nav-wrapper {
-    height: 60px;
-    padding: 10px;
-
-    .logo-container {
-      width: 30px;
-      padding: 0;
-    }
-
     .options {
       width: 80%;
 

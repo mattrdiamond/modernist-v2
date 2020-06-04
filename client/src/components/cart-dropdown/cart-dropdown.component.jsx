@@ -27,11 +27,11 @@ const CartDropdown = ({ cartItems, history, dispatch }) => {
       e.target.classList.contains("cart-icon")
     ) {
       // clicked inside dropdown or clicked shopping icon
-      console.log("clicked inside");
+      // console.log("clicked inside");
       return;
     }
     // outside click
-    console.log("clicked outside");
+    // console.log("clicked outside");
     dispatch(toggleCartHidden());
   };
 

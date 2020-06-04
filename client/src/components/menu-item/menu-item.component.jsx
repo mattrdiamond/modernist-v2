@@ -6,13 +6,13 @@ const MenuItem = ({ title, imageUrl, size, linkUrl, history, match }) => (
   /* we don't know where we will be within directory, so use match to match
   the current url and then add linkUrl (from state) to the end */
   <div
-    className={`${size} menu-item`}
+    className="menu-item"
     onClick={() => history.push(`${match.url}${linkUrl}`)}
   >
     <div
       className="background-image"
       style={{
-        backgroundImage: `url(${imageUrl})`
+        backgroundImage: `url(${imageUrl})`,
       }}
     />
     <div className="content">

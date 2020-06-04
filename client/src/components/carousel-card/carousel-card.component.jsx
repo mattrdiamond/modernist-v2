@@ -3,8 +3,6 @@ import Icon from "../icon/icon.component";
 import "./carousel-card.styles.scss";
 
 export default function Image({ index, image, sliderState }) {
-  console.log("test", sliderState.index + sliderState.visibleImages);
-
   return (
     <div
       className={`card ${

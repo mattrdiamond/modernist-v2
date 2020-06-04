@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import { toggleInputHidden } from "../../redux/search/search.actions";
 import "./search-icon.styles.scss";
 
-const SearchIcon = ({ toggleInputHidden, focusOnInput }) => {
+const SearchIcon = ({ toggleInputHidden, focusOnInput, inputHidden }) => {
   const handleClick = () => {
     toggleInputHidden();
-    focusOnInput();
+    if (inputHidden) focusOnInput();
   };
 
   const handleKeyPress = (e) => {
@@ -23,7 +23,7 @@ const SearchIcon = ({ toggleInputHidden, focusOnInput }) => {
       onKeyPress={handleKeyPress}
       tabIndex="0"
     >
-      <Icon icon="magnifying-glass" width="19px" height="19px" />
+      <Icon icon="search" width="19px" height="19px" />
     </div>
   );
 };

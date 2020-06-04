@@ -1,12 +1,15 @@
 :root {
   /*-- color palette --*/
   --red: #d86262;
+  --gray-background: #f2f2f2;
   --gray-light: #c2c2c2;
   --gray-medium: #828282;
   --shadow-color: rgba(0, 0, 0, 0.2);
   /*-- typography --*/
   --bold: bold;
   --font-text: "Open Sans Condensed", sans-serif;
+  /*-- measurements --*/
+  --nav-height: 70px;
 }
 
 * {
@@ -15,13 +18,7 @@
 
 body {
   font-family: "Open Sans Condensed", sans-serif;
-  padding: 20px 60px 60px;
-}
-
-@media screen and (max-width: 800px) {
-  body {
-    padding: 10px;
-  }
+  /* padding: 20px 60px 60px; */
 }
 
 a {
@@ -41,4 +38,18 @@ form > *:last-child {
 
 .bold {
   font-weight: bold;
+}
+
+.page-width {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (max-width: 1599px) and (min-width: 1200px) {
+  .page-width {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
 }

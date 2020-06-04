@@ -66,7 +66,7 @@ const Carousel = () => {
 
     updateScreenSize();
 
-    return (_) => {
+    return () => {
       console.log("remove listener");
       window.removeEventListener("resize", debouncedHandleResize);
     };

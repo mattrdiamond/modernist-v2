@@ -1,77 +1,93 @@
-.search-component {
-  animation: drop-down 0.5s ease forwards;
+.search-drawer {
+  // animation: drop-down 0.5s ease forwards;
+  background-color: var(--gray-background);
+  height: var(--nav-height);
+  top: 0px;
+  position: absolute;
+  width: 100%;
+  transition: top 0.5s ease;
 
   &.hidden {
     animation: slide-up 0.5s ease forwards;
+    top: calc(0px - var(--nav-height));
+  }
+
+  button {
+    border: none;
+    background: none;
   }
 }
 
-.search-input {
-  border: 1px solid;
-  border-color: var(--gray-light);
-  font-family: var(--font-text);
-  font-size: 18px;
-  width: 100%;
-  padding: 0.5rem 2.25rem 0.5rem 0.75rem;
-  border-radius: 3px;
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+.search-wrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+  .icon-search {
+    position: absolute;
+    margin-left: 1rem;
+  }
+}
+
+.form-wrapper {
+  flex: 1;
   position: relative;
+
+  .search-form {
+    flex: 1;
+  }
+}
+
+.search-input,
+.close-button {
+  border-radius: 3px;
+  transition: box-shadow 0.3s ease-in-out;
 
   &:hover {
     box-shadow: 0px 0px 0px 2px var(--gray-light);
   }
-
-  &:focus {
-    outline: none;
-    border-color: var(--gray-medium);
-    box-shadow: 0px 0px 0px 2px var(--gray-medium);
-  }
 }
 
-.clear-button {
-  position: absolute;
-  height: 100%;
+.search-input {
   border: none;
-  background: none;
-  right: 0;
-  padding: 0.75rem;
-  outline: none;
-  cursor: pointer;
+  font-family: var(--font-text);
+  background-color: transparent;
+  font-size: 18px;
+  padding: 0.5rem 0.5rem 0.5rem 3rem;
+  position: relative;
+  width: 100%;
 
-  .icon-clear {
+  // &:focus {
+  //   outline: none;
+  //   box-shadow: 0px 0px 0px 2px var(--gray-medium);
+  // }
+}
+
+.search-wrapper {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.close-button {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1.5rem;
+
+  .icon-close {
     fill: var(--gray-medium);
+    transition: fill 0.3s ease-in-out;
+    pointer-events: none;
   }
 
   &:focus,
   &:hover {
-    .icon-clear {
+    .icon-close {
       fill: black;
     }
-  }
-}
-
-@keyframes drop-down {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-    height: 0;
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-    height: 42px;
-  }
-}
-
-@keyframes slide-up {
-  0% {
-    opacity: 1;
-    transform: translateY(0);
-    height: 42px;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-20px);
-    height: 0;
   }
 }

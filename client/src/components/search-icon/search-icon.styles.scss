@@ -3,4 +3,8 @@
   align-items: center;
   padding: 10px;
   cursor: pointer;
+
+  .icon-search {
+    pointer-events: none;
+  }
 }
