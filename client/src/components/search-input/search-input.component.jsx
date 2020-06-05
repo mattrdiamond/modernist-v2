@@ -51,7 +51,7 @@ const SearchInput = ({
   };
 
   const handleClose = () => {
-    if (inputValue) setInputValue("");
+    setInputValue("");
     toggleInputHidden();
   };
 

@@ -19,7 +19,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
   };
 
   return (
-    <div className="shop-page">
+    <div className="shop-page page-width">
       {/* in this case, match.path will be /shop */}
       <Route
         exact

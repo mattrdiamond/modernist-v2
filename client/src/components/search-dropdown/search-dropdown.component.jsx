@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { withRouter, Link } from "react-router-dom";
+import SearchResult from "../search-result/search-result.component";
 import "./search-dropdown.styles.scss";
 
 const SearchInputDropdown = ({
@@ -29,12 +31,17 @@ const SearchInputDropdown = ({
   return (
     <ul className="search-results">
       {searchResults.length ? (
-        searchResults.map((result) => <li key={result.id}>{result.name}</li>)
+        searchResults
+          .filter((item, index) => index < 4)
+          .map((result) => <SearchResult result={result} />)
       ) : (
-        <li>No results for '{inputValue}'</li>
+        <li className="result-none">No results for '{inputValue}'</li>
+      )}
+      {searchResults.length > 4 && (
+        <li className="result-view">View all {searchResults.length} items</li>
       )}
     </ul>
   );
 };
 
-export default SearchInputDropdown;
+export default withRouter(SearchInputDropdown);

@@ -1,10 +1,19 @@
 .search-results {
   background: white;
   margin: 0;
-  padding: 1rem;
+  padding: 0;
   list-style: none;
   box-shadow: 0 4px 8px var(--shadow-color);
   border-radius: 4px;
   position: absolute;
   width: 100%;
+
+  .result-none,
+  .result-view {
+    padding: 0.75rem;
+  }
+
+  .result-view {
+    text-align: center;
+  }
 }
