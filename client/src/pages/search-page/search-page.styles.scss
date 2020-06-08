@@ -1,0 +1,27 @@
+.search-page {
+  display: flex;
+  flex-direction: column;
+
+  .search-intro {
+    margin-bottom: 1rem;
+  }
+
+  .search-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+
+    & .collection-item {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .collection-page {
+    .search-container {
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 15px;
+    }
+  }
+}

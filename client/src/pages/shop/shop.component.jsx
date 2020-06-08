@@ -12,12 +12,6 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
     fetchCollectionsStart();
   }, [fetchCollectionsStart]);
 
-  const modalRef = React.useRef();
-
-  const openModal = () => {
-    modalRef.current.openModal();
-  };
-
   return (
     <div className="shop-page page-width">
       {/* in this case, match.path will be /shop */}
