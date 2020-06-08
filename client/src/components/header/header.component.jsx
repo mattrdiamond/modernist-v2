@@ -10,6 +10,7 @@ import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import SearchInput from "../search-input/search-input.component";
 import SearchIcon from "../search-icon/search-icon.component";
+import Icon from "../icon/icon.component";
 import { connect } from "react-redux";
 import { signOutStart } from "../../redux/user/user.actions";
 import "./header.styles.scss";
@@ -24,25 +25,27 @@ const Header = ({ currentUser, cartHidden, inputHidden, signOutStart }) => {
   return (
     <nav className="header">
       <div className="nav-wrapper page-width">
-        <Link className="logo-container" to="/">
-          <Logo className="logo" />
-        </Link>
-        <div className="options">
-          <Link className="option" to="/shop">
-            SHOP
-          </Link>
-          <Link className="option" to="/favorites">
-            FAVORITES
-          </Link>
+        <div className="nav-links">
           {currentUser ? (
-            <div className="option" onClick={signOutStart}>
+            <div className="nav-link" onClick={signOutStart}>
               Sign Out
             </div>
           ) : (
-            <Link className="option" to="/signin">
+            <Link className="nav-link" to="/signin">
               Sign In
             </Link>
           )}
+          <Link className="nav-link" to="/shop">
+            SHOP
+          </Link>
+        </div>
+        <Link className="logo-container" to="/">
+          <Logo className="logo" />
+        </Link>
+        <div className="nav-links right">
+          <Link className="nav-icon" to="/favorites">
+            <Icon icon="heart-outline" width="20px" height="20px" />
+          </Link>
           <SearchIcon focusOnInput={focusOnInput} inputHidden={inputHidden} />
           <CartIcon />
         </div>

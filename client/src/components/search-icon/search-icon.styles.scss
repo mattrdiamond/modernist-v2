@@ -1,10 +1,16 @@
-.search-icon {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  cursor: pointer;
+// .search-icon {
+//   display: flex;
+//   align-items: center;
+//   padding: 10px;
+//   cursor: pointer;
+//   width: 45px;
+//   height: 45px;
+//   justify-content: center;
 
-  .icon-search {
-    pointer-events: none;
-  }
+//   .icon-search {
+//     pointer-events: none;
+//   }
+// }
+.icon-search {
+  pointer-events: none;
 }

@@ -18,12 +18,12 @@ const SearchIcon = ({ toggleInputHidden, focusOnInput, inputHidden }) => {
 
   return (
     <div
-      className="search-icon"
+      className="nav-icon"
       onClick={handleClick}
       onKeyPress={handleKeyPress}
       tabIndex="0"
     >
-      <Icon icon="search" width="19px" height="19px" />
+      <Icon icon="search" width="20px" height="20px" />
     </div>
   );
 };

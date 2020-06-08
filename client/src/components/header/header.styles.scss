@@ -16,31 +16,43 @@
     width: 35px;
     display: flex;
     align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 
-  .options {
-    width: 50%;
-    height: 100%;
+  .nav-links {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
 
-    .option {
-      padding: 10px 15px;
-      text-transform: uppercase;
-      cursor: pointer;
+    .right {
+      justify-content: flex-end;
     }
+  }
+
+  .nav-link {
+    padding: 10px 15px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
   }
 }
 
 @media screen and (max-width: 800px) {
   .nav-wrapper {
-    .options {
-      width: 80%;
-
-      .option {
-        padding: 10px;
-      }
+    .nav-link {
+      padding: 10px;
     }
   }
 }
