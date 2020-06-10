@@ -60,13 +60,6 @@
   }
 }
 
-// stretch 100vw
-@media (max-width: 800px) {
-  .carousel-component {
-    margin: 0 -10px;
-  }
-}
-
 @media (max-width: 500px) {
   .carousel-component {
     .cards-slider {

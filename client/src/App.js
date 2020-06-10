@@ -16,6 +16,7 @@ import Favorites from "./pages/favorites/favorites.component";
 import Confirmation from "./pages/confirmation/confirmation.component";
 import Portal from "./components/portal/portal.component";
 import ModalManager from "./components/modals/modal-manager";
+import Footer from "./components/footer/footer.component";
 
 const App = ({ checkUserSession, currentUser, inputHidden }) => {
   // equivalent to componentDidMount (will only re-render if checkUserSession changes, and we know it will not)
@@ -47,6 +48,7 @@ const App = ({ checkUserSession, currentUser, inputHidden }) => {
           <Route path="/search" component={SearchPage} />
         </Switch>
       </div>
+      <Footer />
       <Portal>
         <ModalManager />
       </Portal>

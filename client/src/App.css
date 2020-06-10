@@ -1,5 +1,15 @@
 :root {
   /*-- color palette --*/
+  /* --primary-100: #162245; */
+  --primary-90: #2e3957;
+  --primary-80: #454f6a;
+  /* --primary-70: #5c647c; */
+  /* --primary-60: #737a8f; */
+  /* --primary-50: #8a91a1; */
+  /* --primary-40: #a2a7b4; */
+  --primary-30: #b9bcc7;
+  --primary-20: #d0d2d9;
+  --primary-10: #e7e9ec;
   --red: #d86262;
   --gray-background: #f2f2f2;
   --gray-light: #c2c2c2;
@@ -7,7 +17,8 @@
   --shadow-color: rgba(0, 0, 0, 0.2);
   /*-- typography --*/
   --bold: bold;
-  --font-text: "Open Sans Condensed", sans-serif;
+  --font-text: "proxima_nova_regular", Helvetica, sans-serif;
+  --font-bold: "proxima_nova_bold", Helvetica, sans-serif;
   /*-- measurements --*/
   --nav-height: 70px;
 }
@@ -16,8 +27,21 @@
   box-sizing: border-box;
 }
 
+h2,
+h3,
+h4 {
+  font-family: var(--font-bold);
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
 body {
-  font-family: "Open Sans Condensed", sans-serif;
+  /* font-family: "Open Sans Condensed", sans-serif; */
+  font-family: var(--font-text);
   /* padding: 20px 60px 60px; */
 }
 
@@ -26,7 +50,7 @@ a {
   color: black;
 }
 
-div > *:first-child,
+/* div > *:first-child,
 form > *:first-child {
   margin-top: 0 !important;
 }
@@ -34,7 +58,7 @@ form > *:first-child {
 div > *:last-child,
 form > *:last-child {
   margin-bottom: 0 !important;
-}
+} */
 
 .bold {
   font-weight: bold;

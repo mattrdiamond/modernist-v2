@@ -1,0 +1,151 @@
+.footer {
+  background-color: var(--primary-90);
+  color: var(--primary-30);
+  margin-top: 4rem;
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 4rem 5rem;
+  }
+
+  .footer-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  li,
+  a,
+  .icon {
+    transition: color 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  a {
+    color: var(--primary-30);
+  }
+
+  h4 {
+    // color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    // opacity: 0.9;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .footer-logo span {
+    display: block;
+  }
+
+  .logo {
+    font-size: 2rem;
+    margin-top: 0;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .footer-links {
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .social-media {
+    display: flex;
+    margin-top: 1rem;
+
+    .icon {
+      width: 32px;
+      height: 32px;
+
+      &:not(:last-of-type) {
+        margin-right: 0.5rem;
+      }
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  [class^="col-"] {
+    // width: calc(100% / 3);
+    width: 150px;
+  }
+
+  .small {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .footer {
+    .footer-inner {
+      flex-wrap: wrap;
+
+      .footer-links {
+        width: 100%;
+      }
+    }
+
+    .footer-logo {
+      order: 2;
+      width: 100%;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--primary-80);
+      margin-top: 2rem;
+
+      span {
+        display: inline;
+
+        &:last-of-type {
+          margin-left: 0.25rem;
+        }
+      }
+    }
+
+    .logo {
+      margin-bottom: 0;
+      display: inline-block;
+      margin-right: 1rem;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .footer {
+    .footer-inner {
+      padding: 4rem 3rem;
+    }
+  }
+}
+
+@media (max-width: 630px) {
+  .footer {
+    .footer-links {
+      display: block;
+    }
+
+    [class^="col-"] {
+      width: 100%;
+    }
+
+    .footer-ul {
+      padding-left: 1rem;
+    }
+
+    [class^="col-"]:not(.col-4) {
+      margin-bottom: 1rem;
+    }
+  }
+}
