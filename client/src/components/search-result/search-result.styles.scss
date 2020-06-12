@@ -7,7 +7,7 @@
 
   &:not(:last-of-type) {
     // margin-bottom: 1rem;
-    border-bottom: 1px solid var(--gray-background);
+    border-bottom: 1px solid var(--black-05);
     // padding-bottom: 1rem;
   }
 
@@ -23,7 +23,7 @@
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: var(--gray-background);
+    background-color: var(--black-05);
   }
 }
 
@@ -31,7 +31,7 @@
   width: 4rem;
   height: 4rem;
   object-fit: cover;
-  background-color: var(--gray-background);
+  background-color: var(--black-05);
   border-radius: 2px;
 }
 

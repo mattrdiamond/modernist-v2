@@ -1,24 +1,25 @@
 :root {
   /*-- color palette --*/
-  /* --primary-100: #162245; */
+  --primary-100: #162245;
   --primary-90: #2e3957;
   --primary-80: #454f6a;
-  /* --primary-70: #5c647c; */
-  /* --primary-60: #737a8f; */
-  /* --primary-50: #8a91a1; */
-  /* --primary-40: #a2a7b4; */
+  --primary-70: #5c647c;
+  --primary-60: #737a8f;
+  --primary-50: #8a91a1;
+  --primary-40: #a2a7b4;
   --primary-30: #b9bcc7;
   --primary-20: #d0d2d9;
   --primary-10: #e7e9ec;
   --red: #d86262;
-  --gray-background: #f2f2f2;
-  --gray-light: #c2c2c2;
-  --gray-medium: #828282;
+  --black-60: #808285;
+  --black-50: #939598;
+  --black-25: #c6c8ca;
+  --black-05: #f1f1f2;
   --shadow-color: rgba(0, 0, 0, 0.2);
   /*-- typography --*/
-  --bold: bold;
-  --font-text: "proxima_nova_regular", Helvetica, sans-serif;
-  --font-bold: "proxima_nova_bold", Helvetica, sans-serif;
+  --font-text: "proxima_nova", Helvetica, sans-serif;
+  --font-text-cond: "proxima_nova_xcond", Helvetica, sans-serif;
+  --font-display: "domaine_disp_nar", Helvetica, sans-serif;
   /*-- measurements --*/
   --nav-height: 70px;
 }
@@ -30,8 +31,8 @@
 h2,
 h3,
 h4 {
-  font-family: var(--font-bold);
-  font-weight: normal;
+  font-family: var(--font-text);
+  font-weight: bold;
 }
 
 ol,

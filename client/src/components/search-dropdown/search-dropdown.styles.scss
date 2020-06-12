@@ -13,12 +13,12 @@
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: var(--gray-background);
+      background-color: var(--black-05);
     }
   }
 
   .view-results {
     text-align: center;
-    border-top: 1px solid var(--gray-background);
+    border-top: 1px solid var(--black-05);
   }
 }

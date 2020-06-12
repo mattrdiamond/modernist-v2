@@ -13,13 +13,12 @@
 
   .logo-container {
     height: 100%;
-    width: 35px;
-    display: flex;
-    align-items: center;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: auto;
+  }
+
+  .icon-logo {
+    color: var(--primary-90);
+    height: 100%;
+    width: 130px;
   }
 
   .nav-links {
@@ -32,11 +31,13 @@
   }
 
   .nav-link {
-    padding: 10px 15px;
+    padding: 10px 12px;
     text-transform: uppercase;
     cursor: pointer;
     display: flex;
     align-items: center;
+    color: var(--primary-90);
+    letter-spacing: 0.5px;
   }
 
   .nav-icon {
@@ -46,6 +47,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    color: var(--primary-90);
   }
 }
 

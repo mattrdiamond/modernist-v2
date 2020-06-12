@@ -36,11 +36,11 @@ const Header = ({ currentUser, cartHidden, inputHidden, signOutStart }) => {
             </Link>
           )}
           <Link className="nav-link" to="/shop">
-            SHOP
+            Shop
           </Link>
         </div>
         <Link className="logo-container" to="/">
-          <Logo className="logo" />
+          <Icon icon="logo" />
         </Link>
         <div className="nav-links right">
           <Link className="nav-icon" to="/favorites">

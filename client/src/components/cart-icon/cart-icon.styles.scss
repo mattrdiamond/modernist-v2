@@ -7,7 +7,7 @@
   justify-content: center;
   cursor: pointer;
 
-  .shopping-icon {
+  .icon-shopping-bag {
     width: 24px;
     height: 24px;
     pointer-events: none;
@@ -16,8 +16,8 @@
   .item-count {
     position: absolute;
     font-size: 10px;
-    font-weight: bold;
     bottom: 12px;
     pointer-events: none;
+    font-family: var(--font-text-cond);
   }
 }

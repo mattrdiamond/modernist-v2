@@ -1,17 +1,26 @@
 /** Proxima Nova **/
-
 @font-face {
-  font-family: "proxima_nova_bold";
-  src: url("proximanova-bold-webfont.woff2") format("woff2"),
-    url("proximanova-bold-webfont.woff") format("woff");
+  font-family: "proxima_nova";
+  src: url("proximanova-regular-webfont.woff2") format("woff2"),
+    url("proximanova-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: "proxima_nova_regular";
-  src: url("proximanova-regular-webfont.woff2") format("woff2"),
-    url("proximanova-regular-webfont.woff") format("woff");
+  font-family: "proxima_nova";
+  src: url("proximanova-bold-webfont.woff2") format("woff2"),
+    url("proximanova-bold-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "proxima_nova_xcond";
+  src: url("proxima_nova_extra_condensed_light.woff2") format("woff2"),
+    url("proxima_nova_extra_condensed_light.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -23,3 +32,12 @@
   font-weight: normal;
   font-style: normal;
 } */
+
+@font-face {
+  font-family: "domaine_disp_nar";
+  src: url("DomaineDispNarSemibold.woff2") format("woff2"),
+    url("DomaineDispNarSemibold.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

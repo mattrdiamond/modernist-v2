@@ -1,6 +1,6 @@
 .search-drawer {
   // animation: drop-down 0.5s ease forwards;
-  background-color: var(--gray-background);
+  background-color: var(--black-05);
   height: var(--nav-height);
   top: 0px;
   position: absolute;
@@ -45,7 +45,7 @@
   transition: box-shadow 0.3s ease-in-out;
 
   &:hover {
-    box-shadow: 0px 0px 0px 2px var(--gray-light);
+    box-shadow: 0px 0px 0px 2px var(--black-25);
   }
 }
 
@@ -57,11 +57,6 @@
   padding: 0.5rem 0.5rem 0.5rem 3rem;
   position: relative;
   width: 100%;
-
-  // &:focus {
-  //   outline: none;
-  //   box-shadow: 0px 0px 0px 2px var(--gray-medium);
-  // }
 }
 
 .search-wrapper {
@@ -80,7 +75,7 @@
   margin-left: 2rem;
 
   .icon-close {
-    fill: var(--gray-medium);
+    fill: var(--black-50);
     transition: fill 0.3s ease-in-out;
     pointer-events: none;
   }

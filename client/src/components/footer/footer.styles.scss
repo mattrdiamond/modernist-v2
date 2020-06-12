@@ -20,7 +20,6 @@
   }
 
   li,
-  a,
   .icon {
     transition: color 0.2s ease;
     cursor: pointer;
@@ -35,23 +34,32 @@
   }
 
   h4 {
-    // color: #fff;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    // opacity: 0.9;
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 1.125rem;
+    transition: color 0.2s ease;
+    color: var(--primary-10);
+  }
+
+  // .logo {
+  //   font-size: 2rem;
+  //   margin-top: 0;
+  //   color: #fff;
+  //   margin-bottom: 0.5rem;
+  //   line-height: 1;
+  // }
+
+  .icon-logo {
+    width: 154px;
+    height: 24px;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    display: inline-block;
   }
 
   .footer-logo span {
     display: block;
-  }
-
-  .logo {
-    font-size: 2rem;
-    margin-top: 0;
-    color: #fff;
-    margin-bottom: 1rem;
   }
 
   .footer-links {
@@ -68,23 +76,29 @@
       width: 32px;
       height: 32px;
 
-      &:not(:last-of-type) {
-        margin-right: 0.5rem;
-      }
-
       &:hover {
         color: #fff;
       }
     }
+
+    a {
+      &:not(:last-of-type) {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .icon-link {
+      max-height: 32px;
+    }
   }
 
   [class^="col-"] {
-    // width: calc(100% / 3);
     width: 150px;
   }
 
   .small {
     font-size: 0.75rem;
+    line-height: 1.5;
   }
 }
 
@@ -101,7 +115,7 @@
     .footer-logo {
       order: 2;
       width: 100%;
-      padding-top: 0.5rem;
+      padding-top: 1rem;
       border-top: 1px solid var(--primary-80);
       margin-top: 2rem;
 
@@ -114,9 +128,8 @@
       }
     }
 
-    .logo {
+    .icon-logo {
       margin-bottom: 0;
-      display: inline-block;
       margin-right: 1rem;
     }
   }
@@ -132,6 +145,10 @@
 
 @media (max-width: 630px) {
   .footer {
+    .footer-inner {
+      padding: 3rem 1.675rem;
+    }
+
     .footer-links {
       display: block;
     }
@@ -147,5 +164,24 @@
     [class^="col-"]:not(.col-4) {
       margin-bottom: 1rem;
     }
+
+    h4 {
+      margin-bottom: 1rem;
+    }
+
+    .social-media {
+      margin-top: 1.125rem;
+    }
+
+    .footer-logo {
+      margin-top: 2.375rem;
+    }
+  }
+}
+
+@media (max-width: 490px) {
+  .footer .icon-logo {
+    display: block;
+    margin-bottom: 0.5rem;
   }
 }
