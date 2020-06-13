@@ -1,9 +1,27 @@
 .newsletter-signup {
-  padding: 2rem;
+  // padding: 2rem;
   margin: 2rem 0;
   background: #ddd;
   width: 100%;
   text-align: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+
+  .newsletter-img {
+    width: 50%;
+    height: 100%;
+    background-color: var(--primary-50);
+  }
+
+  .newsletter-form {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
 
   .newsletter-container {
     display: flex;
