@@ -13,12 +13,17 @@
 
   .logo-container {
     height: 100%;
+    width: 130px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
   }
 
   .icon-logo {
     color: var(--primary-90);
     height: 100%;
-    width: 130px;
+    width: 100%;
   }
 
   .nav-links {
@@ -31,23 +36,39 @@
   }
 
   .nav-link {
-    padding: 10px 12px;
+    // padding: 10px 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-transform: uppercase;
     cursor: pointer;
     display: flex;
     align-items: center;
-    color: var(--primary-90);
     letter-spacing: 0.5px;
+    color: var(--primary-90);
+    padding: 0.5rem;
+
+    &:first-of-type {
+      padding-right: 0.75rem;
+      padding-left: 0;
+    }
+    &:last-of-type {
+      padding-left: 0.75rem;
+    }
   }
 
   .nav-icon {
-    width: 45px;
+    // width: 45px;
     height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     color: var(--primary-90);
+    padding: 0.5rem;
+  }
+
+  .cart-icon {
+    padding-right: 0;
   }
 }
 

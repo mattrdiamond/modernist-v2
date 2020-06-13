@@ -7,7 +7,6 @@ import {
   selectCartHidden,
 } from "../../redux/cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
-import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 import Icon from "../icon/icon.component";
 
 const CartIcon = ({ toggleCartHidden, isCartHidden, itemCount }) => {
@@ -18,7 +17,6 @@ const CartIcon = ({ toggleCartHidden, isCartHidden, itemCount }) => {
       onKeyPress={toggleCartHidden}
       tabIndex="0"
     >
-      {/*<ShoppingIcon className="shopping-icon" />*/}
       <Icon icon="shopping-bag" />
       <span className="item-count">{itemCount}</span>
     </div>

@@ -18,7 +18,7 @@
   --shadow-color: rgba(0, 0, 0, 0.2);
   /*-- typography --*/
   --font-text: "proxima_nova", Helvetica, sans-serif;
-  --font-text-cond: "proxima_nova_xcond", Helvetica, sans-serif;
+  --font-text-cond: "proxima_nova_condensedmedium", Helvetica, sans-serif;
   --font-display: "domaine_disp_nar", Helvetica, sans-serif;
   /*-- measurements --*/
   --nav-height: 70px;
@@ -26,6 +26,28 @@
 
 * {
   box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+#app {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-text);
+  color: var(--primary-90);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-window {
+  flex: 1 0 auto;
+  padding-bottom: 4rem;
 }
 
 h2,
@@ -38,12 +60,6 @@ h4 {
 ol,
 ul {
   list-style: none;
-}
-
-body {
-  /* font-family: "Open Sans Condensed", sans-serif; */
-  font-family: var(--font-text);
-  /* padding: 20px 60px 60px; */
 }
 
 a {
@@ -92,13 +108,13 @@ form > *:last-child {
 .page-width {
   max-width: 1320px;
   margin: 0 auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  margin-left: 4%;
+  margin-right: 4%;
 }
 
-@media (max-width: 1599px) and (min-width: 1200px) {
+@media (max-width: 1200px) {
   .page-width {
-    padding-left: 55px;
-    padding-right: 55px;
+    margin-left: 3%;
+    margin-right: 3%;
   }
 }

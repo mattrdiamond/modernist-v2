@@ -18,9 +18,9 @@
 }
 
 @font-face {
-  font-family: "proxima_nova_xcond";
-  src: url("proxima_nova_extra_condensed_light.woff2") format("woff2"),
-    url("proxima_nova_extra_condensed_light.woff") format("woff");
+  font-family: "proxima_nova_condensedmedium";
+  src: url("proximanovacond-medium.woff2") format("woff2"),
+    url("proximanovacond-medium.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }

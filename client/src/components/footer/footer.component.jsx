@@ -17,7 +17,7 @@ const Footer = () => {
 
   return (
     <section className="footer">
-      <div className="footer-inner page-width">
+      <div className="footer-inner">
         <div className="footer-logo">
           <Link to="/">
             <Icon icon="logo" />
