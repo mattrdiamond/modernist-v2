@@ -5,7 +5,6 @@ import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectInputHidden } from "../../redux/search/search.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 // new syntax in React for importing SVG - imports SVG directly as React component
-import { ReactComponent as Logo } from "../../assets/crown.svg";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import SearchInput from "../search-input/search-input.component";

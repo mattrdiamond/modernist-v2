@@ -3,10 +3,9 @@ import { withRouter } from "react-router-dom";
 import "./confirmation.styles.scss";
 
 const Confirmation = (data) => {
-  console.log("CONFIRMATION", data);
   const { paymentData, totals } = data.location;
   const { amount, payment_method_details, created } = paymentData;
-  const { discount, tax, shipping, total } = totals;
+  const { discount, tax, shipping } = totals;
   const orderDate = new Date(created * 1000); // convert timestamp into date
   const { card } = payment_method_details;
 
@@ -60,4 +59,4 @@ const Confirmation = (data) => {
   );
 };
 
-export default Confirmation;
+export default withRouter(Confirmation);

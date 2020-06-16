@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "../icon/icon.component";
 import Accordion from "../accordion/accordion.component";
@@ -100,6 +100,7 @@ const Footer = () => {
                 className="icon-link"
                 href="http://twitter.com"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Icon icon="twitter" />
               </a>
@@ -107,6 +108,7 @@ const Footer = () => {
                 className="icon-link"
                 href="http://facebook.com"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Icon icon="facebook" />
               </a>
@@ -114,6 +116,7 @@ const Footer = () => {
                 className="icon-link"
                 href="http://instagram.com"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <Icon icon="instagram" />
               </a>

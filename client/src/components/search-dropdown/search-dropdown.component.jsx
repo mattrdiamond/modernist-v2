@@ -1,25 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import SearchResult from "../search-result/search-result.component";
-import getSearchResults from "../../utils/search.utils";
+import { getSearchResults } from "../../utils/utils";
 import Spinner from "../with-spinner/spinner.component";
 import "./search-dropdown.styles.scss";
 
-const SearchDropdown = ({
-  collectionItems,
-  inputValue,
-  fetchCollectionsStart,
-}) => {
-  useEffect(() => {
-    if (!collectionItems.length) {
-      fetchCollectionsStart();
-    }
-  }, []);
-
+const SearchDropdown = ({ collectionItems, inputValue }) => {
   // get search results based on input value
   const searchResults = getSearchResults(inputValue, collectionItems);
 
-  // if (!collectionItems.length) return (<ul className=<Spinner />;
   return (
     <ul className="search-results">
       {!collectionItems.length ? (

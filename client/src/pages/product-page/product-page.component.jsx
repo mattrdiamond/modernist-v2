@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { createStructuredSelector } from "reselect";
 import { selectItem } from "../../redux/shop/shop.selectors";
 import "./product-page.styles.scss";
 

@@ -8,32 +8,29 @@ import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { withRouter } from "react-router-dom";
 import "./cart-dropdown.styles.scss";
 
-// Shorthand: connect() passes dispatch into component as prop if we do not supply second argument to connect()
-const CartDropdown = ({ cartItems, history, dispatch }) => {
+const CartDropdown = ({ cartItems, history, toggleCartHidden }) => {
   const node = useRef();
 
   useEffect(() => {
+    const handleClick = (e) => {
+      if (
+        node.current.contains(e.target) ||
+        e.target.classList.contains("cart-icon")
+      ) {
+        // clicked inside dropdown or clicked shopping icon
+        return;
+      }
+      // outside click
+      toggleCartHidden();
+    };
+
     // add when mounted
     document.addEventListener("mousedown", handleClick);
-    // return function to be called when unmounted
+    // return function called when component unmounts
     return () => {
       document.removeEventListener("mousedown", handleClick);
     };
-  }, []);
-
-  const handleClick = (e) => {
-    if (
-      node.current.contains(e.target) ||
-      e.target.classList.contains("cart-icon")
-    ) {
-      // clicked inside dropdown or clicked shopping icon
-      // console.log("clicked inside");
-      return;
-    }
-    // outside click
-    // console.log("clicked outside");
-    dispatch(toggleCartHidden());
-  };
+  }, [toggleCartHidden]);
 
   return (
     <div className="cart-dropdown" ref={node}>
@@ -47,7 +44,7 @@ const CartDropdown = ({ cartItems, history, dispatch }) => {
           <CustomButton
             onClick={() => {
               history.push("/checkout");
-              dispatch(toggleCartHidden());
+              toggleCartHidden();
             }}
           >
             Go to Checkout
@@ -64,5 +61,11 @@ const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
+});
+
 // Export a new component that is "connected" to the router, giving us access to history
-export default withRouter(connect(mapStateToProps)(CartDropdown));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CartDropdown)
+);

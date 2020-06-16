@@ -34,7 +34,18 @@ const App = ({ checkUserSession, currentUser, inputHidden }) => {
           <Route path="/shop" component={ShopPage} />
           <Route exact path="/checkout" component={CheckoutPage} />
           <Route exact path="/favorites" component={Favorites} />
-          <Route exact path="/confirmation" component={Confirmation} />
+          <Route
+            exact
+            path="/confirmation"
+            render={(data) =>
+              !data.location.paymentData ? (
+                <Redirect to="/" />
+              ) : (
+                <Confirmation />
+              )
+            }
+          />
+          {/*<Route exact path="/confirmation" component={Confirmation} />*/}
           {/* If user signed in, redirect user to home page when clicking signin.
             also redirects to home when user signs in.
           render prop determines what component to return*/}

@@ -8,7 +8,6 @@ import "./collection-item.styles.scss";
 
 const CollectionItem = ({ item, addItem, routeName, history, match }) => {
   const { name, price, imageUrl } = item;
-  console.log("match", match);
   return (
     <div className="collection-item">
       <Link

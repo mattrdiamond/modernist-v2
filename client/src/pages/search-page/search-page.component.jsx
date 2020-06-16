@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-import { Route } from "react-router-dom";
+import React from "react";
 import { createStructuredSelector } from "reselect";
 import { selectCollectionItems } from "../../redux/shop/shop.selectors";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import CollectionItem from "../../components/collection-item/collection-item.component";
 import Spinner from "../../components/with-spinner/spinner.component";
-import getSearchResults from "../../utils/search.utils";
+import { getSearchResults } from "../../utils/utils";
 import { connect } from "react-redux";
 import "./search-page.styles.scss";
 
@@ -15,13 +14,10 @@ const SearchPage = ({
   match,
   location,
 }) => {
-  useEffect(() => {
-    if (!collectionItems.length) {
-      fetchCollectionsStart();
-    }
-  }, []);
-
-  if (!collectionItems.length) return <Spinner />;
+  if (!collectionItems.length) {
+    fetchCollectionsStart();
+    return <Spinner />;
+  }
 
   // get search results based on URL query string
   const params = new URLSearchParams(location.search); // returns ?q=searchParams

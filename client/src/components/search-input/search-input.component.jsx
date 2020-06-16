@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import SearchDropdown from "../search-dropdown/search-dropdown.component";
@@ -21,6 +21,27 @@ const SearchInput = ({
   fetchCollectionsStart,
   toggleInputHidden,
 }) => {
+  // useCallback prevents re-creation of function every time component rebuilds
+  const handleClose = useCallback(() => {
+    setInputValue("");
+    toggleInputHidden();
+  }, [setInputValue, toggleInputHidden]);
+
+  const handleClick = useCallback(
+    (e) => {
+      if (
+        inputRef.current.contains(e.target) ||
+        e.target.classList.contains("search-wrapper")
+      ) {
+        // clicked within search drawer
+        return;
+      }
+      // clicked outside search drawer
+      handleClose();
+    },
+    [handleClose, inputRef]
+  );
+
   useEffect(() => {
     // add listener when search input visible
     if (!inputHidden) {
@@ -30,29 +51,12 @@ const SearchInput = ({
         document.removeEventListener("click", handleClick);
       };
     }
-  }, [inputHidden]);
-
-  const handleClick = (e) => {
-    console.log("clicked ", e.target);
-    if (
-      inputRef.current.contains(e.target) ||
-      e.target.classList.contains("search-wrapper")
-    ) {
-      // clicked within search drawer
-      return;
-    }
-    // clicked outside search drawer
-    handleClose();
-  };
+  }, [inputHidden, handleClick]);
 
   const handleChange = (e) => {
     const { value } = e.target;
     setInputValue(value);
-  };
-
-  const handleClose = () => {
-    setInputValue("");
-    toggleInputHidden();
+    if (!collectionItems.length) fetchCollectionsStart();
   };
 
   const handleKeyPress = (e) => {
@@ -80,7 +84,6 @@ const SearchInput = ({
             <SearchDropdown
               collectionItems={collectionItems}
               inputValue={inputValue}
-              fetchCollectionsStart={fetchCollectionsStart}
             />
           )}
         </div>

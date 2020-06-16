@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 import { clearCart } from "../../redux/cart/cart.actions";
@@ -9,7 +9,6 @@ const StripeCheckoutButton = ({ clearCart, totals, history }) => {
   const { total } = totals;
   // Stripe needs price in cents
   const priceForStripe = Math.round(total * 100);
-  console.log("priceforstripe", priceForStripe);
   const publishableKey = "pk_test_q3amCytQBsYySSLChdL3bHlo00aKSAc7sW";
 
   // client submits payment request -> token object sent to express server's '/payment' route -> payment route sends payment charge to Stripe

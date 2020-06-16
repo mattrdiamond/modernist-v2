@@ -2,12 +2,12 @@ import React from "react";
 import Icon from "../icon/icon.component";
 import "./carousel-card.styles.scss";
 
-export default function Image({ index, image, sliderState }) {
+export default function CarouselCard({ index, image, carouselState }) {
   return (
     <div
       className={`card ${
-        index < sliderState.index ||
-        index > sliderState.index + (sliderState.visibleImages - 1)
+        index < carouselState.index ||
+        index > carouselState.index + (carouselState.visibleImages - 1)
           ? "offscreen"
           : ""
       }`}
@@ -24,15 +24,15 @@ export default function Image({ index, image, sliderState }) {
             className="user-pic"
             src={image.user.profile_image.small}
             srcSet={`${image.user.profile_image.small} 1x, ${image.user.profile_image.medium} 2x`}
-            alt={`${image.user.name} profile photo`}
+            alt={`${image.user.name}`}
           />
           <div className="user-details">
             <span className="user-name">
-              {image.user.name.replace(/^[^_]*: |\-(.*)/, "")}
+              {image.user.name.replace(/^[^_]*: |-(.*)/, "")}
             </span>
             <span className="user-location">
               {image.user.location
-                ? image.user.location.replace(/\ and(.*)/, "")
+                ? image.user.location.replace(/ and(.*)/, "")
                 : "Planet Earth"}
             </span>
           </div>

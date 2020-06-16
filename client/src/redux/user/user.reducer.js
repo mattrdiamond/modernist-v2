@@ -1,5 +1,4 @@
 import UserActionTypes from "./user.types.js";
-import ShopActionTypes from "../shop/shop.types.js";
 
 const INITIAL_STATE = {
   currentUser: null,

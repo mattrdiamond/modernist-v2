@@ -60,7 +60,6 @@ class FavoritingButton extends Component {
 
   render() {
     const { item, favorites } = this.props;
-    console.log("render favoriteButton");
 
     return (
       <div

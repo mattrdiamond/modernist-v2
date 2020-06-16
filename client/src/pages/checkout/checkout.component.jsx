@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -15,27 +15,18 @@ import "./checkout.styles.scss";
 const CheckoutPage = ({ cartItems, cartTotal }) => {
   const taxRate = 0.0625;
   const promoCode = "supersale";
+  const salesTax = cartTotal * taxRate;
+  const shippingCost = 20;
 
   const [totals, updateTotals] = useState({
-    subtotal: 0,
+    subtotal: cartTotal,
     discount: null,
-    tax: 0,
-    shipping: 20,
-    total: 0,
+    tax: salesTax,
+    shipping: shippingCost,
+    total: cartTotal + salesTax + shippingCost,
   });
 
   const { subtotal, discount, tax, shipping, total } = totals;
-
-  // set initial totals on mount
-  useEffect(() => {
-    const salesTax = cartTotal * taxRate;
-    updateTotals({
-      ...totals,
-      subtotal: cartTotal,
-      tax: salesTax,
-      total: cartTotal + salesTax + shipping,
-    });
-  }, []);
 
   const applyPromo = (percentage) => {
     const promoDiscount = cartTotal * percentage;
@@ -47,9 +38,6 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
       total: cartTotal - promoDiscount + salesTax + shipping,
     });
   };
-
-  const twoDecimalFloat = (num) =>
-    Math.round((num + Number.EPSILON) * 100) / 100;
 
   if (!cartItems.length)
     return (
