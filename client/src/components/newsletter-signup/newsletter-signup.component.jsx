@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import "./newsletter-signup.styles.scss";
+import large from "../../assets/img/newsletter_2x.jpg";
+import small from "../../assets/img/newsletter_1x.jpg";
 
 const NewsletterSignup = () => {
   const statusMessage = useRef(null);
@@ -110,7 +112,12 @@ const NewsletterSignup = () => {
 
   return (
     <section className="newsletter-signup">
-      <div className="newsletter-img"></div>
+      <img
+        src={small}
+        srcSet={`${large} 2x, ${small} 1x`}
+        alt="Black lamp standing by a sofa in a living room"
+        className="newsletter-img"
+      ></img>
       <div className="newsletter-form">
         <form
           action="https://gmail.us8.list-manage.com/subscribe/post?u=a826694112117741e6cd0d13f&amp;id=946b9658d7"

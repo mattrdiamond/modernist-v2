@@ -1,13 +1,13 @@
 .sign-up {
   display: flex;
   flex-direction: column;
-  width: 380px;
+  width: 100%;
 
   form {
-    margin-top: 40px;
+    margin-top: 2rem;
   }
 
-  .title {
-    margin: 10px 0;
+  .group + button {
+    margin-top: 3rem;
   }
 }

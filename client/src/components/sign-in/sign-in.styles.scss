@@ -1,18 +1,57 @@
-.sign-in {
-  width: 380px;
+.sign-in-component {
+  width: 100%;
   display: flex;
   flex-direction: column;
 
   form {
-    margin-top: 40px;
-  }
-
-  .title {
-    margin: 10px 0;
+    margin-top: 2rem;
   }
 
   .buttons {
     display: flex;
-    justify-content: space-between;
+    margin-top: 3rem;
+
+    button {
+      flex: 1;
+      padding-right: 1rem;
+      padding-left: 1rem;
+
+      &:first-of-type {
+        margin-right: 1rem;
+        // flex: 1;
+      }
+    }
+  }
+
+  .icon-google {
+    width: 15px;
+    height: 15px;
+    margin-right: 0.5rem;
+  }
+}
+
+@media (max-width: 475px) {
+  .sign-in-component {
+    .buttons {
+      button {
+        flex: unset;
+        &:first-of-type {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .sign-in-component {
+    .buttons {
+      flex-direction: column;
+
+      button:first-of-type {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+    }
   }
 }

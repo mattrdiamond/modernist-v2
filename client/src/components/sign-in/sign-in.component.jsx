@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+import Icon from "../icon/icon.component";
 import {
   googleSignInStart,
   emailSignInStart,
@@ -31,8 +32,8 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
   };
 
   return (
-    <div className="sign-in">
-      <h2>I already have an account</h2>
+    <div className="sign-in-component">
+      <h3>Sign in</h3>
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
@@ -59,7 +60,8 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
             onClick={googleSignInStart}
             isGoogleSignIn
           >
-            Sign In With Google
+            <Icon icon="google" />
+            Sign in with Google
           </CustomButton>
         </div>
       </form>

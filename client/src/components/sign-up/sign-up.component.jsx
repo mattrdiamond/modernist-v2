@@ -10,12 +10,12 @@ const SignUp = ({ signUpStart }) => {
     displayName: "",
     email: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
 
   const { displayName, email, password, confirmPassword } = userCredentials;
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
@@ -27,14 +27,14 @@ const SignUp = ({ signUpStart }) => {
     signUpStart({ email, password, displayName });
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { value, name } = e.target;
     setUserCredentials({ ...userCredentials, [name]: value });
   };
 
   return (
     <div className="sign-up">
-      <h2 className="title">I do not have an account</h2>
+      <h3 className="title">Sign up</h3>
       <span>Sign up with your email and password</span>
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <FormInput
@@ -75,8 +75,8 @@ const SignUp = ({ signUpStart }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
+const mapDispatchToProps = (dispatch) => ({
+  signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
 });
 
 export default connect(null, mapDispatchToProps)(SignUp);

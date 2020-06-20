@@ -13,9 +13,14 @@
   --red: #d86262;
   --black-60: #808285;
   --black-50: #939598;
-  --black-25: #c6c8ca;
+  --black-40: #a7a9ac;
+  --black-30: #bcbec0;
+  --black-20: #d1d3d4;
+  --black-10: #e6e7e8;
   --black-05: #f1f1f2;
+  --black-03: #f6f6f6;
   --shadow-color: rgba(0, 0, 0, 0.2);
+  --box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
   /*-- typography --*/
   --font-text: "proxima_nova", Helvetica, sans-serif;
   --font-text-cond: "proxima_nova_condensedmedium", Helvetica, sans-serif;
@@ -47,11 +52,26 @@ body {
 
 .content-window {
   flex: 1 0 auto;
-  padding-bottom: 4rem;
+  /* padding-bottom: 4rem; */
 }
 
+h1,
 h2,
-h3,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: 0.3px;
+  margin-bottom: 1rem;
+}
+
+h1,
+h2 {
+  font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
 h4 {
   font-family: var(--font-text);
   font-weight: bold;
@@ -64,18 +84,22 @@ ul {
 
 a {
   text-decoration: none;
-  color: black;
+  color: inherit;
 }
 
-/* div > *:first-child,
+section {
+  margin: 6rem auto;
+}
+
+div > *:first-child:not(section),
 form > *:first-child {
-  margin-top: 0 !important;
+  margin-top: 0;
 }
 
-div > *:last-child,
+div > *:last-child:not(section),
 form > *:last-child {
-  margin-bottom: 0 !important;
-} */
+  margin-bottom: 0;
+}
 
 .bold {
   font-weight: bold;
@@ -107,14 +131,16 @@ form > *:last-child {
 
 .page-width {
   max-width: 1320px;
-  margin: 0 auto;
-  margin-left: 4%;
-  margin-right: 4%;
+  width: 100%;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1320px) {
   .page-width {
-    margin-left: 3%;
-    margin-right: 3%;
+    padding-left: 3.5%;
+    padding-right: 3.5%;
   }
 }

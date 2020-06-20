@@ -1,6 +1,87 @@
+:root {
+  --tab-width: 8rem;
+}
+
 .sign-in-and-sign-up {
-  width: 850px;
-  display: flex;
-  justify-content: space-between;
-  margin: 30px auto;
+  margin: 0;
+
+  .background-screen {
+    background: var(--black-05);
+    padding: 3rem 6%;
+  }
+
+  .sign-in-window {
+    max-width: 40rem;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    background: #fff;
+    box-shadow: var(--box-shadow);
+  }
+
+  .sign-in-content {
+    padding: 0rem 3rem 3rem;
+  }
+
+  .tabs-container {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid var(--black-10);
+  }
+
+  .tabs-inner {
+    position: relative;
+    display: inline-block;
+    width: calc(var(--tab-width) * 2);
+
+    &:after {
+      content: "";
+      position: absolute;
+      height: 4px;
+      width: var(--tab-width);
+      background-color: var(--primary-40);
+      bottom: 0;
+      transition: left 0.5s;
+    }
+
+    &.sign-in {
+      &:after {
+        left: 0;
+      }
+    }
+
+    &.sign-up {
+      &:after {
+        left: var(--tab-width);
+      }
+    }
+  }
+
+  .tab {
+    border: none;
+    outline: none;
+    padding: 1rem;
+    font-family: var(--font-text);
+    font-weight: bold;
+    font-size: 1.125rem;
+    width: var(--tab-width);
+    color: var(--black-30);
+    cursor: pointer;
+    background-color: #fff;
+    transition: background-color 0.5s, color 0.5s;
+
+    &:hover {
+      background-color: var(--black-03);
+      color: var(--black-40);
+    }
+
+    // disabled = active button
+    &:disabled {
+      background-color: #fff;
+      color: var(--primary-90);
+      cursor: unset;
+    }
+  }
 }
