@@ -30,7 +30,7 @@
   }
 }
 
-@media (max-width: 475px) {
+@media (max-width: 575px) {
   .sign-in-component {
     .buttons {
       button {
@@ -43,7 +43,7 @@
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 500px) {
   .sign-in-component {
     .buttons {
       flex-direction: column;
