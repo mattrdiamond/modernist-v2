@@ -141,7 +141,14 @@ form > *:last-child {
 
 @media (max-width: 1320px) {
   .page-width {
-    padding-left: 3.5%;
-    padding-right: 3.5%;
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+}
+
+@media (max-width: 680px) {
+  .page-width {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 }

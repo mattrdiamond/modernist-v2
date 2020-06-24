@@ -1,11 +1,14 @@
 .landing {
   position: relative;
+  margin-top: 0;
+  height: 45vw;
+  min-height: 500px;
+  max-height: 700px;
 
   .landing-img {
     object-fit: cover;
     width: 100%;
-    height: 40vw;
-    max-height: calc(100vh - var(--nav-height));
+    height: 100%;
   }
 
   .landing-txt-container {
@@ -20,6 +23,7 @@
 
   .landing-txt-inner {
     width: 50%;
+    max-width: 500px;
   }
 
   .landing-subtitle {
@@ -29,16 +33,141 @@
   }
 
   .landing-title {
-    margin: 1rem 0;
-    font-size: 3.25rem;
-    letter-spacing: 0.5px;
+    margin: 1rem 0 1rem;
+    font-size: 3.675rem;
+    letter-spacing: 1px;
+    transition: font-size 0.2s;
   }
 
   .landing-txt {
-    // padding right = 50%. 100% - max-page-width / 2
-    // padding-right: calc((100% - (100% - 1320px)) / 2);
-    // width: 100%;
     text-align: left;
     color: #fff;
+    padding-bottom: 6rem;
+  }
+
+  .custom-button {
+    margin-top: 2rem;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+// reduce title size
+@media (max-width: 1280px) {
+  .landing {
+    .landing-title {
+      font-size: 3.5rem;
+    }
+  }
+}
+
+// reduce title size
+@media (max-width: 1067px) {
+  .landing {
+    .landing-title {
+      font-size: 3.125rem;
+    }
+  }
+}
+
+// reduce title size
+@media (max-width: 839px) {
+  .landing {
+    .landing-title {
+      font-size: 2.875rem;
+    }
+  }
+}
+
+// reduce title size, increase text block width
+@media (max-width: 775px) {
+  .landing {
+    .landing-title {
+      font-size: 2.75rem;
+    }
+
+    .landing-txt-inner {
+      width: 55%;
+    }
+  }
+}
+
+// change to vertical view
+@media (max-width: 700px) {
+  .landing {
+    // set full vh (still min 500, max 700
+    height: calc(100vh - var(--nav-height));
+    min-height: 600px;
+    max-height: 650px;
+
+    // position top
+    .landing-txt-container {
+      align-items: flex-start;
+    }
+
+    // set distance from top
+    .landing-txt {
+      padding-bottom: 0;
+      padding-top: 8vw;
+    }
+
+    .landing-txt-inner {
+      width: 70%;
+    }
+
+    // set position to bottom of image
+    .landing-img {
+      object-position: bottom;
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .landing {
+    // increase width
+    .landing-txt-inner {
+      width: 75%;
+    }
+  }
+}
+
+@media (max-width: 505px) {
+  .landing {
+    // set full width
+    .landing-txt-inner {
+      width: 100%;
+    }
+  }
+}
+
+// mobile
+@media (max-width: 400px) {
+  .landing {
+    // set image full height
+    min-height: 530px;
+
+    // set text full width
+    .landing-txt-inner {
+      width: 100%;
+    }
+
+    .landing-txt {
+      padding-top: 1.5rem;
+    }
+
+    .landing-title {
+      font-size: 10.5vw;
+    }
+  }
+}
+
+@media (min-width: 1600px) {
+  .landing {
+    // set position to bottom of image
+    .landing-img {
+      object-position: bottom;
+    }
   }
 }
