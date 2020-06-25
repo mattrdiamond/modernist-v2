@@ -1,6 +1,7 @@
 .landing {
   position: relative;
   margin-top: 0;
+  margin-bottom: 0;
   height: 45vw;
   min-height: 500px;
   max-height: 700px;
@@ -22,8 +23,8 @@
   }
 
   .landing-txt-inner {
-    width: 50%;
-    max-width: 500px;
+    width: 43%;
+    max-width: 450px;
   }
 
   .landing-subtitle {
@@ -34,15 +35,23 @@
 
   .landing-title {
     margin: 1rem 0 1rem;
-    font-size: 3.675rem;
-    letter-spacing: 1px;
-    transition: font-size 0.2s;
+    font-size: 3.4rem;
+    // letter-spacing: 1px;
+    line-height: 1.125;
+    transition: font-size 0.2s, margin 0.2s;
   }
 
   .landing-txt {
     text-align: left;
     color: #fff;
     padding-bottom: 6rem;
+    transition: padding 0.2s;
+  }
+
+  .landing-intro {
+    margin: 0;
+    line-height: 1.75;
+    transition: line-height 0.2s;
   }
 
   .custom-button {
@@ -55,41 +64,54 @@
 }
 
 // reduce title size
-@media (max-width: 1280px) {
+@media (max-width: 1300px) {
   .landing {
     .landing-title {
-      font-size: 3.5rem;
+      font-size: 3.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .custom-button {
+      margin-top: 1.8rem;
     }
   }
 }
 
 // reduce title size
-@media (max-width: 1067px) {
+@media (max-width: 1150px) {
   .landing {
+    .landing-txt {
+      padding-bottom: 5.5rem;
+    }
+
     .landing-title {
-      font-size: 3.125rem;
+      font-size: 4.75vw;
+      margin-bottom: 1vw;
+    }
+
+    .custom-button {
+      margin-top: 1.875rem;
     }
   }
 }
 
-// reduce title size
-@media (max-width: 839px) {
+@media (max-width: 972px) {
   .landing {
-    .landing-title {
-      font-size: 2.875rem;
+    .landing-intro {
+      line-height: 1.675;
     }
   }
 }
 
-// reduce title size, increase text block width
-@media (max-width: 775px) {
+@media (max-width: 900px) {
   .landing {
     .landing-title {
-      font-size: 2.75rem;
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
     }
 
     .landing-txt-inner {
-      width: 55%;
+      width: 330px;
     }
   }
 }
@@ -99,7 +121,7 @@
   .landing {
     // set full vh (still min 500, max 700
     height: calc(100vh - var(--nav-height));
-    min-height: 600px;
+    min-height: 630px;
     max-height: 650px;
 
     // position top
@@ -114,26 +136,38 @@
     }
 
     .landing-txt-inner {
-      width: 70%;
+      width: 390px;
     }
 
     // set position to bottom of image
     .landing-img {
       object-position: bottom;
     }
-  }
-}
 
-@media (max-width: 540px) {
-  .landing {
-    // increase width
-    .landing-txt-inner {
-      width: 75%;
+    .landing-title {
+      font-size: 2.75rem;
     }
   }
 }
 
-@media (max-width: 505px) {
+// @media (max-width: 600px) {
+//   .landing {
+//     .landing-txt-inner {
+//       width: 72%;
+//     }
+//   }
+// }
+
+// @media (max-width: 540px) {
+//   .landing {
+//     // increase width
+//     .landing-txt-inner {
+//       width: 75%;
+//     }
+//   }
+// }
+
+@media (max-width: 475px) {
   .landing {
     // set full width
     .landing-txt-inner {
@@ -143,7 +177,7 @@
 }
 
 // mobile
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .landing {
     // set image full height
     min-height: 530px;
@@ -158,7 +192,7 @@
     }
 
     .landing-title {
-      font-size: 10.5vw;
+      font-size: 10.75vw;
     }
   }
 }

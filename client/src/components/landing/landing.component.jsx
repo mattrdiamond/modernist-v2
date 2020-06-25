@@ -8,7 +8,6 @@ import "./landing.styles.scss";
 
 const Landing = () => (
   <section className="landing">
-    {/*tablet portrait*/}
     <picture>
       <source
         media="(max-width: 700px)"
@@ -35,10 +34,9 @@ const Landing = () => (
             <br />
             modern elegance.
           </h2>
-          <p>
-            Individually handcrafted with quality materials, these timeless
-            pieces showcase modern style and comfort at a price that will
-            surprise you.
+          <p className="landing-intro">
+            Chic, sleek, and thoroughly modern, these timeless pieces showcase
+            clean lines and geometric shapes.
           </p>
           <CustomButton inverted>Shop Now</CustomButton>
         </div>

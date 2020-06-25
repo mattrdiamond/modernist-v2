@@ -12,6 +12,10 @@
   --primary-10: #e7e9ec;
   --red: #d86262;
   --accent-100: #95dbff;
+  --accent-40: #d4f0fe;
+  --accent-30: #dff4ff;
+  --accent-20: #e9f7ff;
+  --accent-10: #f4fbff;
   --black-60: #808285;
   --black-50: #939598;
   --black-40: #a7a9ac;
@@ -41,6 +45,10 @@ body,
   height: 100%;
 }
 
+html {
+  font-size: 17px;
+}
+
 body {
   font-family: var(--font-text);
   color: var(--primary-90);
@@ -62,11 +70,13 @@ h3 {
   font-family: var(--font-display);
   letter-spacing: 0.3px;
   margin-bottom: 1rem;
+  line-height: 1.25;
 }
 
 h1,
 h2 {
-  font-size: 2.5rem;
+  font-size: 2.125rem;
+  transition: font-size 0.2s;
 }
 
 h3 {
@@ -86,6 +96,10 @@ ul {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+p {
+  line-height: 1.75;
 }
 
 section {
@@ -150,5 +164,12 @@ form > *:last-child {
   .page-width {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 430px) {
+  h1,
+  h2 {
+    font-size: 1.8rem;
   }
 }
