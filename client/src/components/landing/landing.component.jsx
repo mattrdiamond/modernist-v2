@@ -1,9 +1,11 @@
 import React from "react";
 import CustomButton from "../custom-button/custom-button.component";
-import desktopLarge from "../../assets/img/landing_2x.jpg";
-import desktopSmall from "../../assets/img/landing_1x.jpg";
-import mobileLarge from "../../assets/img/landing_mobile_2x.jpg";
-import mobileSmall from "../../assets/img/landing_mobile_1x.jpg";
+import {
+  landing2x,
+  landing1x,
+  landingMobile2x,
+  landingMobile1x,
+} from "../../assets/img/_images";
 import "./landing.styles.scss";
 
 const Landing = () => (
@@ -12,16 +14,16 @@ const Landing = () => (
       <source
         media="(max-width: 700px)"
         sizes="100vw"
-        srcSet={`${mobileLarge} 2x, ${mobileSmall} 1x`}
+        srcSet={`${landingMobile2x} 2x, ${landingMobile1x} 1x`}
       />
       <source
         media="(min-width: 771px)"
         sizes="100vw"
-        srcSet={`${desktopLarge} 2x, ${desktopSmall} 1x`}
+        srcSet={`${landing2x} 2x, ${landing1x} 1x`}
       />
       <img
         className="landing-img"
-        src={desktopSmall}
+        src={landing1x}
         alt="Modern chair with table and lamp"
       />
     </picture>

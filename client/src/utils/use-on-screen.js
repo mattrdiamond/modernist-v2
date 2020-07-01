@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // options param includes instructions on when to trigger observer:
 // a. threshold property (percentage of ref that is visible)
@@ -15,7 +15,7 @@ export default function useOnScreen(options) {
       setVisible(entry.isIntersecting);
     }, options);
 
-    // observe element on screen
+    // observe element on screen only if it's not visible yet
     if (ref && !visible) {
       observer.observe(ref);
     }

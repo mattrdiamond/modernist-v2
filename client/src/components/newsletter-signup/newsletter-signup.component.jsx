@@ -132,7 +132,7 @@ const NewsletterSignup = () => {
             noValidate
           >
             <h2>Join the club!</h2>
-            <p>Sign up to recieve product news, promotions and updates.</p>
+            <p>Sign up to recieve product news, promotions and&nbsp;updates.</p>
             <div className="input-container">
               <FormInput
                 name="EMAIL"

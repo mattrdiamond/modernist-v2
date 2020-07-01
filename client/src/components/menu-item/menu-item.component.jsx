@@ -2,22 +2,28 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import "./menu-item.styles.scss";
 
-const MenuItem = ({ title, imageUrl, size, linkUrl, history, match }) => (
+const MenuItem = ({
+  title,
+  linkUrl,
+  history,
+  match,
+  images: { large, small, mobile2x, mobile1x },
+}) => (
   /* we don't know where we will be within directory, so use match to match
   the current url and then add linkUrl (from state) to the end */
   <div
     className="menu-item"
     onClick={() => history.push(`${match.url}${linkUrl}`)}
   >
-    <div
-      className="background-image"
-      style={{
-        backgroundImage: `url(${imageUrl})`,
-      }}
-    />
+    <picture>
+      <source media="(min-width: 701px)" srcSet={`${large} 2x, ${small} 1x`} />
+      <source srcSet={`${mobile2x} 2x, ${mobile1x} 1x`} />
+      <img className="background-image" alt={title} src={small} />
+    </picture>
+    {/*<img className="background-image" alt={title} src={imageUrl} />*/}
     <div className="content">
-      <h1 className="title">{title}</h1>
-      <span className="subtitle">SHOP NOW</span>
+      <h2 className="title">{title}</h2>
+      <span className="subtitle">Shop Now</span>
     </div>
   </div>
 );
