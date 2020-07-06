@@ -1,10 +1,13 @@
 import React, { useState, useRef } from "react";
 import FormInput from "../form-input/form-input.component";
-import large from "../../assets/img/newsletter_2x.jpg";
-import small from "../../assets/img/newsletter_1x.jpg";
+import { newsletter2x, newsletter1x } from "../../assets/img/_images";
+import useOnScreen from "../../utils/use-on-screen";
 import "./newsletter-signup.styles.scss";
 
 const NewsletterSignup = () => {
+  // Intersection observer - will update the ref state in useOnScreen with the referenced DOM element and return visible state (intersecting)
+  const [setRef, visible] = useOnScreen({ threshold: 0.5 });
+
   // status message will display error or success message below form input
   const statusMessage = useRef(null);
 
@@ -112,14 +115,16 @@ const NewsletterSignup = () => {
   const { message, result } = mailchimpStatus;
 
   return (
-    <section className="newsletter-signup">
+    <section className="newsletter-signup" ref={setRef}>
       <div className="page-width content-wrapper">
-        <img
-          src={small}
-          srcSet={`${large} 2x, ${small} 1x`}
-          alt="Black lamp standing by a sofa in a living room"
-          className="newsletter-img"
-        ></img>
+        <div className="img-container">
+          <img
+            src={newsletter1x}
+            srcSet={`${newsletter2x} 2x, ${newsletter1x} 1x`}
+            alt="Stack of pillows"
+            className={"newsletter-img" + (visible ? " visible" : "")}
+          />
+        </div>
         <div className="newsletter-form">
           <form
             action="https://gmail.us8.list-manage.com/subscribe/post?u=a826694112117741e6cd0d13f&amp;id=946b9658d7"
@@ -131,8 +136,10 @@ const NewsletterSignup = () => {
             target="_blank"
             noValidate
           >
-            <h2>Join the club!</h2>
-            <p>Sign up to recieve product news, promotions and&nbsp;updates.</p>
+            <h2>Join the club</h2>
+            <p>
+              Sign up to recieve product news, promotions&nbsp;and&nbsp;updates.
+            </p>
             <div className="input-container">
               <FormInput
                 name="EMAIL"

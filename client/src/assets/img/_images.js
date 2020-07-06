@@ -1,3 +1,7 @@
+// newsletter
+export const newsletter2x = require("../../assets/img/newsletter_2x.png");
+export const newsletter1x = require("../../assets/img/newsletter_1x.png");
+
 // landing
 export const landing2x = require("../../assets/img/landing_2x.jpg");
 export const landing1x = require("../../assets/img/landing_1x.jpg");

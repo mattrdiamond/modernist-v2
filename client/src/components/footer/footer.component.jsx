@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import Icon from "../icon/icon.component";
 import Accordion from "../accordion/accordion.component";
 import "./footer.styles.scss";
@@ -128,4 +130,6 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+const mapStateToProps = createStructuredSelector({});
+
+export default connect(mapStateToProps)(Footer);

@@ -18,7 +18,7 @@ const Homepage = () => (
         This is a paragraph of placeholder content. Will soon replace with
         meaningful content.
       </p>
-      {/*<Carousel />*/}
+      <Carousel />
     </section>
   </div>
 );

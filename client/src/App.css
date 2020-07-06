@@ -16,6 +16,9 @@
   --accent-30: #dff4ff;
   --accent-20: #e9f7ff;
   --accent-10: #f4fbff;
+  --black-90: #404041;
+  --black-80: #58585a;
+  --black-70: #6d6e71;
   --black-60: #808285;
   --black-50: #939598;
   --black-40: #a7a9ac;
@@ -69,7 +72,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  letter-spacing: 0.3px;
+  letter-spacing: 0.25px;
   margin-bottom: 1rem;
   line-height: 1.25;
 }

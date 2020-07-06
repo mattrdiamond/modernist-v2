@@ -1,37 +1,47 @@
 .newsletter-signup {
   margin: 2rem auto;
-  // max-width: 1680px;
   background: var(--accent-30);
   width: 100%;
   text-align: center;
   height: 30vw;
-  max-height: 25rem;
+  max-height: 375px;
   min-height: 18rem;
   display: flex;
   align-items: center;
   position: relative;
 
+  .img-container {
+    height: calc(100% + 15px);
+    margin-top: -15px;
+    overflow: hidden;
+  }
+
   .newsletter-img {
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 110%;
+    object-fit: contain;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    visibility: hidden;
+
+    &.visible {
+      animation-name: bounceInUp;
+      visibility: visible;
+    }
   }
 
   .content-wrapper {
     height: 100%;
+    display: flex;
+    max-width: 1150px;
+    justify-content: space-around;
   }
 
   .newsletter-form {
-    width: 50%;
+    // width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 2rem;
-    margin-left: 50%;
   }
 
   .input-container {
@@ -73,20 +83,84 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 960px) {
   .newsletter-signup {
-    flex-direction: column;
-    min-height: 35rem;
+    .newsletter-form {
+      width: 340px;
+    }
+    .content-wrapper {
+      max-width: 900px;
+    }
+  }
+}
 
-    .newsletter-img,
+@media (max-width: 800px) {
+  .newsletter-signup {
+    height: unset;
+    max-height: unset;
+    min-height: unset;
+
+    .content-wrapper {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+
+    .img-container {
+      max-height: 315px;
+      max-width: 25rem;
+      margin: 0;
+    }
+
+    .newsletter-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
     .newsletter-form {
       width: 100%;
-      height: 50%;
+      padding: 4rem 0;
     }
+  }
+}
 
-    .newsletter-form {
-      margin-left: 0;
-      margin-top: 50%;
-    }
+@keyframes bounceInUp {
+  from,
+  50%,
+  60%,
+  70%,
+  80%,
+  90%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3000px, 0) scaleY(5);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate3d(0, -20px, 0) scaleY(0.9);
+  }
+
+  60% {
+    transform: translate3d(0, 10px, 0) scaleY(0.95);
+  }
+
+  70% {
+    transform: translate3d(0, -6px, 0) scaleY(0.985);
+  }
+  80% {
+    transform: translate3d(0, 4px, 0) scaleY(1);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
   }
 }

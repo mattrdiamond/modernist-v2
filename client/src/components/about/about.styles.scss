@@ -9,8 +9,13 @@ $ribbonbottom: 15px;
   align-items: center;
 
   .about-content {
-    padding: 4.5rem 3rem 6rem;
+    padding: 2rem 3rem 6rem;
     max-width: 49rem;
+  }
+
+  .ribbon-container {
+    height: 100px;
+    overflow: hidden;
   }
 
   .ribbon {
@@ -24,7 +29,6 @@ $ribbonbottom: 15px;
     align-items: flex-end;
     justify-content: center;
     padding: 0.5rem;
-    z-index: 0;
     animation-duration: 1s;
     animation-fill-mode: forwards;
     visibility: hidden;
