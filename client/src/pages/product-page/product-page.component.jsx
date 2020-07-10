@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
+import { createStructuredSelector } from "reselect";
+import { addItem, removeItem } from "../../redux/cart/cart.actions";
 import { selectItem } from "../../redux/shop/shop.selectors";
+import { selectCartItems } from "../../redux/cart/cart.selectors";
+import { checkCartForItem } from "../../redux/cart/cart.utils";
+import StarRating from "../../components/star-rating/star-rating.component";
+import Stepper from "../../components/stepper/stepper.component";
+import CustomButton from "../../components/custom-button/custom-button.component";
 import "./product-page.styles.scss";
 
-const ProductPage = ({ item, collectionId }) => {
+const ProductPage = ({ item, collectionId, addItem }) => {
   const { name, price, imageUrl } = item;
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddItem = () => {
+    setQuantity(quantity + 1);
+  };
+
+  const handleRemoveItem = () => {
+    setQuantity(quantity - 1);
+  };
+
+  const addToCart = () => {
+    addItem(item, quantity);
+  };
+
   return (
     <div className="product-page">
       <div className="col-left">
@@ -15,8 +36,10 @@ const ProductPage = ({ item, collectionId }) => {
         <Link to={`/shop/${collectionId}`}>
           <span className="collection-name">{collectionId}</span>
         </Link>
-        <h1>{name}</h1>
-        <h2>${price}</h2>
+        <h1 className="product-title">{name}</h1>
+        <StarRating />
+        <h2 className="product-price">${price}</h2>
+        <h4>Product Description</h4>
         <p className="product-description">
           Lorem Ipsum eos volupta temposam eosa consequid maxim res derum id mos
           por ratem. Ficiis mil moloria nonsectatur sequuntori nistia aut aut
@@ -25,6 +48,14 @@ const ProductPage = ({ item, collectionId }) => {
           voluptaet vel molupta pernat litatquam idunt molo quiaeptat earum, aut
           omnih.
         </p>
+        <div className="button-container">
+          <Stepper
+            quantity={quantity}
+            increment={handleAddItem}
+            decrement={handleRemoveItem}
+          />
+          <CustomButton onClick={addToCart}>Add to Bag</CustomButton>
+        </div>
       </div>
     </div>
   );
@@ -32,11 +63,19 @@ const ProductPage = ({ item, collectionId }) => {
 
 const mapStateToProps = (state, ownProps) => {
   const { collectionId, itemId } = ownProps.match.params;
+
   return {
     item: selectItem(collectionId, itemId)(state),
     collectionId: collectionId,
+    cartItems: selectCartItems(state),
   };
 };
 
+const mapDispatchToProps = (dispatch) => ({
+  addItem: (item, quantity) => dispatch(addItem(item, quantity)),
+});
+
 // export default connect(mapStateToProps)(ProductPage);
-export default withRouter(connect(mapStateToProps)(ProductPage));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ProductPage)
+);

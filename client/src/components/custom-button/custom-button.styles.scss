@@ -1,6 +1,6 @@
 .custom-button {
   padding: 0.75rem 2.25rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background-color: var(--primary-90);
   color: white;
   // text-transform: uppercase;
@@ -13,7 +13,8 @@
   transition: border-color 0.3s ease, background-color 0.3s ease,
     color 0.3s ease;
   justify-content: center;
-  border-radius: 0.5rem;
+  border-radius: 5px;
+  font-weight: bold;
 
   &:hover {
     background-color: #fff;

@@ -3,45 +3,47 @@ import Icon from "../icon/icon.component";
 import "./carousel-card.styles.scss";
 
 export default function CarouselCard({ index, image, carouselState }) {
+  console.log("img", image.urls.regular);
   return (
     <div
-      className={`card ${
+      className={`card${
         index < carouselState.index ||
         index > carouselState.index + (carouselState.visibleImages - 1)
-          ? "offscreen"
+          ? " offscreen"
           : ""
       }`}
     >
-      <img
-        className="card-photo"
-        src={image.urls.small}
-        alt={image.alt_description}
-      />
-      <span className="temporary-index">{index}</span>
-      <div className="card-footer">
-        <div className="user-details-container">
-          <img
-            className="user-pic"
-            src={image.user.profile_image.small}
-            srcSet={`${image.user.profile_image.small} 1x, ${image.user.profile_image.medium} 2x`}
-            alt={`${image.user.name}`}
-          />
-          <div className="user-details">
-            <span className="user-name">
-              {image.user.name.replace(/^[^_]*: |-(.*)/, "")}
-            </span>
-            <span className="user-location">
-              {image.user.location
-                ? image.user.location.replace(/ and(.*)/, "")
-                : "Planet Earth"}
-            </span>
+      <a href={image.urls.regular} target="_blank" rel="noopener noreferrer">
+        <img
+          className="card-photo"
+          src={image.urls.small}
+          alt={image.alt_description}
+        />
+        <div className="card-footer">
+          <div className="user-details-container">
+            <img
+              className="user-pic"
+              src={image.user.profile_image.small}
+              srcSet={`${image.user.profile_image.small} 1x, ${image.user.profile_image.medium} 2x`}
+              alt={`${image.user.name}`}
+            />
+            <div className="user-details">
+              <span className="user-name">
+                {image.user.name.replace(/^[^_]*: |-(.*)/, "")}
+              </span>
+              <span className="user-location">
+                {image.user.location
+                  ? image.user.location.replace(/ and(.*)/, "")
+                  : "Planet Earth"}
+              </span>
+            </div>
+          </div>
+          <div className="user-likes">
+            <Icon icon="heart" />
+            <span className="like-count">{image.likes}</span>
           </div>
         </div>
-        <div className="user-likes">
-          <Icon icon="heart" />
-          <span className="like-count">{image.likes}</span>
-        </div>
-      </div>
+      </a>
     </div>
   );
 }

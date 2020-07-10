@@ -31,6 +31,12 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     font-size: 0.75rem;
+    display: block;
+    opacity: 0;
+    color: var(--accent-70);
+
+    // name / duration / function / delay / iterations / direction
+    animation: fadeInUp 1s ease 0.25s 1 forwards;
   }
 
   .landing-title {
@@ -39,6 +45,8 @@
     // letter-spacing: 1px;
     line-height: 1.08;
     transition: font-size 0.2s, margin 0.2s;
+    opacity: 0;
+    animation: fadeInUp 1.25s ease 0.45s 1 forwards;
   }
 
   .landing-txt {
@@ -52,13 +60,23 @@
     margin: 0;
     line-height: 1.75;
     transition: line-height 0.2s;
+    color: var(--primary-30);
+    opacity: 0;
+    animation: fadeInUp 1.5s ease 0.65s 1 forwards;
   }
 
   .custom-button {
     margin-top: 2rem;
+    opacity: 0;
+    animation: fadeInUp 2s ease 0.85s 1 forwards;
+    border-color: var(--accent-70);
+    color: var(--accent-70);
 
     &:hover {
-      background: rgba(255, 255, 255, 0.05);
+      // background: rgba(255, 255, 255, 0.05);
+      // border-color: #fff;
+      color: #fff;
+      background: var(--accent-70);
     }
   }
 }
@@ -150,23 +168,6 @@
   }
 }
 
-// @media (max-width: 600px) {
-//   .landing {
-//     .landing-txt-inner {
-//       width: 72%;
-//     }
-//   }
-// }
-
-// @media (max-width: 540px) {
-//   .landing {
-//     // increase width
-//     .landing-txt-inner {
-//       width: 75%;
-//     }
-//   }
-// }
-
 @media (max-width: 475px) {
   .landing {
     // set full width
@@ -203,5 +204,17 @@
     .landing-img {
       object-position: bottom;
     }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }

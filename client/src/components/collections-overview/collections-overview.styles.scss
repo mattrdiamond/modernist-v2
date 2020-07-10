@@ -1,4 +1,12 @@
 .collections-overview {
-  display: flex;
-  flex-direction: column;
+  section {
+    margin: 4rem 0;
+
+    &:first-of-type {
+      margin-top: 2rem;
+    }
+    &:last-of-type {
+      margin-bottom: 6rem;
+    }
+  }
 }

@@ -4,23 +4,8 @@ import CarouselCard from "../carousel-card/carousel-card.component";
 import Icon from "../icon/icon.component";
 import Spinner from "../with-spinner/spinner.component";
 import useWindowSize from "../../utils/use-window-size";
+import { imagesFitOnScreen } from "../../utils/utils";
 import "./carousel.styles.scss";
-
-const imagesFitOnScreen = () => {
-  const width = window.innerWidth;
-  switch (true) {
-    case width <= 500:
-      return 1;
-    case width <= 800:
-      return 2;
-    case width <= 1100:
-      return 3;
-    case width <= 1300:
-      return 4;
-    default:
-      return 5;
-  }
-};
 
 const INITIAL_STATE = {
   images: [],
@@ -142,39 +127,49 @@ const Carousel = () => {
 
   if (!images) return <Spinner />;
   return (
-    <div className="carousel-component">
-      <div className="cards-slider">
-        <button
-          className="circle-button right"
-          onClick={nextImage}
-          disabled={index + visibleImages === fetchImageCount}
-        >
-          <Icon icon="arrow-right" />
-        </button>
-        <button
-          className="circle-button left"
-          onClick={previousImage}
-          disabled={index === 0}
-        >
-          <Icon icon="arrow-left" />
-        </button>
-        <div
-          className="cards-slider-wrapper"
-          style={{ transform: `translateX(-${sliderPosition}%)` }}
-        >
-          {images
-            .filter((image, index) => index < imagesLoaded)
-            .map((image, index) => (
-              <CarouselCard
-                key={image.id}
-                index={index}
-                image={image}
-                carouselState={carouselState}
-              />
-            ))}
+    <section className="carousel-component">
+      <div className="carousel-text page-width">
+        <h2>Share the love</h2>
+        <p>
+          Great home decorating ideas are meant to be shared. Check out our
+          customer gallery below for design inspiration in a variety of styles.
+          Use #Modernist to share ideas of your own!
+        </p>
+      </div>
+      <div className="carousel page-width">
+        <div className="cards-slider">
+          <button
+            className="circle-button right"
+            onClick={nextImage}
+            disabled={index + visibleImages === fetchImageCount}
+          >
+            <Icon icon="arrow-right" />
+          </button>
+          <button
+            className="circle-button left"
+            onClick={previousImage}
+            disabled={index === 0}
+          >
+            <Icon icon="arrow-left" />
+          </button>
+          <div
+            className="cards-slider-wrapper"
+            style={{ transform: `translateX(-${sliderPosition}%)` }}
+          >
+            {images
+              .filter((image, index) => index < imagesLoaded)
+              .map((image, index) => (
+                <CarouselCard
+                  key={image.id}
+                  index={index}
+                  image={image}
+                  carouselState={carouselState}
+                />
+              ))}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

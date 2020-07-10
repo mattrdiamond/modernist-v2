@@ -9,21 +9,62 @@
     max-height: 500px;
   }
 
-  .col-left {
-    flex-basis: 60%;
+  .col-left,
+  .col-right {
+    flex-basis: 50%;
   }
 
   .col-right {
-    flex-basis: 40%;
-    margin-left: 2rem;
+    margin-left: 2.5rem;
   }
 
   .collection-name {
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    color: var(--primary-60);
+    font-size: 0.9rem;
+  }
+
+  .product-title {
+    margin: 0.75rem 0 0.25rem;
+  }
+
+  .product-price {
+    color: var(--accent-70);
+    font-family: var(--font-text);
+    font-weight: bold;
+    margin-top: 1.25rem;
+    font-size: 2rem;
   }
 
   .product-description {
     line-height: 1.75rem;
+  }
+
+  .button-container {
+    margin-top: 2rem;
+    display: flex;
+  }
+
+  .stepper-component {
+    margin-right: 1.5rem;
+    .stepper-container {
+      height: 2.75rem;
+    }
+  }
+
+  .custom-button {
+    flex-grow: 1;
+    height: 2.75rem;
+  }
+}
+
+@media (max-width: 770px) {
+  .button-container {
+    flex-direction: column;
+  }
+
+  .custom-button {
+    margin-top: 2rem;
   }
 }

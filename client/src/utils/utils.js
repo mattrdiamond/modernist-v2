@@ -27,3 +27,17 @@ export function debounce(fn, ms) {
     }, ms);
   };
 }
+
+export const imagesFitOnScreen = () => {
+  const width = window.innerWidth;
+  switch (true) {
+    case width <= 600:
+      return 1;
+    case width <= 925:
+      return 2;
+    case width <= 1200:
+      return 3;
+    default:
+      return 4;
+  }
+};

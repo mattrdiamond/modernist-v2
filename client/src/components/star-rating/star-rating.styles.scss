@@ -1,0 +1,37 @@
+.star-rating {
+  display: flex;
+  align-items: center;
+
+  .rating-list {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+  }
+
+  .star {
+    color: var(--black-20);
+    // display: flex;
+    // align-items: center;
+
+    &.shaded {
+      color: var(--yellow);
+    }
+
+    &:not(:first-of-type) {
+      margin-left: 0.125rem;
+    }
+  }
+
+  .icon-star {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .review-count {
+    margin-left: 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--primary-40);
+  }
+}

@@ -5,6 +5,7 @@ import CollectionsOverviewContainer from "../../components/collections-overview/
 import CollectionPageContainer from "../collection/collection.container";
 import ProductPageContainer from "../product-page/product-page.container";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
+import "./shop.styles.scss";
 
 const ShopPage = ({ fetchCollectionsStart, match }) => {
   // will only re-render if fetchCollectionsStart changes
@@ -13,7 +14,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
   }, [fetchCollectionsStart]);
 
   return (
-    <div className="shop-page page-width">
+    <section className="shop-page page-width">
       {/* in this case, match.path will be /shop */}
       <Route
         exact
@@ -29,7 +30,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
         path={`${match.path}/:collectionId/:itemId`}
         component={ProductPageContainer}
       />
-    </div>
+    </section>
   );
 };
 

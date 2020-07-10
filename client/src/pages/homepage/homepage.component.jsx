@@ -12,14 +12,7 @@ const Homepage = () => (
     <About />
     <Directory />
     <NewsletterSignup />
-    <section className="carousel-text">
-      <h2>Share the love!</h2>
-      <p>
-        This is a paragraph of placeholder content. Will soon replace with
-        meaningful content.
-      </p>
-      <Carousel />
-    </section>
+    <Carousel />
   </div>
 );
 

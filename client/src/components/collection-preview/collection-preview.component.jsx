@@ -4,9 +4,9 @@ import CollectionItem from "../collection-item/collection-item.component";
 import "./collection-preview.styles.scss";
 
 const CollectionPreview = ({ title, items, history, match, routeName }) => (
-  <div className="collection-preview">
+  <section className="collection-preview">
     <Link to={`${match.path}/${routeName}`}>
-      <h1 className="title">{title}</h1>
+      <h2 className="title">{title}</h2>
     </Link>
     <div className="preview">
       {/* filter out first 4 items for collection preview */}
@@ -16,7 +16,7 @@ const CollectionPreview = ({ title, items, history, match, routeName }) => (
           <CollectionItem key={item.id} item={item} routeName={routeName} />
         ))}
     </div>
-  </div>
+  </section>
 );
 
 export default withRouter(CollectionPreview);

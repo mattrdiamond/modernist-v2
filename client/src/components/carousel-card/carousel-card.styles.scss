@@ -1,16 +1,8 @@
-.temporary-index {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  padding: 5px;
-  background: rgba(255, 255, 255, 0.65);
-}
-
 .card {
   position: relative;
-  transition: transform 0.3s linear, box-shadow 0.3s linear;
-  min-width: 20%;
-  width: 20%;
+  transition: transform 0.3s linear, box-shadow 0.3s linear, opacity 0.3s linear;
+  min-width: 25%;
+  width: 25%;
   background-color: #fff;
   box-sizing: border-box;
   transform: scale(0.95);
@@ -24,6 +16,7 @@
 
   &.offscreen {
     transform: scale(0.85);
+    opacity: 0;
   }
 
   .card-photo {
@@ -37,7 +30,7 @@
 }
 
 .card-footer {
-  padding: 0.75rem;
+  padding: 0.875rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -58,19 +51,21 @@
   }
 
   .user-details {
+    text-align: left;
+    color: var(--black-80);
+
     span {
       display: block;
     }
   }
 
   .user-name {
-    margin-bottom: 0.125rem;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: bold;
   }
 
   .user-location {
-    color: #8a8a8a;
+    color: var(--black-50);
     font-weight: 300;
     font-size: 0.73rem;
   }
@@ -78,7 +73,8 @@
   .user-likes {
     display: flex;
     align-items: center;
-    font-weight: 500;
+    font-weight: bold;
+    color: var(--black-80);
   }
 
   .like-count {
@@ -93,21 +89,21 @@
 }
 
 // 1100 - 1300: 1/4
-@media (max-width: 1300px) {
-  .card {
-    min-width: 25%;
-    width: 25%;
-  }
-}
-// 750-1100: 1/3
-@media (max-width: 1100px) {
+// @media (max-width: 1300px) {
+//   .card {
+//     min-width: 25%;
+//     width: 25%;
+//   }
+// }
+// 926-1200: 3 cards
+@media (max-width: 1200px) {
   .card {
     min-width: calc(100% / 3);
     width: calc(100% / 3);
   }
 }
-// 500-800: 1/2
-@media (max-width: 800px) {
+// 650-925: 2 cards
+@media (max-width: 925px) {
   .card {
     min-width: 50%;
     width: 50%;
@@ -117,8 +113,8 @@
     }
   }
 }
-// 0-500: 1
-@media (max-width: 500px) {
+// 0-650px: 1 card
+@media (max-width: 600px) {
   .card {
     min-width: 100%;
     width: 100%;
