@@ -48,6 +48,14 @@ const ProductPage = ({ item, collectionId, addItem }) => {
           voluptaet vel molupta pernat litatquam idunt molo quiaeptat earum, aut
           omnih.
         </p>
+        <span className="product-detail">
+          <span className="bold">Availability: </span>
+          In stock
+        </span>
+        <span className="product-detail">
+          <span className="bold">SKU: </span>
+          {Math.floor(100000000 + Math.random() * 900000000)}
+        </span>
         <div className="button-container">
           <Stepper
             quantity={quantity}
@@ -63,7 +71,6 @@ const ProductPage = ({ item, collectionId, addItem }) => {
 
 const mapStateToProps = (state, ownProps) => {
   const { collectionId, itemId } = ownProps.match.params;
-
   return {
     item: selectItem(collectionId, itemId)(state),
     collectionId: collectionId,

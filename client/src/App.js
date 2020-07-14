@@ -17,16 +17,25 @@ import Confirmation from "./pages/confirmation/confirmation.component";
 import Portal from "./components/portal/portal.component";
 import ModalManager from "./components/modals/modal-manager";
 import Footer from "./components/footer/footer.component";
+import { selectCartHidden } from "./redux/cart/cart.selectors";
 
-const App = ({ checkUserSession, currentUser, inputHidden }) => {
+const App = ({ checkUserSession, currentUser, inputHidden, cartHidden }) => {
   // equivalent to componentDidMount (will only re-render if checkUserSession changes, and we know it will not)
   useEffect(() => {
     // check if user's authentication has persisted
     checkUserSession();
   }, [checkUserSession]);
 
+  const showOverlay = () => {
+    if (!inputHidden) {
+      return "input-visible";
+    } else if (!cartHidden) {
+      return "cart-visible";
+    }
+  };
+
   return (
-    <div id="app" className={!inputHidden ? "overlay" : ""}>
+    <div id="app" className={showOverlay()}>
       <Header />
       <div className="content-window">
         <Switch>
@@ -70,6 +79,7 @@ const App = ({ checkUserSession, currentUser, inputHidden }) => {
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   inputHidden: selectInputHidden,
+  cartHidden: selectCartHidden,
 });
 
 const mapDispatchToProps = (dispatch) => ({

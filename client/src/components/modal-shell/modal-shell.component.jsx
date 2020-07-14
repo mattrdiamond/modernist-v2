@@ -7,9 +7,9 @@ const Modal = (props) => {
   const { closeModal } = props;
 
   return (
-    <div className={"modal-wrapper"}>
-      <div className={"modal-backdrop"} onClick={closeModal} />
-      <div className={"modal-box"}>{props.children}</div>
+    <div className="modal-wrapper">
+      <div className="modal-backdrop" onClick={closeModal} />
+      <div className="modal-box">{props.children}</div>
     </div>
   );
 };

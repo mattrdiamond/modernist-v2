@@ -2,13 +2,16 @@ import React, { useRef, useEffect } from "react";
 import { connect } from "react-redux";
 import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
-import { selectCartItems } from "../../redux/cart/cart.selectors";
+import {
+  selectCartItems,
+  selectCartTotal,
+} from "../../redux/cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { withRouter } from "react-router-dom";
 import "./cart-dropdown.styles.scss";
 
-const CartDropdown = ({ cartItems, history, toggleCartHidden }) => {
+const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
   const node = useRef();
 
   useEffect(() => {
@@ -41,14 +44,17 @@ const CartDropdown = ({ cartItems, history, toggleCartHidden }) => {
               <CartItem key={cartItem.id} item={cartItem} />
             ))}
           </div>
-          <CustomButton
-            onClick={() => {
-              history.push("/checkout");
-              toggleCartHidden();
-            }}
-          >
-            Go to Checkout
-          </CustomButton>
+          <span className="cart-total">Subtotal: ${cartTotal.toFixed(2)}</span>
+          <div className="btn-container">
+            <CustomButton
+              onClick={() => {
+                history.push("/checkout");
+                toggleCartHidden();
+              }}
+            >
+              Checkout
+            </CustomButton>
+          </div>
         </>
       ) : (
         <span className="empty-message">Your cart is empty</span>
@@ -59,6 +65,7 @@ const CartDropdown = ({ cartItems, history, toggleCartHidden }) => {
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
+  cartTotal: selectCartTotal,
 });
 
 const mapDispatchToProps = (dispatch) => ({

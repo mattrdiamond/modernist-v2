@@ -1,11 +1,14 @@
-.cart-icon {
-  // width: 45px;
-  // height: 45px;
+.cart-container {
+  margin-right: -0.5rem;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+
+  .cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 
   .icon-shopping-bag {
     width: 24px;
