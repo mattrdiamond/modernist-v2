@@ -24,3 +24,9 @@
     font-family: var(--font-text-cond);
   }
 }
+
+@media (max-width: 430px) {
+  .cart-container {
+    position: unset;
+  }
+}

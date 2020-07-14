@@ -1,16 +1,42 @@
 import React from "react";
+import { connect } from "react-redux";
+import { clearItemFromCart } from "../../redux/cart/cart.actions";
+import Icon from "../icon/icon.component";
+import { withRouter, Link } from "react-router-dom";
 import "./cart-item.styles.scss";
 
-const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
-  <div className="cart-item">
-    <img src={imageUrl} alt={name} />
-    <div className="item-details">
-      <span className="name">{name}</span>
-      <span className="price">
-        {quantity} x ${price}
-      </span>
-    </div>
-  </div>
-);
+const CartItem = ({ item, clearItem, toggleCartHidden }) => {
+  const { imageUrl, price, name, quantity, collection, id } = item;
 
-export default CartItem;
+  return (
+    <div className="cart-item">
+      <Link to={`/shop/${collection}/${id}`} onClick={toggleCartHidden}>
+        <img src={imageUrl} alt={name} />
+      </Link>
+      <div className="item-details">
+        <div className="col-1">
+          <Link to={`/shop/${collection}/${id}`} onClick={toggleCartHidden}>
+            <span className="name bold">{name}</span>
+          </Link>
+          <span className="quantity">Quantity: {quantity}</span>
+        </div>
+        <div className="col-2">
+          <span className="price bold">${price}</span>
+        </div>
+      </div>
+      <button
+        className="close-button"
+        onClick={() => clearItem(item)}
+        aria-label="remove item from cart"
+      >
+        <Icon icon="close" />
+      </button>
+    </div>
+  );
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  clearItem: (item) => dispatch(clearItemFromCart(item)),
+});
+
+export default withRouter(connect(null, mapDispatchToProps)(CartItem));

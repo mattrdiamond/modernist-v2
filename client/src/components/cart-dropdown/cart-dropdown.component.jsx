@@ -41,7 +41,11 @@ const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
         <>
           <div className="cart-items">
             {cartItems.map((cartItem) => (
-              <CartItem key={cartItem.id} item={cartItem} />
+              <CartItem
+                key={cartItem.id}
+                item={cartItem}
+                toggleCartHidden={toggleCartHidden}
+              />
             ))}
           </div>
           <span className="cart-total">Subtotal: ${cartTotal.toFixed(2)}</span>
