@@ -2,6 +2,7 @@
   /*-- color palette --*/
   --primary-100: #162245;
   --primary-90: #2e3957;
+  --primary-85: #394460;
   --primary-80: #454f6a;
   --primary-70: #5c647c;
   --primary-60: #737a8f;
@@ -62,7 +63,7 @@ html {
 
 body {
   font-family: var(--font-text);
-  color: var(--primary-90);
+  color: var(--primary-85);
 }
 
 #app {

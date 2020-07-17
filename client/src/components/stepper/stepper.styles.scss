@@ -23,6 +23,10 @@
       cursor: unset;
       color: var(--primary-40);
     }
+
+    &:active {
+      background: var(--primary-30);
+    }
   }
 
   .quantity-decrease {
