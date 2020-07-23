@@ -1,16 +1,98 @@
+$title-img-height: 280px;
+// $lighting: url("../../assets/img/shop_lighting2_2x.jpg");
+$lighting: url("../../assets/img/shop_lighting_2x.jpg");
+// $bedding: url("../../assets/img/shop_bedding2_2x.jpg");
+$bedding: url("../../assets/img/shop_bedding_2x.jpg");
+$tables: url("../../assets/img/shop_tables_2x.jpg");
+$sofas: url("../../assets/img/shop_sofas_2x.jpg");
+$decor: url("../../assets/img/shop_decor_2x.jpg");
+$chairs: url("../../assets/img/shop_chairs2_2x.jpg");
+// $chairs: url("../../assets/img/shop_chairs_2x.jpg");
+
 .collection-page {
   display: flex;
   flex-direction: column;
   // margin: 2rem 0 6rem;
 
-  .title {
-    font-size: 38px;
-    // margin: 0;
-    margin-top: 0;
-    text-align: left;
+  .title-banner {
+    width: 100%;
+    height: $title-img-height;
+    //****
+    // background-color: var(--primary-20);
+    // background-image: url("../../assets/img/shop_lighting_2x.jpg");
+    // background-size: cover;
+    // background-position: center;
+    // background: $sofas center/cover no-repeat var(--primary-20);
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // flex-direction: column;
+    //****
+    color: white;
+    text-align: center;
+    position: fixed;
+    backface-visibility: hidden;
+    top: var(--nav-height);
+    z-index: -1;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary-80);
+      opacity: 0.4;
+      top: 0;
+      left: 0;
+      // z-index: -1;
+    }
   }
 
-  .items {
+  .background-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    object-fit: cover;
+    // display: none;
+  }
+
+  .title-content {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 1.5rem;
+  }
+
+  .subtitle {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+  }
+
+  .title {
+    // margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 3rem;
+  }
+
+  .collection-container {
+    padding-top: 3rem;
+    margin-top: calc(var(--nav-height) + #{$title-img-height});
+    background: #fff;
+  }
+
+  .collection-items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 3rem 1rem;
@@ -19,7 +101,7 @@
 
 @media screen and (max-width: 800px) {
   .collection-page {
-    .items {
+    .collection-items {
       grid-template-columns: 1fr 1fr;
       grid-gap: 15px;
     }

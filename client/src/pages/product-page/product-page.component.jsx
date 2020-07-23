@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { createStructuredSelector } from "reselect";
-import { addItem, removeItem } from "../../redux/cart/cart.actions";
+import { addItem } from "../../redux/cart/cart.actions";
 import { selectItem } from "../../redux/shop/shop.selectors";
 import { selectCartItems } from "../../redux/cart/cart.selectors";
-import { checkCartForItem } from "../../redux/cart/cart.utils";
 import StarRating from "../../components/star-rating/star-rating.component";
 import Stepper from "../../components/stepper/stepper.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
@@ -28,7 +26,7 @@ const ProductPage = ({ item, collectionId, addItem }) => {
   };
 
   return (
-    <div className="product-page">
+    <div className="product-page page-width">
       <div className="col-left">
         <img className="product-img" src={imageUrl} alt={name} />
       </div>

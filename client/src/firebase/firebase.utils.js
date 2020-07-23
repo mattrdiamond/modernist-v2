@@ -100,21 +100,23 @@ export const addCollectionAndDocuments = async (
 };
 
 export const convertCollectionsSnapshotToMap = (collections) => {
-  // .docs gives us query snapshot, .data() gives us data, only need title and items
+  // .docs gives us query snapshot, .data() gives us data from db
   const transformedCollection = collections.docs.map((doc) => {
-    const { title, items } = doc.data();
-    // return object from back end that only includes data we need for front end
-    // routeName is a new property who's value will be the same string as title (ie hats). encodeURI - encodes URI by replacing characters that a URL cannot process.
+    const { title, items, banner } = doc.data();
+    // return object from back end that includes data we need for front end
+    // routeName -  new value which will be the same string as title (i.e. decor). .replace simplifies routeName by only using first word (i.e. 'sofas & sectionals' becomes 'sofas')
+    // encodeURI - encodes URI by replacing characters that a URL cannot process.
     return {
-      routeName: encodeURI(title.toLowerCase()),
+      routeName: encodeURI(title.replace(/ .*/, "").toLowerCase()),
       id: doc.id,
       title,
       items,
+      banner,
     };
   });
-  // Convert array of objects to new object. Reduce iterates through each collection in array (ie hats) and adds collection title to new object. It then sets the property value equal to the actual collection object --> hats: {routeName: 'hats', id: 123, etc.}
+  // Convert array of objects to new object. Reduce iterates through each collection in array (i.e. decor) and adds collection title as property name for each collection in new object (i.e. decor: {routeName: 'decor', id: 123, etc.})
   return transformedCollection.reduce((accumulator, collection) => {
-    accumulator[collection.title.toLowerCase()] = collection;
+    accumulator[collection.title.replace(/ .*/, "").toLowerCase()] = collection;
     return accumulator;
   }, {});
 };

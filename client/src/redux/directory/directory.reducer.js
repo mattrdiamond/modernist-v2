@@ -36,7 +36,7 @@ const INITIAL_STATE = {
         mobile1x: sofasMobile1x,
       },
       id: 1,
-      linkUrl: "shop/hats",
+      linkUrl: "shop/sofas",
     },
     {
       title: "Lighting",
@@ -47,7 +47,7 @@ const INITIAL_STATE = {
         mobile1x: lightingMobile1x,
       },
       id: 2,
-      linkUrl: "shop/jackets",
+      linkUrl: "shop/lighting",
     },
     {
       title: "Tables",
@@ -58,7 +58,7 @@ const INITIAL_STATE = {
         mobile1x: tablesMobile1x,
       },
       id: 3,
-      linkUrl: "shop/sneakers",
+      linkUrl: "shop/tables",
     },
     {
       title: "Bedding",
@@ -70,7 +70,7 @@ const INITIAL_STATE = {
       },
       size: "large",
       id: 4,
-      linkUrl: "shop/womens",
+      linkUrl: "shop/bedding",
     },
     {
       title: "Decor",
@@ -81,7 +81,7 @@ const INITIAL_STATE = {
         mobile1x: decorMobile1x,
       },
       id: 5,
-      linkUrl: "shop/mens",
+      linkUrl: "shop/decor",
     },
     {
       title: "Chairs & Ottomans",
@@ -92,7 +92,7 @@ const INITIAL_STATE = {
         mobile1x: chairsMobile1x,
       },
       id: 6,
-      linkUrl: "shop/mens",
+      linkUrl: "shop/chairs",
     },
   ],
 };

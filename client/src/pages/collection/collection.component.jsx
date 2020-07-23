@@ -5,14 +5,32 @@ import CollectionItem from "../../components/collection-item/collection-item.com
 import "./collection.styles.scss";
 
 const CollectionPage = ({ collection }) => {
-  const { title, items } = collection;
+  const {
+    title,
+    items,
+    banner: { large, small },
+  } = collection;
+
   return (
     <section className="collection-page">
-      <h1 className="title">{title}</h1>
-      <div className="items">
-        {items.map((item) => (
-          <CollectionItem key={item.id} item={item} />
-        ))}
+      <div className="title-banner">
+        <img
+          className="background-img"
+          src={small}
+          srcSet={`${small} 1x, ${large} 2x`}
+          alt={title}
+        />
+        <div className="title-content">
+          <h1 className="title">{title}</h1>
+          <span className="subtitle">for every style & space</span>
+        </div>
+      </div>
+      <div className="collection-container">
+        <div className="collection-items page-width">
+          {items.map((item) => (
+            <CollectionItem key={item.id} item={item} />
+          ))}
+        </div>
       </div>
     </section>
   );

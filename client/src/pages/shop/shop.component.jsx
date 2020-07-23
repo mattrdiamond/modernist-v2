@@ -14,7 +14,7 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
   }, [fetchCollectionsStart]);
 
   return (
-    <section className="shop-page page-width">
+    <section className="shop-page">
       {/* in this case, match.path will be /shop */}
       <Route
         exact

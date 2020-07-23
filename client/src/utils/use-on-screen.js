@@ -7,8 +7,6 @@ export default function useOnScreen(options) {
   // use ref callback rather than useRef in case ref element is optionally displayed (safer)
   const [ref, setRef] = useState(null);
   const [visible, setVisible] = useState(false);
-  console.log("intersection", ref);
-
   useEffect(() => {
     // set up observer
     const observer = new IntersectionObserver(([entry]) => {
@@ -27,7 +25,7 @@ export default function useOnScreen(options) {
         observer.disconnect();
       }
     };
-  }, [ref, options]);
+  }, [ref, options, visible]);
 
   // return setRef function to be used in component as well as visible state
   return [setRef, visible];
