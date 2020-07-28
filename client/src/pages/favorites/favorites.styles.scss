@@ -1,6 +1,9 @@
 .favorites-page {
   display: flex;
   flex-direction: column;
+  padding-top: 3rem;
+  padding-bottom: 6rem;
+  height: 100%;
 
   .title {
     font-size: 38px;
@@ -28,10 +31,11 @@
   }
 
   .empty-fav-container {
-    padding: 5rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
   }
 }
 

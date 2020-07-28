@@ -24,17 +24,17 @@ const Header = ({ currentUser, inputHidden, cartHidden, signOutStart }) => {
     <nav className="header">
       <div className="nav-wrapper page-width">
         <div className="nav-links left">
-          {currentUser ? (
-            <div className="nav-link" onClick={signOutStart}>
-              Sign Out
-            </div>
-          ) : (
-            <div className="nav-link-wrapper">
+          <div className="nav-link-wrapper">
+            {currentUser ? (
+              <div className="nav-link" onClick={signOutStart}>
+                Sign Out
+              </div>
+            ) : (
               <Link className="nav-link" to="/signin">
                 Sign In
               </Link>
-            </div>
-          )}
+            )}
+          </div>
           <div className="nav-link-wrapper">
             <Link className="nav-link" to="/shop">
               Shop
@@ -65,6 +65,51 @@ const Header = ({ currentUser, inputHidden, cartHidden, signOutStart }) => {
       <SearchInput inputHidden={inputHidden} inputRef={inputRef} />
     </nav>
   );
+  // return (
+  //   <nav className="header">
+  //     <div className="nav-wrapper page-width">
+  //       <div className="nav-links left">
+  //         {currentUser ? (
+  //           <div className="nav-link" onClick={signOutStart}>
+  //             Sign Out
+  //           </div>
+  //         ) : (
+  //           <div className="nav-link-wrapper">
+  //             <Link className="nav-link" to="/signin">
+  //               Sign In
+  //             </Link>
+  //           </div>
+  //         )}
+  //         <div className="nav-link-wrapper">
+  //           <Link className="nav-link" to="/shop">
+  //             Shop
+  //           </Link>
+  //         </div>
+  //       </div>
+  //       <Link className="logo-container" to="/">
+  //         <Icon icon="logo" />
+  //       </Link>
+  //       <div className="nav-links right">
+  //         <div className="nav-link-wrapper">
+  //           <Link className="nav-icon" to="/favorites">
+  //             <Icon icon="heart-outline" width="20px" height="20px" />
+  //           </Link>
+  //         </div>
+  //         <div className="nav-link-wrapper">
+  //           <SearchIcon focusOnInput={focusOnInput} inputHidden={inputHidden} />
+  //         </div>
+  //         <div
+  //           className={
+  //             "nav-link-wrapper cart" + (!cartHidden ? " is-open" : "")
+  //           }
+  //         >
+  //           <CartIcon />
+  //         </div>
+  //       </div>
+  //     </div>
+  //     <SearchInput inputHidden={inputHidden} inputRef={inputRef} />
+  //   </nav>
+  // );
 };
 
 // createStructuredSelector passes state into multiple selectors

@@ -5,8 +5,8 @@
   color: white;
   // text-transform: uppercase;
   font-family: var(--font-text);
-  border: 1px solid;
-  border-color: inherit;
+  // border: 1px solid;
+  // border-color: inherit;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -29,7 +29,7 @@
   &.google-sign-in {
     background-color: #fff;
     color: var(--black-60);
-    border-color: var(--black-20);
+    border: 1px solid var(--black-20);
 
     &:hover {
       border-color: var(--black-60);

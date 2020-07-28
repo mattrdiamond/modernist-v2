@@ -7,18 +7,23 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import CollectionItem from "../../components/collection-item/collection-item.component";
 import "./favorites.styles.scss";
 
-const Favorites = ({ favorites }) => {
+const FavoritesPage = ({ favorites }) => {
   let favoritesArray = favorites ? Object.values(favorites) : null;
   return (
-    <div className="favorites-page">
-      <h2 className="title">Favorites</h2>
-      <span className="subtitle">All your top picks, together at last!</span>
+    <div className="favorites-page page-width">
       {favorites ? (
-        <div className="fav-container">
-          {favoritesArray.map((favorite) => (
-            <CollectionItem key={favorite.id} item={favorite} />
-          ))}
-        </div>
+        <>
+          <h2 className="title">Favorites</h2>
+          <span className="subtitle">
+            All your top picks, together at last!
+          </span>
+
+          <div className="fav-container">
+            {favoritesArray.map((favorite) => (
+              <CollectionItem key={favorite.id} item={favorite} />
+            ))}
+          </div>
+        </>
       ) : (
         <div className="empty-fav-container">
           <h2>Your wishlist is empty.</h2>
@@ -35,4 +40,4 @@ const mapStateToProps = createStructuredSelector({
   favorites: selectFavorites,
 });
 
-export default connect(mapStateToProps)(Favorites);
+export default connect(mapStateToProps)(FavoritesPage);

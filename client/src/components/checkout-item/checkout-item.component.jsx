@@ -5,28 +5,32 @@ import {
   addItem,
   removeItem,
 } from "../../redux/cart/cart.actions";
+import Stepper from "../stepper/stepper.component";
+import Icon from "../icon/icon.component";
 import "./checkout-item.styles.scss";
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
   return (
     <div className="checkout-item">
-      <div className="image-container">
-        <img src={imageUrl} alt="item" />
+      <div className="col-item">
+        <img className="item-img" src={imageUrl} alt={name} />
+        <span className="name">{name}</span>
       </div>
-      <span className="name">{name}</span>
-      <span className="quantity">
-        <div className="arrow" onClick={() => removeItem(cartItem)}>
-          &#10094;
-        </div>
-        <span className="value">{quantity}</span>
-        <div className="arrow" onClick={() => addItem(cartItem)}>
-          &#10095;
-        </div>
-      </span>
-      <span className="price">{price}</span>
-      <div className="remove-button" onClick={() => clearItem(cartItem)}>
-        &#10005;
+      <div className="col-qty">
+        <Stepper
+          quantity={quantity}
+          increment={() => addItem(cartItem)}
+          decrement={() => removeItem(cartItem)}
+        />
+      </div>
+      <div className="col-price">
+        <span className="price">${price}</span>
+      </div>
+      <div className="col-close">
+        <button className="remove-button" onClick={() => clearItem(cartItem)}>
+          <Icon icon="close" />
+        </button>
       </div>
     </div>
   );

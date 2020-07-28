@@ -73,7 +73,7 @@ body {
 
 .content-window {
   flex: 1 0 auto;
-  /* padding-bottom: 4rem; */
+  margin-top: var(--nav-height);
 }
 
 h1,
