@@ -6,6 +6,7 @@ import axios from "axios";
 import { withRouter } from "react-router-dom";
 
 const StripeCheckoutButton = ({ clearCart, totals, history }) => {
+  console.log("totals", totals);
   const { total } = totals;
   // Stripe needs price in cents
   const priceForStripe = Math.round(total * 100);
@@ -41,7 +42,7 @@ const StripeCheckoutButton = ({ clearCart, totals, history }) => {
   return (
     <StripeCheckout
       label="Pay Now"
-      name="CRWN Clothing Ltd."
+      name="Modernist."
       billingAddress
       shippingAddress
       image="https://svgshare.com/i/CUz.svg"

@@ -87,7 +87,7 @@ $chairs: url("../../assets/img/shop_chairs2_2x.jpg");
   }
 
   .collection-container {
-    padding: 3rem 0 6rem;
+    padding: var(--window-top) 0 var(--window-bottom);
     margin-top: $title-img-height;
     background: #fff;
   }

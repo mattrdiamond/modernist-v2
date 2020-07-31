@@ -44,6 +44,8 @@
   --font-display: "domaine_disp_nar", Helvetica, sans-serif;
   /*-- measurements --*/
   --nav-height: 70px;
+  --window-top: 3rem;
+  --window-bottom: 6rem;
 }
 
 * {

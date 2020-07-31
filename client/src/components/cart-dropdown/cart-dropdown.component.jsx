@@ -4,7 +4,7 @@ import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
 import {
   selectCartItems,
-  selectCartTotal,
+  selectCartSubtotal,
 } from "../../redux/cart/cart.selectors";
 import { createStructuredSelector } from "reselect";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
@@ -69,7 +69,7 @@ const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
-  cartTotal: selectCartTotal,
+  cartTotal: selectCartSubtotal,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,8 +1,8 @@
 $grid-gap: 3rem;
 
 .checkout-page {
-  padding-top: 3rem;
-  padding-bottom: 6rem;
+  padding-top: var(--window-top);
+  padding-bottom: var(--window-bottom);
   height: 100%;
 
   .title {
@@ -24,6 +24,7 @@ $grid-gap: 3rem;
   .col-1 {
     flex: 1;
   }
+
   .col-2 {
     width: 350px;
     margin-left: 2rem;
@@ -90,7 +91,7 @@ $grid-gap: 3rem;
   .summary-container {
     margin-bottom: 1rem;
     display: flex;
-    background: #ddd;
+    background: var(--primary-05);
     flex-wrap: wrap;
 
     .label,
@@ -102,10 +103,24 @@ $grid-gap: 3rem;
     .summary-title {
       flex-basis: 100%;
       margin: 0 0 1rem;
+      font-family: var(--font-text);
+      letter-spacing: 0;
+      font-size: 1.125rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     span:not(.total) {
       margin-bottom: 0.75rem;
+    }
+
+    span:last-of-type {
+      margin: 1.5rem 0 0;
+      width: 100%;
+    }
+
+    .custom-button {
+      width: 100%;
     }
 
     .amount {
@@ -122,25 +137,6 @@ $grid-gap: 3rem;
       font-weight: bold;
     }
   }
-
-  // .promo-container {
-  //   background: #e4f5fb;
-  // }
-
-  // .promo-form {
-  //   display: flex;
-  //   margin: 1rem 0;
-
-  //   input {
-  //     width: 100%;
-  //     border: none;
-  //     height: 100%;
-  //   }
-
-  //   .custom-button {
-  //     margin-left: 0.5rem;
-  //   }
-  // }
 
   .test-warning {
     text-align: center;

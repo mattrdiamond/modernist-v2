@@ -54,7 +54,6 @@ const App = ({ checkUserSession, currentUser, inputHidden, cartHidden }) => {
               )
             }
           />
-          {/*<Route exact path="/confirmation" component={Confirmation} />*/}
           {/* If user signed in, redirect user to home page when clicking signin.
             also redirects to home when user signs in.
           render prop determines what component to return*/}

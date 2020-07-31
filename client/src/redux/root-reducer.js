@@ -8,6 +8,7 @@ import directoryReducer from "./directory/directory.reducer";
 import shopReducer from "./shop/shop.reducer";
 import modalReducer from "./modal/modal.reducer";
 import searchReducer from "./search/search.reducer";
+import promoReducer from "./promo/promo.reducer";
 
 const persistConfig = {
   key: "root", // part of reducer object we want to start storage
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   shop: shopReducer,
   modal: modalReducer,
   search: searchReducer,
+  promo: promoReducer,
 });
 
 // export modified version of rootReducer with persistance capabilities

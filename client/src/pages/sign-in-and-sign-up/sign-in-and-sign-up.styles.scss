@@ -1,17 +1,13 @@
-:root {
-  --tab-width: 8rem;
-}
+$tab-width: 8rem;
 
 .sign-in-and-sign-up {
   margin: 0;
-
-  .background-screen {
-    background: var(--black-05);
-    padding: 3rem 6%;
-  }
+  background: var(--beige);
+  padding-top: var(--window-top);
+  padding-bottom: var(--window-bottom);
 
   .sign-in-window {
-    max-width: 35rem;
+    max-width: 30rem;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -21,7 +17,7 @@
   }
 
   .sign-in-content {
-    padding: 0rem 3rem 3rem;
+    padding: 0rem 2rem 2rem;
   }
 
   .tabs-container {
@@ -34,13 +30,13 @@
   .tabs-inner {
     position: relative;
     display: inline-block;
-    width: calc(var(--tab-width) * 2);
+    width: calc(#{$tab-width} * 2);
 
     &:after {
       content: "";
       position: absolute;
       height: 4px;
-      width: var(--tab-width);
+      width: $tab-width;
       background-color: var(--accent-100);
       bottom: 0;
       transition: left 0.5s;
@@ -54,7 +50,7 @@
 
     &.sign-up {
       &:after {
-        left: var(--tab-width);
+        left: $tab-width;
       }
     }
   }
@@ -67,7 +63,7 @@
     font-weight: bold;
     // font-size: 1.125rem;
     font-size: 1rem;
-    width: var(--tab-width);
+    width: $tab-width;
     color: var(--black-30);
     cursor: pointer;
     background-color: #fff;

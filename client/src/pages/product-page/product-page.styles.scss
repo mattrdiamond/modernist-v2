@@ -1,7 +1,7 @@
 .product-page {
   display: flex;
   max-width: 950px;
-  margin: 3rem auto 6rem;
+  margin: var(--window-top) auto var(--window-bottom);
 
   .product-img {
     width: 100%;

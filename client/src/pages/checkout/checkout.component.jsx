@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
   selectCartItems,
-  selectCartTotal,
+  selectCartSubtotal,
 } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { selectApplied } from "../../redux/promo/promo.selectors";
 import { Link } from "react-router-dom";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import CustomButton from "../../components/custom-button/custom-button.component.jsx";
@@ -13,33 +14,14 @@ import StripeCheckoutButton from "../../components/stripe-button/stripe-button.c
 import PromoForm from "../../components/promo-form/promo-form.component";
 import PromoBanner from "../../components/promo-banner/promo-banner.component";
 import "./checkout.styles.scss";
+import FormInput from "../../components/form-input/form-input.component";
 
-const CheckoutPage = ({ cartItems, cartTotal }) => {
+const CheckoutPage = ({ cartItems, cartSubtotal, promoApplied }) => {
   const taxRate = 0.0625;
-  const promoCode = "supersale";
-  const salesTax = cartTotal * taxRate;
-  const shippingCost = 20;
-
-  const [totals, updateTotals] = useState({
-    subtotal: cartTotal,
-    discount: null,
-    tax: salesTax,
-    shipping: shippingCost,
-    total: cartTotal + salesTax + shippingCost,
-  });
-
-  const { subtotal, discount, tax, shipping, total } = totals;
-
-  const applyPromo = (percentage) => {
-    const promoDiscount = cartTotal * percentage;
-    const salesTax = (cartTotal - promoDiscount) * taxRate;
-    updateTotals({
-      ...totals,
-      discount: promoDiscount,
-      tax: salesTax,
-      total: cartTotal - promoDiscount + salesTax + shipping,
-    });
-  };
+  const shipping = 20;
+  const tax = cartSubtotal * taxRate;
+  const discount = promoApplied ? cartSubtotal * 0.2 : 0;
+  const total = cartSubtotal - discount + tax + shipping;
 
   if (!cartItems.length)
     return (
@@ -55,62 +37,74 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
   else
     return (
       <>
-        <PromoBanner promoCode={promoCode} />
+        <PromoBanner promoCode="SUPERSALE" />
         <div className="checkout-page page-width">
-          <h1 className="title">Shopping bag</h1>
-          <div className="checkout-wrapper">
-            {/*----------- shopping bag ---------------*/}
-            <div className="col-1">
-              <section className="cart">
-                <div className="checkout-header">
-                  <div className="header-block col-item">
-                    <span>Item</span>
-                  </div>
-                  <div className="header-block col-qty">
-                    <span>Qty</span>
-                  </div>
-                  <div className="header-block col-price">
-                    <span>Price</span>
-                  </div>
-                  <div className="col-close" />
-                </div>
-                {cartItems.map((cartItem) => (
-                  <CheckoutItem key={cartItem.id} cartItem={cartItem} />
-                ))}
-              </section>
+          {!cartItems.length ? (
+            <div className="empty">
+              <h2>Your shopping bag is empty</h2>
+              <Link to="/shop">
+                <CustomButton>Shop Now</CustomButton>
+              </Link>
             </div>
-            <div className="col-2">
-              {/*----------- summary ---------------*/}
-              <section className="summary-container">
-                <h3 className="summary-title">Summary</h3>
-                <span className="label">Subtotal:</span>
-                <span className="amount">${subtotal.toFixed(2)}</span>
-                {discount && (
-                  <>
-                    <span className="label promo">Promo:</span>
-                    <span className="amount promo">
-                      -${discount.toFixed(2)}
-                    </span>
-                  </>
-                )}
-                <span className="label">Sales Tax:</span>
-                <span className="amount">${tax.toFixed(2)}</span>
-                <span className="label">Shipping:</span>
-                <span className="amount">${shipping.toFixed(2)}</span>
-                <span className="label total">Total:</span>
-                <span className="amount total">${total.toFixed(2)}</span>
-
-                {/*----------- promo ---------------*/}
-                <PromoForm applyPromo={applyPromo} validCode={promoCode} />
-                <div className="test-warning">
-                  *Please use the following test credit card for payments*
-                  <br />
-                  4242 4242 4242 4242 - Exp: 01/28 - CVV: 123
+          ) : (
+            <>
+              <h1 className="title">Shopping bag</h1>
+              <div className="checkout-wrapper">
+                {/*----------- shopping bag ---------------*/}
+                <div className="col-1">
+                  <div className="cart">
+                    <div className="checkout-header">
+                      <div className="header-block col-item">
+                        <span>Item</span>
+                      </div>
+                      <div className="header-block col-qty">
+                        <span>Qty</span>
+                      </div>
+                      <div className="header-block col-price">
+                        <span>Price</span>
+                      </div>
+                      <div className="col-close" />
+                    </div>
+                    {cartItems.map((cartItem) => (
+                      <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+                    ))}
+                  </div>
                 </div>
-                <StripeCheckoutButton totals={totals} />
-              </section>
-            </div>
-          </div>
+                <div className="col-2">
+                  {/*----------- summary ---------------*/}
+                  <div className="summary-container">
+                    <h3 className="summary-title">Summary</h3>
+                    <span className="label">Subtotal:</span>
+                    <span className="amount">${cartSubtotal.toFixed(2)}</span>
+                    {promoApplied && (
+                      <>
+                        <span className="label promo">Promo:</span>
+                        <span className="amount promo">
+                          -${discount.toFixed(2)}
+                        </span>
+                      </>
+                    )}
+                    <span className="label">Sales Tax:</span>
+                    <span className="amount">${tax.toFixed(2)}</span>
+                    <span className="label">Shipping:</span>
+                    <span className="amount">${shipping.toFixed(2)}</span>
+                    <span className="label total">Total:</span>
+                    <span className="amount total">${total.toFixed(2)}</span>
+                    <StripeCheckoutButton
+                      totals={{ cartSubtotal, shipping, tax, discount, total }}
+                    />
+                  </div>
+                  {/*----------- promo ---------------*/}
+                  <PromoForm />
+                  <div className="test-warning">
+                    *Please use the following test credit card for payments*
+                    <br />
+                    4242 4242 4242 4242 - Exp: 01/28 - CVV: 123
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </>
     );
@@ -118,8 +112,9 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
-  cartTotal: selectCartTotal,
+  cartSubtotal: selectCartSubtotal,
   currentUser: selectCurrentUser,
+  promoApplied: selectApplied,
 });
 
 export default connect(mapStateToProps)(CheckoutPage);

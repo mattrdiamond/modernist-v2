@@ -1,61 +1,53 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import {
+  selectInput,
+  selectError,
+  selectApplied,
+} from "../../redux/promo/promo.selectors";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import FormInput from "../../components/form-input/form-input.component";
+import {
+  setInputValue,
+  throwError,
+  clearError,
+  applyPromo,
+} from "../../redux/promo/promo.actions";
 import "./promo-form.styles.scss";
 
-const PromoForm = ({ applyPromo, validCode }) => {
-  const [promoCode, setPromoCode] = useState({
-    input: "",
-    error: null,
-    applied: false,
-    amount: 0.2,
-  });
-
-  const { input, error, amount } = promoCode;
+const PromoForm = ({
+  inputValue,
+  error,
+  throwError,
+  clearError,
+  setInputValue,
+  applyPromo,
+  promoApplied,
+}) => {
+  const validCode = "SUPERSALE";
 
   const handleChange = (e) => {
     const { value } = e.target;
 
-    // clear error if showing
-    if (promoCode.error) {
-      return setPromoCode({
-        ...promoCode,
-        input: value,
-        error: null,
-      });
+    if (error) {
+      return clearError(value);
     }
-    setPromoCode({
-      ...promoCode,
-      input: value,
-    });
+    setInputValue(value);
   };
-
-  console.log("valid", validCode);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.toLowerCase() !== validCode.toLowerCase()) {
-      return setPromoCode({
-        ...promoCode,
-        error: "Your promo could not be applied. Please try again!",
-      });
+    if (inputValue.toLowerCase() !== validCode.toLowerCase()) {
+      return throwError("Your promo could not be applied. Please try again!");
     } else if (
-      input.toLowerCase() === validCode.toLowerCase() &&
-      promoCode.applied
+      inputValue.toLowerCase() === validCode.toLowerCase() &&
+      promoApplied
     ) {
-      return setPromoCode({
-        ...promoCode,
-        error: "Promo has already been applied.",
-      });
+      return throwError("Promo has already been applied.");
     }
     // apply promo code
-    setPromoCode({
-      ...promoCode,
-      input: "",
-      applied: true,
-      error: null,
-    });
-    applyPromo(amount);
+    applyPromo();
   };
 
   return (
@@ -66,14 +58,14 @@ const PromoForm = ({ applyPromo, validCode }) => {
           name="promo"
           handleChange={handleChange}
           type="text"
-          value={input}
+          value={inputValue}
           placeholder="Promo or gift card"
           required
         />
         <CustomButton
           type="button"
           onClick={handleSubmit}
-          disabled={!promoCode}
+          disabled={!inputValue}
         >
           Apply
         </CustomButton>
@@ -83,4 +75,17 @@ const PromoForm = ({ applyPromo, validCode }) => {
   );
 };
 
-export default PromoForm;
+const mapStateToProps = createStructuredSelector({
+  inputValue: selectInput,
+  error: selectError,
+  promoApplied: selectApplied,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  throwError: (error) => dispatch(throwError(error)),
+  setInputValue: (input) => dispatch(setInputValue(input)),
+  clearError: (input) => dispatch(clearError(input)),
+  applyPromo: () => dispatch(applyPromo()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PromoForm);

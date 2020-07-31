@@ -13,7 +13,7 @@ const SignInAndSignUpPage = () => {
 
   return (
     <section className="sign-in-and-sign-up">
-      <div className="background-screen">
+      <div className="page-width">
         <div className="sign-in-window">
           <div className="tabs-container">
             <div
