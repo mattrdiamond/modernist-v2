@@ -25,11 +25,11 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
         </div>
       </div>
       <button
-        className="close-button"
+        className="delete-button"
         onClick={() => clearItem(item)}
         aria-label="remove item from cart"
       >
-        <Icon icon="close" />
+        <Icon icon="trash" />
       </button>
     </div>
   );

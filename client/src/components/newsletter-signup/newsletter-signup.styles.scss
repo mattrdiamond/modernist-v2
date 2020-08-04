@@ -44,26 +44,6 @@
     align-items: center;
   }
 
-  .input-container {
-    display: flex;
-    border-bottom: 1px solid var(--primary-90);
-  }
-
-  .form-input {
-    border-bottom: none;
-  }
-
-  .input-button {
-    background: none;
-    border: none;
-    font-family: var(--font-text);
-    font-weight: bold;
-    font-size: 0.9rem;
-    color: var(--primary-90);
-    cursor: pointer;
-    padding: 10px;
-  }
-
   .mc-status {
     font-style: italic;
     font-size: 0.75em;
@@ -72,14 +52,14 @@
     &:focus {
       outline: none;
     }
+  }
 
-    .success-message {
-      color: green;
-    }
+  .success-message {
+    color: var(--primary-85);
+  }
 
-    .error-message {
-      color: red;
-    }
+  .error-message {
+    color: var(--red);
   }
 }
 

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import FormInput from "../form-input/form-input.component";
+import CustomButton from "../custom-button/custom-button.component";
 import { newsletter2x, newsletter1x } from "../../assets/img/_images";
 import useOnScreen from "../../utils/use-on-screen";
 import "./newsletter-signup.styles.scss";
@@ -140,29 +141,29 @@ const NewsletterSignup = () => {
             <p>
               Sign up to recieve product news, promotions&nbsp;and&nbsp;updates.
             </p>
-            <div className="input-container">
-              <FormInput
-                name="EMAIL"
-                type="email"
-                aria-label="Email"
-                title="The domain portion of the email address is invalid (the portion after the @)."
-                pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
-                label="email"
-                id="mce-EMAIL"
-                handleChange={handleChange}
-                value={email}
-                required
-              />
-              <button
+            <FormInput
+              name="EMAIL"
+              type="email"
+              aria-label="Email"
+              title="The domain portion of the email address is invalid (the portion after the @)."
+              pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+              label="email"
+              id="mce-EMAIL"
+              handleChange={handleChange}
+              value={email}
+              required
+            >
+              <CustomButton
                 type="submit"
                 value="Subscribe"
                 name="subscribe"
                 id="mc-embedded-subscribe"
-                className="input-button"
+                disabled={!email}
+                inline
               >
                 Submit
-              </button>
-            </div>
+              </CustomButton>
+            </FormInput>
             {/* hidden input prevents form bot signups */}
             <div
               style={{ position: "absolute", left: "-5000px" }}

@@ -2,8 +2,8 @@ import React from "react";
 import "./form-input.styles.scss";
 
 // otherProps includes name, type, value, required, onChange from sign-in component
-const FormInput = ({ handleChange, label, ...otherProps }) => (
-  <div className="group">
+const FormInput = ({ handleChange, label, children, ...otherProps }) => (
+  <div className="form-input-container">
     <input className="form-input" onChange={handleChange} {...otherProps} />
     {label ? (
       <label
@@ -14,6 +14,7 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
         {label}
       </label>
     ) : null}
+    {children}
   </div>
 );
 

@@ -1,18 +1,62 @@
 .promo-container {
   background: #e4f5fb;
-}
+  padding: 1rem;
 
-.promo-form {
-  display: flex;
-  margin: 1rem 0;
-
-  input {
-    width: 100%;
-    border: none;
-    height: 100%;
+  .promo-inner {
+    padding: 1rem;
   }
 
+  .promo-form {
+    display: flex;
+    margin-top: 1rem;
+    padding-bottom: 0.25rem;
+
+    input {
+      width: 100%;
+      border: none;
+      height: 100%;
+    }
+  }
   .custom-button {
     margin-left: 0.5rem;
+  }
+
+  .alert-container {
+    font-style: italic;
+    font-size: 0.75em;
+    margin-top: 0.5em;
+    text-align: center;
+  }
+
+  .error {
+    color: var(--red);
+  }
+
+  .success-container {
+    display: flex;
+    margin-top: 1.25rem;
+  }
+
+  .icon-check {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--accent-100);
+  }
+
+  .promo-name {
+    margin-left: 0.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    // color: var(--accent-100)
+  }
+
+  .promo-applied {
+    background: var(--accent-100);
+    color: #fff;
+  }
+
+  .success-details {
+    color: var(--primary-60);
+    margin: 0 0 0 0.5rem;
   }
 }

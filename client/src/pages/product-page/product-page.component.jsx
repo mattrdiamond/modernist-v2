@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { addItem } from "../../redux/cart/cart.actions";
 import { selectItem } from "../../redux/shop/shop.selectors";
-import { selectCartItems } from "../../redux/cart/cart.selectors";
 import StarRating from "../../components/star-rating/star-rating.component";
 import Stepper from "../../components/stepper/stepper.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
@@ -72,7 +71,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     item: selectItem(collectionId, itemId)(state),
     collectionId: collectionId,
-    cartItems: selectCartItems(state),
   };
 };
 

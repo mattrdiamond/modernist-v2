@@ -23,22 +23,11 @@ const CheckoutPage = ({ cartItems, cartSubtotal, promoApplied }) => {
   const discount = promoApplied ? cartSubtotal * 0.2 : 0;
   const total = cartSubtotal - discount + tax + shipping;
 
-  if (!cartItems.length)
-    return (
+  return (
+    <>
+      <PromoBanner promoCode="SUPERSALE" />
       <div className="checkout-page page-width">
-        <div className="empty">
-          <h2>Your shopping bag is empty</h2>
-          <Link to="/shop">
-            <CustomButton>Shop Now</CustomButton>
-          </Link>
-        </div>
-      </div>
-    );
-  else
-    return (
-      <>
-        <PromoBanner promoCode="SUPERSALE" />
-        <div className="checkout-page page-width">
+        <div className="max-width">
           {!cartItems.length ? (
             <div className="empty">
               <h2>Your shopping bag is empty</h2>
@@ -50,27 +39,27 @@ const CheckoutPage = ({ cartItems, cartSubtotal, promoApplied }) => {
             <>
               <h1 className="title">Shopping bag</h1>
               <div className="checkout-wrapper">
-                {/*----------- shopping bag ---------------*/}
-                <div className="col-1">
+                {/*----------- cart ---------------*/}
+                <div className="left-col">
                   <div className="cart">
                     <div className="checkout-header">
-                      <div className="header-block col-item">
+                      <div className="col-description header-block">
                         <span>Item</span>
                       </div>
-                      <div className="header-block col-qty">
+                      <div className="col-qty header-block">
                         <span>Qty</span>
                       </div>
-                      <div className="header-block col-price">
+                      <div className="col-price header-block">
                         <span>Price</span>
                       </div>
-                      <div className="col-close" />
+                      <div className="col-delete" />
                     </div>
                     {cartItems.map((cartItem) => (
                       <CheckoutItem key={cartItem.id} cartItem={cartItem} />
                     ))}
                   </div>
                 </div>
-                <div className="col-2">
+                <div className="right-col">
                   {/*----------- summary ---------------*/}
                   <div className="summary-container">
                     <h3 className="summary-title">Summary</h3>
@@ -96,18 +85,14 @@ const CheckoutPage = ({ cartItems, cartSubtotal, promoApplied }) => {
                   </div>
                   {/*----------- promo ---------------*/}
                   <PromoForm />
-                  <div className="test-warning">
-                    *Please use the following test credit card for payments*
-                    <br />
-                    4242 4242 4242 4242 - Exp: 01/28 - CVV: 123
-                  </div>
                 </div>
               </div>
             </>
           )}
         </div>
-      </>
-    );
+      </div>
+    </>
+  );
 };
 
 const mapStateToProps = createStructuredSelector({
