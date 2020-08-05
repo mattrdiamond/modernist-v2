@@ -31,7 +31,7 @@ const SearchPage = ({
         Showing <span className="bold">{searchResults.length}</span> results for{" "}
         <span className="bold">"{query}"</span>
       </span>
-      <div className="search-container">
+      <div className="item-grid">
         {searchResults.length ? (
           searchResults.map((result) => (
             <CollectionItem key={result.id} item={result} />

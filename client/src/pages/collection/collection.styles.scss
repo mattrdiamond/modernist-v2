@@ -84,26 +84,12 @@ $chairs: url("../../assets/img/shop_chairs2_2x.jpg");
     margin-bottom: 0.5rem;
     text-align: center;
     font-size: 3rem;
+    line-height: 1;
   }
 
   .collection-container {
     padding: var(--window-top) 0 var(--window-bottom);
     margin-top: $title-img-height;
     background: #fff;
-  }
-
-  .collection-items {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 3rem 1rem;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .collection-page {
-    .collection-items {
-      grid-template-columns: 1fr 1fr;
-      grid-gap: 15px;
-    }
   }
 }

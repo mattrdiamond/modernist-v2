@@ -1,6 +1,7 @@
 .cart-container {
   margin-right: -0.5rem;
   position: relative;
+  height: 100%;
 
   .cart-icon {
     position: relative;
@@ -19,7 +20,7 @@
   .item-count {
     position: absolute;
     font-size: 10px;
-    bottom: 12px;
+    bottom: 24px;
     pointer-events: none;
     font-family: var(--font-text-cond);
   }

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { selectCollection } from "../../redux/shop/shop.selectors";
 import CollectionItem from "../../components/collection-item/collection-item.component";
+import ImageGrid from "../../components/image-grid/image-grid.component";
 import "./collection.styles.scss";
 
 const CollectionPage = ({ collection }) => {
@@ -12,7 +13,7 @@ const CollectionPage = ({ collection }) => {
   } = collection;
 
   return (
-    <section className="collection-page">
+    <div className="collection-page">
       <div className="title-banner">
         <img
           className="background-img"
@@ -26,13 +27,11 @@ const CollectionPage = ({ collection }) => {
         </div>
       </div>
       <div className="collection-container">
-        <div className="collection-items page-width">
-          {items.map((item) => (
-            <CollectionItem key={item.id} item={item} />
-          ))}
+        <div className="page-width">
+          <ImageGrid items={items}></ImageGrid>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

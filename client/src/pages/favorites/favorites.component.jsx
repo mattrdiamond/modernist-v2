@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
 import { selectFavorites } from "../../redux/user/user.selectors";
-import CustomButton from "../../components/custom-button/custom-button.component.jsx";
+import CustomButton from "../../components/custom-button/custom-button.component";
+import ImageGrid from "../../components/image-grid/image-grid.component";
 import CollectionItem from "../../components/collection-item/collection-item.component";
 import "./favorites.styles.scss";
 
 const FavoritesPage = ({ favorites }) => {
   let favoritesArray = favorites ? Object.values(favorites) : null;
+  console.log("favs", favorites);
   return (
     <div className="favorites-page page-width">
       {favorites ? (
@@ -17,12 +19,12 @@ const FavoritesPage = ({ favorites }) => {
           <span className="subtitle">
             All your top picks, together at last!
           </span>
-
-          <div className="fav-container">
+          <ImageGrid items={favoritesArray} />
+          {/*<div className="item-grid">
             {favoritesArray.map((favorite) => (
               <CollectionItem key={favorite.id} item={favorite} />
             ))}
-          </div>
+            </div>*/}
         </>
       ) : (
         <div className="empty-fav-container">
