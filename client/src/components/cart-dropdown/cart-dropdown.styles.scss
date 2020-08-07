@@ -9,7 +9,7 @@ $cart-items-height: calc(#{$cart-item-height} * 3 + 2px);
   display: flex;
   flex-direction: column;
   background-color: white;
-  top: 57px;
+  top: var(--nav-height);
   right: 0;
   z-index: 5;
   border-top: 1px solid var(--primary-15);

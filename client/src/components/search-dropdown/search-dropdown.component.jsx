@@ -16,12 +16,15 @@ const SearchDropdown = ({ collectionItems, inputValue }) => {
       ) : searchResults.length ? (
         searchResults
           .filter((item, index) => index < 4)
-          .map((result) => <SearchResult result={result} />)
+          .map((result) => <SearchResult key={result.id} result={result} />)
       ) : (
-        <li>No results for '{inputValue}'</li>
+        <li key="no-results">No results for '{inputValue}'</li>
       )}
       {searchResults.length > 4 && (
-        <Link to={{ pathname: "/search", search: `q=${inputValue}` }}>
+        <Link
+          to={{ pathname: "/search", search: `q=${inputValue}` }}
+          className="ignore-co-search"
+        >
           <li key="all-results" className="view-results">
             View all {searchResults.length} items
           </li>

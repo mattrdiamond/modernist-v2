@@ -10,6 +10,7 @@ import {
 } from "../../redux/search/search.actions";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import Icon from "../icon/icon.component";
+import useOnClickOutside from "../../utils/use-onclick-outside";
 import "./search-input.scss";
 
 const SearchInput = ({
@@ -23,35 +24,11 @@ const SearchInput = ({
 }) => {
   // useCallback prevents re-creation of function every time component rebuilds
   const handleClose = useCallback(() => {
-    setInputValue("");
+    // setInputValue("");
     toggleInputHidden();
   }, [setInputValue, toggleInputHidden]);
 
-  const handleClick = useCallback(
-    (e) => {
-      if (
-        inputRef.current.contains(e.target) ||
-        e.target.classList.contains("search-wrapper")
-      ) {
-        // clicked within search drawer
-        return;
-      }
-      // clicked outside search drawer
-      handleClose();
-    },
-    [handleClose, inputRef]
-  );
-
-  useEffect(() => {
-    // add listener when search input visible
-    if (!inputHidden) {
-      document.addEventListener("click", handleClick);
-      // remove when closed
-      return () => {
-        document.removeEventListener("click", handleClick);
-      };
-    }
-  }, [inputHidden, handleClick]);
+  useOnClickOutside(inputRef, handleClose, "ignore-co-search", inputHidden);
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -59,14 +36,9 @@ const SearchInput = ({
     if (!collectionItems.length) fetchCollectionsStart();
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key !== "Enter") return;
-    handleClose();
-  };
-
   return (
     <div className={"search-drawer" + (inputHidden ? " hidden" : "")}>
-      <div className="search-wrapper page-width">
+      <div className="search-wrapper page-width ignore-co-search">
         <Icon icon="search" width={"19px"} height={"19px"} />
         <div className="form-wrapper">
           <form className="search-form">
@@ -87,7 +59,10 @@ const SearchInput = ({
             />
           )}
         </div>
-        <button className="close-button" onKeyPress={handleKeyPress}>
+        <button
+          className="close-button ignore-co-search"
+          onClick={toggleInputHidden}
+        >
           <Icon icon="close" />
         </button>
       </div>

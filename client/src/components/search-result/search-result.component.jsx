@@ -7,7 +7,10 @@ const SearchResult = ({ result }) => {
   const { id, imageUrl, name, price, collection } = result;
   return (
     <li className="search-result" key={id}>
-      <Link className="result-link" to={`/shop/${collection}/${id}`}>
+      <Link
+        className="result-link ignore-co-search"
+        to={`/shop/${collection}/${id}`}
+      >
         <img className="result-img" src={imageUrl} alt={name} />
         <div className="result-details">
           <span className="result-name">{name}</span>

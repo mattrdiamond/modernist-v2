@@ -11,12 +11,17 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import Icon from "../icon/icon.component";
 
 const CartIcon = ({ toggleCartHidden, cartHidden, itemCount }) => {
+  const handleKeyPress = (e) => {
+    if (e.key !== "Enter") return;
+    toggleCartHidden();
+  };
+
   return (
     <div className="cart-container">
       <div
-        className="cart-icon nav-icon"
+        className={"cart-icon nav-icon" + (!cartHidden ? " is-open" : "")}
         onClick={toggleCartHidden}
-        onKeyPress={toggleCartHidden}
+        onKeyPress={handleKeyPress}
         tabIndex="0"
       >
         <Icon icon="shopping-bag" />

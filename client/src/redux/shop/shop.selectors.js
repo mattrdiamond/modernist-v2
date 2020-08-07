@@ -50,3 +50,8 @@ export const selectIsCollectionsLoaded = createSelector(
   [selectShop],
   (shop) => !!shop.collections
 );
+
+export const selectDropdownHidden = createSelector(
+  [selectShop],
+  (shop) => shop.dropdownHidden
+);

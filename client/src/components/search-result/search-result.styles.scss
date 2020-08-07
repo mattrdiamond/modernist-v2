@@ -22,7 +22,8 @@
   padding: 0.75rem;
   transition: background-color 0.3s ease;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: var(--black-05);
   }
 }

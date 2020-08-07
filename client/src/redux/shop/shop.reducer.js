@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   collections: null,
   isFetching: false,
   errorMessage: undefined,
+  dropdownHidden: true,
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
@@ -24,6 +25,11 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         ...state,
         isFetching: false,
         errorMessage: action.payload,
+      };
+    case ShopActionTypes.TOGGLE_DROPDOWN_HIDDEN:
+      return {
+        ...state,
+        dropdownHidden: !state.dropdownHidden,
       };
     default:
       return state;
