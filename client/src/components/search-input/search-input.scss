@@ -1,6 +1,5 @@
 .search-drawer {
-  // animation: drop-down 0.5s ease forwards;
-  background-color: var(--primary-05);
+  background-color: #fff;
   height: var(--nav-height);
   top: 0px;
   position: absolute;
@@ -42,11 +41,7 @@
   .search-input,
   .close-button {
     border-radius: 3px;
-    transition: box-shadow 0.3s ease-in-out, color 0.3s ease-in-out;
-
-    &:hover {
-      box-shadow: 0px 0px 0px 2px var(--primary-20);
-    }
+    transition: box-shadow 0.2s ease-in-out, color 0.3s ease-in-out;
   }
 
   .search-input {
@@ -57,7 +52,11 @@
     padding: 0.5rem 0.5rem 0.5rem 3rem;
     position: relative;
     width: 100%;
-    box-shadow: 0px 0px 0px 2px var(--primary-20);
+    box-shadow: 0px 0px 0px 1px var(--primary-20);
+
+    &:hover {
+      box-shadow: 0px 0px 0px 1px var(--primary-50);
+    }
   }
 
   ::placeholder {
@@ -71,19 +70,18 @@
   }
 
   .close-button {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 2rem;
-    color: var(--primary-40);
-    // transition: color 0.3s ease-in-out;
+    color: var(--primary-30);
 
     &:focus,
     &:hover {
-      color: var(--primary-85);
+      color: var(--primary-60);
     }
   }
 

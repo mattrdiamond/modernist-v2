@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { selectInputHidden } from "../../redux/search/search.selectors";
@@ -11,11 +11,11 @@ import SearchInput from "../search-input/search-input.component";
 import SearchIcon from "../search-icon/search-icon.component";
 import Icon from "../icon/icon.component";
 import ShopDropdown from "../shop-dropdown/shop-dropdown.component";
+import ArrowButton from "../arrow-button/arrow-button.component";
 import { connect } from "react-redux";
 import { signOutStart } from "../../redux/user/user.actions";
 import { toggleDropdownHidden } from "../../redux/shop/shop.actions";
 import "./header.styles.scss";
-import { toggleInputHidden } from "../../redux/search/search.actions";
 
 const Header = ({
   currentUser,
@@ -28,8 +28,12 @@ const Header = ({
   const inputRef = useRef(null);
   // const shopDropdownRef = useRef(null);
 
-  const focusOnInput = () => {
+  const focusOnInput = useCallback(() => {
     inputRef.current.focus();
+  }, [inputRef]);
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") toggleShopDropdown();
   };
 
   return (
@@ -48,13 +52,24 @@ const Header = ({
             )}
           </li>
           <li className="nav-link-wrapper">
-            <button
-              className={"nav-link" + (!shopDropdownHidden ? " is-open" : "")}
+            <div
+              className={
+                "nav-link ignore-co-shop" +
+                (!shopDropdownHidden ? " is-open" : "")
+              }
               onClick={toggleShopDropdown}
+              onKeyPress={handleKeyPress}
+              tabindex="0"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded={shopDropdownHidden ? false : true}
             >
               Shop
-            </button>
-
+              <ArrowButton
+                isClosed={shopDropdownHidden}
+                styleName="ignore-co-shop"
+              />
+            </div>
             {!shopDropdownHidden ? (
               <ShopDropdown
                 toggleShopDropdown={toggleShopDropdown}

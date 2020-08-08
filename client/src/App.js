@@ -18,8 +18,15 @@ import Portal from "./components/portal/portal.component";
 import ModalManager from "./components/modals/modal-manager";
 import Footer from "./components/footer/footer.component";
 import { selectCartHidden } from "./redux/cart/cart.selectors";
+import { selectDropdownHidden } from "./redux/shop/shop.selectors";
 
-const App = ({ checkUserSession, currentUser, inputHidden, cartHidden }) => {
+const App = ({
+  checkUserSession,
+  currentUser,
+  inputHidden,
+  cartHidden,
+  shopDropdownHidden,
+}) => {
   // equivalent to componentDidMount (will only re-render if checkUserSession changes, and we know it will not)
   useEffect(() => {
     // check if user's authentication has persisted
@@ -29,7 +36,7 @@ const App = ({ checkUserSession, currentUser, inputHidden, cartHidden }) => {
   const showOverlay = () => {
     if (!inputHidden) {
       return "input-visible";
-    } else if (!cartHidden) {
+    } else if (!cartHidden || !shopDropdownHidden) {
       return "cart-visible";
     }
   };
@@ -79,6 +86,7 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   inputHidden: selectInputHidden,
   cartHidden: selectCartHidden,
+  shopDropdownHidden: selectDropdownHidden,
 });
 
 const mapDispatchToProps = (dispatch) => ({

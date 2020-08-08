@@ -11,7 +11,7 @@ const ShopDropdown = ({ toggleShopDropdown, shopDropdownHidden, sections }) => {
   const shopDropdownRef = useRef(null);
 
   // Close dropdown when clicked outside
-  useOnClickOutside(shopDropdownRef, toggleShopDropdown);
+  useOnClickOutside(shopDropdownRef, toggleShopDropdown, "ignore-co-shop");
 
   return (
     <ul
