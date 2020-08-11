@@ -10,12 +10,20 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
 
   return (
     <div className="cart-item">
-      <Link to={`/shop/${collection}/${id}`} onClick={toggleCartHidden}>
+      <Link
+        to={`/shop/${collection}/${id}`}
+        onClick={toggleCartHidden}
+        className="ignore-co-cart"
+      >
         <img src={imageUrl} alt={name} />
       </Link>
       <div className="item-details">
         <div className="col-1">
-          <Link to={`/shop/${collection}/${id}`} onClick={toggleCartHidden}>
+          <Link
+            to={`/shop/${collection}/${id}`}
+            onClick={toggleCartHidden}
+            className="ignore-co-cart"
+          >
             <span className="name bold">{name}</span>
           </Link>
           <span className="quantity">Quantity: {quantity}</span>
@@ -25,7 +33,7 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
         </div>
       </div>
       <button
-        className="delete-button"
+        className="delete-button ignore-co-cart"
         onClick={() => clearItem(item)}
         aria-label="remove item from cart"
       >

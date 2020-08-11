@@ -23,7 +23,7 @@ const CartDropdown = ({
   const cartRef = useRef();
 
   // Close cart when clicking outside
-  useOnClickOutside(cartRef, toggleCartHidden, "cart-icon");
+  useOnClickOutside(cartRef, toggleCartHidden, "ignore-co-cart");
 
   return (
     <div
@@ -45,6 +45,7 @@ const CartDropdown = ({
           <span className="cart-total">Subtotal: ${cartTotal.toFixed(2)}</span>
           <div className="btn-container">
             <CustomButton
+              className="custom-button ignore-co-cart"
               onClick={() => {
                 history.push("/checkout");
                 toggleCartHidden();
