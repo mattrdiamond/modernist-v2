@@ -1,14 +1,22 @@
 .cart-container {
-  margin-right: -0.5rem;
-  position: relative;
+  // margin-right: -0.5rem;
+  // position: relative;
   height: 100%;
 
   .cart-icon {
+    // position: relative;
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    cursor: pointer;
+  }
+
+  .icon-wrapper {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    pointer-events: none;
   }
 
   .icon-shopping-bag {
@@ -20,7 +28,7 @@
   .item-count {
     position: absolute;
     font-size: 10px;
-    bottom: 24px;
+    bottom: 1px;
     pointer-events: none;
     font-family: var(--font-text-cond);
   }

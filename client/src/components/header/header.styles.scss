@@ -47,6 +47,14 @@
     }
   }
 
+  // wrapper used to prevent focus ring from outlining pseudo element
+  .nav-link-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
   .nav-link,
   .nav-icon {
     &:after {
@@ -98,20 +106,26 @@
     padding: 0.5rem;
     position: relative;
   }
-}
 
-// wrapper used to prevent focus ring from outlining pseudo element
-.nav-link-wrapper {
-  position: relative;
-  height: 100%;
-  display: flex;
-  align-items: center;
+  /* mobile styles */
+  .mobile-nav {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    width: 4rem;
+    height: 100%;
+    background: red;
+  }
 }
 
 @media screen and (max-width: 800px) {
   .header {
-    .nav-link {
-      padding: 10px;
+    .desktop-nav {
+      display: none;
+    }
+    .mobile-nav {
+      display: flex;
     }
   }
 }

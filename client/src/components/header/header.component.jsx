@@ -5,16 +5,19 @@ import { selectInputHidden } from "../../redux/search/search.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectDropdownHidden } from "../../redux/shop/shop.selectors";
-// new syntax in React for importing SVG - imports SVG directly as React component
+import { selectMobileNavVisible } from "../../redux/mobile-nav/mobile-nav.selectors";
 import CartIcon from "../cart-icon/cart-icon.component";
 import SearchInput from "../search-input/search-input.component";
 import SearchIcon from "../search-icon/search-icon.component";
 import Icon from "../icon/icon.component";
 import ShopDropdown from "../shop-dropdown/shop-dropdown.component";
 import ArrowButton from "../arrow-button/arrow-button.component";
+import HamburgerButton from "../hamburger-button/hamburger-button.component";
 import { connect } from "react-redux";
 import { signOutStart } from "../../redux/user/user.actions";
 import { toggleDropdownHidden } from "../../redux/shop/shop.actions";
+import { toggleNavVisible } from "../../redux/mobile-nav/mobile-nav.actions";
+import HeaderMobile from "./header-mobile.component";
 import "./header.styles.scss";
 
 const Header = ({
@@ -38,7 +41,7 @@ const Header = ({
 
   return (
     <nav className="header">
-      <div className="nav-wrapper page-width">
+      <div className="nav-wrapper page-width desktop-nav">
         <ul className="nav-links left">
           <li className="nav-link-wrapper">
             {currentUser ? (
@@ -59,7 +62,7 @@ const Header = ({
               }
               onClick={toggleShopDropdown}
               onKeyPress={handleKeyPress}
-              tabindex="0"
+              tabIndex="0"
               role="button"
               aria-haspopup="true"
               aria-expanded={shopDropdownHidden ? false : true}
@@ -97,6 +100,7 @@ const Header = ({
           </div>
         </div>
       </div>
+      <HeaderMobile />
       <SearchInput inputHidden={inputHidden} inputRef={inputRef} />
     </nav>
   );

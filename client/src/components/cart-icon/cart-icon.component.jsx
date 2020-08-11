@@ -19,13 +19,17 @@ const CartIcon = ({ toggleCartHidden, cartHidden, itemCount }) => {
   return (
     <div className="cart-container">
       <div
-        className={"cart-icon nav-icon" + (!cartHidden ? " is-open" : "")}
+        className={
+          "cart-icon nav-icon ignore-co-cart" + (!cartHidden ? " is-open" : "")
+        }
         onClick={toggleCartHidden}
         onKeyPress={handleKeyPress}
         tabIndex="0"
       >
-        <Icon icon="shopping-bag" />
-        <span className="item-count">{itemCount}</span>
+        <div className="icon-wrapper">
+          <Icon icon="shopping-bag" />
+          <span className="item-count">{itemCount}</span>
+        </div>
       </div>
       {cartHidden ? null : <CartDropdown />}
     </div>

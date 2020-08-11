@@ -205,6 +205,12 @@ form > *:last-child {
   }
 }
 
+@media (max-width: 800px) {
+  :root {
+    --nav-height: 60px;
+  }
+}
+
 @media (max-width: 680px) {
   .page-width {
     padding-left: 1.5rem;
