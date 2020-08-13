@@ -1,18 +1,23 @@
 import React from "react";
 import "./hamburger-button.styles.scss";
 
-const HamburgerButton = ({ isOpen, toggleVisible }) => {
+const HamburgerButton = ({
+  isVisible,
+  openNav,
+  closeNavStart,
+  isAnimating,
+}) => {
   const handleClick = () => {
-    console.log("click");
-    toggleVisible();
+    if (!isVisible) return openNav();
+    return closeNavStart();
   };
 
   return (
     <div
-      className={"hamburger" + (isOpen ? " is-open" : "")}
+      className={"hamburger" + (isVisible && !isAnimating ? " is-open" : "")}
       onClick={handleClick}
       role="button"
-      aria-pressed={isOpen ? true : false}
+      aria-pressed={isVisible ? true : false}
     >
       <div className="hamburger-btn">
         <div className="hamburger-bar"></div>

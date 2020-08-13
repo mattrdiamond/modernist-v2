@@ -1,11 +1,11 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
 import {
   firestore,
-  convertCollectionsSnapshotToMap
+  convertCollectionsSnapshotToMap,
 } from "../../firebase/firebase.utils";
 import {
   fetchCollectionsSuccess,
-  fetchCollectionsFailure
+  fetchCollectionsFailure,
 } from "./shop.actions";
 import ShopActionTypes from "./shop.types";
 
@@ -33,11 +33,13 @@ export function* fetchCollectionsAsync() {
 
     // 1. fetch snapshot obj from firestore
     const snapshot = yield collectionRef.get();
+
     // 2. convert snapshot's docs property (array) into new object, only including properties needed for front end
     const collectionsMap = yield call(
       convertCollectionsSnapshotToMap,
       snapshot
     );
+
     // 3. Update reducer with collectionsMap and set isFetching to false
     yield put(fetchCollectionsSuccess(collectionsMap));
   } catch (error) {

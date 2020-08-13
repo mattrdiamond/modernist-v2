@@ -19,6 +19,7 @@ import ModalManager from "./components/modals/modal-manager";
 import Footer from "./components/footer/footer.component";
 import { selectCartHidden } from "./redux/cart/cart.selectors";
 import { selectDropdownHidden } from "./redux/shop/shop.selectors";
+import { selectMobileNavVisible } from "./redux/mobile-nav/mobile-nav.selectors";
 
 const App = ({
   checkUserSession,
@@ -26,6 +27,7 @@ const App = ({
   inputHidden,
   cartHidden,
   shopDropdownHidden,
+  mobileNavVisible,
 }) => {
   // equivalent to componentDidMount (will only re-render if checkUserSession changes, and we know it will not)
   useEffect(() => {
@@ -33,16 +35,14 @@ const App = ({
     checkUserSession();
   }, [checkUserSession]);
 
-  const showOverlay = () => {
-    if (!inputHidden) {
-      return "input-visible";
-    } else if (!cartHidden || !shopDropdownHidden) {
-      return "cart-visible";
-    }
+  const getClassName = () => {
+    if (!cartHidden || !shopDropdownHidden || !inputHidden)
+      return "dropdown-visible";
+    if (mobileNavVisible) return "nav-visible";
   };
 
   return (
-    <div id="app" className={showOverlay()}>
+    <div id="app" className={getClassName()}>
       <Header />
       <div className="content-window">
         <Switch>
@@ -87,6 +87,7 @@ const mapStateToProps = createStructuredSelector({
   inputHidden: selectInputHidden,
   cartHidden: selectCartHidden,
   shopDropdownHidden: selectDropdownHidden,
+  mobileNavVisible: selectMobileNavVisible,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -19,23 +19,23 @@ export const fetchCollectionsFailure = (errorMessage) => ({
 });
 
 // async action creator - when dispatching function instead of object, redux-thunk will call that function with dispatch functionality
-export const fetchCollectionsStartAsync = () => {
-  return (dispatch) => {
-    const collectionRef = firestore.collection("collections");
-    // 1. set isFetching to true before starting async
-    dispatch(fetchCollectionsStart());
-    // 2. fetch snapshot obj from firestore
-    collectionRef
-      .get()
-      .then((snapshot) => {
-        // 3. convert snapshot's docs property (array) into new object and only include properties needed for front end
-        const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-        // 4. Update reducer with collectionsMap and set isFetching to false
-        dispatch(fetchCollectionsSuccess(collectionsMap));
-      })
-      .catch((error) => dispatch(fetchCollectionsFailure(error.message)));
-  };
-};
+// export const fetchCollectionsStartAsync = () => {
+//   return (dispatch) => {
+//     const collectionRef = firestore.collection("collections");
+//     // 1. set isFetching to true before starting async
+//     dispatch(fetchCollectionsStart());
+//     // 2. fetch snapshot obj from firestore
+//     collectionRef
+//       .get()
+//       .then((snapshot) => {
+//         // 3. convert snapshot's docs property (array) into new object and only include properties needed for front end
+//         const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+//         // 4. Update reducer with collectionsMap and set isFetching to false
+//         dispatch(fetchCollectionsSuccess(collectionsMap));
+//       })
+//       .catch((error) => dispatch(fetchCollectionsFailure(error.message)));
+//   };
+// };
 
 export const toggleDropdownHidden = () => ({
   type: ShopActionTypes.TOGGLE_DROPDOWN_HIDDEN,
