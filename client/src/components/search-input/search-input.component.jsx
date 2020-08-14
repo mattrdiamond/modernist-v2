@@ -1,84 +1,36 @@
-import React, { useEffect, useCallback } from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import SearchDropdown from "../search-dropdown/search-dropdown.component";
-import { selectInputValue } from "../../redux/search/search.selectors";
-import { selectCollectionItems } from "../../redux/shop/shop.selectors";
-import {
-  setInputValue,
-  toggleInputHidden,
-} from "../../redux/search/search.actions";
-import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
+import React, { forwardRef } from "react";
 import Icon from "../icon/icon.component";
-import useOnClickOutside from "../../utils/use-onclick-outside";
-import "./search-input.scss";
+import "./search-input.styles.scss";
 
-const SearchInput = ({
-  inputHidden,
-  setInputValue,
-  inputValue,
-  inputRef,
-  collectionItems,
-  fetchCollectionsStart,
-  toggleInputHidden,
-}) => {
-  // useCallback prevents re-creation of function every time component rebuilds
-  const handleClose = useCallback(() => {
-    // setInputValue("");
-    toggleInputHidden();
-  }, [setInputValue, toggleInputHidden]);
-
-  useOnClickOutside(inputRef, handleClose, "ignore-co-search", inputHidden);
-
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setInputValue(value);
-    if (!collectionItems.length) fetchCollectionsStart();
-  };
-
-  return (
-    <div className={"search-drawer" + (inputHidden ? " hidden" : "")}>
-      <div className="search-wrapper page-width ignore-co-search">
-        <Icon icon="search" width={"19px"} height={"19px"} />
+// forwardRef will pass ref on to child if included
+const SearchInput = forwardRef(
+  ({ handleChange, handleClear, inputValue, children, ...otherProps }, ref) => {
+    console.log("inputval", inputValue);
+    return (
+      <div className="search-wrapper">
+        <Icon icon="search" />
         <div className="form-wrapper">
           <form className="search-form">
             <input
               className="search-input"
               onChange={handleChange}
-              placeholder="Search Modernist"
-              value={inputValue}
-              aria-hidden={inputHidden}
-              ref={inputRef}
-              tabIndex={inputHidden ? "-1" : "0"}
+              ref={ref}
+              {...otherProps}
             />
           </form>
-          {!inputHidden && inputValue && (
-            <SearchDropdown
-              collectionItems={collectionItems}
-              inputValue={inputValue}
-            />
-          )}
+          {children}
         </div>
         <button
-          className="close-button ignore-co-search"
-          onClick={toggleInputHidden}
+          className="clear-btn ignore-co-search"
+          onClick={handleClear}
+          disabled={!inputValue}
+          tabIndex={inputValue ? 0 : -1}
         >
           <Icon icon="close" />
         </button>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
 
-const mapDispatchToProps = (dispatch) => ({
-  setInputValue: (inputValue) => dispatch(setInputValue(inputValue)),
-  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
-  toggleInputHidden: () => dispatch(toggleInputHidden()),
-});
-
-const mapStateToProps = createStructuredSelector({
-  inputValue: selectInputValue,
-  collectionItems: selectCollectionItems,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
+export default SearchInput;

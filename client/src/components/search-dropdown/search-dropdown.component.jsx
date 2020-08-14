@@ -5,9 +5,13 @@ import { getSearchResults } from "../../utils/utils";
 import Spinner from "../with-spinner/spinner.component";
 import "./search-dropdown.styles.scss";
 
-const SearchDropdown = ({ collectionItems, inputValue }) => {
+const SearchDropdown = ({ collectionItems, inputValue, closeSearchDrawer }) => {
   // get search results based on input value
   const searchResults = getSearchResults(inputValue, collectionItems);
+
+  const handleClick = () => {
+    closeSearchDrawer();
+  };
 
   return (
     <ul className="search-results">
@@ -18,17 +22,20 @@ const SearchDropdown = ({ collectionItems, inputValue }) => {
           .filter((item, index) => index < 4)
           .map((result) => <SearchResult key={result.id} result={result} />)
       ) : (
-        <li key="no-results">No results for '{inputValue}'</li>
+        <li key="no-results" className="no-results ignore-co-search">
+          No results for '{inputValue}'
+        </li>
       )}
       {searchResults.length > 4 && (
-        <Link
-          to={{ pathname: "/search", search: `q=${inputValue}` }}
-          className="ignore-co-search"
-        >
-          <li key="all-results" className="view-results">
+        <li key="all-results" className="view-results">
+          <Link
+            to={{ pathname: "/search", search: `q=${inputValue}` }}
+            className="ignore-co-search"
+            onClick={handleClick}
+          >
             View all {searchResults.length} items
-          </li>
-        </Link>
+          </Link>
+        </li>
       )}
     </ul>
   );

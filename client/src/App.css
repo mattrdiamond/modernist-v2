@@ -12,6 +12,7 @@
   --primary-20: #d0d2d9;
   --primary-15: #dcdee3;
   --primary-10: #e7e9ec;
+  --primary-07: #f0f1f3;
   --primary-05: #f3f4f5;
   --red: #d86262;
   --accent-100: #28cddc;
@@ -141,6 +142,7 @@ button {
   border: none;
   background: transparent;
   font-family: var(--font-text);
+  padding: 0;
 }
 
 div > *:first-child:not(section),
@@ -159,6 +161,8 @@ form > *:last-child {
 
 /* #app.input-visible, */
 #app.nav-visible,
+#app.cart-visible,
+#app.input-visible,
 #app.dropdown-visible {
   overflow: hidden;
   height: 100vh;
@@ -179,13 +183,11 @@ form > *:last-child {
   top: 0;
 }
 
-/* #app.input-visible:after, */
-#app.dropdown-visible:after {
+#app.input-visible:after,
+#app.dropdown-visible:after,
+#app.cart-visible:after {
   visibility: visible;
   opacity: 1;
-}
-
-#app.dropdown-visible:after {
   top: var(--nav-height);
   height: calc(100vh - var(--nav-height));
 }
@@ -209,6 +211,19 @@ form > *:last-child {
 @media (max-width: 800px) {
   :root {
     --nav-height: 60px;
+  }
+
+  /* hide shop dropdown and input dropdown elements on mobile */
+  #app.dropdown-visible,
+  #app.input-visible {
+    overflow: unset;
+    height: 100%;
+  }
+
+  #app.dropdown-visible:after,
+  #app.input-visible:after {
+    visibility: hidden;
+    opacity: 0;
   }
 }
 

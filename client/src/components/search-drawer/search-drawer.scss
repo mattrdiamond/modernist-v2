@@ -1,0 +1,51 @@
+.search-drawer {
+  background-color: #fff;
+  height: var(--nav-height);
+  top: 0px;
+  position: absolute;
+  width: 100%;
+  transition: top 0.5s ease;
+  color: var(--primary-85);
+  display: flex;
+  align-items: center;
+
+  &.hidden {
+    animation: slide-up 0.5s ease forwards;
+    top: calc(0px - var(--nav-height));
+  }
+
+  .close-button {
+    border-radius: 3px;
+    transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1rem;
+    color: var(--primary-30);
+    border: 1px solid var(--primary-10);
+
+    &:focus,
+    &:hover {
+      color: var(--primary-85);
+      border-color: var(--primary-30);
+    }
+  }
+
+  .icon-close {
+    pointer-events: none;
+  }
+
+  .icon-collapse {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .search-drawer {
+    display: none;
+  }
+}

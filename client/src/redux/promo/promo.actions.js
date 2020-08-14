@@ -1,7 +1,7 @@
 import PromoActionTypes from "./promo.types";
 
-export const setInputValue = (input) => ({
-  type: PromoActionTypes.SET_INPUT_VALUE,
+export const setPromoInputValue = (input) => ({
+  type: PromoActionTypes.SET_PROMO_INPUT_VALUE,
   payload: input,
 });
 

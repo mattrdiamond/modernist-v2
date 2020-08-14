@@ -1,7 +1,5 @@
 const MobileNavActionTypes = {
-  CLOSE_NAV_START: "CLOSE_NAV_START",
-  CLOSE_NAV_SUCCESS: "CLOSE_NAV_SUCCESS",
-  OPEN_NAV: "OPEN_NAV",
+  TOGGLE_NAV: "TOGGLE_NAV",
 };
 
 export default MobileNavActionTypes;

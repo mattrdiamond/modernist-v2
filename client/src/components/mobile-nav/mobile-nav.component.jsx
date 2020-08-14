@@ -1,26 +1,86 @@
-import React from "react";
+import React, { useRef } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+
+import { selectNavVisible } from "../../redux/mobile-nav/mobile-nav.selectors";
+import { selectDirectorySections } from "../../redux/directory/directory.selectors";
+import { selectInputValue } from "../../redux/search/search.selectors";
+import { selectCollectionItems } from "../../redux/shop/shop.selectors";
+import { setInputValue } from "../../redux/search/search.actions";
+import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
+import { toggleNav } from "../../redux/mobile-nav/mobile-nav.actions";
+
+import MobileNavLink from "../mobile-nav-link/mobile-nav-link.component";
+import SearchDropdown from "../search-dropdown/search-dropdown.component";
+import SearchInput from "../search-input/search-input.component";
 
 import "./mobile-nav.styles.scss";
 
-const MobileNav = ({ isAnimating, isVisible, closeNavStart }) => {
+const MobileNav = ({
+  isVisible,
+  sections,
+  toggleNav,
+  inputValue,
+  setInputValue,
+  collectionItems,
+  fetchCollectionsStart,
+}) => {
   console.log("render mobileNav");
 
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setInputValue(value);
+    if (!collectionItems.length) fetchCollectionsStart();
+  };
+
+  const handleClear = () => {
+    setInputValue("");
+  };
+
   return (
-    <div
-      className={"mobile-nav-directory" + (isAnimating ? " is-closing" : "")}
-    >
-      <div className="inner">
-        <p className="test">1</p>
-        <p className="test">2</p>
-        <p className="test">3</p>
-        <p className="test">4</p>
-        <p className="test">5</p>
-        <p className="test">6</p>
-        <p className="test">7</p>
-        <p className="test">8</p>
+    <div className={"mobile-nav-directory" + (isVisible ? " is-open" : "")}>
+      <div className="inner-wrapper page-width">
+        <SearchInput
+          handleChange={handleChange}
+          handleClear={handleClear}
+          placeholder="Search Modernist"
+          value={inputValue}
+          aria-hidden={isVisible}
+          tabIndex={isVisible ? "-1" : "0"}
+          inputValue={inputValue}
+        ></SearchInput>
+        {inputValue && (
+          <SearchDropdown
+            collectionItems={collectionItems}
+            inputValue={inputValue}
+          />
+        )}
+
+        <ul className="mbl-nav-links">
+          {sections.map(({ id, ...otherSectionProps }) => (
+            <MobileNavLink
+              key={id}
+              toggleNav={toggleNav}
+              {...otherSectionProps}
+            />
+          ))}
+        </ul>
       </div>
     </div>
   );
 };
 
-export default MobileNav;
+const mapDispatchToProps = (dispatch) => ({
+  toggleNav: () => dispatch(toggleNav()),
+  setInputValue: (inputValue) => dispatch(setInputValue(inputValue)),
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
+});
+
+const mapStateToProps = createStructuredSelector({
+  isVisible: selectNavVisible,
+  sections: selectDirectorySections,
+  inputValue: selectInputValue,
+  collectionItems: selectCollectionItems,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MobileNav);

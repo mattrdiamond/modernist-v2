@@ -12,13 +12,19 @@
     padding: 0.75rem;
     transition: background-color 0.3s ease;
 
-    &:hover {
-      background-color: var(--black-05);
-    }
+    // &:hover {
+    //   background-color: var(--black-05);
+    // }
   }
 
   .view-results {
     text-align: center;
     border-top: 1px solid var(--black-05);
+    border-radius: 0 0 4px 4px;
+    pointer-events: none;
+
+    &:hover {
+      background-color: var(--black-05);
+    }
   }
 }

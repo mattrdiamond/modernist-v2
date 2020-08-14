@@ -10,7 +10,7 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import FormInput from "../../components/form-input/form-input.component";
 import Icon from "../../components/icon/icon.component";
 import {
-  setInputValue,
+  setPromoInputValue,
   throwError,
   clearError,
   applyPromo,
@@ -99,7 +99,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   throwError: (error) => dispatch(throwError(error)),
-  setInputValue: (input) => dispatch(setInputValue(input)),
+  setInputValue: (input) => dispatch(setPromoInputValue(input)),
   clearError: (input) => dispatch(clearError(input)),
   applyPromo: () => dispatch(applyPromo()),
 });

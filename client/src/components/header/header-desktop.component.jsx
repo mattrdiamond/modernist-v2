@@ -2,7 +2,6 @@ import React, { useRef, useCallback } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
-import { selectInputHidden } from "../../redux/search/search.selectors";
 import { selectDropdownHidden } from "../../redux/shop/shop.selectors";
 import { toggleDropdownHidden } from "../../redux/shop/shop.actions";
 import Icon from "../icon/icon.component";
@@ -10,7 +9,7 @@ import CartIcon from "../cart-icon/cart-icon.component";
 import ArrowButton from "../arrow-button/arrow-button.component";
 import ShopDropdown from "../shop-dropdown/shop-dropdown.component";
 import SearchIcon from "../search-icon/search-icon.component";
-import SearchInput from "../search-input/search-input.component";
+import SearchDrawer from "../search-drawer/search-drawer.component";
 import "./header.styles.scss";
 
 const HeaderDesktop = ({
@@ -91,12 +90,11 @@ const HeaderDesktop = ({
           </div>
         </div>
       </div>
-      <SearchInput inputHidden={inputHidden} inputRef={inputRef} />
+      <SearchDrawer inputRef={inputRef} />
     </>
   );
 };
 const mapStateToProps = createStructuredSelector({
-  inputHidden: selectInputHidden,
   shopDropdownHidden: selectDropdownHidden,
 });
 

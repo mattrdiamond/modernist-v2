@@ -7,7 +7,7 @@ import "./search-icon.styles.scss";
 const SearchIcon = ({ toggleInputHidden, focusOnInput, inputHidden }) => {
   const handleClick = () => {
     toggleInputHidden();
-    if (inputHidden) focusOnInput();
+    if (!inputHidden) focusOnInput();
   };
 
   const handleKeyPress = (e) => {

@@ -10,3 +10,9 @@ export const setInputValue = (inputValue) => {
     payload: inputValue,
   };
 };
+
+export const closeSearchDrawer = (inputValue) => {
+  return {
+    type: SearchActionTypes.CLOSE_SEARCH_DRAWER,
+  };
+};

@@ -12,6 +12,11 @@ const searchReducer = (state = INITIAL_STATE, action) => {
         ...state,
         hidden: !state.hidden,
       };
+    case SearchActionTypes.CLOSE_SEARCH_DRAWER:
+      return {
+        hidden: true,
+        inputValue: "",
+      };
     case SearchActionTypes.SET_INPUT_VALUE:
       return {
         ...state,

@@ -1,0 +1,17 @@
+.mbl-nav-category {
+  // display: flex;
+  // align-items: center;
+
+  .mbl-nav-link {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--primary-10);
+  }
+
+  [class*="icon-"] {
+    width: 25px;
+    height: 25px;
+    margin-right: 1rem;
+  }
+}

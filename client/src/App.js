@@ -19,7 +19,7 @@ import ModalManager from "./components/modals/modal-manager";
 import Footer from "./components/footer/footer.component";
 import { selectCartHidden } from "./redux/cart/cart.selectors";
 import { selectDropdownHidden } from "./redux/shop/shop.selectors";
-import { selectMobileNavVisible } from "./redux/mobile-nav/mobile-nav.selectors";
+import { selectNavVisible } from "./redux/mobile-nav/mobile-nav.selectors";
 
 const App = ({
   checkUserSession,
@@ -36,9 +36,16 @@ const App = ({
   }, [checkUserSession]);
 
   const getClassName = () => {
-    if (!cartHidden || !shopDropdownHidden || !inputHidden)
-      return "dropdown-visible";
-    if (mobileNavVisible) return "nav-visible";
+    switch (true) {
+      case !cartHidden:
+        return "cart-visible";
+      case !shopDropdownHidden:
+        return "dropdown-visible";
+      case !inputHidden:
+        return "input-visible";
+      case mobileNavVisible:
+        return "nav-visible";
+    }
   };
 
   return (
@@ -87,7 +94,7 @@ const mapStateToProps = createStructuredSelector({
   inputHidden: selectInputHidden,
   cartHidden: selectCartHidden,
   shopDropdownHidden: selectDropdownHidden,
-  mobileNavVisible: selectMobileNavVisible,
+  mobileNavVisible: selectNavVisible,
 });
 
 const mapDispatchToProps = (dispatch) => ({

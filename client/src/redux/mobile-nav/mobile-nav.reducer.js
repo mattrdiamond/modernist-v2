@@ -1,26 +1,15 @@
 import MobileNavActionTypes from "./mobile-nav.types";
 
 const INITIAL_STATE = {
-  isAnimating: false,
   isVisible: false,
 };
 
 const mobileNavReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case MobileNavActionTypes.CLOSE_NAV_START:
+    case MobileNavActionTypes.TOGGLE_NAV:
       return {
         ...state,
-        isAnimating: true,
-      };
-    case MobileNavActionTypes.CLOSE_NAV_SUCCESS:
-      return {
-        isAnimating: false,
-        isVisible: false,
-      };
-    case MobileNavActionTypes.OPEN_NAV:
-      return {
-        ...state,
-        isVisible: true,
+        isVisible: !state.isVisible,
       };
     default:
       return state;

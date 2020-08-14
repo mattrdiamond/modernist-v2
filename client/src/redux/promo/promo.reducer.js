@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 
 const promoReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case PromoActionTypes.SET_INPUT_VALUE:
+    case PromoActionTypes.SET_PROMO_INPUT_VALUE:
       return {
         ...state,
         inputValue: action.payload,
