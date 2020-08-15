@@ -6,6 +6,7 @@ import { selectNavVisible } from "../../redux/mobile-nav/mobile-nav.selectors";
 import { selectDirectorySections } from "../../redux/directory/directory.selectors";
 import { selectInputValue } from "../../redux/search/search.selectors";
 import { selectCollectionItems } from "../../redux/shop/shop.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { setInputValue } from "../../redux/search/search.actions";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import { toggleNav } from "../../redux/mobile-nav/mobile-nav.actions";
@@ -24,6 +25,7 @@ const MobileNav = ({
   setInputValue,
   collectionItems,
   fetchCollectionsStart,
+  currentUser,
 }) => {
   console.log("render mobileNav");
 
@@ -64,6 +66,16 @@ const MobileNav = ({
               {...otherSectionProps}
             />
           ))}
+          <MobileNavLink
+            title={currentUser ? "Sign Out" : "Sign-In"}
+            linkUrl={"signin"}
+            toggleNav={toggleNav}
+          />
+          <MobileNavLink
+            title="Favorites"
+            linkUrl={"favorites"}
+            toggleNav={toggleNav}
+          />
         </ul>
       </div>
     </div>
@@ -81,6 +93,7 @@ const mapStateToProps = createStructuredSelector({
   sections: selectDirectorySections,
   inputValue: selectInputValue,
   collectionItems: selectCollectionItems,
+  currentUser: selectCurrentUser,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MobileNav);

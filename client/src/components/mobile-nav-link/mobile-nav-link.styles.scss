@@ -7,11 +7,22 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--primary-10);
+    justify-content: space-between;
   }
 
-  [class*="icon-"] {
+  .link-content {
+    display: flex;
+    align-items: center;
+  }
+
+  [class*="icon-"]:not(.icon-arrow-right) {
     width: 25px;
     height: 25px;
     margin-right: 1rem;
+  }
+
+  .icon-arrow-right {
+    width: 14px;
+    height: 14px;
   }
 }

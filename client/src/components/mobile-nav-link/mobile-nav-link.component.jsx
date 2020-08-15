@@ -6,8 +6,10 @@ import "./mobile-nav-link.styles.scss";
 const MobileNavLink = ({ title, linkUrl, toggleNav }) => (
   <li className="mbl-nav-category">
     <Link className="mbl-nav-link" to={`/${linkUrl}`} onClick={toggleNav}>
-      <Icon icon="trash" />
-      {title}
+      <div className="link-content">
+        <Icon icon="trash" />
+        {title}
+      </div>
       <Icon icon="arrow-right" />
     </Link>
   </li>

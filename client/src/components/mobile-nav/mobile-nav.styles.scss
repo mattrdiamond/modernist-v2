@@ -12,13 +12,18 @@
   // animation: open 0.3s ease forwards;
   visibility: hidden;
   transition: transform 0.3s, visibility 0.3s;
-  transform: translateX(-100%);
+  // transform: translateX(-100%);
+  transform: translateY(-100%);
+  padding: 1rem 0;
+  // border-top: 1px solid #fff;
+  // margin-top: -1px;
 
   &.is-open {
     // transform: translateX(-100%);
     // animation-name: close;
     visibility: visible;
-    transform: translateX(0%);
+    // transform: translateX(0%);
+    transform: translateY(0%);
   }
 
   .search-wrapper {
@@ -58,23 +63,5 @@
 @media (min-width: 801px) {
   .mobile-nav-directory {
     display: none;
-  }
-}
-
-@keyframes open {
-  from {
-    transform: translateX(-100%);
-  }
-  to {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes close {
-  from {
-    transform: translateX(0%);
-  }
-  to {
-    transform: translateX(-100%);
   }
 }
