@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { selectDropdownHidden } from "../../redux/shop/shop.selectors";
 import { toggleDropdownHidden } from "../../redux/shop/shop.actions";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import Icon from "../icon/icon.component";
 import CartIcon from "../cart-icon/cart-icon.component";
 import ArrowButton from "../arrow-button/arrow-button.component";
@@ -18,6 +19,8 @@ const HeaderDesktop = ({
   inputHidden,
   shopDropdownHidden,
   toggleShopDropdown,
+  handleCartClick,
+  handleCartKeyPress,
 }) => {
   const inputRef = useRef(null);
 
@@ -25,7 +28,7 @@ const HeaderDesktop = ({
     inputRef.current.focus();
   }, [inputRef]);
 
-  const handleKeyPress = (e) => {
+  const shopDropdownKeyPress = (e) => {
     if (e.key === "Enter") toggleShopDropdown();
   };
 
@@ -51,7 +54,7 @@ const HeaderDesktop = ({
                 (!shopDropdownHidden ? " is-open" : "")
               }
               onClick={toggleShopDropdown}
-              onKeyPress={handleKeyPress}
+              onKeyPress={shopDropdownKeyPress}
               tabIndex="0"
               role="button"
               aria-haspopup="true"
@@ -74,19 +77,22 @@ const HeaderDesktop = ({
           </li>
         </ul>
         <Link className="logo-container" to="/">
-          <Icon icon="logo" />
+          <Icon icon="modernist" />
         </Link>
         <div className="nav-links right">
           <div className="nav-link-wrapper">
             <Link className="nav-icon" to="/favorites">
-              <Icon icon="heart-outline" width="20px" height="20px" />
+              <Icon icon="favorites" width="20px" height="20px" />
             </Link>
           </div>
           <div className="nav-link-wrapper">
             <SearchIcon focusOnInput={focusOnInput} inputHidden={inputHidden} />
           </div>
           <div className="nav-link-wrapper">
-            <CartIcon />
+            <CartIcon
+              handleClick={handleCartClick}
+              handleKeyPress={handleCartKeyPress}
+            />
           </div>
         </div>
       </div>

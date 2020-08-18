@@ -42,8 +42,15 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     font-size: 0.9rem;
     margin-top: 0.25rem;
+  }
+
+  .price {
+    font-weight: bold;
+    position: relative;
+    top: 2px;
   }
 }
 

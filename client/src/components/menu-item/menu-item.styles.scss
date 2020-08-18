@@ -81,7 +81,7 @@
     }
 
     & .subtitle {
-      border-bottom: 1px solid var(--primary-40);
+      border-bottom: 1px solid var(--primary-30);
     }
   }
 
@@ -110,7 +110,7 @@
 
   .subtitle {
     font-size: 0.875rem;
-    color: var(--primary-80);
+    color: var(--primary-60);
     border-bottom: 1px solid transparent;
     transition: border-color 0.5s;
   }

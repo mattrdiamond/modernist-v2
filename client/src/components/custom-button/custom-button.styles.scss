@@ -15,7 +15,6 @@
 
   &:hover {
     background-color: var(--primary-100);
-    // color: inherit;
   }
 
   &:disabled {
@@ -50,7 +49,7 @@
     padding: 10px;
 
     &:disabled {
-      color: var(--primary-50);
+      color: var(--primary-40);
       cursor: default;
     }
   }

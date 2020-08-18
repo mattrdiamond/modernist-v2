@@ -22,7 +22,7 @@ const Footer = () => {
       <div className="footer-inner">
         <div className="footer-logo">
           <Link to="/">
-            <Icon icon="logo" />
+            <Icon icon="modernist" />
           </Link>
           <span className="small">
             Copyright ©{new Date().getFullYear()} modernist.

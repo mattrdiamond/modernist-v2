@@ -4,24 +4,33 @@ import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { selectNavVisible } from "../../redux/mobile-nav/mobile-nav.selectors";
 import { toggleNav } from "../../redux/mobile-nav/mobile-nav.actions";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import CartIcon from "../cart-icon/cart-icon.component";
 import HamburgerButton from "../hamburger-button/hamburger-button.component";
 import Icon from "../icon/icon.component";
 import MobileNav from "../mobile-nav/mobile-nav.component";
 import "./header.styles.scss";
 
-const HeaderMobile = ({ isVisible, toggleNav }) => {
+const HeaderMobile = ({
+  navVisible,
+  toggleNav,
+  handleCartClick,
+  handleCartKeyPress,
+}) => {
   console.log("render header mobile");
 
   return (
     <div className="mobile-nav-container">
       <div className="nav-wrapper page-width mobile-nav">
-        <HamburgerButton isVisible={isVisible} toggleNav={toggleNav} />
+        <HamburgerButton isVisible={navVisible} handleToggle={toggleNav} />
         <Link className="logo-container" to="/">
-          <Icon icon="logo" />
+          <Icon icon="modernist" />
         </Link>
         <div className="nav-link-wrapper">
-          <CartIcon />
+          <CartIcon
+            handleClick={handleCartClick}
+            handleKeyPress={handleCartKeyPress}
+          />
         </div>
       </div>
       <MobileNav />
@@ -30,7 +39,7 @@ const HeaderMobile = ({ isVisible, toggleNav }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  isVisible: selectNavVisible,
+  navVisible: selectNavVisible,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -46,7 +46,7 @@
     color: var(--primary-10);
   }
 
-  .icon-logo {
+  .icon-modernist {
     width: 154px;
     height: 24px;
     color: #fff;
@@ -134,7 +134,7 @@
       }
     }
 
-    .icon-logo {
+    .icon-modernist {
       margin-bottom: 0;
       margin-right: 1rem;
     }
@@ -178,7 +178,7 @@
 }
 
 @media (max-width: 490px) {
-  .footer .icon-logo {
+  .footer .icon-modernist {
     display: block;
     margin-bottom: 0.5rem;
   }

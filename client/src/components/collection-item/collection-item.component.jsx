@@ -19,9 +19,6 @@ const CollectionItem = ({ item, addItem, routeName, history, match }) => {
         <span className="name">{name}</span>
         <span className="price">${price}</span>
       </div>
-      {/*<CustomButton inverted onClick={() => addItem(item)}>
-        Add to bag
-  </CustomButton>*/}
     </div>
   );
 };

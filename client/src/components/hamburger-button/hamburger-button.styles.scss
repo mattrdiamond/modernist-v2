@@ -1,8 +1,8 @@
 .hamburger {
-  height: 100%;
   display: flex;
   align-items: center;
   cursor: pointer;
+  padding: 0.5rem;
 
   &.is-open {
     .hamburger-bar {
@@ -12,7 +12,8 @@
 
       &:before {
         top: 0;
-        transition: top 0.1s ease, opacity 0.1s 0.14s ease;
+        transition: top 0.1s ease, opacity 0.1s 0.14s ease,
+          background-color 0.2s;
         opacity: 0;
       }
 
@@ -43,8 +44,8 @@
     transition-timing-function: ease;
     transition-duration: 0.15s;
     transition-property: transform;
-    border-radius: 2px;
-    background-color: var(--primary-85);
+    border-radius: 1px;
+    background-color: var(--primary-70);
   }
 
   .hamburger-bar {
