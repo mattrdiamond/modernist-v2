@@ -50,8 +50,8 @@ const MobileNav = ({
           aria-hidden={isVisible}
           tabIndex={isVisible ? "-1" : "0"}
           inputValue={inputValue}
-        ></SearchInput>
-        {inputValue && (
+        />
+        {isVisible && inputValue && (
           <SearchDropdown
             collectionItems={collectionItems}
             inputValue={inputValue}
@@ -67,7 +67,7 @@ const MobileNav = ({
             />
           ))}
           <MobileNavLink
-            title={currentUser ? "Sign Out" : "Sign-In"}
+            title={currentUser ? "Sign Out" : "Sign In"}
             linkUrl={"signin"}
             toggleNav={toggleNav}
           />

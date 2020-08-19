@@ -8,6 +8,13 @@
     align-items: center;
     border-bottom: 1px solid var(--primary-10);
     justify-content: space-between;
+
+    &:hover {
+      [class*="icon-"]:not(.icon-arrow-right) {
+        color: var(--accent-100);
+        transition: color 0.2s;
+      }
+    }
   }
 
   .link-content {
@@ -24,6 +31,11 @@
     height: 40px;
   }
 
+  [class^="icon-"]:not(.icon-arrow-right) {
+    color: var(--primary-40);
+    transition: color 0.2s;
+  }
+
   .icon-sofas,
   .icon-chairs {
     width: 40px;
@@ -35,9 +47,15 @@
     height: 38px;
   }
 
-  .icon-tables {
+  .icon-tables,
+  .icon-signin {
     width: 30px;
     height: 30px;
+  }
+
+  .icon-favorites {
+    width: 28px;
+    height: 28px;
   }
 
   .icon-lighting,

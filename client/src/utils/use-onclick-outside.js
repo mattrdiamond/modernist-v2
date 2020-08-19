@@ -23,7 +23,7 @@ export default function useOnClickOutside(
       ) {
         return;
       }
-      console.log("close from event");
+      console.log("close from event", e.target.classList);
       handler(e);
     };
 

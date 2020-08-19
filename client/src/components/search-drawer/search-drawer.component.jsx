@@ -44,6 +44,8 @@ const SearchDrawer = ({
     inputRef.current.focus();
   };
 
+  console.log("render search drawer");
+
   return (
     <div
       className={
@@ -65,7 +67,6 @@ const SearchDrawer = ({
           <SearchDropdown
             collectionItems={collectionItems}
             inputValue={inputValue}
-            closeSearchDrawer={closeSearchDrawer}
           />
         )}
       </SearchInput>

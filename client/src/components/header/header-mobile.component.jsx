@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { selectNavVisible } from "../../redux/mobile-nav/mobile-nav.selectors";
 import { toggleNav } from "../../redux/mobile-nav/mobile-nav.actions";
-import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import CartIcon from "../cart-icon/cart-icon.component";
 import HamburgerButton from "../hamburger-button/hamburger-button.component";
 import Icon from "../icon/icon.component";

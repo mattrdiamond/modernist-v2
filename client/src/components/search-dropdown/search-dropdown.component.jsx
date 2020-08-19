@@ -1,44 +1,96 @@
 import React from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import { withRouter, Link } from "react-router-dom";
-import SearchResult from "../search-result/search-result.component";
 import { getSearchResults } from "../../utils/utils";
+
+import {
+  selectInputHidden,
+  selectInputValue,
+} from "../../redux/search/search.selectors";
+import { selectNavVisible } from "../../redux/mobile-nav/mobile-nav.selectors";
+import { toggleNav } from "../../redux/mobile-nav/mobile-nav.actions";
+import { setInputValue } from "../../redux/search/search.actions";
+import { closeSearchDrawer } from "../../redux/search/search.actions";
+
+import SearchResult from "../search-result/search-result.component";
 import Spinner from "../with-spinner/spinner.component";
+
 import "./search-dropdown.styles.scss";
 
-const SearchDropdown = ({ collectionItems, inputValue, closeSearchDrawer }) => {
+const SearchDropdown = ({
+  collectionItems,
+  inputValue,
+  navVisible,
+  searchDrawerHidden,
+  closeSearchDrawer,
+  toggleNav,
+  setInputValue,
+}) => {
   // get search results based on input value
   const searchResults = getSearchResults(inputValue, collectionItems);
 
-  const handleClick = () => {
-    closeSearchDrawer();
+  const closeSearch = () => {
+    console.log("close search from search dropdown");
+
+    if (navVisible) {
+      toggleNav();
+      setInputValue("");
+      // clear input value?
+    }
+    if (!searchDrawerHidden) {
+      closeSearchDrawer();
+    }
   };
 
+  console.log("render search dropdown");
+
   return (
-    <ul className="search-results">
-      {!collectionItems.length ? (
-        <Spinner height="88px" />
-      ) : searchResults.length ? (
-        searchResults
-          .filter((item, index) => index < 4)
-          .map((result) => <SearchResult key={result.id} result={result} />)
-      ) : (
-        <li key="no-results" className="no-results ignore-co-search">
-          No results for '{inputValue}'
-        </li>
-      )}
+    <div className="search-dropdown">
+      <ul className="search-results">
+        {!collectionItems.length ? (
+          <Spinner height="88px" />
+        ) : searchResults.length ? (
+          searchResults
+            .filter((item, index) => index < 4)
+            .map((result) => (
+              <SearchResult
+                key={result.id}
+                result={result}
+                closeSearch={closeSearch}
+              />
+            ))
+        ) : null}
+      </ul>
       {searchResults.length > 4 && (
-        <li key="all-results" className="view-results">
-          <Link
-            to={{ pathname: "/search", search: `q=${inputValue}` }}
-            className="ignore-co-search"
-            onClick={handleClick}
-          >
-            View all {searchResults.length} items
-          </Link>
-        </li>
+        <Link
+          to={{ pathname: "/search", search: `q=${inputValue}` }}
+          className="view-results ignore-co-search"
+          onClick={closeSearch}
+        >
+          View all {searchResults.length} items
+        </Link>
       )}
-    </ul>
+      {collectionItems.length && !searchResults.length ? (
+        <div className="no-results ignore-co-search">
+          No results for '{inputValue}'
+        </div>
+      ) : null}
+    </div>
   );
 };
 
-export default withRouter(SearchDropdown);
+const mapStateToProps = createStructuredSelector({
+  searchDrawerHidden: selectInputHidden,
+  navVisible: selectNavVisible,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleNav: () => dispatch(toggleNav()),
+  closeSearchDrawer: () => dispatch(closeSearchDrawer()),
+  setInputValue: (inputValue) => dispatch(setInputValue(inputValue)),
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchDropdown)
+);

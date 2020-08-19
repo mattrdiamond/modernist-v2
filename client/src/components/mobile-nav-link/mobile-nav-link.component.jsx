@@ -8,7 +8,7 @@ const MobileNavLink = ({ title, linkUrl, toggleNav }) => (
     <Link className="mbl-nav-link" to={`/${linkUrl}`} onClick={toggleNav}>
       <div className="link-content">
         <div className="icon-container">
-          <Icon icon={title.replace(/ .*/, "").toLowerCase()} />
+          <Icon icon={title.replace(/ &.*| /, "").toLowerCase()} />
         </div>
         {title}
       </div>

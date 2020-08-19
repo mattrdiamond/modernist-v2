@@ -16,7 +16,6 @@ import "./header.styles.scss";
 const HeaderDesktop = ({
   signOutStart,
   currentUser,
-  inputHidden,
   shopDropdownHidden,
   toggleShopDropdown,
   handleCartClick,
@@ -31,6 +30,8 @@ const HeaderDesktop = ({
   const shopDropdownKeyPress = (e) => {
     if (e.key === "Enter") toggleShopDropdown();
   };
+
+  console.log("render header desktop");
 
   return (
     <>
@@ -82,11 +83,11 @@ const HeaderDesktop = ({
         <div className="nav-links right">
           <div className="nav-link-wrapper">
             <Link className="nav-icon" to="/favorites">
-              <Icon icon="favorites" width="20px" height="20px" />
+              <Icon icon="favorites-desktop" width="20px" height="20px" />
             </Link>
           </div>
           <div className="nav-link-wrapper">
-            <SearchIcon focusOnInput={focusOnInput} inputHidden={inputHidden} />
+            <SearchIcon focusOnInput={focusOnInput} />
           </div>
           <div className="nav-link-wrapper">
             <CartIcon
@@ -100,6 +101,7 @@ const HeaderDesktop = ({
     </>
   );
 };
+
 const mapStateToProps = createStructuredSelector({
   shopDropdownHidden: selectDropdownHidden,
 });

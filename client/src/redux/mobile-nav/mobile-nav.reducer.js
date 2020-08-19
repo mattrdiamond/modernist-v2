@@ -8,7 +8,6 @@ const mobileNavReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case MobileNavActionTypes.TOGGLE_NAV:
       return {
-        ...state,
         isVisible: !state.isVisible,
       };
     default:

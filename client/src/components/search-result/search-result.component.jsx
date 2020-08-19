@@ -1,18 +1,12 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
-import { createStructuredSelector } from "reselect";
-import { connect } from "react-redux";
-import { selectInputHidden } from "../../redux/search/search.selectors";
-import { closeSearchDrawer } from "../../redux/search/search.actions";
 import "./search-result.styles.scss";
 
-const SearchResult = ({ result, inputHidden, closeSearchDrawer }) => {
+const SearchResult = ({ result, inputHidden, closeSearch }) => {
   const { id, imageUrl, name, price, collection } = result;
 
   const handleClick = () => {
-    if (!inputHidden) {
-      closeSearchDrawer();
-    }
+    closeSearch();
   };
 
   return (
@@ -32,15 +26,4 @@ const SearchResult = ({ result, inputHidden, closeSearchDrawer }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  closeSearchDrawer: () => dispatch(closeSearchDrawer()),
-});
-
-const mapStateToProps = createStructuredSelector({
-  inputHidden: selectInputHidden,
-});
-
-// export default withRouter(SearchResult);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SearchResult)
-);
+export default withRouter(SearchResult);

@@ -1,14 +1,21 @@
-import React from "react";
-import Icon from "../icon/icon.component";
+import React, { useEffect } from "react";
+import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 import { toggleInputHidden } from "../../redux/search/search.actions";
+import { selectInputHidden } from "../../redux/search/search.selectors";
+import Icon from "../icon/icon.component";
 import "./search-icon.styles.scss";
 
 const SearchIcon = ({ toggleInputHidden, focusOnInput, inputHidden }) => {
   const handleClick = () => {
     toggleInputHidden();
-    if (!inputHidden) focusOnInput();
   };
+
+  useEffect(() => {
+    if (!inputHidden) {
+      return focusOnInput();
+    }
+  }, [inputHidden, focusOnInput]);
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -28,8 +35,12 @@ const SearchIcon = ({ toggleInputHidden, focusOnInput, inputHidden }) => {
   );
 };
 
+const mapStateToProps = createStructuredSelector({
+  inputHidden: selectInputHidden,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   toggleInputHidden: () => dispatch(toggleInputHidden()),
 });
 
-export default connect(null, mapDispatchToProps)(SearchIcon);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchIcon);
