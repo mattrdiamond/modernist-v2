@@ -11,6 +11,7 @@ import App from "./App";
 
 // Provider - provides access to redux store to rest of app
 // PersistGate - delays rendering of app UI until peristed state has been retrieved and saved to redux - executes and "rehydrates" state when page refreshed
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

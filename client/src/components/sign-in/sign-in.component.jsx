@@ -34,7 +34,7 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
   return (
     <div className="sign-in-component">
       <h3>Sign in</h3>
-      <span>Sign in with your email and password</span>
+      <span>Sign in with your email and password.</span>
 
       <form onSubmit={handleSubmit}>
         <FormInput

@@ -4,4 +4,24 @@
   section:not(.landing):not(.about-component) {
     margin: 6rem auto;
   }
+
+  h2 {
+    font-size: 2.375rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .homepage {
+    h2 {
+      font-size: 2.125rem;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .homepage {
+    section:not(.landing):not(.about-component) {
+      margin: 4rem auto;
+    }
+  }
 }

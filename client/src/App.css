@@ -24,11 +24,12 @@
   --accent-70: #4cdfff;
   --accent-60: #66e3ff;
   --accent-50: #66e3ff;
-  --accent-40: #d4f0fe;
-  --accent-30: #d8eaf5;
-  /* --accent-30: #dff4ff; */
-  --accent-20: #e9f7ff;
-  --accent-10: #f4fbff;
+  --accent-40: #99ecff;
+  --accent-30: #c1ebfb;
+
+  --accent-20: #d8effa;
+  --accent-10: #ebf7fc;
+
   --black-90: #404041;
   --black-80: #58585a;
   --black-70: #6d6e71;
@@ -50,7 +51,7 @@
   --font-text-cond: "proxima_nova_condensedmedium", Helvetica, sans-serif;
   --font-display: "domaine_disp_nar", Helvetica, sans-serif;
   /*-- measurements --*/
-  --nav-height: 70px;
+  --nav-height: 65px;
   --window-top: 3rem;
   --window-bottom: 6rem;
 }
@@ -78,6 +79,7 @@ body {
 #app {
   display: flex;
   flex-direction: column;
+  /* overflow-y: scroll; */
 }
 
 .content-window {
@@ -98,12 +100,6 @@ h2 {
   font-size: 2.125rem;
   transition: font-size 0.2s;
   margin-bottom: 1rem;
-}
-
-h1 {
-  font-size: 2.5rem;
-  /* margin-top: 2rem; */
-  margin-bottom: 1.75rem;
 }
 
 h3 {

@@ -137,7 +137,7 @@ const NewsletterSignup = () => {
             target="_blank"
             noValidate
           >
-            <h2>Join the club</h2>
+            <h2>Join the club.</h2>
             <p>
               Sign up to recieve product news, promotions&nbsp;and&nbsp;updates.
             </p>

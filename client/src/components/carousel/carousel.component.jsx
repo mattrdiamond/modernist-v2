@@ -129,7 +129,7 @@ const Carousel = () => {
   return (
     <section className="carousel-component">
       <div className="carousel-text page-width">
-        <h2>Share the love</h2>
+        <h2>Share the love.</h2>
         <p>
           Great home decorating ideas are meant to be shared. Check out our
           customer gallery below for design inspiration in a variety of styles.
