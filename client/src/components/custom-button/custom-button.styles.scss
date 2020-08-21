@@ -35,12 +35,12 @@
   &.inverted {
     background-color: transparent;
     color: inherit;
-    border: 2px solid;
+    border: thin solid;
 
-    &:hover {
-      background-color: var(--primary-85);
-      color: white;
-    }
+    // &:hover {
+    //   background-color: var(--primary-85);
+    //   color: white;
+    // }
   }
 
   &.inline {

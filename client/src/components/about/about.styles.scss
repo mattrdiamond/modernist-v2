@@ -9,20 +9,21 @@ $ribbonbottom: 15px;
   align-items: center;
 
   .about-content {
-    padding: 2rem 3rem 6rem;
+    padding: 8rem 3rem 6rem;
     max-width: 49rem;
   }
 
   .ribbon-container {
-    height: 100px;
+    height: 4.5rem;
     overflow: hidden;
+    position: absolute;
   }
 
   .ribbon {
     position: relative;
     width: $ribbonwidth;
     // height: 3.5rem;
-    height: 5.5rem;
+    height: 5.56rem;
     margin-top: -2rem;
     background: var(--primary-80);
     display: flex;
@@ -69,29 +70,30 @@ $ribbonbottom: 15px;
   }
 }
 
-@media (max-width: 713px) {
+@media (max-width: 711px) {
   .about-component {
     .about-content {
-      padding: 3.5rem 3rem 5rem;
+      padding: 7rem 1.5rem 5rem;
+      max-width: 605px;
     }
   }
 }
 
-@media (max-width: 630px) {
-  .about-component {
-    .about-content {
-      padding: 3.5rem 2rem 5rem;
-    }
-  }
-}
+// @media (max-width: 630px) {
+//   .about-component {
+//     .about-content {
+//       padding: 3.5rem 2rem 5rem;
+//     }
+//   }
+// }
 
-@media (max-width: 500px) {
-  .about-component {
-    .about-content {
-      padding: 3.5rem 1.5rem 5rem;
-    }
-  }
-}
+// @media (max-width: 500px) {
+//   .about-component {
+//     .about-content {
+//       padding: 3.5rem 1.5rem 5rem;
+//     }
+//   }
+// }
 
 @keyframes bounceInDown {
   from,

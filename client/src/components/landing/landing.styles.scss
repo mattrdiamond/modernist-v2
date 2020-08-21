@@ -22,8 +22,8 @@
   }
 
   .landing-txt-inner {
-    width: 43%;
-    max-width: 450px;
+    width: 50%;
+    max-width: 500px;
   }
 
   .landing-subtitle {
@@ -32,7 +32,7 @@
     font-size: 0.75rem;
     display: block;
     opacity: 0;
-    color: var(--accent-70);
+    color: var(--accent-50);
 
     // name / duration / function / delay / iterations / direction
     animation: fadeInUp 1s ease 0.25s 1 forwards;
@@ -40,7 +40,7 @@
 
   .landing-title {
     margin: 1rem 0 1rem;
-    font-size: 3.4rem;
+    font-size: 3.6rem;
     // letter-spacing: 1px;
     line-height: 1.08;
     transition: font-size 0.2s, margin 0.2s;
@@ -68,23 +68,20 @@
     margin-top: 2rem;
     opacity: 0;
     animation: fadeInUp 2s ease 0.85s 1 forwards;
-    border-color: var(--accent-70);
-    color: var(--accent-70);
-
-    &:hover {
-      // background: rgba(255, 255, 255, 0.05);
-      // border-color: #fff;
-      color: #fff;
-      background: var(--accent-70);
-    }
+    border-color: var(--accent-50);
+    color: var(--accent-50);
   }
 }
 
 // reduce title size
-@media (max-width: 1300px) {
+@media (max-width: 1230px) {
   .landing {
+    .landing-txt {
+      padding-bottom: 5rem;
+    }
+
     .landing-title {
-      font-size: 3.2rem;
+      font-size: 3.4rem;
       margin-bottom: 0.8rem;
     }
 
@@ -94,15 +91,23 @@
   }
 }
 
+@media (max-width: 1130px) {
+  .landing {
+    .landing-title {
+      font-size: 3.3rem;
+    }
+  }
+}
+
 // reduce title size
-@media (max-width: 1150px) {
+@media (max-width: 1010px) {
   .landing {
     .landing-txt {
       padding-bottom: 5.5rem;
     }
 
     .landing-title {
-      font-size: 4.75vw;
+      font-size: 5.5vw;
       margin-bottom: 1vw;
     }
 
@@ -120,15 +125,15 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 840px) {
   .landing {
     .landing-title {
-      font-size: 2.5rem;
+      font-size: 2.75rem;
       margin-bottom: 0.5rem;
     }
 
     .landing-txt-inner {
-      width: 330px;
+      width: 375px;
     }
   }
 }
@@ -162,7 +167,7 @@
     }
 
     .landing-title {
-      font-size: 2.75rem;
+      font-size: 3rem;
     }
   }
 }
@@ -188,11 +193,11 @@
     }
 
     .landing-txt {
-      padding-top: 1.5rem;
+      padding-top: 2rem;
     }
 
     .landing-title {
-      font-size: 10.75vw;
+      font-size: 10.875vw;
     }
   }
 }

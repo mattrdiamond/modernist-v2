@@ -2,7 +2,7 @@ import React from "react";
 import "./accordion.styles.scss";
 
 const Accordion = ({ title, toggle, expandedTitle, children }) => {
-  const breakpoint = 630;
+  const breakpoint = 740;
 
   const handleToggle = () => {
     console.log("handletoggle");
@@ -10,21 +10,25 @@ const Accordion = ({ title, toggle, expandedTitle, children }) => {
     toggle(title);
   };
 
-  const isOpen = title === expandedTitle ? true : false;
-
+  console.log("render accordion");
   return (
-    <>
+    <div className="accordion-component">
       <div className="accordion-title-container" onClick={handleToggle}>
         <h4 className="accordion-title">{title}</h4>
-        <button
-          className={`toggle-button${!isOpen ? " collapsed" : ""}`}
-          onClick={handleToggle}
+        <div
+          className={`toggle-button${
+            title !== expandedTitle ? " collapsed" : ""
+          }`}
         />
       </div>
-      <div className={`accordion-content${!isOpen ? " collapsed" : ""}`}>
+      <div
+        className={`accordion-content${
+          title !== expandedTitle ? " collapsed" : ""
+        }`}
+      >
         {children}
       </div>
-    </>
+    </div>
   );
 };
 

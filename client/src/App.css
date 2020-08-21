@@ -15,9 +15,15 @@
   --primary-07: #f0f1f3;
   --primary-05: #f3f4f5;
   --red: #d86262;
-  --accent-100: #28cddc;
-  /* --accent-100: #95dbff; */
-  --accent-70: #6cc6df;
+
+  /* ACTUAL: */
+  /* --accent-100: #00d2ff; */
+  --accent-100: #00c3ef;
+  --accent-90: #19d6ff;
+  --accent-80: #33dbff;
+  --accent-70: #4cdfff;
+  --accent-60: #66e3ff;
+  --accent-50: #66e3ff;
   --accent-40: #d4f0fe;
   --accent-30: #d8eaf5;
   /* --accent-30: #dff4ff; */

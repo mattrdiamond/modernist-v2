@@ -12,7 +12,7 @@ const Homepage = () => (
     <About />
     <Directory />
     <NewsletterSignup />
-    <Carousel />
+    {/*<Carousel />*/}
   </div>
 );
 

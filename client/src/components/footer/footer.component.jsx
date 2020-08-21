@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { selectDirectorySections } from "../../redux/directory/directory.selectors";
+
 import Icon from "../icon/icon.component";
 import Accordion from "../accordion/accordion.component";
 import "./footer.styles.scss";
 
-const Footer = () => {
+const Footer = ({ sections }) => {
   const [expandedTitle, setExpandedTitle] = useState(null);
 
   const toggle = (title) => {
@@ -17,6 +19,7 @@ const Footer = () => {
     setExpandedTitle(title);
   };
 
+  console.log("render footer");
   return (
     <section className="footer">
       <div className="footer-inner">
@@ -35,6 +38,7 @@ const Footer = () => {
               title="Company"
               toggle={toggle}
               expandedTitle={expandedTitle}
+              key="1"
             >
               <ul className="footer-ul">
                 <li>About Us</li>
@@ -52,21 +56,13 @@ const Footer = () => {
               expandedTitle={expandedTitle}
             >
               <ul className="footer-ul">
-                <Link to="/shop/hats">
-                  <li>Hats</li>
-                </Link>
-                <Link to="/shop/jackets">
-                  <li>Jackets</li>
-                </Link>
-                <Link to="/shop/sneakers">
-                  <li>Sneakers</li>
-                </Link>
-                <Link to="/shop/womens">
-                  <li>Women's</li>
-                </Link>
-                <Link to="/shop/mens">
-                  <li>Men's</li>
-                </Link>
+                {sections
+                  .sort((a, b) => (a.title > b.title ? 1 : -1))
+                  .map(({ id, title, linkUrl }) => (
+                    <li key={id}>
+                      <Link to={`/${linkUrl}`}>{title}</Link>
+                    </li>
+                  ))}
               </ul>
             </Accordion>
           </div>
@@ -130,6 +126,8 @@ const Footer = () => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  sections: selectDirectorySections,
+});
 
 export default connect(mapStateToProps)(Footer);
