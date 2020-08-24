@@ -10,7 +10,6 @@ import "./favorites.styles.scss";
 
 const FavoritesPage = ({ favorites }) => {
   let favoritesArray = favorites ? Object.values(favorites) : null;
-  console.log("favs", favorites);
   return (
     <div className="favorites-page page-width">
       {favorites ? (

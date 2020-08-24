@@ -25,13 +25,12 @@ const SearchDrawer = ({
   collectionItems,
   fetchCollectionsStart,
   closeSearchDrawer,
+  focusOnInput,
 }) => {
   // useCallback prevents re-creation of function every time component rebuilds
   const handleClose = useCallback(() => {
     closeSearchDrawer();
   }, [closeSearchDrawer]);
-
-  useOnClickOutside(inputRef, handleClose, "ignore-co-search", inputHidden);
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -43,6 +42,10 @@ const SearchDrawer = ({
     setInputValue("");
     inputRef.current.focus();
   };
+
+  if (!inputHidden) focusOnInput();
+
+  useOnClickOutside(inputRef, handleClose, "ignore-co-search", inputHidden);
 
   console.log("render search drawer");
 

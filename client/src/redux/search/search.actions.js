@@ -11,7 +11,7 @@ export const setInputValue = (inputValue) => {
   };
 };
 
-export const closeSearchDrawer = (inputValue) => {
+export const closeSearchDrawer = () => {
   return {
     type: SearchActionTypes.CLOSE_SEARCH_DRAWER,
   };

@@ -1,14 +1,16 @@
 import React from "react";
 import "./hamburger-button.styles.scss";
 
-const HamburgerButton = ({ isVisible, handleToggle }) => {
-  console.log("isvisible", isVisible);
+//react.memo used to prevent render every time search or shop button clicked (desktop view)
+const HamburgerButton = React.memo(({ isOpen, handleToggle }) => {
+  console.log("render hamburger");
+
   return (
     <div
-      className={"hamburger" + (isVisible ? " is-open" : "")}
+      className={"hamburger" + (isOpen ? " is-open" : "")}
       onClick={handleToggle}
       role="button"
-      aria-pressed={isVisible ? true : false}
+      aria-pressed={isOpen ? true : false}
       tabIndex="0"
     >
       <div className="hamburger-btn">
@@ -16,6 +18,6 @@ const HamburgerButton = ({ isVisible, handleToggle }) => {
       </div>
     </div>
   );
-};
+});
 
 export default HamburgerButton;

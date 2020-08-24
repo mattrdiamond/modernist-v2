@@ -16,10 +16,21 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <PersistGate persistor={persistor}>
-        <ScrollToTop />
         <App />
       </PersistGate>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
+
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <BrowserRouter>
+//       <PersistGate persistor={persistor}>
+//         <ScrollToTop />
+//         <App />
+//       </PersistGate>
+//     </BrowserRouter>
+//   </Provider>,
+//   document.getElementById("root")
+// );

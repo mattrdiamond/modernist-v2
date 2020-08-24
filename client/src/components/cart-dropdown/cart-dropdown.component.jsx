@@ -11,26 +11,20 @@ import { createStructuredSelector } from "reselect";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { withRouter } from "react-router-dom";
 import useOnClickOutside from "../../utils/use-onclick-outside";
+import useBodyLockScroll from "../../utils/use-body-lock-scroll";
 import "./cart-dropdown.styles.scss";
 
-const CartDropdown = ({
-  cartItems,
-  cartTotal,
-  history,
-  toggleCartHidden,
-  cartHidden,
-}) => {
+const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
   const cartRef = useRef();
 
   // Close cart when clicking outside
   useOnClickOutside(cartRef, toggleCartHidden, "ignore-co-cart");
 
+  // useBodyLockScroll();
+  console.log("render cart dropdown");
+
   return (
-    <div
-      className="cart-dropdown"
-      ref={cartRef}
-      aria-hidden={cartHidden ? true : false}
-    >
+    <div className="cart-dropdown" ref={cartRef}>
       {cartItems.length ? (
         <>
           <div className="cart-items">

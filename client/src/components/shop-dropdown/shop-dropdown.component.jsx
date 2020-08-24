@@ -34,8 +34,4 @@ const ShopDropdown = ({ toggleShopDropdown, shopDropdownHidden, sections }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  sections: selectDirectorySections,
-});
-
-export default connect(mapStateToProps)(ShopDropdown);
+export default ShopDropdown;

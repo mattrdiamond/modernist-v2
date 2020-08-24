@@ -161,14 +161,13 @@ form > *:last-child {
   font-weight: bold;
 }
 
-/* #app.input-visible, */
-#app.nav-visible,
+/* #app.nav-visible,
 #app.cart-visible,
 #app.input-visible,
 #app.dropdown-visible {
   overflow: hidden;
   height: 100vh;
-}
+} */
 
 #app:after {
   content: "";

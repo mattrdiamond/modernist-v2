@@ -6,27 +6,19 @@ import { selectInputHidden } from "../../redux/search/search.selectors";
 import Icon from "../icon/icon.component";
 import "./search-icon.styles.scss";
 
-const SearchIcon = ({ toggleInputHidden, focusOnInput, inputHidden }) => {
-  const handleClick = () => {
-    toggleInputHidden();
-  };
-
-  useEffect(() => {
-    if (!inputHidden) {
-      return focusOnInput();
-    }
-  }, [inputHidden, focusOnInput]);
-
+const SearchIcon = ({ toggleInputHidden }) => {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleClick();
+      toggleInputHidden();
     }
   };
+
+  console.log("render search icon");
 
   return (
     <div
       className="nav-icon"
-      onClick={handleClick}
+      onClick={toggleInputHidden}
       onKeyPress={handleKeyPress}
       tabIndex="0"
     >
@@ -35,12 +27,8 @@ const SearchIcon = ({ toggleInputHidden, focusOnInput, inputHidden }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  inputHidden: selectInputHidden,
-});
-
 const mapDispatchToProps = (dispatch) => ({
   toggleInputHidden: () => dispatch(toggleInputHidden()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchIcon);
+export default connect(null, mapDispatchToProps)(SearchIcon);
