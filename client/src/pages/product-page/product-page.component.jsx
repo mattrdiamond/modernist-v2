@@ -6,6 +6,7 @@ import { selectItem } from "../../redux/shop/shop.selectors";
 import StarRating from "../../components/star-rating/star-rating.component";
 import Stepper from "../../components/stepper/stepper.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
+import FavoritingButton from "../../components/favoriting-button/favoriting-button.component";
 import "./product-page.styles.scss";
 
 const ProductPage = ({ item, collectionId, addItem }) => {
@@ -28,6 +29,7 @@ const ProductPage = ({ item, collectionId, addItem }) => {
     <div className="product-page page-width">
       <div className="col-left">
         <img className="product-img" src={imageUrl} alt={name} />
+        <FavoritingButton item={item} />
       </div>
       <div className="col-right">
         <Link to={`/shop/${collectionId}`}>

@@ -13,9 +13,13 @@ const ShopDropdown = ({ toggleShopDropdown, sections }) => {
   // prevent body scrolling
   useLockBodyScroll();
 
+  const sortedShopSections = sections
+    .concat()
+    .sort((a, b) => (a.title > b.title ? 1 : -1));
+
   return (
     <ul className="shop-dropdown" ref={shopDropdownRef}>
-      {sections.map(({ id, title, linkUrl }) => (
+      {sortedShopSections.map(({ id, title, linkUrl }) => (
         <li className="shop-category" key={id}>
           <Link
             className="shop-link"

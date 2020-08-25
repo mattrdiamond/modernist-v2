@@ -7,8 +7,8 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  transition: border-color 0.3s ease, background-color 0.3s ease,
-    color 0.3s ease;
+  transition: border-color 0.2s ease, background-color 0.2s ease,
+    color 0.2s ease;
   justify-content: center;
   border-radius: 5px;
   font-weight: bold;
@@ -37,10 +37,11 @@
     color: inherit;
     border: thin solid;
 
-    // &:hover {
-    //   background-color: var(--primary-85);
-    //   color: white;
-    // }
+    &:hover {
+      background-color: var(--primary-85);
+      color: white;
+      border-color: var(--primary-85);
+    }
   }
 
   &.inline {

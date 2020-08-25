@@ -9,7 +9,7 @@ const SignInToAddFav = ({ closeModal, history }) => {
   return (
     <ModalShell>
       <h1>Save this product</h1>
-      <p>Please login or register to save your Favorites.</p>
+      <p>Please login or register to save your&nbsp;Favorites.</p>
       <div className="modal-button-container">
         <CustomButton
           onClick={() => {
@@ -19,7 +19,9 @@ const SignInToAddFav = ({ closeModal, history }) => {
         >
           Sign In
         </CustomButton>
-        <CustomButton onClick={closeModal}>Cancel</CustomButton>
+        <CustomButton onClick={closeModal} inverted>
+          Cancel
+        </CustomButton>
       </div>
     </ModalShell>
   );

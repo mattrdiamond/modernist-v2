@@ -19,6 +19,10 @@ const Footer = ({ sections }) => {
     setExpandedTitle(title);
   };
 
+  const sortedShopSections = sections
+    .concat()
+    .sort((a, b) => (a.title > b.title ? 1 : -1));
+
   console.log("render footer");
   return (
     <section className="footer">
@@ -56,13 +60,11 @@ const Footer = ({ sections }) => {
               expandedTitle={expandedTitle}
             >
               <ul className="footer-ul">
-                {sections
-                  .sort((a, b) => (a.title > b.title ? 1 : -1))
-                  .map(({ id, title, linkUrl }) => (
-                    <li key={id}>
-                      <Link to={`/${linkUrl}`}>{title}</Link>
-                    </li>
-                  ))}
+                {sortedShopSections.map(({ id, title, linkUrl }) => (
+                  <li key={id}>
+                    <Link to={`/${linkUrl}`}>{title}</Link>
+                  </li>
+                ))}
               </ul>
             </Accordion>
           </div>

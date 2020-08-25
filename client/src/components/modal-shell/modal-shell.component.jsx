@@ -1,10 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { closeModal } from "../../redux/modal/modal.actions";
+import useLockBodyScroll from "../../utils/use-lock-body-scroll";
 import "./modal-shell.styles.scss";
 
 const Modal = (props) => {
   const { closeModal } = props;
+
+  useLockBodyScroll();
 
   return (
     <div className="modal-wrapper">

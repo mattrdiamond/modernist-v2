@@ -1,4 +1,6 @@
-// remove any special characters or extra spaces
+/*
+ * Remove any special characters or extra spaces
+ */
 const removeSpecialChars = (input) =>
   input.replace(/\s\s+|[^a-zA-Z0-9 ]/gi, "");
 
@@ -17,6 +19,9 @@ export const getSearchResults = (input, shopItems) => {
   });
 };
 
+/*
+ * Debounce
+ */
 export function debounce(fn, ms) {
   let timer;
   return (_) => {
@@ -28,6 +33,9 @@ export function debounce(fn, ms) {
   };
 }
 
+/*
+ * Determine how many images fit on screen based on window width
+ */
 export const imagesFitOnScreen = () => {
   const width = window.innerWidth;
   switch (true) {

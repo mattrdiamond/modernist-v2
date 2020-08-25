@@ -14,7 +14,7 @@ const CollectionPage = ({ collection }) => {
 
   return (
     <div className="collection-page">
-      <div className="title-banner">
+      <div className={`title-banner ${title.toLowerCase()}`}>
         <img
           className="background-img"
           src={small}
