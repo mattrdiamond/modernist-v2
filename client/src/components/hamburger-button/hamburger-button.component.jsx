@@ -10,7 +10,8 @@ const HamburgerButton = React.memo(({ isOpen, handleToggle }) => {
       className={"hamburger" + (isOpen ? " is-open" : "")}
       onClick={handleToggle}
       role="button"
-      aria-pressed={isOpen ? true : false}
+      aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+      aria-expanded={isOpen ? true : false}
       tabIndex="0"
     >
       <div className="hamburger-btn">

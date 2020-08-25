@@ -35,12 +35,12 @@ const App = ({
     checkUserSession();
   }, [checkUserSession]);
 
-  const getClassName = () => {
+  const getDropdownStatus = () => {
     switch (true) {
       case !cartHidden:
         return "cart-visible";
       case !shopDropdownHidden:
-        return "dropdown-visible";
+        return "shop-dropdown-visible";
       case !inputHidden:
         return "input-visible";
       case mobileNavVisible:
@@ -48,8 +48,10 @@ const App = ({
     }
   };
 
+  console.log("render app");
+
   return (
-    <div id="app" className={getClassName()}>
+    <div id="app" className={getDropdownStatus()}>
       <Header />
       <div className="content-window">
         <Switch>

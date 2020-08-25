@@ -1,7 +1,8 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
+import { CSSTransitionGroup } from "react-transition-group";
 
 import { selectDropdownHidden } from "../../redux/shop/shop.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
@@ -34,10 +35,9 @@ const Header = ({
   toggleCartHidden,
   shopDropdownHidden,
   toggleShopDropdown,
+  searchDrawerHidden,
   sections,
 }) => {
-  const inputRef = useRef(null);
-
   // useCallback prevents cartIcon from rendering when shop or search button clicked
   const handleCartClick = useCallback(() => {
     if (!mobileNavVisible) {
@@ -60,10 +60,6 @@ const Header = ({
     if (e.key !== "Enter") return;
     toggleShopDropdown();
   };
-
-  const focusOnInput = useCallback(() => {
-    inputRef.current.focus();
-  }, [inputRef]);
 
   console.log("render header");
 
@@ -136,8 +132,21 @@ const Header = ({
           </div>
         </div>
       </div>
-      <MobileNav />
-      <SearchDrawer inputRef={inputRef} focusOnInput={focusOnInput} />
+      {/* CSSTransitionGroup - applies transition before adding/removing from DOM */}
+      <CSSTransitionGroup
+        transitionName="mobile-nav"
+        transitionEnterTimeout={300}
+        transitionLeaveTimeout={300}
+      >
+        {mobileNavVisible && <MobileNav />}
+      </CSSTransitionGroup>
+      <CSSTransitionGroup
+        transitionName="search-drawer"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}
+      >
+        {!searchDrawerHidden && <SearchDrawer />}
+      </CSSTransitionGroup>
     </nav>
   );
 };

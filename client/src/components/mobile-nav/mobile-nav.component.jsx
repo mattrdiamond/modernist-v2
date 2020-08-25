@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import useLockBodyScroll from "../../utils/use-lock-body-scroll";
 
-import { selectNavVisible } from "../../redux/mobile-nav/mobile-nav.selectors";
 import { selectDirectorySections } from "../../redux/directory/directory.selectors";
 import { selectInputValue } from "../../redux/search/search.selectors";
 import { selectCollectionItems } from "../../redux/shop/shop.selectors";
@@ -18,7 +18,6 @@ import SearchInput from "../search-input/search-input.component";
 import "./mobile-nav.styles.scss";
 
 const MobileNav = ({
-  isVisible,
   sections,
   toggleNav,
   inputValue,
@@ -39,19 +38,19 @@ const MobileNav = ({
     setInputValue("");
   };
 
+  useLockBodyScroll();
+
   return (
-    <div className={"mobile-nav-directory" + (isVisible ? " is-open" : "")}>
+    <div className={"mobile-nav-directory"}>
       <div className="inner-wrapper page-width">
         <SearchInput
           handleChange={handleChange}
           handleClear={handleClear}
           placeholder="Search Modernist"
           value={inputValue}
-          aria-hidden={isVisible}
-          tabIndex={isVisible ? "-1" : "0"}
           inputValue={inputValue}
         />
-        {isVisible && inputValue && (
+        {inputValue && (
           <SearchDropdown
             collectionItems={collectionItems}
             inputValue={inputValue}
@@ -89,7 +88,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  isVisible: selectNavVisible,
   sections: selectDirectorySections,
   inputValue: selectInputValue,
   collectionItems: selectCollectionItems,

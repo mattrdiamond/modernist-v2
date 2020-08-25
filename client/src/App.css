@@ -161,17 +161,9 @@ form > *:last-child {
   font-weight: bold;
 }
 
-/* #app.nav-visible,
-#app.cart-visible,
-#app.input-visible,
-#app.dropdown-visible {
-  overflow: hidden;
-  height: 100vh;
-} */
-
 #app:after {
   content: "";
-  position: absolute;
+  position: fixed;
   visibility: hidden;
   opacity: 0;
   width: 100%;
@@ -185,7 +177,7 @@ form > *:last-child {
 }
 
 #app.input-visible:after,
-#app.dropdown-visible:after,
+#app.shop-dropdown-visible:after,
 #app.cart-visible:after {
   visibility: visible;
   opacity: 1;
@@ -215,13 +207,13 @@ form > *:last-child {
   }
 
   /* hide shop dropdown and input dropdown elements on mobile */
-  #app.dropdown-visible,
+  #app.shop-dropdown-visible,
   #app.input-visible {
     overflow: unset;
     height: 100%;
   }
 
-  #app.dropdown-visible:after,
+  #app.shop-dropdown-visible:after,
   #app.input-visible:after {
     visibility: hidden;
     opacity: 0;

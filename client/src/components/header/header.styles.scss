@@ -107,13 +107,46 @@
     position: relative;
   }
 
-  // /* mobile */
-  // .mobile-nav {
-  //   display: none;
-  // }
-
   .mobile-only {
     display: none;
+  }
+
+  // CSSTransitionGroup transitions - applied when element added/removed from DOM
+  .search-drawer-enter {
+    top: calc(0px - var(--nav-height));
+
+    &.search-drawer-enter-active {
+      top: 0px;
+      transition: top 0.5s;
+    }
+  }
+
+  .search-drawer-leave {
+    top: 0px;
+    // transition: top 0.5s;
+
+    &.search-drawer-leave-active {
+      top: calc(0px - var(--nav-height));
+      transition: top 0.5s;
+    }
+  }
+
+  .mobile-nav-enter {
+    transform: translateY(-100%);
+
+    &.mobile-nav-enter-active {
+      transform: translateY(0%);
+      transition: transform 0.3s;
+    }
+  }
+
+  .mobile-nav-leave {
+    transform: translateY(0%);
+
+    &.mobile-nav-leave-active {
+      transform: translateY(-100%);
+      transition: transform 0.3s;
+    }
   }
 }
 

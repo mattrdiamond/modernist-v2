@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import SearchDropdown from "../search-dropdown/search-dropdown.component";
@@ -15,18 +15,29 @@ import {
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import Icon from "../icon/icon.component";
 import useOnClickOutside from "../../utils/use-onclick-outside";
+import useLockBodyScroll from "../../utils/use-lock-body-scroll";
 import "./search-drawer.scss";
 
 const SearchDrawer = ({
   inputHidden,
   setInputValue,
   inputValue,
-  inputRef,
+  // inputRef,
   collectionItems,
   fetchCollectionsStart,
   closeSearchDrawer,
-  focusOnInput,
+  // focusOnInput,
 }) => {
+  const inputRef = useRef(null);
+
+  // focus on input when component mounts
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  // prevent scrolling when drawer open
+  useLockBodyScroll();
+
   // useCallback prevents re-creation of function every time component rebuilds
   const handleClose = useCallback(() => {
     closeSearchDrawer();
@@ -43,30 +54,21 @@ const SearchDrawer = ({
     inputRef.current.focus();
   };
 
-  if (!inputHidden) focusOnInput();
-
   useOnClickOutside(inputRef, handleClose, "ignore-co-search", inputHidden);
 
   console.log("render search drawer");
 
   return (
-    <div
-      className={
-        "search-drawer ignore-co-search page-width" +
-        (inputHidden ? " hidden" : "")
-      }
-    >
+    <div className={"search-drawer ignore-co-search page-width"}>
       <SearchInput
         handleChange={handleChange}
         handleClear={handleClear}
         placeholder="Search Modernist"
         value={inputValue}
-        aria-hidden={inputHidden}
         ref={inputRef}
-        tabIndex={inputHidden ? "-1" : "0"}
         inputValue={inputValue}
       >
-        {!inputHidden && inputValue && (
+        {inputValue && (
           <SearchDropdown
             collectionItems={collectionItems}
             inputValue={inputValue}

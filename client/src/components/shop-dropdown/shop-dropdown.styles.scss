@@ -18,4 +18,17 @@
   .shop-link {
     display: block;
   }
+
+  // &:after {
+  //   content: "";
+  //   position: fixed;
+  //   width: 100vw;
+  //   height: 100vh;
+  //   background: red;
+  //   left: 0;
+  //   top: var(--nav-height);
+  //   z-index: -1;
+  //   pointer-events: none;
+  //   opacity: 0.5;
+  // }
 }

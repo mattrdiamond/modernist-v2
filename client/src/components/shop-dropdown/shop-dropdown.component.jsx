@@ -1,24 +1,20 @@
 import React, { useEffect, useRef, useCallback } from "react";
-import { createStructuredSelector } from "reselect";
-import { withRouter, Link } from "react-router-dom";
-import { selectDirectorySections } from "../../redux/directory/directory.selectors";
-import { connect } from "react-redux";
-import { toggleDropdownHidden } from "../../redux/shop/shop.actions";
+import { Link } from "react-router-dom";
 import useOnClickOutside from "../../utils/use-onclick-outside";
+import useLockBodyScroll from "../../utils/use-lock-body-scroll";
 import "./shop-dropdown.styles.scss";
 
-const ShopDropdown = ({ toggleShopDropdown, shopDropdownHidden, sections }) => {
+const ShopDropdown = ({ toggleShopDropdown, sections }) => {
   const shopDropdownRef = useRef(null);
 
   // Close dropdown when clicked outside
   useOnClickOutside(shopDropdownRef, toggleShopDropdown, "ignore-co-shop");
 
+  // prevent body scrolling
+  useLockBodyScroll();
+
   return (
-    <ul
-      className="shop-dropdown"
-      aria-hidden={shopDropdownHidden ? true : false}
-      ref={shopDropdownRef}
-    >
+    <ul className="shop-dropdown" ref={shopDropdownRef}>
       {sections.map(({ id, title, linkUrl }) => (
         <li className="shop-category" key={id}>
           <Link

@@ -4,16 +4,16 @@
   top: 0px;
   position: absolute;
   width: 100%;
-  transition: top 0.5s ease;
+  // transition: top 0.5s ease;
   color: var(--primary-85);
   display: flex;
   align-items: center;
   z-index: 5;
 
-  &.hidden {
-    animation: slide-up 0.5s ease forwards;
-    top: calc(0px - var(--nav-height));
-  }
+  // &.hidden {
+  //   // animation: slide-up 0.5s ease forwards;
+  //   top: calc(0px - var(--nav-height));
+  // }
 
   .close-button {
     border-radius: 3px;

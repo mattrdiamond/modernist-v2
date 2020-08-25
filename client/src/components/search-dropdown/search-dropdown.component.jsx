@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { withRouter, Link } from "react-router-dom";
+import { CSSTransitionGroup } from "react-transition-group";
 import { getSearchResults } from "../../utils/utils";
 
 import {
@@ -31,12 +32,9 @@ const SearchDropdown = ({
   const searchResults = getSearchResults(inputValue, collectionItems);
 
   const closeSearch = () => {
-    console.log("close search from search dropdown");
-
     if (navVisible) {
       toggleNav();
       setInputValue("");
-      // clear input value?
     }
     if (!searchDrawerHidden) {
       closeSearchDrawer();
