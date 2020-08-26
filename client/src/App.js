@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import CheckoutPage from "./pages/checkout/checkout.component.jsx";
@@ -28,6 +28,7 @@ const App = ({
   cartHidden,
   shopDropdownHidden,
   mobileNavVisible,
+  history,
 }) => {
   // equivalent to componentDidMount (will only re-render if checkUserSession changes, and we know it will not)
   useEffect(() => {
@@ -48,7 +49,7 @@ const App = ({
     }
   };
 
-  console.log("render app");
+  console.log("render app", history);
 
   return (
     <div id="app" className={getDropdownStatus()}>
@@ -70,14 +71,13 @@ const App = ({
               )
             }
           />
-          {/* If user signed in, redirect user to home page when clicking signin.
-            also redirects to home when user signs in.
-          render prop determines what component to return*/}
+          {/* If user signed in, redirect to previous page when navigating to /signin.
+              Also redirect to previous page after user signs in. Alternatively we could <Redirect to="/" /> */}
           <Route
             exact
             path="/signin"
             render={() =>
-              currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />
+              currentUser ? history.goBack() : <SignInAndSignUpPage />
             }
           />
           <Route path="/search" component={SearchPage} />
@@ -103,4 +103,4 @@ const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

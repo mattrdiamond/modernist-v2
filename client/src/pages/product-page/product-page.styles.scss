@@ -25,7 +25,7 @@
   .collection-name {
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: var(--primary-60);
+    color: var(--primary-50);
     font-size: 0.8rem;
   }
 
@@ -34,11 +34,11 @@
   }
 
   .product-price {
-    color: var(--accent-100);
+    color: var(--primary-50);
     font-family: var(--font-text);
     font-weight: bold;
     margin: 1.25rem 0;
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   .product-description {
@@ -72,7 +72,15 @@
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 900px) {
+  .product-page {
+    .col-right {
+      margin-left: 2rem;
+    }
+  }
+}
+
+@media (max-width: 730px) {
   // .button-container {
   //   flex-direction: column;
   // }
@@ -89,6 +97,19 @@
 
     .product-img {
       max-height: unset;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .product-page {
+    .button-container {
+      display: block;
+
+      .custom-button {
+        margin-top: 2rem;
+        width: 100%;
+      }
     }
   }
 }

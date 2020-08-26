@@ -12,7 +12,7 @@
   align-items: center;
 
   .heart path {
-    fill: #c4c4c4;
+    fill: var(--primary-20);
   }
 
   &:hover {

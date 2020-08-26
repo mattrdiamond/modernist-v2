@@ -14,7 +14,7 @@
   --primary-10: #e7e9ec;
   --primary-07: #f0f1f3;
   --primary-05: #f3f4f5;
-  --red: #d86262;
+  --red: #ff505a;
 
   /* ACTUAL: */
   /* --accent-100: #00d2ff; */
@@ -228,6 +228,10 @@ form > *:last-child {
 }
 
 @media (max-width: 450px) {
+  :root {
+    --window-top: 1.5rem;
+    --window-bottom: 3rem;
+  }
   html {
     font-size: 16px;
   }
