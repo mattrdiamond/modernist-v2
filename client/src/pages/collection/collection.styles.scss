@@ -1,13 +1,4 @@
 $title-img-height: 280px;
-// $lighting: url("../../assets/img/shop_lighting2_2x.jpg");
-$lighting: url("../../assets/img/shop_lighting_2x.jpg");
-// $bedding: url("../../assets/img/shop_bedding2_2x.jpg");
-$bedding: url("../../assets/img/shop_bedding_2x.jpg");
-$tables: url("../../assets/img/shop_tables_2x.jpg");
-$sofas: url("../../assets/img/shop_sofas_2x.jpg");
-$decor: url("../../assets/img/shop_decor_2x.jpg");
-$chairs: url("../../assets/img/shop_chairs2_2x.jpg");
-// $chairs: url("../../assets/img/shop_chairs_2x.jpg");
 
 .collection-page {
   display: flex;
@@ -17,17 +8,6 @@ $chairs: url("../../assets/img/shop_chairs2_2x.jpg");
   .title-banner {
     width: 100%;
     height: $title-img-height;
-    //****
-    // background-color: var(--primary-20);
-    // background-image: url("../../assets/img/shop_lighting_2x.jpg");
-    // background-size: cover;
-    // background-position: center;
-    // background: $sofas center/cover no-repeat var(--primary-20);
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // flex-direction: column;
-    //****
     color: white;
     text-align: center;
     position: fixed;

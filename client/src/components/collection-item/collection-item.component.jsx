@@ -7,12 +7,12 @@ import { withRouter, Link } from "react-router-dom";
 import "./collection-item.styles.scss";
 
 const CollectionItem = ({ item, addItem, routeName, history, match }) => {
-  const { name, price, imageUrl, collection } = item;
+  const { name, price, collection, images } = item;
 
   return (
     <div className="collection-item">
       <Link className="product-link" to={`/shop/${collection}/${item.id}`}>
-        <img src={imageUrl} alt={name} className="image" />
+        <img src={images.small} alt={name} className="image" />
       </Link>
       <FavoritingButton item={item} />
       <div className="collection-footer">

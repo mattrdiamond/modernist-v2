@@ -10,7 +10,9 @@ import FavoritingButton from "../../components/favoriting-button/favoriting-butt
 import "./product-page.styles.scss";
 
 const ProductPage = ({ item, collectionId, addItem }) => {
-  const { name, price, imageUrl } = item;
+  console.log("item", item);
+  const { name, price, imageUrl, images } = item;
+
   const [quantity, setQuantity] = useState(1);
 
   const handleAddItem = () => {
@@ -28,7 +30,7 @@ const ProductPage = ({ item, collectionId, addItem }) => {
   return (
     <div className="product-page page-width">
       <div className="col-left">
-        <img className="product-img" src={imageUrl} alt={name} />
+        <img className="product-img" src={images.large} alt={name} />
         <FavoritingButton item={item} />
       </div>
       <div className="col-right">

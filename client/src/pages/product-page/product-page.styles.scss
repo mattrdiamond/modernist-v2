@@ -1,25 +1,30 @@
 .product-page {
   display: flex;
-  max-width: 950px;
+  max-width: 1200px;
   margin: var(--window-top) auto var(--window-bottom);
 
   .product-img {
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: var(--primary-07);
     max-height: 500px;
+    height: 100%;
+    padding: 2rem;
   }
 
-  .col-left,
-  .col-right {
-    flex-basis: 50%;
-  }
+  // .col-left,
+  // .col-right {
+  //   flex-basis: 50%;
+  // }
 
   .col-left {
     position: relative;
+    flex-basis: 60%;
   }
 
   .col-right {
     margin-left: 2.5rem;
+    flex-basis: 40%;
   }
 
   .collection-name {
