@@ -6,7 +6,7 @@ import { withRouter, Link } from "react-router-dom";
 import "./cart-item.styles.scss";
 
 const CartItem = ({ item, clearItem, toggleCartHidden }) => {
-  const { imageUrl, price, name, quantity, collection, id } = item;
+  const { images, price, name, quantity, collection, id } = item;
 
   return (
     <div className="cart-item">
@@ -15,7 +15,7 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
         onClick={toggleCartHidden}
         className="ignore-co-cart"
       >
-        <img src={imageUrl} alt={name} />
+        <img src={images.small} alt={name} />
       </Link>
       <div className="item-details">
         <div className="col-1">

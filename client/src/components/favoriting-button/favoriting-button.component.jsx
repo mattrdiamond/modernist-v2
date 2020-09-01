@@ -26,7 +26,7 @@ class FavoritingButton extends Component {
 
     if (!currentUser) {
       openModal("SignInToAddFav");
-    } else if (favorites[item.id]) {
+    } else if (favorites && favorites[item.id]) {
       this.handleRemoveFavorite();
     } else {
       this.handleAddFavorite();

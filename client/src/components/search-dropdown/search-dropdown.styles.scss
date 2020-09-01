@@ -14,15 +14,11 @@
   li:not(.search-result) {
     padding: 0.75rem;
     transition: background-color 0.3s ease;
-
-    // &:hover {
-    //   background-color: var(--black-05);
-    // }
   }
 
   .view-results {
     text-align: center;
-    border-top: 1px solid var(--black-05);
+    border-top: 1px solid var(--primary-05);
     border-radius: 0 0 4px 4px;
     // pointer-events: none;
     padding: 0.75rem;
@@ -30,7 +26,7 @@
     // cursor: pointer;
 
     &:hover {
-      background-color: var(--black-05);
+      background-color: var(--primary-05);
     }
   }
 

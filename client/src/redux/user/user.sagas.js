@@ -33,6 +33,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
     const userSnapshot = yield userRef.get();
 
     // 3. dispatch signInSuccess action with user id. Also pass along rest of snapShot data (.data() method gives us actual properties on the snapshot object)
+    console.log("data", userSnapshot.data());
     yield put(
       signInSuccess({
         id: userSnapshot.id,

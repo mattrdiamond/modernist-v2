@@ -15,9 +15,11 @@
   .item-img {
     width: 7rem;
     height: 7rem;
-    object-fit: cover;
+    object-fit: contain;
     margin-right: 1rem;
     border-radius: 2px;
+    padding: 0.5rem;
+    background: var(--primary-07);
   }
 
   .remove-button {

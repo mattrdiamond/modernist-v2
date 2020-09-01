@@ -11,7 +11,7 @@ import "./product-page.styles.scss";
 
 const ProductPage = ({ item, collectionId, addItem }) => {
   console.log("item", item);
-  const { name, price, imageUrl, images } = item;
+  const { name, price, images } = item;
 
   const [quantity, setQuantity] = useState(1);
 

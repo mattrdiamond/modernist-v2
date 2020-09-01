@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import { signUpStart } from "../../redux/user/user.actions";
+import { selectErrorMessage } from "../../redux/user/user.selectors";
+import { createStructuredSelector } from "reselect";
+
 import "./sign-up.styles.scss";
 
-const SignUp = ({ signUpStart }) => {
+const SignUp = ({ signUpStart, error }) => {
   const [userCredentials, setUserCredentials] = useState({
     displayName: "",
     email: "",
@@ -70,13 +73,18 @@ const SignUp = ({ signUpStart }) => {
           required
         />
         <CustomButton type="submit">Sign Up</CustomButton>
+        {error && <span className="error">{error}</span>}
       </form>
     </div>
   );
 };
 
+const mapStateToProps = createStructuredSelector({
+  error: selectErrorMessage,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
 });
 
-export default connect(null, mapDispatchToProps)(SignUp);
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

@@ -3,7 +3,7 @@ import { withRouter, Link } from "react-router-dom";
 import "./search-result.styles.scss";
 
 const SearchResult = ({ result, inputHidden, closeSearch }) => {
-  const { id, imageUrl, name, price, collection } = result;
+  const { id, images, name, price, collection } = result;
 
   const handleClick = () => {
     closeSearch();
@@ -16,7 +16,7 @@ const SearchResult = ({ result, inputHidden, closeSearch }) => {
         to={`/shop/${collection}/${id}`}
         onClick={handleClick}
       >
-        <img className="result-img" src={imageUrl} alt={name} />
+        <img className="result-img" src={images.small} alt={name} />
         <div className="result-details">
           <span className="result-name">{name}</span>
           <span className="result-price">${price}</span>

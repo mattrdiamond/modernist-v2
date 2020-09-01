@@ -11,4 +11,12 @@
     margin-top: 3rem;
     width: 100%;
   }
+
+  .error {
+    font-style: italic;
+    font-size: 0.75rem;
+    margin-top: 0.5em;
+    color: var(--red);
+    display: block;
+  }
 }

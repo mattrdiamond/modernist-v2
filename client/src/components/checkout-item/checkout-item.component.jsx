@@ -10,10 +10,10 @@ import Icon from "../icon/icon.component";
 import "./checkout-item.styles.scss";
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
-  const { name, imageUrl, price, quantity } = cartItem;
+  const { name, images, price, quantity } = cartItem;
   return (
     <div className="checkout-item">
-      <img className="item-img" src={imageUrl} alt={name} />
+      <img className="item-img" src={images.small} alt={name} />
       <div className="content-wrapper">
         <div className="col-description">
           <span className="name">{name}</span>

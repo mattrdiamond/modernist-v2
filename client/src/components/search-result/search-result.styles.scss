@@ -7,7 +7,7 @@
 
   &:not(:last-of-type) {
     // margin-bottom: 1rem;
-    border-bottom: 1px solid var(--black-10);
+    border-bottom: 1px solid var(--primary-10);
     // padding-bottom: 1rem;
   }
 
@@ -24,16 +24,17 @@
 
   &:hover,
   &:focus {
-    background-color: var(--black-05);
+    background-color: var(--primary-05);
   }
 }
 
 .result-img {
   width: 4rem;
   height: 4rem;
-  object-fit: cover;
-  background-color: var(--black-05);
+  object-fit: contain;
+  background-color: var(--primary-05);
   border-radius: 2px;
+  padding: 0.5rem;
 }
 
 .result-details {

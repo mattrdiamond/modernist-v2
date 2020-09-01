@@ -52,7 +52,7 @@
 
   .user-details {
     text-align: left;
-    color: var(--black-80);
+    color: var(--primary-80);
 
     span {
       display: block;
@@ -65,7 +65,7 @@
   }
 
   .user-location {
-    color: var(--black-50);
+    color: var(--primary-50);
     font-weight: 300;
     font-size: 0.73rem;
   }
@@ -74,7 +74,7 @@
     display: flex;
     align-items: center;
     font-weight: bold;
-    color: var(--black-80);
+    color: var(--primary-80);
   }
 
   .like-count {
@@ -82,7 +82,7 @@
   }
 
   .icon-heart {
-    color: #d86262;
+    color: var(--red);
     width: 15px;
     height: 15px;
   }

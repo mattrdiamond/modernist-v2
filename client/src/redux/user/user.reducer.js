@@ -16,6 +16,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       };
     case UserActionTypes.SIGN_IN_SUCCESS:
       const { id, displayName, email, createdAt, favorites } = action.payload;
+      console.log("success", action.payload);
       return {
         ...state,
         currentUser: { id, displayName, email, createdAt },

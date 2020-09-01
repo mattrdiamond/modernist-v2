@@ -7,9 +7,12 @@ import {
   googleSignInStart,
   emailSignInStart,
 } from "../../redux/user/user.actions";
+import { createStructuredSelector } from "reselect";
+import { selectErrorMessage } from "../../redux/user/user.selectors";
+
 import "./sign-in.styles.scss";
 
-const SignIn = ({ emailSignInStart, googleSignInStart }) => {
+const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
   const [userCredentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -64,10 +67,15 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
             Sign in with Google
           </CustomButton>
         </div>
+        {error && <span className="error">{error}</span>}
       </form>
     </div>
   );
 };
+
+const mapStateToProps = createStructuredSelector({
+  error: selectErrorMessage,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   googleSignInStart: () => dispatch(googleSignInStart()),
@@ -75,4 +83,4 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(emailSignInStart({ email, password })),
 });
 
-export default connect(null, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

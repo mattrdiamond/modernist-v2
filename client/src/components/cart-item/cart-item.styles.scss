@@ -15,10 +15,11 @@
   img {
     width: 5rem;
     height: 5rem;
-    object-fit: cover;
-    background-color: var(--primary-15);
+    object-fit: contain;
+    background-color: var(--primary-07);
     border-radius: 2px;
     display: block;
+    padding: 0.5rem;
   }
 
   .item-details {
