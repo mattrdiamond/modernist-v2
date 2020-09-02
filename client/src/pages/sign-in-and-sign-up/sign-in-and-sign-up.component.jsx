@@ -1,12 +1,22 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectErrorMessage } from "../../redux/user/user.selectors";
+import { clearError } from "../../redux/user/user.actions";
 import SignIn from "../../components/sign-in/sign-in.component";
 import SignUp from "../../components/sign-up/sign-up.component";
 import "./sign-in-and-sign-up.styles.scss";
 
-const SignInAndSignUpPage = () => {
+const SignInAndSignUpPage = ({ error, clearError }) => {
   const [activeTab, setActiveTab] = useState("signIn");
 
+  const clearErrors = () => {
+    if (!error) return;
+    clearError();
+  };
+
   const toggleTab = () => {
+    clearErrors();
     if (activeTab === "signUp") setActiveTab("signIn");
     else setActiveTab("signUp");
   };
@@ -49,4 +59,15 @@ const SignInAndSignUpPage = () => {
   );
 };
 
-export default SignInAndSignUpPage;
+const mapStateToProps = createStructuredSelector({
+  error: selectErrorMessage,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  clearError: () => dispatch(clearError()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignInAndSignUpPage);

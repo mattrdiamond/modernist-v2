@@ -50,6 +50,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         favorites: action.payload,
       };
+    case UserActionTypes.CLEAR_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
+    case UserActionTypes.SET_ERROR:
+      return {
+        ...state,
+        error: { message: action.payload },
+      };
     default:
       return state;
   }

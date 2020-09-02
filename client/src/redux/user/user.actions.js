@@ -80,3 +80,12 @@ export const removeFavoriteFailure = (error) => ({
   type: UserActionTypes.REMOVE_FAVORITE_FAILURE,
   payload: error,
 });
+
+export const clearError = () => ({
+  type: UserActionTypes.CLEAR_ERROR,
+});
+
+export const setError = (error) => ({
+  type: UserActionTypes.SET_ERROR,
+  payload: error,
+});

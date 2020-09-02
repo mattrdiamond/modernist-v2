@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
-import { signUpStart } from "../../redux/user/user.actions";
+import { signUpStart, setError } from "../../redux/user/user.actions";
 import { selectErrorMessage } from "../../redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
-
 import "./sign-up.styles.scss";
 
-const SignUp = ({ signUpStart, error }) => {
+const SignUp = ({ signUpStart, error, setError }) => {
   const [userCredentials, setUserCredentials] = useState({
     displayName: "",
     email: "",
@@ -18,12 +17,15 @@ const SignUp = ({ signUpStart, error }) => {
 
   const { displayName, email, password, confirmPassword } = userCredentials;
 
+  console.log("render signup", error);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
+      // alert("Passwords do not match");
+      // return;
+      return setError("Passwords do not match.");
     }
 
     // create new user acct associated w/ email, password and displayName and sign in user (pass along credentials obj containing email, password and displayName to saga)
@@ -73,7 +75,7 @@ const SignUp = ({ signUpStart, error }) => {
           required
         />
         <CustomButton type="submit">Sign Up</CustomButton>
-        {error && <span className="error">{error}</span>}
+        {error ? <span className="error">{error}</span> : null}
       </form>
     </div>
   );
@@ -85,6 +87,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   signUpStart: (userCredentials) => dispatch(signUpStart(userCredentials)),
+  setError: (error) => dispatch(setError(error)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

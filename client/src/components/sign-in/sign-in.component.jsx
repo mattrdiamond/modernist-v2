@@ -22,7 +22,6 @@ const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = userCredentials;
 
     emailSignInStart(email, password);
   };
@@ -67,7 +66,11 @@ const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
             Sign in with Google
           </CustomButton>
         </div>
-        {error && <span className="error">{error}</span>}
+        {error && (
+          <span className="error">
+            Incorrect username or password. Please try again
+          </span>
+        )}
       </form>
     </div>
   );
