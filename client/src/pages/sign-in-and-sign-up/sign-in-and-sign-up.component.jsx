@@ -10,13 +10,8 @@ import "./sign-in-and-sign-up.styles.scss";
 const SignInAndSignUpPage = ({ error, clearError }) => {
   const [activeTab, setActiveTab] = useState("signIn");
 
-  const clearErrors = () => {
-    if (!error) return;
-    clearError();
-  };
-
   const toggleTab = () => {
-    clearErrors();
+    if (error) clearError();
     if (activeTab === "signUp") setActiveTab("signIn");
     else setActiveTab("signUp");
   };

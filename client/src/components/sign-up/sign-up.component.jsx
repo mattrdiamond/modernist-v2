@@ -23,8 +23,6 @@ const SignUp = ({ signUpStart, error, setError }) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      // alert("Passwords do not match");
-      // return;
       return setError("Passwords do not match.");
     }
 

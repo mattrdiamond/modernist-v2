@@ -68,7 +68,7 @@ const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
         </div>
         {error && (
           <span className="error">
-            Incorrect username or password. Please try again
+            Incorrect username or password. Please try again.
           </span>
         )}
       </form>

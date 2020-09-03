@@ -221,7 +221,18 @@ form > *:last-child {
   }
 }
 
+@media (max-width: 800px) {
+  :root {
+    --window-top: 4vw;
+    --window-bottom: 8vw;
+  }
+}
+
 @media (max-width: 680px) {
+  :root {
+    --window-top: 1.5rem;
+    --window-bottom: 3rem;
+  }
   .page-width {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -229,10 +240,6 @@ form > *:last-child {
 }
 
 @media (max-width: 450px) {
-  :root {
-    --window-top: 1.5rem;
-    --window-bottom: 3rem;
-  }
   html {
     font-size: 16px;
   }
