@@ -8,6 +8,8 @@
     align-items: center;
     border-bottom: 1px solid var(--primary-10);
     justify-content: space-between;
+    font-weight: bold;
+    color: var(--primary-80);
 
     &:hover {
       [class*="icon-"]:not(.icon-arrow-right) {
@@ -32,7 +34,7 @@
   }
 
   [class^="icon-"]:not(.icon-arrow-right) {
-    color: var(--primary-40);
+    color: var(--primary-50);
     transition: color 0.2s;
   }
 
@@ -72,7 +74,7 @@
   .icon-arrow-right {
     width: 14px;
     height: 14px;
-    color: var(--primary-30);
+    color: var(--primary-20);
     pointer-events: none;
   }
 }

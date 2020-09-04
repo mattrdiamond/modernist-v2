@@ -14,16 +14,13 @@ const FavoritesPage = ({ favorites }) => {
     <div className="favorites-page page-width">
       {favorites ? (
         <>
-          <h2 className="title">Favorites</h2>
-          <span className="subtitle">
-            All your top picks, together at last!
-          </span>
+          <div className="favorites-text">
+            <h2 className="title">Favorites</h2>
+            <span className="subtitle">
+              All your top picks, together at last!
+            </span>
+          </div>
           <ImageGrid items={favoritesArray} />
-          {/*<div className="item-grid">
-            {favoritesArray.map((favorite) => (
-              <CollectionItem key={favorite.id} item={favorite} />
-            ))}
-            </div>*/}
         </>
       ) : (
         <div className="empty-fav-container">

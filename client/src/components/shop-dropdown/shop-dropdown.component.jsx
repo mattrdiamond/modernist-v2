@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import useOnClickOutside from "../../utils/use-onclick-outside";
 import useLockBodyScroll from "../../utils/use-lock-body-scroll";
+import Icon from "../icon/icon.component";
 import "./shop-dropdown.styles.scss";
 
 const ShopDropdown = ({ toggleShopDropdown, sections }) => {
@@ -26,7 +27,11 @@ const ShopDropdown = ({ toggleShopDropdown, sections }) => {
             to={`/${linkUrl}`}
             onClick={toggleShopDropdown}
           >
-            {title}
+            <div className="link-content">
+              <Icon icon={title.replace(/ &.*| /, "").toLowerCase()} />
+              {title}
+            </div>
+            <Icon icon="arrow-right" />
           </Link>
         </li>
       ))}
