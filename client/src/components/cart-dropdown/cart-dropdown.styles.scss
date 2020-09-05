@@ -14,7 +14,8 @@ $cart-items-height: calc(#{$cart-item-height} * 3 + 2px);
   z-index: 5;
   border-top: 1px solid var(--primary-15);
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.12);
-  font-size: 0.875rem;
+  font-size: 0.85rem;
+  line-height: 1.3;
   border-radius: 0 0 2px 2px;
 
   .empty-message {

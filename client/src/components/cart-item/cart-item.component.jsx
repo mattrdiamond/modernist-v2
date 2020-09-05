@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { clearItemFromCart } from "../../redux/cart/cart.actions";
 import Icon from "../icon/icon.component";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./cart-item.styles.scss";
 
 const CartItem = ({ item, clearItem, toggleCartHidden }) => {
   const { images, price, name, quantity, collection, id } = item;
-
+  console.log("render cart item");
   return (
     <div className="cart-item">
       <Link
@@ -47,4 +47,4 @@ const mapDispatchToProps = (dispatch) => ({
   clearItem: (item) => dispatch(clearItemFromCart(item)),
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(CartItem));
+export default connect(null, mapDispatchToProps)(CartItem);

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CSSTransitionGroup } from "react-transition-group";
 import { getSearchResults } from "../../utils/utils";
 
@@ -89,6 +89,4 @@ const mapDispatchToProps = (dispatch) => ({
   setInputValue: (inputValue) => dispatch(setInputValue(inputValue)),
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(SearchDropdown)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchDropdown);

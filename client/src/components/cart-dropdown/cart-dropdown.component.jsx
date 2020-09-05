@@ -66,7 +66,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
-// Export a new component that is "connected" to the router, giving us access to history
+// This gives the CartDropdown component access to history prop, which allows CartDropdown to redirect the user.
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(CartDropdown)
 );

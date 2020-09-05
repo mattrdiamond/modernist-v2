@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { addItem } from "../../redux/cart/cart.actions";
+import { addItem, toggleCartHidden } from "../../redux/cart/cart.actions";
 import { selectItem } from "../../redux/shop/shop.selectors";
 import StarRating from "../../components/star-rating/star-rating.component";
 import Stepper from "../../components/stepper/stepper.component";
@@ -9,8 +9,7 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import FavoritingButton from "../../components/favoriting-button/favoriting-button.component";
 import "./product-page.styles.scss";
 
-const ProductPage = ({ item, collectionId, addItem }) => {
-  console.log("item", item);
+const ProductPage = ({ item, collectionId, addItem, toggleCartHidden }) => {
   const { name, price, images } = item;
 
   const [quantity, setQuantity] = useState(1);
@@ -25,6 +24,7 @@ const ProductPage = ({ item, collectionId, addItem }) => {
 
   const addToCart = () => {
     addItem(item, quantity);
+    toggleCartHidden();
   };
 
   return (
@@ -80,9 +80,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item, quantity) => dispatch(addItem(item, quantity)),
+  toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
-// export default connect(mapStateToProps)(ProductPage);
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ProductPage)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import "./confirmation.styles.scss";
 
 const Confirmation = (data) => {
+  console.log("data", data);
   const { paymentData, totals } = data.location;
   const { amount, payment_method_details, created } = paymentData;
   const { cartSubtotal, discount, tax, shipping } = totals;
@@ -46,14 +47,14 @@ const Confirmation = (data) => {
               <div className="order-details-inner">
                 <span className="label">Subtotal</span>
                 <span className="details">${cartSubtotal.toFixed(2)}</span>
-                {discount && (
+                {discount ? (
                   <>
                     <span className="label promo">Promo</span>
                     <span className="details promo">
                       -${discount.toFixed(2)}
                     </span>
                   </>
-                )}
+                ) : null}
                 <span className="label hr-above">Sales Tax</span>
                 <span className="details hr-above">${tax.toFixed(2)}</span>
                 <span className="label">Shipping</span>

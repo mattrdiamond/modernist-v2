@@ -84,3 +84,11 @@
     }
   }
 }
+
+@media (max-width: 475px) {
+  .checkout-item {
+    .item-img {
+      margin-right: 0.75rem;
+    }
+  }
+}

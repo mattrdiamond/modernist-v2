@@ -6,7 +6,7 @@ import "./about.styles.scss";
 const About = () => {
   // Intersection observer - note: a ref can accept an actual ref object with .current property OR in this case a function
   // that gets passed DOM reference. setRef will update the ref state in useOnScreen with the referenced DOM element
-  const [setRef, visible] = useOnScreen({ threshold: 0.75 });
+  const [setRef, visible] = useOnScreen({ threshold: 0.6 });
 
   return (
     <section className="about-component" ref={setRef}>
