@@ -87,7 +87,7 @@
   }
 
   .col-price {
-    width: 2.5rem;
+    width: 2.75rem;
     // margin-right: 3rem;
     margin-right: calc(var(--grid-gap) - 0.5rem);
     display: flex;
@@ -236,7 +236,7 @@
 
     .col-description {
       // 100% - photo and margin
-      flex-basis: calc(100% - 3.25rem);
+      flex-basis: calc(100% - 3.5rem);
       order: 1;
       line-height: 1.375;
       margin-bottom: 0.35rem;

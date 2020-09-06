@@ -25,16 +25,34 @@ $details-width: calc(100% - #{$label-width});
     font-size: 2rem;
   }
 
-  .order-details,
-  .order-details-inner {
-    display: flex;
-    flex-wrap: wrap;
+  .order-details {
+    .label {
+      flex-basis: $label-width;
+    }
+
+    .details {
+      flex-basis: $details-width;
+      padding-left: 2rem;
+    }
   }
 
-  .order-details {
+  .order-detail {
+    width: 100%;
+    display: flex;
+    padding-bottom: 2rem;
+
     > .label {
       font-weight: bold;
       text-align: right;
+
+      &:not(:last-of-type) {
+        position: relative;
+        top: 3px;
+      }
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
     }
   }
 
@@ -46,50 +64,30 @@ $details-width: calc(100% - #{$label-width});
     width: $details-width;
     padding-left: 2rem;
 
+    > li {
+      width: 100%;
+      display: flex;
+
+      &:not(:last-of-type) {
+        padding-bottom: 1rem;
+      }
+    }
+
     .details {
       text-align: right;
       font-weight: bold;
     }
 
-    .label {
-      padding-bottom: 1rem;
-    }
-
-    span:nth-last-of-type(2),
-    span:first-of-type {
+    .subtotal,
+    .total {
       font-weight: bold;
     }
 
-    span:nth-last-of-type(2) {
-      padding-bottom: 0;
+    .tax,
+    .total {
+      padding-top: 1rem;
+      border-top: 1px solid var(--primary-20);
     }
-  }
-
-  .order-details .label,
-  .order-details-inner .label {
-    flex-basis: $label-width;
-  }
-
-  .order-details > .label,
-  .order-details > .details {
-    padding-bottom: 2rem;
-  }
-
-  .order-details .details,
-  .order-details-inner .details {
-    flex-basis: $details-width;
-    padding-left: 2rem;
-  }
-
-  .hr-above {
-    border-top: 1px solid var(--primary-20);
-    padding-top: 1rem;
-  }
-
-  .hr-below {
-    border-bottom: 1px solid var(--primary-20);
-    padding-bottom: 1rem;
-    margin-bottom: 1rem;
   }
 }
 
@@ -99,24 +97,20 @@ $details-width: calc(100% - #{$label-width});
       padding: 1rem;
     }
 
-    .order-details {
+    .order-detail {
       display: block;
+    }
 
-      > .label {
-        text-align: left;
-        padding-bottom: 0.5rem;
-      }
-
+    .order-detail {
       > .label,
       > .details {
         padding-left: 0;
         display: block;
       }
 
-      > .details {
-        // outline: 1px solid;
-        padding-bottom: 1.5rem;
-        padding-left: 0;
+      > .label {
+        text-align: left;
+        padding-bottom: 0.5rem;
       }
     }
 
