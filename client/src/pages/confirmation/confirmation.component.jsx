@@ -10,6 +10,7 @@ const Confirmation = (data) => {
   const orderDate = new Date(created * 1000); // convert timestamp into date
   const { card } = payment_method_details;
 
+  // Calculate estimated delivery date (10 days from current date)
   const getDeliveryDate = () => {
     const days = 10;
     const deliveryDate = new Date(

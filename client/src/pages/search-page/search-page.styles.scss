@@ -1,17 +1,24 @@
 .search-page {
   display: flex;
   flex-direction: column;
+  padding-top: var(--window-top);
+  padding-bottom: var(--window-bottom);
+  height: 100%;
 
-  .search-intro {
-    margin-bottom: 1rem;
+  .title {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .image-grid {
+    margin-top: 2rem;
   }
 }
 
-// @media screen and (max-width: 800px) {
-//   .collection-page {
-//     .search-container {
-//       grid-template-columns: 1fr 1fr;
-//       grid-gap: 15px;
+// @media screen and (max-width: 680px) {
+//   .search-page {
+//     .image-grid {
+//       margin-top: 1.5rem;
 //     }
 //   }
 // }

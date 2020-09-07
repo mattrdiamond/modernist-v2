@@ -28,7 +28,7 @@ const CollectionPage = ({ collection }) => {
       </div>
       <div className="collection-container">
         <div className="page-width">
-          <ImageGrid items={items}></ImageGrid>
+          <ImageGrid items={items} />
         </div>
       </div>
     </div>
