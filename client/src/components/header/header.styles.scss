@@ -111,7 +111,7 @@
     display: none;
   }
 
-  // CSSTransitionGroup transitions - applied when element added/removed from DOM
+  // CSSTransition (react-transition-group) - applied when element added/removed from DOM
   .search-drawer-enter {
     top: calc(0px - var(--nav-height));
 
