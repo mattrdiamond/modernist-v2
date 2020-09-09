@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
-import { CSSTransitionGroup } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 import { selectDropdownHidden } from "../../redux/shop/shop.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
@@ -132,21 +132,29 @@ const Header = ({
           </div>
         </div>
       </div>
-      {/* CSSTransitionGroup - applies transition before adding/removing from DOM */}
-      <CSSTransitionGroup
-        transitionName="mobile-nav"
-        transitionEnterTimeout={300}
-        transitionLeaveTimeout={300}
+      {/*
+        CSSTransition - applies CSS transition before adding/removing from DOM
+          • in - condition must be met to display child component (mobileNav)
+          • classNames - applied when element added/removed from DOM
+          • timeout - transition time
+          • unmountOnExit - unmount the child component after it finishes exiting
+      */}
+      <CSSTransition
+        in={mobileNavVisible}
+        classNames="mobile-nav"
+        timeout={200}
+        unmountOnExit
       >
-        {mobileNavVisible && <MobileNav />}
-      </CSSTransitionGroup>
-      <CSSTransitionGroup
-        transitionName="search-drawer"
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={500}
+        <MobileNav />
+      </CSSTransition>
+      <CSSTransition
+        in={!searchDrawerHidden}
+        classNames="search-drawer"
+        timeout={500}
+        unmountOnExit
       >
-        {!searchDrawerHidden && <SearchDrawer />}
-      </CSSTransitionGroup>
+        <SearchDrawer />
+      </CSSTransition>
     </nav>
   );
 };

@@ -22,7 +22,6 @@
     "express": "^4.16.4",
     "firebase": "^7.14.0",
     "node-fetch": "^2.6.0",
-    "react-transition-group": "1.x",
     "stripe": "6.28.0",
     "universal-config": "^0.3.0",
     "unsplash-js": "^6.0.0"
