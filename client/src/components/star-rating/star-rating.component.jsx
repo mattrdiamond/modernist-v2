@@ -2,23 +2,35 @@ import React from "react";
 import Icon from "../icon/icon.component";
 import "./star-rating.styles.scss";
 
-const StarRating = () => {
-  const rating = 4;
-  const reviewCount = 5;
-  const starArray = [...Array(5).keys()]; // [0, 1, 2, 3, 4]
+const StarRating = ({ rating, maxRating, reviewCount }) => {
+  const starPercentage = (rating / maxRating) * 100;
+  // round to nearest 10
+  const starPercentageRounded = Math.round(starPercentage / 10) * 10;
+
+  // create a group of 5 stars
+  const starArray = Array.from({ length: maxRating }, (_, i) => (
+    <span className="star" key={i} aria-hidden="true">
+      <Icon icon="star" />
+    </span>
+  ));
 
   return (
     <div className="star-rating">
-      <ul className="rating-list">
-        {starArray.map((star, index) => (
-          <li key={index} className={"star" + (star < rating ? " shaded" : "")}>
-            <Icon icon="star" />
-          </li>
-        ))}
-      </ul>
+      <span className="stars-background" aria-hidden="true">
+        {starArray}
+      </span>
+      <span
+        className="stars-fill"
+        style={{ clipPath: `inset(0 ${100 - starPercentageRounded}% 0 0)` }}
+        role="img"
+        aria-label={`Rating: ${rating} out of ${maxRating} stars`}
+      >
+        {starArray}
+      </span>
       <span className="review-count">{reviewCount} reviews</span>
     </div>
   );
 };
 
-export default StarRating;
+// react memo will prevent re-render of star rating every time product page updates
+export default React.memo(StarRating);

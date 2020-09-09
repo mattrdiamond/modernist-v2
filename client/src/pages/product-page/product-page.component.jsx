@@ -10,7 +10,7 @@ import FavoritingButton from "../../components/favoriting-button/favoriting-butt
 import "./product-page.styles.scss";
 
 const ProductPage = ({ item, collectionId, addItem, toggleCartHidden }) => {
-  const { name, price, images } = item;
+  const { name, price, images, rating, review_count } = item;
 
   const [quantity, setQuantity] = useState(1);
 
@@ -38,7 +38,7 @@ const ProductPage = ({ item, collectionId, addItem, toggleCartHidden }) => {
           <span className="collection-name">{collectionId}</span>
         </Link>
         <h1 className="product-title">{name}</h1>
-        <StarRating />
+        <StarRating rating={rating} maxRating={5} reviewCount={review_count} />
         <h2 className="product-price">${price}</h2>
         <h4>Product Description</h4>
         <p className="product-description">

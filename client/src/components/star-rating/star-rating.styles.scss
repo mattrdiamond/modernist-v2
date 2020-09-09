@@ -2,34 +2,58 @@
   display: flex;
   align-items: center;
 
-  .rating-list {
+  // .rating-list {
+  //   display: flex;
+  //   padding: 0;
+  //   margin: 0;
+  //   align-items: center;
+  // }
+
+  // .star {
+  //   color: var(--primary-20);
+
+  //   // &.shaded {
+  //   //   color: var(--yellow);
+  //   // }
+
+  //   // &:not(:first-of-type) {
+  //   //   margin-left: 0.25rem;
+  //   // }
+  // }
+
+  .stars-background,
+  .stars-fill {
     display: flex;
-    padding: 0;
-    margin: 0;
-    align-items: center;
   }
 
-  .star {
+  .stars-background {
+    position: relative;
     color: var(--primary-20);
-    // display: flex;
-    // align-items: center;
 
-    &.shaded {
+    // .icon-star:not(:first-of-type) {
+    //   margin-left: 0.25rem;
+    // }
+  }
+
+  .stars-fill {
+    position: absolute;
+
+    .icon-star {
       color: var(--yellow);
     }
-
-    &:not(:first-of-type) {
-      margin-left: 0.25rem;
-    }
   }
 
+  // .star {
+  //   line-height: 0;
+  // }
+
   .icon-star {
-    width: 0.95rem;
-    height: 0.95rem;
+    width: 20px;
+    height: 16px;
   }
 
   .review-count {
-    margin-left: 1rem;
+    margin-left: 0.75rem;
     font-size: 0.9rem;
     font-weight: bold;
     color: var(--primary-40);
