@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addItem } from "../../redux/cart/cart.actions";
-import CustomButton from "../custom-button/custom-button.component";
 import FavoritingButton from "../favoriting-button/favoriting-button.component";
 import { Link } from "react-router-dom";
 import "./collection-item.styles.scss";

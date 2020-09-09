@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import useLockBodyScroll from "../../utils/use-lock-body-scroll";

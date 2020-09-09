@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { addItem, toggleCartHidden } from "../../redux/cart/cart.actions";
 import { selectItem } from "../../redux/shop/shop.selectors";
 import StarRating from "../../components/star-rating/star-rating.component";

@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
-import { createStructuredSelector } from "reselect";
+import React from "react";
 import { connect } from "react-redux";
 import { toggleInputHidden } from "../../redux/search/search.actions";
-import { selectInputHidden } from "../../redux/search/search.selectors";
 import Icon from "../icon/icon.component";
 import "./search-icon.styles.scss";
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
@@ -14,7 +14,6 @@ import StripeCheckoutButton from "../../components/stripe-button/stripe-button.c
 import PromoForm from "../../components/promo-form/promo-form.component";
 import PromoBanner from "../../components/promo-banner/promo-banner.component";
 import "./checkout.styles.scss";
-import FormInput from "../../components/form-input/form-input.component";
 
 const CheckoutPage = ({ cartItems, cartSubtotal, promoApplied }) => {
   const taxRate = 0.0625;

@@ -2,7 +2,6 @@ import React from "react";
 import { createStructuredSelector } from "reselect";
 import { selectCollectionItems } from "../../redux/shop/shop.selectors";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
-import CollectionItem from "../../components/collection-item/collection-item.component";
 import Spinner from "../../components/with-spinner/spinner.component";
 import ImageGrid from "../../components/image-grid/image-grid.component";
 

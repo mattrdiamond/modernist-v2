@@ -1,5 +1,6 @@
 import React from "react";
 import CustomButton from "../custom-button/custom-button.component";
+import { withRouter } from "react-router-dom";
 import {
   landing2x,
   landing1x,
@@ -8,7 +9,7 @@ import {
 } from "../../assets/img/_images";
 import "./landing.styles.scss";
 
-const Landing = () => (
+const Landing = ({ history }) => (
   <section className="landing">
     <picture>
       <source
@@ -30,7 +31,7 @@ const Landing = () => (
     <div className="landing-txt-container">
       <div className="landing-txt page-width">
         <div className="landing-txt-inner">
-          <span className="landing-subtitle">New Collection</span>
+          <span className="landing-subtitle">New Arrivals</span>
           <h2 className="landing-title">
             A simple touch of
             <br />
@@ -40,11 +41,13 @@ const Landing = () => (
             Chic, sleek, and thoroughly modern, these timeless pieces showcase
             clean lines and geometric shapes.
           </p>
-          <CustomButton inverted>Shop Now</CustomButton>
+          <CustomButton inverted onClick={() => history.push("/shop")}>
+            Shop Now
+          </CustomButton>
         </div>
       </div>
     </div>
   </section>
 );
 
-export default Landing;
+export default withRouter(Landing);

@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { selectCollection } from "../../redux/shop/shop.selectors";
-import CollectionItem from "../../components/collection-item/collection-item.component";
 import ImageGrid from "../../components/image-grid/image-grid.component";
 import "./collection.styles.scss";
 

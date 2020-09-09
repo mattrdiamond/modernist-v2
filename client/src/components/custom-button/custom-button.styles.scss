@@ -36,12 +36,6 @@
     background-color: transparent;
     color: inherit;
     border: thin solid;
-
-    &:hover {
-      background-color: var(--primary-85);
-      color: white;
-      border-color: var(--primary-85);
-    }
   }
 
   &.inline {

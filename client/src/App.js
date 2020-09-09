@@ -46,6 +46,8 @@ const App = ({
         return "input-visible";
       case mobileNavVisible:
         return "nav-visible";
+      default:
+        return;
     }
   };
 

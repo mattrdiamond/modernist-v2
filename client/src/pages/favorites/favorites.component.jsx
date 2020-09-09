@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { selectFavorites } from "../../redux/user/user.selectors";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import ImageGrid from "../../components/image-grid/image-grid.component";
-import CollectionItem from "../../components/collection-item/collection-item.component";
 import "./favorites.styles.scss";
 
 const FavoritesPage = ({ favorites }) => {

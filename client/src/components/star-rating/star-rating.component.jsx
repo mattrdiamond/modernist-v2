@@ -4,6 +4,7 @@ import "./star-rating.styles.scss";
 
 const StarRating = ({ rating, maxRating, reviewCount }) => {
   const starPercentage = (rating / maxRating) * 100;
+
   // round to nearest 10
   const starPercentageRounded = Math.round(starPercentage / 10) * 10;
 

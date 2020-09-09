@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import useOnClickOutside from "../../utils/use-onclick-outside";
 import useLockBodyScroll from "../../utils/use-lock-body-scroll";

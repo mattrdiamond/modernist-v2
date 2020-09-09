@@ -2,13 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
-import { CSSTransitionGroup } from "react-transition-group";
 import { getSearchResults } from "../../utils/utils";
 
-import {
-  selectInputHidden,
-  selectInputValue,
-} from "../../redux/search/search.selectors";
+import { selectInputHidden } from "../../redux/search/search.selectors";
 import { selectNavVisible } from "../../redux/mobile-nav/mobile-nav.selectors";
 import { toggleNav } from "../../redux/mobile-nav/mobile-nav.actions";
 import { setInputValue } from "../../redux/search/search.actions";

@@ -1,10 +1,8 @@
-export const checkCartForItem = (cartItems, itemToCheck) => {
-  return cartItems.find((cartItem) => cartItem.id === itemToCheck.id);
-};
-
 export const addItemToCart = (cartItems, cartItemToAdd, newQuantity) => {
   // 1. Check cart items to see if itemToAdd exists
-  const existingCartItem = checkCartForItem(cartItems, cartItemToAdd);
+  const existingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === cartItemToAdd.id
+  );
 
   // 2. If it exists, add new quantity or 1 (default)
   if (existingCartItem) {
@@ -19,8 +17,6 @@ export const addItemToCart = (cartItems, cartItemToAdd, newQuantity) => {
 };
 
 export const removeItemFromCart = (cartItems, cartItemToRemove) => {
-  const existingCartItem = checkCartForItem(cartItems, cartItemToRemove);
-
   return cartItems.map((cartItem) =>
     cartItem.id === cartItemToRemove.id
       ? { ...cartItem, quantity: cartItem.quantity - 1 }
