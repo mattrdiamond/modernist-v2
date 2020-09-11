@@ -1,16 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { selectCollection } from "../../redux/shop/shop.selectors";
+import { withRouter } from "react-router-dom";
+import {
+  selectCollection,
+  selectSortParam,
+  selectSortedCollectionItems,
+} from "../../redux/shop/shop.selectors";
 import ImageGrid from "../../components/image-grid/image-grid.component";
+import SortForm from "../../components/sort-form/sort-form.component";
+import { setSortParam } from "../../redux/shop/shop.actions";
 import "./collection.styles.scss";
 
-const CollectionPage = ({ collection }) => {
+const CollectionPage = ({
+  collection,
+  sortedItems,
+  sortParam,
+  setSortParam,
+  history,
+}) => {
   const {
     title,
     items,
     banner: { large, small },
   } = collection;
 
+  const clearSortParam = () => {
+    setSortParam("");
+  };
+
+  useEffect(() => {
+    history.listen(clearSortParam);
+  }, [history]);
+
+  const handleSetSortParam = (e) => {
+    setSortParam(e.target.value);
+  };
+  console.log("sort param", sortParam);
+  console.log("");
   return (
     <div className="collection-page">
       <div className={`title-banner ${title.toLowerCase()}`}>
@@ -27,7 +53,8 @@ const CollectionPage = ({ collection }) => {
       </div>
       <div className="collection-container">
         <div className="page-width">
-          <ImageGrid items={items} />
+          <SortForm handleChange={handleSetSortParam} value={sortParam} />
+          <ImageGrid items={sortedItems} />
         </div>
       </div>
     </div>
@@ -40,6 +67,16 @@ const mapStateToProps = (state, ownProps) => ({
   // selectCollection returns another function (createSelector) which we then pass state into:
   // selectCollection(ownProps.collectionId) => createSelector(state) => returns collection in state corresponding to the match.params.collectionId (i.e. collections[hats])
   collection: selectCollection(ownProps.match.params.collectionId)(state),
+  sortedItems: selectSortedCollectionItems(ownProps.match.params.collectionId)(
+    state
+  ),
+  sortParam: selectSortParam(state),
 });
 
-export default connect(mapStateToProps)(CollectionPage);
+const mapDispatchToProps = (dispatch) => ({
+  setSortParam: (param) => dispatch(setSortParam(param)),
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CollectionPage)
+);

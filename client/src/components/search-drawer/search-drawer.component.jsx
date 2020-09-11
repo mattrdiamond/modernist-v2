@@ -7,7 +7,7 @@ import {
   selectInputValue,
   selectInputHidden,
 } from "../../redux/search/search.selectors";
-import { selectCollectionItems } from "../../redux/shop/shop.selectors";
+import { selectAllCollectionItems } from "../../redux/shop/shop.selectors";
 import {
   setInputValue,
   closeSearchDrawer,
@@ -91,7 +91,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = createStructuredSelector({
   inputValue: selectInputValue,
-  collectionItems: selectCollectionItems,
+  collectionItems: selectAllCollectionItems,
   inputHidden: selectInputHidden,
 });
 

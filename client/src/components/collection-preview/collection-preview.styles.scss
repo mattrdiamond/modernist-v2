@@ -47,7 +47,7 @@
 
   .view-all {
     // padding: 0.5rem;
-    // border: 1px solid;
+    // border: 1px solid var(--primary-20);
     margin: 0 0.5rem;
     padding: 1rem;
     font-size: 0.9rem;
@@ -61,7 +61,8 @@
 
     &:hover {
       .icon-arrow-right-long {
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+        // box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+        border-color: var(--primary-85);
       }
     }
   }
@@ -73,8 +74,9 @@
     border-radius: 50%;
     background: #fff;
     margin-bottom: 0.5rem;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.2s;
+    // box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s;
+    border: 1px solid var(--primary-20);
   }
 }
 

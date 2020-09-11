@@ -5,7 +5,7 @@ import useLockBodyScroll from "../../utils/use-lock-body-scroll";
 
 import { selectDirectorySections } from "../../redux/directory/directory.selectors";
 import { selectInputValue } from "../../redux/search/search.selectors";
-import { selectCollectionItems } from "../../redux/shop/shop.selectors";
+import { selectAllCollectionItems } from "../../redux/shop/shop.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { setInputValue } from "../../redux/search/search.actions";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
@@ -90,7 +90,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = createStructuredSelector({
   sections: selectDirectorySections,
   inputValue: selectInputValue,
-  collectionItems: selectCollectionItems,
+  collectionItems: selectAllCollectionItems,
   currentUser: selectCurrentUser,
 });
 

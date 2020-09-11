@@ -1,6 +1,6 @@
 import React from "react";
 import { createStructuredSelector } from "reselect";
-import { selectCollectionItems } from "../../redux/shop/shop.selectors";
+import { selectAllCollectionItems } from "../../redux/shop/shop.selectors";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import Spinner from "../../components/with-spinner/spinner.component";
 import ImageGrid from "../../components/image-grid/image-grid.component";
@@ -46,7 +46,7 @@ const SearchPage = ({
 };
 
 const mapStateToProps = createStructuredSelector({
-  collectionItems: selectCollectionItems,
+  collectionItems: selectAllCollectionItems,
 });
 
 const mapDispatchToProps = (dispatch) => ({

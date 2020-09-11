@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   isFetching: false,
   errorMessage: undefined,
   dropdownHidden: true,
+  sortParam: "",
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
@@ -30,6 +31,11 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         dropdownHidden: !state.dropdownHidden,
+      };
+    case ShopActionTypes.SET_SORT_PARAM:
+      return {
+        ...state,
+        sortParam: action.payload,
       };
     default:
       return state;

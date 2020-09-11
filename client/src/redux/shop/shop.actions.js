@@ -17,3 +17,8 @@ export const fetchCollectionsFailure = (errorMessage) => ({
 export const toggleDropdownHidden = () => ({
   type: ShopActionTypes.TOGGLE_DROPDOWN_HIDDEN,
 });
+
+export const setSortParam = (param) => ({
+  type: ShopActionTypes.SET_SORT_PARAM,
+  payload: param,
+});
