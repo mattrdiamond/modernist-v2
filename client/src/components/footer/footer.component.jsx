@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectDirectorySections } from "../../redux/directory/directory.selectors";
-
+import { sortAsc } from "../../utils/utils";
 import Icon from "../icon/icon.component";
 import Accordion from "../accordion/accordion.component";
 import "./footer.styles.scss";
@@ -19,9 +19,7 @@ const Footer = ({ sections }) => {
     setExpandedTitle(title);
   };
 
-  const sortedShopSections = sections
-    .concat()
-    .sort((a, b) => (a.title > b.title ? 1 : -1));
+  const sortedShopSections = sortAsc(sections, sections.title);
 
   console.log("render footer");
   return (

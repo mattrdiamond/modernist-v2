@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import useOnClickOutside from "../../utils/use-onclick-outside";
 import useLockBodyScroll from "../../utils/use-lock-body-scroll";
+import { sortAsc } from "../../utils/utils";
 import Icon from "../icon/icon.component";
 import "./shop-dropdown.styles.scss";
 
@@ -14,9 +15,7 @@ const ShopDropdown = ({ toggleShopDropdown, sections }) => {
   // prevent body scrolling
   useLockBodyScroll();
 
-  const sortedShopSections = sections
-    .concat()
-    .sort((a, b) => (a.title > b.title ? 1 : -1));
+  const sortedShopSections = sortAsc(sections, sections.title);
 
   return (
     <ul className="shop-dropdown" ref={shopDropdownRef}>

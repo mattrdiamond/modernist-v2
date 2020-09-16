@@ -36,18 +36,14 @@ export function debounce(fn, ms) {
 /*
  * Sort Ascending
  */
-export const sortAsc = (arr, property) => {
-  const sorted = [...arr].sort((a, b) => (a[property] > b[property] ? 1 : -1));
-  return sorted;
-};
+export const sortAsc = (arr, property) =>
+  [...arr].sort((a, b) => (a[property] > b[property] ? 1 : -1));
 
 /*
  * Sort Descending
  */
-export const sortDesc = (arr, property) => {
-  const sorted = [...arr].sort((a, b) => (a[property] > b[property] ? -1 : 1));
-  return sorted;
-};
+export const sortDesc = (arr, property) =>
+  [...arr].sort((a, b) => (a[property] > b[property] ? -1 : 1));
 
 /*
  * Determine how many images fit on screen based on window width

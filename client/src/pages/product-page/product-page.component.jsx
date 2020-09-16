@@ -10,8 +10,7 @@ import FavoritingButton from "../../components/favoriting-button/favoriting-butt
 import "./product-page.styles.scss";
 
 const ProductPage = ({ item, addItem, toggleCartHidden, collectionId }) => {
-  const { name, price, images, rating, review_count } = item;
-  // const { collectionId } = match.params;
+  const { name, price, images, rating, review_count, sku } = item;
   const [quantity, setQuantity] = useState(1);
 
   const handleAddItem = () => {
@@ -55,7 +54,7 @@ const ProductPage = ({ item, addItem, toggleCartHidden, collectionId }) => {
         </span>
         <span className="product-detail">
           <span className="bold">SKU: </span>
-          {Math.floor(100000000 + Math.random() * 900000000)}
+          {sku}
         </span>
         <div className="button-container">
           <Stepper
