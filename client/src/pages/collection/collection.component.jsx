@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import {
-  selectCollection,
   selectSortParam,
   selectSortedCollectionItems,
+  makeSelectCollection,
 } from "../../redux/shop/shop.selectors";
 import ImageGrid from "../../components/image-grid/image-grid.component";
-import SortForm from "../../components/sort-form/sort-form.component";
+import SortBy from "../../components/sort-by/sort-by.component";
 import { setSortParam } from "../../redux/shop/shop.actions";
 import "./collection.styles.scss";
 
@@ -20,23 +20,20 @@ const CollectionPage = ({
 }) => {
   const {
     title,
-    items,
     banner: { large, small },
   } = collection;
 
-  const clearSortParam = () => {
-    setSortParam("");
-  };
+  console.log("render collection");
 
+  // listen for url changes - clear sort param
   useEffect(() => {
-    history.listen(clearSortParam);
+    history.listen(() => setSortParam(""));
   }, [history]);
 
   const handleSetSortParam = (e) => {
     setSortParam(e.target.value);
   };
-  console.log("sort param", sortParam);
-  console.log("");
+
   return (
     <div className="collection-page">
       <div className={`title-banner ${title.toLowerCase()}`}>
@@ -53,7 +50,7 @@ const CollectionPage = ({
       </div>
       <div className="collection-container">
         <div className="page-width">
-          <SortForm handleChange={handleSetSortParam} value={sortParam} />
+          <SortBy handleChange={handleSetSortParam} value={sortParam} />
           <ImageGrid items={sortedItems} />
         </div>
       </div>
@@ -61,17 +58,17 @@ const CollectionPage = ({
   );
 };
 
-// @param ownProps - props of the component that we're wrapping in connect
-const mapStateToProps = (state, ownProps) => ({
-  // selectCollection gets the collection based on the curent route
-  // selectCollection returns another function (createSelector) which we then pass state into:
-  // selectCollection(ownProps.collectionId) => createSelector(state) => returns collection in state corresponding to the match.params.collectionId (i.e. collections[hats])
-  collection: selectCollection(ownProps.match.params.collectionId)(state),
-  sortedItems: selectSortedCollectionItems(ownProps.match.params.collectionId)(
-    state
-  ),
-  sortParam: selectSortParam(state),
-});
+// ownProps - props of the component that we're wrapping in connect (CollectionPage)
+const mapStateToProps = () => {
+  // create a private copy of selectCollection for each collection (otherwise selectCollection will run every time)
+  const selectCollection = makeSelectCollection();
+
+  return (state, ownProps) => ({
+    collection: selectCollection(state, ownProps),
+    sortParam: selectSortParam(state),
+    sortedItems: selectSortedCollectionItems(state, ownProps),
+  });
+};
 
 const mapDispatchToProps = (dispatch) => ({
   setSortParam: (param) => dispatch(setSortParam(param)),

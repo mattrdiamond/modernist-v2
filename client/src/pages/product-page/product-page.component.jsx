@@ -9,9 +9,9 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import FavoritingButton from "../../components/favoriting-button/favoriting-button.component";
 import "./product-page.styles.scss";
 
-const ProductPage = ({ item, collectionId, addItem, toggleCartHidden }) => {
+const ProductPage = ({ item, addItem, toggleCartHidden, collectionId }) => {
   const { name, price, images, rating, review_count } = item;
-
+  // const { collectionId } = match.params;
   const [quantity, setQuantity] = useState(1);
 
   const handleAddItem = () => {
@@ -70,13 +70,10 @@ const ProductPage = ({ item, collectionId, addItem, toggleCartHidden }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => {
-  const { collectionId, itemId } = ownProps.match.params;
-  return {
-    item: selectItem(collectionId, itemId)(state),
-    collectionId: collectionId,
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  item: selectItem(state, ownProps),
+  collectionId: ownProps.match.params.collectionId,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item, quantity) => dispatch(addItem(item, quantity)),

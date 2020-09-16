@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import { sortAsc, sortDesc } from "../../utils/utils";
 
 const selectShop = (state) => state.shop;
 
@@ -7,86 +8,9 @@ export const selectCollections = createSelector(
   (shop) => shop.collections
 );
 
-// if collections exists, turn collection object into array of keys, then map over them to return array of collections
-// if null (collections initial state), return an empty version of collections --> []
-export const selectCollectionsForPreview = createSelector(
-  [selectCollections],
-  (collections) =>
-    collections ? Object.keys(collections).map((key) => collections[key]) : []
-);
-
 export const selectSortParam = createSelector(
   [selectShop],
   (shop) => shop.sortParam
-);
-
-// select collection matching the collection url parameter (i.e. hats). If collections doesn't exist (not yet loaded), return null
-export const selectCollection = (collectionUrlParam) =>
-  createSelector([selectCollections], (collections) =>
-    collections ? collections[collectionUrlParam] : null
-  );
-
-export const selectCollectionItems = (collectionUrlParam) =>
-  createSelector([selectCollection(collectionUrlParam)], (collection) =>
-    collection ? collection.items : null
-  );
-
-// ***********************************sort functions - move to utils
-const sortAsc = (arr, property) => {
-  const sorted = [...arr].sort((a, b) => (a[property] > b[property] ? 1 : -1));
-  console.log("sorted", sorted);
-  console.log("original", arr);
-  return sorted;
-};
-
-const sortDesc = (arr, property) => {
-  const sorted = [...arr].sort((a, b) => (a[property] > b[property] ? -1 : 1));
-  console.log("sorted", sorted);
-  console.log("original", arr);
-  return sorted;
-};
-
-// ***********************************sort functions - move to utils
-
-// select sorted collection items
-export const selectSortedCollectionItems = (collectionUrlParam) =>
-  createSelector(
-    selectCollectionItems(collectionUrlParam),
-    selectSortParam,
-    // pass values from selectCollectionItems and selectSortParam into transform function:
-    (items, sortParam) => {
-      // if no sort param, return unsorted items
-      if (!sortParam) return items;
-
-      const direction = sortParam.endsWith("asc") ? "asc" : "desc";
-      // get form's select option value before underscore ('name_asc' --> 'name')
-      const sortBy = sortParam.split("_")[0];
-
-      if (direction === "asc") {
-        return sortAsc(items, sortBy);
-      } else {
-        return sortDesc(items, sortBy);
-      }
-    }
-  );
-
-// select collection item - first select collection and then find the item.id that matches the url (string)
-export const selectItem = (collectionUrlParam, itemUrlParam) =>
-  createSelector([selectCollection(collectionUrlParam)], (collection) =>
-    collection
-      ? collection.items.find((item) => item.id === parseInt(itemUrlParam))
-      : null
-  );
-
-// select combined items from all collections
-export const selectAllCollectionItems = createSelector(
-  [selectCollections],
-  (collections) => {
-    const collectionItemsArray = collections
-      ? Object.keys(collections).map((key) => collections[key].items)
-      : [];
-    return [].concat.apply([], collectionItemsArray);
-  }
 );
 
 export const selectIsCollectionFetching = createSelector(
@@ -103,4 +27,69 @@ export const selectIsCollectionsLoaded = createSelector(
 export const selectDropdownHidden = createSelector(
   [selectShop],
   (shop) => shop.dropdownHidden
+);
+
+// if collections exists, turn collection object into array of keys, then map over them to return array of collections
+// if null (not yet fetched), return an empty array
+export const selectCollectionsForPreview = createSelector(
+  [selectCollections],
+  (collections) =>
+    collections ? Object.keys(collections).map((key) => collections[key]) : []
+);
+
+// Returns createSelector function. Assigning makeSelectCollection() to variable in mapStateToProps returns a private copy of the selector which
+// selects the collection matching the url parameter (i.e. decor). If collections doesn't exist (not yet loaded), return null
+export const makeSelectCollection = () =>
+  createSelector(
+    [selectCollections, (state, props) => props.match.params.collectionId],
+    (collections, collectionId) =>
+      collections ? collections[collectionId] : null
+  );
+
+export const selectCollection = createSelector(
+  [selectCollections, (state, props) => props.match.params.collectionId],
+  (collections, collectionId) =>
+    collections ? collections[collectionId] : null
+);
+
+export const selectCollectionItems = createSelector(
+  [selectCollection],
+  (collection) => (collection ? collection.items : null)
+);
+
+export const selectSortedCollectionItems = createSelector(
+  selectCollectionItems,
+  selectSortParam,
+  (items, sortParam) => {
+    // if no sort param, return unsorted items
+    if (!sortParam) return items;
+
+    const direction = sortParam.endsWith("asc") ? "asc" : "desc";
+    // get sortParam value preceding underscore ('name_asc' --> 'name')
+    const sortBy = sortParam.split("_")[0];
+
+    if (direction === "asc") {
+      return sortAsc(items, sortBy);
+    } else {
+      return sortDesc(items, sortBy);
+    }
+  }
+);
+
+// select collection item - first select collection and then find the item.id that matches the url (string)
+export const selectItem = createSelector(
+  [selectCollectionItems, (state, props) => props.match.params.itemId],
+  (items, itemUrlParam) =>
+    items.find((item) => item.id === parseInt(itemUrlParam))
+);
+
+// select combined items from all collections
+export const selectAllCollectionItems = createSelector(
+  [selectCollections],
+  (collections) => {
+    const collectionItemsArray = collections
+      ? Object.keys(collections).map((key) => collections[key].items)
+      : [];
+    return [].concat.apply([], collectionItemsArray);
+  }
 );

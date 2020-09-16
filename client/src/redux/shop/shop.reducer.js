@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   errorMessage: undefined,
   dropdownHidden: true,
   sortParam: "",
+  counter: 0,
 };
 
 const shopReducer = (state = INITIAL_STATE, action) => {
