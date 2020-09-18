@@ -70,6 +70,11 @@
     animation: fadeInUp 1.75s ease 0.85s 1 forwards;
     border-color: var(--accent-50);
     color: var(--accent-50);
+
+    &:hover {
+      color: var(--accent-50);
+      border-color: var(--accent-50);
+    }
   }
 }
 

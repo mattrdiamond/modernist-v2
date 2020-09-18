@@ -60,23 +60,29 @@
     cursor: pointer;
 
     &:hover {
-      .icon-arrow-right-long {
+      .circle {
         // box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
         border-color: var(--primary-85);
       }
     }
   }
 
-  .icon-arrow-right-long {
-    width: 3rem;
-    height: 3rem;
-    padding: 0.9rem;
+  .circle {
     border-radius: 50%;
     background: #fff;
     margin-bottom: 0.5rem;
-    // box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     transition: border-color 0.2s;
     border: 1px solid var(--primary-20);
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon-arrow-right-long {
+    width: 20px;
+    height: 20px;
   }
 }
 

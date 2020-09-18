@@ -22,7 +22,9 @@ const CollectionPreview = ({ title, items, history, match, routeName }) => (
         onClick={() => history.push(`${match.path}/${routeName}`)}
         className="view-all"
       >
-        <Icon icon="arrow-right-long" />
+        <div className="circle">
+          <Icon icon="arrow-right-long" />
+        </div>
         View All
       </button>
     </div>

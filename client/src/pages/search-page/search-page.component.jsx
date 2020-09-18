@@ -32,7 +32,7 @@ const SearchPage = ({
         <>
           <span className="search-intro">
             Showing <span className="bold">{searchResults.length}</span> results
-            for <span className="bold">"{query}"</span>
+            for <span className="bold">"{query.toLowerCase()}"</span>
           </span>
           <ImageGrid items={searchResults} />
         </>
