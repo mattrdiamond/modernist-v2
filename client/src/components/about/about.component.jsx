@@ -4,7 +4,8 @@ import useOnScreen from "../../utils/use-on-screen";
 import "./about.styles.scss";
 
 const About = () => {
-  // Intersection observer - note: a ref can accept an actual ref object with .current property OR in this case a function
+  // Intersection observer - shows ribbon with logomark when about component is 60% visible
+  // note: a ref can accept an actual ref object with .current property OR in this case a function
   // that gets passed DOM reference. setRef will update the ref state in useOnScreen with the referenced DOM element
   const [setRef, visible] = useOnScreen({ threshold: 0.6 });
 

@@ -4,8 +4,22 @@ import CarouselCard from "../carousel-card/carousel-card.component";
 import Icon from "../icon/icon.component";
 import Spinner from "../with-spinner/spinner.component";
 import useWindowSize from "../../utils/use-window-size";
-import { imagesFitOnScreen } from "../../utils/utils";
 import "./carousel.styles.scss";
+
+// Determine how many images fit on screen based on window width
+export const imagesFitOnScreen = () => {
+  const width = window.innerWidth;
+  switch (true) {
+    case width <= 600:
+      return 1;
+    case width <= 925:
+      return 2;
+    case width <= 1200:
+      return 3;
+    default:
+      return 4;
+  }
+};
 
 const INITIAL_STATE = {
   images: [],
@@ -39,7 +53,7 @@ function carouselReducer(state, action) {
         ...state,
         index: index + 1,
         imagesLoaded: imagesLoaded + 1,
-        sliderPosition: sliderPosition + 100 / visibleImages, // add percentage of 1 visible image (i.e. 4 visible images, move slider 25%)
+        sliderPosition: sliderPosition + 100 / visibleImages, // add percentage of 1 visible image (e.g. if 4 visible images, move slider 25%)
       };
     case "PREVIOUS_IMAGE":
       return {
@@ -110,8 +124,7 @@ const Carousel = () => {
     return dispatch({ type: "RESIZE_CAROUSEL" });
   }, [fetchImageCount, index, visibleImages]);
 
-  // useWindowSize - Keeps track of window dimensions so we can adjust the number of photos when window resized
-  // call updateScreenSize when window is resized
+  // useWindowSize hook - keeps track of window dimensions and calls updateScreenSize when window resized
   useWindowSize(updateScreenSize);
 
   const nextImage = () => {

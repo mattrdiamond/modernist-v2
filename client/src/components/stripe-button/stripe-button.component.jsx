@@ -50,7 +50,7 @@ const StripeCheckoutButton = ({ clearCart, totals, history }) => {
       name="Modernist."
       billingAddress
       shippingAddress
-      image="https://svgshare.com/i/CUz.svg"
+      image="https://svgshare.com/i/PsU.svg"
       description={`Your total is $${total.toFixed(2)}`}
       amount={priceForStripe}
       panelLabel="Pay Now"

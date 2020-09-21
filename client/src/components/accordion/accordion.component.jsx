@@ -5,7 +5,7 @@ const Accordion = ({ title, toggle, expandedTitle, children }) => {
   const breakpoint = 740;
 
   const handleToggle = () => {
-    console.log("handletoggle");
+    console.log("toggle");
     if (window.innerWidth > breakpoint) return;
     toggle(title);
   };

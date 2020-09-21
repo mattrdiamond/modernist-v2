@@ -23,7 +23,6 @@ $ribbonbottom: 15px;
   .ribbon {
     position: relative;
     width: $ribbonwidth;
-    // height: 3.5rem;
     height: 5.56rem;
     margin-top: -2rem;
     background: var(--primary-80);
@@ -31,10 +30,9 @@ $ribbonbottom: 15px;
     align-items: flex-end;
     justify-content: center;
     padding: 0.5rem;
-    animation-duration: 1s;
+    animation-duration: 1.25s;
     animation-fill-mode: forwards;
     visibility: hidden;
-    transform: translate3d(0, -175px, 0);
 
     &:after,
     &:before {
@@ -79,22 +77,6 @@ $ribbonbottom: 15px;
     }
   }
 }
-
-// @media (max-width: 630px) {
-//   .about-component {
-//     .about-content {
-//       padding: 3.5rem 2rem 5rem;
-//     }
-//   }
-// }
-
-// @media (max-width: 500px) {
-//   .about-component {
-//     .about-content {
-//       padding: 3.5rem 1.5rem 5rem;
-//     }
-//   }
-// }
 
 @keyframes bounceInDown {
   from,

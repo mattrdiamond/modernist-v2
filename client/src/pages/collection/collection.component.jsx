@@ -25,10 +25,17 @@ const CollectionPage = ({
 
   console.log("render collection");
 
-  // listen for url changes - clear sort param
   useEffect(() => {
-    history.listen(() => setSortParam(""));
-  }, [history]);
+    // Clear sort param when url changes
+    let unlisten = history.listen(() => {
+      if (sortParam) {
+        setSortParam("");
+      }
+    });
+
+    // When component unmounts, stop listening for changes
+    return () => unlisten();
+  }, [history, sortParam, setSortParam]);
 
   const handleSetSortParam = (e) => {
     setSortParam(e.target.value);
