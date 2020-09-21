@@ -5,12 +5,10 @@ const Accordion = ({ title, toggle, expandedTitle, children }) => {
   const breakpoint = 740;
 
   const handleToggle = () => {
-    console.log("toggle");
     if (window.innerWidth > breakpoint) return;
     toggle(title);
   };
 
-  console.log("render accordion");
   return (
     <div className="accordion-component">
       <div className="accordion-title-container" onClick={handleToggle}>

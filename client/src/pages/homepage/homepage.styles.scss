@@ -1,8 +1,13 @@
 .homepage {
   text-align: center;
 
-  section:not(.landing):not(.about-component) {
+  .directory-menu,
+  .newsletter-signup {
     margin: 6rem auto;
+  }
+
+  .carousel-component {
+    margin: 6rem auto 0;
   }
 
   h2 {
@@ -20,8 +25,13 @@
 
 @media (max-width: 800px) {
   .homepage {
-    section:not(.landing):not(.about-component) {
+    .directory-menu,
+    .newsletter-signup {
       margin: 3rem auto;
+    }
+
+    .carousel-component {
+      margin: 3rem auto 0;
     }
   }
 }

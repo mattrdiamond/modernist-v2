@@ -1,6 +1,6 @@
 .carousel-component {
   .carousel-text {
-    margin-bottom: 3rem;
+    margin: 0 auto;
     padding: 0 3rem;
     max-width: 49rem;
   }
@@ -9,9 +9,21 @@
     max-width: 1340px;
   }
 
+  .carousel {
+    // hide cards that have scrolled outside viewport
+    overflow: hidden;
+    margin-top: calc(3rem - 25px);
+    margin-bottom: calc(6rem - 50px);
+  }
+
   .cards-slider {
     position: relative;
-    // margin: 0 0.5rem;
+    // margin-left and right match .page-width class values
+    margin-left: 3rem;
+    margin-right: 3rem;
+    // padding added so drop shadow doesn't get cut off with overflow: hidden
+    padding-top: 25px;
+    padding-bottom: 50px;
   }
 
   .cards-slider-wrapper {
@@ -38,8 +50,7 @@
     color: #828282;
     transition: color 0.3s ease, opacity 0.3s ease;
     top: 50%;
-    // margin-bottom = 1/2 button height
-    margin-top: -22.5px;
+    margin-top: -45px;
 
     &:hover {
       color: #222;
@@ -75,23 +86,44 @@
   }
 }
 
-@media (max-width: 600px) {
-  .carousel.page-width {
-    padding: 0;
+@media (max-width: 1320px) {
+  .carousel-component {
+    .cards-slider {
+      margin-left: 4%;
+      margin-right: 4%;
+    }
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 800px) {
+  .carousel-component {
+    .carousel {
+      margin-top: 23px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+@media (max-width: 680px) {
+  .carousel-component {
+    .cards-slider {
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 600px) {
   .carousel-component {
     .cards-slider {
       margin: 0;
     }
     .circle-button {
       &.right {
-        right: 0.75rem;
+        right: 1.5rem;
       }
       &.left {
-        left: 0.75rem;
+        left: 1.5rem;
       }
     }
   }

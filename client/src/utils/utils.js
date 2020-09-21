@@ -44,20 +44,3 @@ export const sortAsc = (arr, property) =>
  */
 export const sortDesc = (arr, property) =>
   [...arr].sort((a, b) => (a[property] > b[property] ? -1 : 1));
-
-/*
- * Determine how many images fit on screen based on window width
- */
-export const imagesFitOnScreen = () => {
-  const width = window.innerWidth;
-  switch (true) {
-    case width <= 600:
-      return 1;
-    case width <= 925:
-      return 2;
-    case width <= 1200:
-      return 3;
-    default:
-      return 4;
-  }
-};

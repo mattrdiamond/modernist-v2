@@ -150,7 +150,7 @@ const Carousel = () => {
           own!
         </p>
       </div>
-      <div className="carousel page-width">
+      <div className="carousel">
         <div className="cards-slider">
           <button
             className="circle-button right"
