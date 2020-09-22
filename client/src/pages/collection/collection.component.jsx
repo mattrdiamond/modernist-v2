@@ -7,7 +7,7 @@ import {
   makeSelectCollection,
 } from "../../redux/shop/shop.selectors";
 import ImageGrid from "../../components/image-grid/image-grid.component";
-import SortBy from "../../components/sort-by/sort-by.component";
+import SelectDropdown from "../../components/select-dropdown/select-dropdown.component";
 import { setSortParam } from "../../redux/shop/shop.actions";
 import "./collection.styles.scss";
 
@@ -35,10 +35,19 @@ const CollectionPage = ({
     return () => unlisten();
   }, [history, sortParam, setSortParam]);
 
-  const handleSetSortParam = (e) => {
-    setSortParam(e.target.value);
+  const handleSelect = (option) => {
+    setSortParam(option);
   };
 
+  const sortOptions = [
+    { value: "rating_desc", name: "Highest Rated", id: 0 },
+    { value: "name_asc", name: "Name - A-Z", id: 1 },
+    { value: "name_desc", name: "Name - Z-A", id: 2 },
+    { value: "price_asc", name: "Price - Lowest to Highest", id: 3 },
+    { value: "price_desc", name: "Price - Highest to Lowest", id: 4 },
+  ];
+
+  console.log("render collection");
   return (
     <div className="collection-page">
       <div className={`title-banner ${title.toLowerCase()}`}>
@@ -55,7 +64,11 @@ const CollectionPage = ({
       </div>
       <div className="collection-container">
         <div className="page-width">
-          <SortBy handleChange={handleSetSortParam} value={sortParam} />
+          <SelectDropdown
+            options={sortOptions}
+            handleSelect={handleSelect}
+            selectedName={sortParam.name}
+          />
           <ImageGrid items={sortedItems} />
         </div>
       </div>

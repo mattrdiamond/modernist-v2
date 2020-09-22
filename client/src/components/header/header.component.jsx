@@ -48,13 +48,10 @@ const Header = ({
     toggleCartHidden();
   }, [mobileNavVisible, toggleMobileNav, toggleCartHidden]);
 
-  const handleCartKeyPress = useCallback(
-    (e) => {
-      if (e.key !== "Enter") return;
-      handleCartClick();
-    },
-    [handleCartClick]
-  );
+  const handleCartKeyPress = (e) => {
+    if (e.key !== "Enter") return;
+    handleCartClick();
+  };
 
   const shopDropdownKeyPress = (e) => {
     if (e.key !== "Enter") return;

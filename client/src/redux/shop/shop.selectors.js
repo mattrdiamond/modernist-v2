@@ -64,9 +64,11 @@ export const selectSortedCollectionItems = createSelector(
     // if no sort param, return unsorted items
     if (!sortParam) return items;
 
-    const direction = sortParam.endsWith("asc") ? "asc" : "desc";
+    const { value } = sortParam;
+    // // direction will be ascending or descending
+    const direction = value.endsWith("asc") ? "asc" : "desc";
     // get sortParam value preceding underscore ('name_asc' --> 'name')
-    const sortBy = sortParam.split("_")[0];
+    const sortBy = value.split("_")[0];
 
     if (direction === "asc") {
       return sortAsc(items, sortBy);
