@@ -1,25 +1,29 @@
 import React, { useEffect } from "react";
-import "./App.css";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
-import CheckoutPage from "./pages/checkout/checkout.component.jsx";
-import SearchPage from "./pages/search-page/search-page.component.jsx";
+import CheckoutPage from "./pages/checkout/checkout.component";
+import SearchPage from "./pages/search-page/search-page.component";
 import Header from "./components/header/header.component";
-import { connect } from "react-redux";
-import { selectCurrentUser } from "./redux/user/user.selectors";
-import { selectInputHidden } from "./redux/search/search.selectors";
-import { checkUserSession } from "./redux/user/user.actions";
-import { createStructuredSelector } from "reselect";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import FavoritesPage from "./pages/favorites/favorites.component";
 import Confirmation from "./pages/confirmation/confirmation.component";
 import Portal from "./components/portal/portal.component";
 import ModalManager from "./components/modals/modal-manager";
 import Footer from "./components/footer/footer.component";
+
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "./redux/user/user.selectors";
+import { selectInputHidden } from "./redux/search/search.selectors";
 import { selectCartHidden } from "./redux/cart/cart.selectors";
 import { selectDropdownHidden } from "./redux/shop/shop.selectors";
 import { selectNavVisible } from "./redux/mobile-nav/mobile-nav.selectors";
+
+import { checkUserSession } from "./redux/user/user.actions";
+
+import "./App.css";
 
 const App = ({
   checkUserSession,
@@ -50,8 +54,6 @@ const App = ({
         return;
     }
   };
-
-  console.log("render app", history);
 
   return (
     <div id="app" className={getDropdownStatus()}>

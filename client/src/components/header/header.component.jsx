@@ -103,7 +103,6 @@ const Header = ({
                 styleName="ignore-co-shop"
               />
             </div>
-
             {!shopDropdownHidden && (
               <ShopDropdown
                 toggleShopDropdown={toggleShopDropdown}

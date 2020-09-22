@@ -22,7 +22,6 @@ const ModalManager = ({ modal }) => {
   return null;
 };
 
-// mapstatetoprops -> currentModal
 const mapStateToProps = createStructuredSelector({
   modal: selectModal,
 });

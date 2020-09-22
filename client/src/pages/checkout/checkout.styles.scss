@@ -45,10 +45,6 @@
     align-items: center;
     border-bottom: 1px solid var(--primary-20);
     border-top: 1px solid var(--primary-20);
-
-    // .col-price {
-    //   margin-right: 3.25rem;
-    // }
   }
 
   .header-block {
@@ -67,16 +63,9 @@
     transition: margin 0.3s;
   }
 
-  // .col-photo {
-  //   height: 7rem;
-  //   margin-right: 1rem;
-  // }
-
   .col-description {
     flex: 1;
     margin-right: var(--grid-gap);
-    // display: flex;
-    // align-items: center;
   }
 
   .col-qty {
@@ -88,7 +77,6 @@
 
   .col-price {
     width: 2.75rem;
-    // margin-right: 3rem;
     margin-right: calc(var(--grid-gap) - 0.5rem);
     display: flex;
     justify-content: center;
@@ -247,10 +235,6 @@
       margin: 0;
       justify-content: flex-end;
     }
-
-    // .price {
-    //   top: 2px;
-    // }
 
     .col-delete {
       order: 3;

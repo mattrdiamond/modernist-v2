@@ -1,11 +1,10 @@
-// show 3 cart items before scrolling
+// Show up to 3 full cart items. Additional items appear with scrollbar.
 $cart-item-height: calc(5rem + 0.75rem + 0.75rem);
 $cart-items-height: calc(#{$cart-item-height} * 3 + 2px);
 
 .cart-dropdown {
   position: absolute;
   width: 360px;
-  // height: 340px;
   display: flex;
   flex-direction: column;
   background-color: white;
@@ -23,7 +22,6 @@ $cart-items-height: calc(#{$cart-item-height} * 3 + 2px);
   }
 
   .cart-items {
-    // height: 240px;
     max-height: $cart-items-height;
     display: flex;
     flex-direction: column;
@@ -40,8 +38,6 @@ $cart-items-height: calc(#{$cart-item-height} * 3 + 2px);
   }
 
   .custom-button {
-    // margin-top: auto;
-    // margin-top: 15px;
     width: 100%;
   }
 

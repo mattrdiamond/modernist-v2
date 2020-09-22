@@ -1,20 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+
 import {
   selectInput,
   selectError,
   selectApplied,
 } from "../../redux/promo/promo.selectors";
-import CustomButton from "../../components/custom-button/custom-button.component";
-import FormInput from "../../components/form-input/form-input.component";
-import Icon from "../../components/icon/icon.component";
 import {
   setPromoInputValue,
   throwError,
   clearError,
   applyPromo,
 } from "../../redux/promo/promo.actions";
+
+import CustomButton from "../../components/custom-button/custom-button.component";
+import FormInput from "../../components/form-input/form-input.component";
+import Icon from "../../components/icon/icon.component";
+
 import "./promo-form.styles.scss";
 
 const PromoForm = ({

@@ -15,8 +15,6 @@
   --primary-07: #f0f1f3;
   --primary-05: #f3f4f5;
   --primary-03: #f8f8f9;
-  --red: #fc5c5f;
-
   --accent-100: #00c3ef;
   --accent-90: #19d6ff;
   --accent-80: #33dbff;
@@ -25,21 +23,11 @@
   --accent-50: #66e3ff;
   --accent-40: #99ecff;
   --accent-30: #c1ebfb;
-
   --accent-20: #d8effa;
   --accent-10: #ebf7fc;
-
-  --black-90: #404041;
-  --black-80: #58585a;
-  --black-70: #6d6e71;
   --black-60: #808285;
-  --black-50: #939598;
-  --black-40: #a7a9ac;
-  --black-30: #bcbec0;
   --black-20: #d1d3d4;
-  --black-10: #e6e7e8;
-  --black-05: #f1f1f2;
-  --black-03: #f6f6f6;
+  --red: #fc5c5f;
   --beige: #f4f3ee;
   --yellow: #fdbc35;
   --shadow-color: rgba(0, 0, 0, 0.2);
@@ -78,7 +66,6 @@ body {
 #app {
   display: flex;
   flex-direction: column;
-  /* overflow-y: scroll; */
 }
 
 .content-window {

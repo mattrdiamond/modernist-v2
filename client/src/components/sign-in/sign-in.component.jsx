@@ -9,7 +9,6 @@ import {
 } from "../../redux/user/user.actions";
 import { createStructuredSelector } from "reselect";
 import { selectErrorMessage } from "../../redux/user/user.selectors";
-
 import "./sign-in.styles.scss";
 
 const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {

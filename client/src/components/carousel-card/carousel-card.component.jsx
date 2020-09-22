@@ -4,20 +4,14 @@ import "./carousel-card.styles.scss";
 
 const CarouselCard = ({ index, image, carouselState }) => (
   <div
-    className={`card${
-      index < carouselState.index ||
+    className={
+      "card" +
+      (index < carouselState.index ||
       index > carouselState.index + (carouselState.visibleImages - 1)
         ? " offscreen"
-        : ""
-    }`}
+        : "")
+    }
   >
-    {/*<div
-      className={'card' + (
-        index < carouselState.index ||
-        index > carouselState.index + (carouselState.visibleImages - 1)
-          ? " offscreen"
-          : "")}
-      >*/}
     <a href={image.urls.regular} target="_blank" rel="noopener noreferrer">
       <img
         className="card-photo"
@@ -30,7 +24,7 @@ const CarouselCard = ({ index, image, carouselState }) => (
             className="user-pic"
             src={image.user.profile_image.small}
             srcSet={`${image.user.profile_image.small} 1x, ${image.user.profile_image.medium} 2x`}
-            alt={`${image.user.name}`}
+            alt={image.user.name}
           />
           <div className="user-details">
             <span className="user-name">

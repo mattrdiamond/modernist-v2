@@ -2,25 +2,6 @@
   display: flex;
   align-items: center;
 
-  // .rating-list {
-  //   display: flex;
-  //   padding: 0;
-  //   margin: 0;
-  //   align-items: center;
-  // }
-
-  // .star {
-  //   color: var(--primary-20);
-
-  //   // &.shaded {
-  //   //   color: var(--yellow);
-  //   // }
-
-  //   // &:not(:first-of-type) {
-  //   //   margin-left: 0.25rem;
-  //   // }
-  // }
-
   .stars-background,
   .stars-fill {
     display: flex;
@@ -29,10 +10,6 @@
   .stars-background {
     position: relative;
     color: var(--primary-20);
-
-    // .icon-star:not(:first-of-type) {
-    //   margin-left: 0.25rem;
-    // }
   }
 
   .stars-fill {
@@ -42,10 +19,6 @@
       color: var(--yellow);
     }
   }
-
-  // .star {
-  //   line-height: 0;
-  // }
 
   .icon-star {
     width: 20px;

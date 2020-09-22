@@ -31,7 +31,7 @@ const NewsletterSignup = () => {
     event.preventDefault();
 
     // Otherwise, let the form submit normally
-    // You could also bolt in an Ajax form submit process here
+    // We could also add in an Ajax form submit process here
     submitMailChimpForm(event.target);
   };
 

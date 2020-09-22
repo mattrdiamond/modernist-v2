@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 
 const StripeCheckoutButton = ({ clearCart, totals, history }) => {
   const { total } = totals;
-  // Stripe needs price in cents
+  // Stripe requires price in cents
   const priceForStripe = Math.round(total * 100);
   const publishableKey = "pk_test_q3amCytQBsYySSLChdL3bHlo00aKSAc7sW";
 

@@ -21,7 +21,6 @@ const Footer = ({ sections }) => {
 
   const sortedShopSections = sortAsc(sections, sections.title);
 
-  console.log("render footer");
   return (
     <section className="footer">
       <div className="footer-inner">

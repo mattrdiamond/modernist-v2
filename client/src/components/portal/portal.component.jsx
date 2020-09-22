@@ -1,6 +1,9 @@
 import { Component } from "react";
 import ReactDOM from "react-dom";
 
+// Portals provide a first-class way to render children into a DOM node that
+// exists outside the DOM hierarchy of the parent component (#root).
+
 const portalRoot = document.getElementById("portal-root");
 
 export default class Portal extends Component {

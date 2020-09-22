@@ -1,5 +1,4 @@
 import React from "react";
-import CustomButton from "../custom-button/custom-button.component";
 import { withRouter } from "react-router-dom";
 import {
   landing2x,
@@ -7,6 +6,7 @@ import {
   landingMobile2x,
   landingMobile1x,
 } from "../../assets/img/_images";
+import CustomButton from "../custom-button/custom-button.component";
 import "./landing.styles.scss";
 
 const Landing = ({ history }) => (

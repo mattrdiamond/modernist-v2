@@ -3,8 +3,6 @@ import "./hamburger-button.styles.scss";
 
 //react.memo used to prevent render every time search or shop button clicked (desktop view)
 const HamburgerButton = React.memo(({ isOpen, handleToggle }) => {
-  console.log("render hamburger");
-
   return (
     <div
       className={"hamburger" + (isOpen ? " is-open" : "")}

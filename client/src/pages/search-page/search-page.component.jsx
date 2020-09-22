@@ -9,12 +9,7 @@ import { getSearchResults } from "../../utils/utils";
 import { connect } from "react-redux";
 import "./search-page.styles.scss";
 
-const SearchPage = ({
-  collectionItems,
-  fetchCollectionsStart,
-  match,
-  location,
-}) => {
+const SearchPage = ({ collectionItems, fetchCollectionsStart, location }) => {
   if (!collectionItems.length) {
     fetchCollectionsStart();
     return <Spinner />;

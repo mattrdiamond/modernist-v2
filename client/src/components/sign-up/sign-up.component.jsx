@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import { signUpStart, setError } from "../../redux/user/user.actions";
 import { selectErrorMessage } from "../../redux/user/user.selectors";
-import { createStructuredSelector } from "reselect";
 import "./sign-up.styles.scss";
 
 const SignUp = ({ signUpStart, error, setError }) => {
@@ -26,7 +26,8 @@ const SignUp = ({ signUpStart, error, setError }) => {
       return setError("Passwords do not match.");
     }
 
-    // create new user acct associated w/ email, password and displayName and sign in user (pass along credentials obj containing email, password and displayName to saga)
+    // create new user acct associated w/ email, password and displayName and sign in user
+    // (pass along credentials obj containing email, password and displayName to saga)
     signUpStart({ email, password, displayName });
   };
 

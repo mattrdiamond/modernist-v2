@@ -1,6 +1,5 @@
 .stepper-component {
   display: inline-block;
-  // border: 1px solid var(--primary-30);
 
   .stepper-container {
     display: flex;
@@ -12,7 +11,6 @@
 
   button {
     padding: 1rem;
-    // background: var(--primary-10);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,7 +19,6 @@
     color: var(--primary-90);
 
     &:disabled {
-      // background: red;
       cursor: unset;
       color: var(--primary-30);
     }
@@ -33,11 +30,9 @@
 
   .quantity-decrease {
     border-radius: 5px 0 0 5px;
-    // border-right: 1px solid var(--primary-30);
   }
   .quantity-increase {
     border-radius: 0 5px 5px 0;
-    // border-left: 1px solid var(--primary-30);
   }
 
   .icon {
@@ -51,7 +46,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    // border-top: 1px solid var(--primary-10);
-    // border-bottom: 1px solid var(--primary-10);
   }
 }

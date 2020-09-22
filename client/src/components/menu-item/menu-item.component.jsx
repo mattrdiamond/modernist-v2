@@ -20,7 +20,6 @@ const MenuItem = ({
       <source srcSet={`${mobile2x} 2x, ${mobile1x} 1x`} />
       <img className="background-image" alt={title} src={small} />
     </picture>
-    {/*<img className="background-image" alt={title} src={imageUrl} />*/}
     <div className="content">
       <h2 className="title">{title}</h2>
       <span className="subtitle">Shop Now</span>

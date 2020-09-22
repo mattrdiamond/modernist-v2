@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { addItem } from "../../redux/cart/cart.actions";
 import FavoritingButton from "../favoriting-button/favoriting-button.component";
-import { Link } from "react-router-dom";
 import "./collection-item.styles.scss";
 
 const CollectionItem = ({ item }) => {

@@ -11,8 +11,6 @@ const SearchIcon = ({ toggleInputHidden }) => {
     }
   };
 
-  console.log("render search icon");
-
   return (
     <div
       className="nav-icon"

@@ -10,18 +10,19 @@
   }
 
   .carousel {
-    // hide cards that have scrolled outside viewport
     overflow: hidden;
     margin-top: calc(3rem - 25px);
     margin-bottom: calc(6rem - 50px);
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .cards-slider {
     position: relative;
-    // margin-left and right match .page-width class values
+    // margin-left and right match .page-width values
     margin-left: 3rem;
     margin-right: 3rem;
-    // padding added so drop shadow doesn't get cut off with overflow: hidden
     padding-top: 25px;
     padding-bottom: 50px;
   }

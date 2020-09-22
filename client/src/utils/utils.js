@@ -20,7 +20,7 @@ export const getSearchResults = (input, shopItems) => {
 };
 
 /*
- * Debounce
+ * Debounce function
  */
 export function debounce(fn, ms) {
   let timer;
@@ -34,13 +34,13 @@ export function debounce(fn, ms) {
 }
 
 /*
- * Sort Ascending
+ * Sort array in ascending order by property
  */
 export const sortAsc = (arr, property) =>
   [...arr].sort((a, b) => (a[property] > b[property] ? 1 : -1));
 
 /*
- * Sort Descending
+ * Sort array in descending order by property
  */
 export const sortDesc = (arr, property) =>
   [...arr].sort((a, b) => (a[property] > b[property] ? -1 : 1));

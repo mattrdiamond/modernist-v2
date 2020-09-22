@@ -28,7 +28,6 @@
 
   .hamburger-btn {
     position: relative;
-    // display: inline-block;
     width: 25px;
     height: 25px;
     display: flex;
@@ -51,9 +50,7 @@
   .hamburger-bar {
     transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
     transition-duration: 0.1s;
-    // top: 50%;
     display: block;
-    // margin-top: -2px;
 
     &:before {
       transition: top 0.1s 0.14s ease, opacity 0.1s ease;

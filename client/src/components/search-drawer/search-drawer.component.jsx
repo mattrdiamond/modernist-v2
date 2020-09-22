@@ -1,8 +1,11 @@
 import React, { useEffect, useCallback, useRef } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+
 import SearchDropdown from "../search-dropdown/search-dropdown.component";
 import SearchInput from "../search-input/search-input.component";
+import Icon from "../icon/icon.component";
+
 import {
   selectInputValue,
   selectInputHidden,
@@ -13,20 +16,19 @@ import {
   closeSearchDrawer,
 } from "../../redux/search/search.actions";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
-import Icon from "../icon/icon.component";
+
 import useOnClickOutside from "../../utils/use-onclick-outside";
 import useLockBodyScroll from "../../utils/use-lock-body-scroll";
-import "./search-drawer.scss";
+
+import "./search-drawer.styles.scss";
 
 const SearchDrawer = ({
   inputHidden,
   setInputValue,
   inputValue,
-  // inputRef,
   collectionItems,
   fetchCollectionsStart,
   closeSearchDrawer,
-  // focusOnInput,
 }) => {
   const inputRef = useRef(null);
 
@@ -55,8 +57,6 @@ const SearchDrawer = ({
   };
 
   useOnClickOutside(inputRef, handleClose, "ignore-co-search", inputHidden);
-
-  console.log("render search drawer");
 
   return (
     <div className={"search-drawer ignore-co-search page-width"}>

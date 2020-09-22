@@ -21,7 +21,6 @@ const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
   useOnClickOutside(cartRef, toggleCartHidden, "ignore-co-cart");
 
   useLockBodyScroll();
-  console.log("render cart dropdown");
 
   return (
     <div className="cart-dropdown" ref={cartRef}>

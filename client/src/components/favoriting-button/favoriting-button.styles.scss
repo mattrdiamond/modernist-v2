@@ -22,18 +22,12 @@
   }
 
   &.favorite {
-    // background-color: var(--red);
-
     .heart path {
-      // fill: #fff;
       fill: var(--red);
     }
 
     &:hover {
-      // background: #fff;
-
       .heart path {
-        // fill: var(--red);
         fill: var(--primary-20);
       }
     }

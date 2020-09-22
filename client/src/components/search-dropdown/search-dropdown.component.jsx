@@ -37,8 +37,6 @@ const SearchDropdown = ({
     }
   };
 
-  console.log("render search dropdown");
-
   return (
     <div className="search-dropdown">
       <ul className="search-results">

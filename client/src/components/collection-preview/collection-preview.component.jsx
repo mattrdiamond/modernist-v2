@@ -11,7 +11,6 @@ const CollectionPreview = ({ title, items, history, match, routeName }) => (
     </Link>
     <div className="preview-wrapper">
       <div className="preview">
-        {/* filter out first 5 items for collection preview */}
         {items
           .filter((item, index) => index < 5)
           .map((item) => (

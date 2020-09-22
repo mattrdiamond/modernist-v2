@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
 import { createStructuredSelector } from "reselect";
 import {
   selectCartItems,
@@ -7,12 +9,13 @@ import {
 } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { selectApplied } from "../../redux/promo/promo.selectors";
-import { Link } from "react-router-dom";
+
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
-import CustomButton from "../../components/custom-button/custom-button.component.jsx";
+import CustomButton from "../../components/custom-button/custom-button.component";
 import StripeCheckoutButton from "../../components/stripe-button/stripe-button.component";
 import PromoForm from "../../components/promo-form/promo-form.component";
 import PromoBanner from "../../components/promo-banner/promo-banner.component";
+
 import "./checkout.styles.scss";
 
 const CheckoutPage = ({ cartItems, cartSubtotal, promoApplied }) => {

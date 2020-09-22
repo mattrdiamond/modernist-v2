@@ -6,9 +6,7 @@
   }
 
   &:not(:last-of-type) {
-    // margin-bottom: 1rem;
     border-bottom: 1px solid var(--primary-10);
-    // padding-bottom: 1rem;
   }
 
   &.no-results {

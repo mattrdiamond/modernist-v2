@@ -23,8 +23,6 @@ const CollectionPage = ({
     banner: { large, small },
   } = collection;
 
-  console.log("render collection");
-
   useEffect(() => {
     // Clear sort param when url changes
     let unlisten = history.listen(() => {

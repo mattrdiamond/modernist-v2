@@ -7,7 +7,7 @@ import "./cart-item.styles.scss";
 
 const CartItem = ({ item, clearItem, toggleCartHidden }) => {
   const { images, price, name, quantity, collection, id } = item;
-  console.log("render cart item");
+
   return (
     <div className="cart-item">
       <Link
