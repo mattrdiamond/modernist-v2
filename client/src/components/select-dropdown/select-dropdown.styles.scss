@@ -1,47 +1,63 @@
-// .sort-by {
-//   margin-bottom: 1rem;
-//   border: 1px solid var(--primary-20);
-//   border-radius: 5px;
-//   cursor: pointer;
-//   font-family: var(--font-text);
-//   padding: 0.5rem;
-//   font-size: 0.9rem;
-//   width: 210px;
-//   position: relative;
+$border-radius: 5px;
+$select-height: 45px;
 
-//   select {
-//     display: none;
-//   }
-// }
-.sortby-component {
-  .sortby-header {
-    margin-bottom: 0.8em;
-    padding: 0.4em 2em 0.4em 1em;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-    font-weight: 500;
-    font-size: 1.3rem;
-    color: #3faffa;
-    background: #ffffff;
-  }
+.select-component {
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
 
-  .sortby-list {
-    padding: 0;
-    margin: 0;
-    padding-left: 1em;
-    background: #ffffff;
-    border: 2px solid #e5e5e5;
-    box-sizing: border-box;
-    color: #3faffa;
-    font-size: 1.3rem;
-    font-weight: 500;
+  .select-header {
+    padding: 0 1rem;
+    border: 1px solid var(--primary-20);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: $border-radius;
+    position: relative;
+    height: $select-height;
+    font-weight: bold;
+    color: var(--primary-80);
 
-    &:first-child {
-      padding-top: 0.8em;
+    &.open {
+      border-color: var(--primary-85);
     }
   }
 
-  .sortby-list-item {
+  .select-header-text,
+  .arrow-button {
+    pointer-events: none;
+  }
+
+  .select-list {
+    position: absolute;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.06);
+    background-color: #fff;
+    z-index: 1;
+    width: calc(100% + 2px);
+    top: $select-height;
+    left: -1px;
+    border: 1px solid var(--primary-20);
+    border-radius: $border-radius;
+    font-weight: normal;
+  }
+
+  .select-list-item {
     list-style: none;
-    margin-bottom: 0.8em;
+    padding: 0.5rem 1rem;
+
+    &:hover {
+      background-color: var(--primary-05);
+    }
+
+    &.selected {
+      background-color: var(--primary-05);
+    }
+
+    &:first-of-type {
+      border-radius: $border-radius $border-radius 0 0;
+    }
+    &:last-of-type {
+      border-radius: 0 0 $border-radius $border-radius;
+    }
   }
 }

@@ -35,16 +35,12 @@ const CollectionPage = ({
     return () => unlisten();
   }, [history, sortParam, setSortParam]);
 
-  const handleSelect = (option) => {
-    setSortParam(option);
-  };
-
   const sortOptions = [
-    { value: "rating_desc", name: "Highest Rated", id: 0 },
-    { value: "name_asc", name: "Name - A-Z", id: 1 },
-    { value: "name_desc", name: "Name - Z-A", id: 2 },
-    { value: "price_asc", name: "Price - Lowest to Highest", id: 3 },
-    { value: "price_desc", name: "Price - Highest to Lowest", id: 4 },
+    { value: "Highest Rated", direction: "desc", sortBy: "rating", id: 0 },
+    { value: "Name: A - Z", direction: "asc", sortBy: "name", id: 1 },
+    { value: "Name: Z - A", direction: "desc", sortBy: "name", id: 2 },
+    { value: "Price: Low to High", direction: "asc", sortBy: "price", id: 3 },
+    { value: "Price: High to Low", direction: "desc", sortBy: "price", id: 4 },
   ];
 
   console.log("render collection");
@@ -66,8 +62,8 @@ const CollectionPage = ({
         <div className="page-width">
           <SelectDropdown
             options={sortOptions}
-            handleSelect={handleSelect}
-            selectedName={sortParam.name}
+            handleSelect={setSortParam}
+            selectedValue={sortParam.value}
           />
           <ImageGrid items={sortedItems} />
         </div>

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
+import { handleKeyPress } from "../../utils/utils";
 
 import { selectDropdownHidden } from "../../redux/shop/shop.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
@@ -15,6 +16,7 @@ import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { toggleNav } from "../../redux/mobile-nav/mobile-nav.actions";
 import { closeSearchDrawer } from "../../redux/search/search.actions";
 import { toggleDropdownHidden } from "../../redux/shop/shop.actions";
+import { toggleInputHidden } from "../../redux/search/search.actions";
 
 import ArrowButton from "../arrow-button/arrow-button.component";
 import ShopDropdown from "../shop-dropdown/shop-dropdown.component";
@@ -36,6 +38,7 @@ const Header = ({
   shopDropdownHidden,
   toggleShopDropdown,
   searchDrawerHidden,
+  toggleInputHidden,
   sections,
 }) => {
   // useCallback prevents cartIcon from rendering when shop or search button clicked
@@ -48,15 +51,12 @@ const Header = ({
     toggleCartHidden();
   }, [mobileNavVisible, toggleMobileNav, toggleCartHidden]);
 
-  const handleCartKeyPress = (e) => {
-    if (e.key !== "Enter") return;
-    handleCartClick();
-  };
-
-  const shopDropdownKeyPress = (e) => {
-    if (e.key !== "Enter") return;
-    toggleShopDropdown();
-  };
+  const handleCartKeyPress = useCallback(
+    (e) => {
+      handleKeyPress(e, handleCartClick);
+    },
+    [handleCartClick]
+  );
 
   console.log("render header");
 
@@ -88,7 +88,7 @@ const Header = ({
                 (!shopDropdownHidden ? " is-open" : "")
               }
               onClick={toggleShopDropdown}
-              onKeyPress={shopDropdownKeyPress}
+              onKeyPress={(e) => handleKeyPress(e, toggleShopDropdown)}
               tabIndex="0"
               role="button"
               aria-haspopup="true"
@@ -119,7 +119,7 @@ const Header = ({
             </Link>
           </div>
           <div className="nav-link-wrapper desktop-only">
-            <SearchIcon />
+            <SearchIcon toggleInputHidden={toggleInputHidden} />
           </div>
           <div className="nav-link-wrapper">
             <CartIcon
@@ -171,6 +171,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleMobileNav: () => dispatch(toggleNav()),
   closeSearchDrawer: () => dispatch(closeSearchDrawer()),
   toggleShopDropdown: () => dispatch(toggleDropdownHidden()),
+  toggleInputHidden: () => dispatch(toggleInputHidden()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

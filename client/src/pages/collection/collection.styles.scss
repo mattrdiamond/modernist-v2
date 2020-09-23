@@ -64,9 +64,13 @@ $title-img-height: 280px;
   }
 
   .collection-container {
-    padding: var(--window-top) 0 var(--window-bottom);
+    padding: 1.5rem 0 var(--window-bottom);
     margin-top: $title-img-height;
     background: #fff;
+  }
+
+  .select-component {
+    width: 200px;
   }
 }
 
@@ -80,6 +84,10 @@ $title-img-height: 280px;
     .collection-container {
       margin-top: 0;
       padding-top: 2rem;
+    }
+
+    .select-component {
+      width: 100%;
     }
   }
 }

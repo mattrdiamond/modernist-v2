@@ -44,3 +44,11 @@ export const sortAsc = (arr, property) =>
  */
 export const sortDesc = (arr, property) =>
   [...arr].sort((a, b) => (a[property] > b[property] ? -1 : 1));
+
+/*
+ * onKeyPress event handler
+ */
+export const handleKeyPress = (e, callback) => {
+  if (e.key !== "Enter") return;
+  callback();
+};
