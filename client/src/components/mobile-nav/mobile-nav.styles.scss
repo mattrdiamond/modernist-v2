@@ -7,6 +7,7 @@
   left: 0;
   top: var(--nav-height);
   padding: 1rem 0;
+  z-index: -1;
 
   /*-- search styles --*/
   .search-wrapper {

@@ -24,9 +24,19 @@
     font-weight: bold;
     transition: background-color 0.2s;
 
+    &:last-of-type {
+      border-radius: 0 0 2px 2px;
+    }
+
     &:hover {
+      background-color: var(--primary-03);
+
+      .icon-arrow-right {
+        color: var(--primary-30);
+      }
+
       [class*="icon-"]:not(.icon-arrow-right) {
-        color: var(--accent-100);
+        color: var(--primary-60);
       }
     }
   }
@@ -50,6 +60,7 @@
     height: 12px;
     color: var(--primary-20);
     pointer-events: none;
+    transition: color 0.2s;
   }
 
   .icon-bedding {

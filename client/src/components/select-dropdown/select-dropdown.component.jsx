@@ -8,15 +8,15 @@ const SelectDropdown = ({ handleSelect, options, selectedValue }) => {
   const sortRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
   const toggleOpen = () => setIsOpen(!isOpen);
-  const closeSelect = () => setIsOpen(false);
+  const closeDropdown = () => setIsOpen(false);
 
   const onOptionClicked = (option) => () => {
-    closeSelect();
+    closeDropdown();
     handleSelect(option);
   };
 
   // Close dropdown when clicking outside
-  useOnClickOutside(sortRef, closeSelect, "ignore-co-sort");
+  useOnClickOutside(sortRef, closeDropdown, "ignore-co-sort");
 
   console.log("render select");
   return (
@@ -30,7 +30,7 @@ const SelectDropdown = ({ handleSelect, options, selectedValue }) => {
         tabIndex={0}
       >
         <span className="select-header-text">
-          {!selectedValue ? "Sort by" : selectedValue}
+          {selectedValue ? selectedValue : "Sort by"}
         </span>
         <ArrowButton isClosed={!isOpen} />
         {isOpen && (
