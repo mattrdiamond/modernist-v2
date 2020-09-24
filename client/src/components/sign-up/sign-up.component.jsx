@@ -27,7 +27,6 @@ const SignUp = ({ signUpStart, error, setError }) => {
     }
 
     // create new user acct associated w/ email, password and displayName and sign in user
-    // (pass along credentials obj containing email, password and displayName to saga)
     signUpStart({ email, password, displayName });
   };
 

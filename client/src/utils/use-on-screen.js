@@ -1,32 +1,34 @@
 import { useEffect, useState } from "react";
 
-// options param includes instructions on when to trigger observer:
-// a. threshold property (percentage of ref that is visible)
-// b. rootMargin property (adjusts bounding box of ref)
+/*  UseOnScreen hook - detects when an element is visible on the screen
+     (options) includes instructions on when to trigger observer:
+         a. threshold property (percentage of ref that is visible)
+         b. rootMargin property (adjusts bounding box of ref element) */
+
 export default function useOnScreen(options) {
-  // use ref callback rather than useRef in case ref element is optionally displayed (safer)
+  // Component uses setRef to update this ref state with the DOM element to be observed
   const [ref, setRef] = useState(null);
   const [visible, setVisible] = useState(false);
+
   useEffect(() => {
-    // set up observer
+    // Set up observer - sets visible to true when intersecting
     const observer = new IntersectionObserver(([entry]) => {
       setVisible(entry.isIntersecting);
     }, options);
 
-    // observe element on screen only if it's not visible yet
+    // Observe element on screen only if it's not visible yet
     if (ref && !visible) {
       observer.observe(ref);
     }
 
-    // cleanup function
+    // Cleanup function - stop observing when there is a ref
     return () => {
       if (ref) {
-        // observer.unobserve(ref);
         observer.disconnect();
       }
     };
   }, [ref, options, visible]);
 
-  // return setRef function to be used in component as well as visible state
+  // Return setRef function and visible state to be used in component
   return [setRef, visible];
 }

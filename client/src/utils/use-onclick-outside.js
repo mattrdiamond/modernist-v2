@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-// Close ref when user clicks or tabs outside element
+// useOnClickOutside hook - closes referenced element when user clicks or tabs outside element
 export default function useOnClickOutside(
   ref,
   handler,
@@ -23,7 +23,6 @@ export default function useOnClickOutside(
       ) {
         return;
       }
-      console.log("close from event", e.target.classList);
       handler(e);
     };
 

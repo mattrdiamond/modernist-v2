@@ -9,9 +9,10 @@ const ModalLookupTable = {
 };
 
 const ModalManager = ({ modal }) => {
+  // currentModal = string name of modal
   const { currentModal, modalProps } = modal;
-  // currentModal (string name of modal) will be global state object
-  // if not null, return the modal that was passed in
+
+  // if currentModal exists, return the modal that was passed in
   if (currentModal) {
     const ModalComponent = ModalLookupTable[currentModal];
     console.log("ModalManager: open modal", ModalComponent);

@@ -23,17 +23,16 @@ import {
 
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   try {
-    // 1. get userReference from db or create one in db
+    // 1. Get userReference from db or create one in db
     const userRef = yield call(
       createUserProfileDocument,
       userAuth,
       additionalData
     );
-    // 2. get user snapshot object, which can be used to get the user data
+    // 2. Get user snapshot object, which can be used to get the user data
     const userSnapshot = yield userRef.get();
 
-    // 3. dispatch signInSuccess action with user id. Also pass along rest of snapShot data (.data() method gives us actual properties on the snapshot object)
-    console.log("data", userSnapshot.data());
+    // 3. Dispatch signInSuccess action with user id and snapShot data (.data() method gives us actual properties on the snapshot object)
     yield put(
       signInSuccess({
         id: userSnapshot.id,
@@ -47,8 +46,8 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
 
 export function* signInWithGoogle() {
   try {
-    // auth library returns an object that includes a user property which we can use to create userRef (userAuth object)
-    // signInWithPopup (firebase) contains signIn options for several services (sign in with twitter, facebook etc). We just want google
+    // Auth library returns an object that includes a user property which we can use to create userRef (userAuth object)
+    // signInWithPopup prompts user to sign in with Google
     const { user } = yield auth.signInWithPopup(googleProvider);
     yield getSnapshotFromUserAuth(user);
   } catch (error) {
@@ -86,9 +85,7 @@ export function* signOut() {
 
 export function* signUp({ payload: { email, password, displayName } }) {
   try {
-    // create userAuth object with email and password
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    // if succeeds, dispatch signUpSuccess with userAuth and additionalData: {displayName: displayName} -> onSignUpSuccess saga listens for SIGN_UP_SUCCESS -> fires signInAfterSignUp saga -> yields getSnapshotFromUserAuth saga (creates user in db) -> dispatch signInSuccess action with user and update reducer
     yield put(signUpSuccess({ user, additionalData: { displayName } }));
   } catch (error) {
     yield put(signUpFailure(error));
@@ -122,7 +119,6 @@ export function* removeFavorite({ payload: { currentUser, item, favorites } }) {
   }
 }
 
-// listener effects listen for the SIGN_IN_START action, and then pass action obj into signIn saga
 export function* onGoogleSignInStart() {
   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
@@ -155,7 +151,7 @@ export function* removeFavoriteStart() {
   yield takeLatest(UserActionTypes.REMOVE_FAVORITE_START, removeFavorite);
 }
 
-// instantiate all of the sagas we need to call (listen for)
+// Instantiate all of the sagas to listen for
 export function* userSagas() {
   yield all([
     call(onGoogleSignInStart),

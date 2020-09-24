@@ -12,7 +12,6 @@ const ShopDropdown = ({ toggleShopDropdown, sections }) => {
   // Close dropdown when clicked outside
   useOnClickOutside(shopDropdownRef, toggleShopDropdown, "ignore-co-shop");
 
-  // prevent body scrolling
   useLockBodyScroll();
 
   const sortedShopSections = sortAsc(sections, sections.title);

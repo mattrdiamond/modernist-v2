@@ -7,14 +7,13 @@ import { withRouter } from "react-router-dom";
 
 const StripeCheckoutButton = ({ clearCart, totals, history }) => {
   const { total } = totals;
-  // Stripe requires price in cents
-  const priceForStripe = Math.round(total * 100);
+  const priceForStripe = Math.round(total * 100); // Stripe requires price in cents
   const publishableKey = "pk_test_q3amCytQBsYySSLChdL3bHlo00aKSAc7sW";
 
-  // client submits payment request -> token object sent to express server's '/payment' route -> payment route sends payment charge to Stripe
+  // Payment request -> token object sent to express server's '/payment' route, which sends payment to Stripe
   const onToken = (token) => {
     axios({
-      url: "payment", // axios takes current url and adds '/payment'
+      url: "payment", // axios adds '/payment' to current url
       method: "post",
       data: {
         amount: priceForStripe,

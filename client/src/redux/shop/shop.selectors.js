@@ -18,7 +18,7 @@ export const selectIsCollectionFetching = createSelector(
   (shop) => shop.isFetching
 );
 
-// select shop collection boolean value - return true if loaded, false if not loaded
+// Select shop collection boolean value - return true if loaded, false if not loaded
 export const selectIsCollectionsLoaded = createSelector(
   [selectShop],
   (shop) => !!shop.collections
@@ -29,16 +29,14 @@ export const selectDropdownHidden = createSelector(
   (shop) => shop.dropdownHidden
 );
 
-// if collections exists, turn collection object into array of keys, then map over them to return array of collections
-// if null (not yet fetched), return an empty array
+// If collections exists, turn collection object into array of keys, then map over them to return array of collections
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
   (collections) =>
     collections ? Object.keys(collections).map((key) => collections[key]) : []
 );
 
-// Returns createSelector function. Assigning makeSelectCollection() to variable in mapStateToProps returns a private copy of the selector which
-// selects the collection matching the url parameter (i.e. decor). If collections doesn't exist (not yet loaded), return null
+// Create a private copy of selector that selects collection based on url param
 export const makeSelectCollection = () =>
   createSelector(
     [selectCollections, (state, props) => props.match.params.collectionId],
@@ -61,14 +59,10 @@ export const selectSortedCollectionItems = createSelector(
   selectCollectionItems,
   selectSortParam,
   (items, sortParam) => {
-    // if no sort param, return unsorted items
+    // If no sort param, return unsorted items
     if (!sortParam) return items;
 
     const { direction, sortBy } = sortParam;
-    // // direction will be ascending or descending
-    // const direction = value.endsWith("asc") ? "asc" : "desc";
-    // get sortParam value preceding underscore ('name_asc' --> 'name')
-    // const sortBy = value.split("_")[0];
 
     if (direction === "asc") {
       return sortAsc(items, sortBy);
@@ -78,14 +72,14 @@ export const selectSortedCollectionItems = createSelector(
   }
 );
 
-// select collection item - first select collection and then find the item.id that matches the url (string)
+// Select collection item id that matches the url param
 export const selectItem = createSelector(
   [selectCollectionItems, (state, props) => props.match.params.itemId],
   (items, itemUrlParam) =>
     items.find((item) => item.id === parseInt(itemUrlParam))
 );
 
-// select combined items from all collections
+// Select combined items from all collections
 export const selectAllCollectionItems = createSelector(
   [selectCollections],
   (collections) => {

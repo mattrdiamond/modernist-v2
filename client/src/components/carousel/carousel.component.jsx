@@ -6,7 +6,7 @@ import Spinner from "../with-spinner/spinner.component";
 import useWindowSize from "../../utils/use-window-size";
 import "./carousel.styles.scss";
 
-// Determine how many images fit on screen based on window width
+// Determine how many images to display based on window width
 export const imagesFitOnScreen = () => {
   const width = window.innerWidth;
   switch (true) {
@@ -53,7 +53,7 @@ function carouselReducer(state, action) {
         ...state,
         index: index + 1,
         imagesLoaded: imagesLoaded + 1,
-        sliderPosition: sliderPosition + 100 / visibleImages, // add percentage of 1 visible image (e.g. if 4 visible images, move slider 25%)
+        sliderPosition: sliderPosition + 100 / visibleImages, // Add percentage of 1 visible image (e.g. if 4 visible images, move slider 25%)
       };
     case "PREVIOUS_IMAGE":
       return {
@@ -95,7 +95,7 @@ const Carousel = () => {
     imagesLoaded,
   } = carouselState;
 
-  // fetch data and set initial images based on screen size
+  // Fetch data and set initial images based on screen size
   useEffect(() => {
     const collectionId = 1118894; // Unsplash 'superior-interior' collection
     axios
@@ -112,7 +112,7 @@ const Carousel = () => {
     // 1. Only update if number of visible images changed
     if (visibleImages === currentVisibleImages) return;
     // 2. When widening the screen and there are NOT enough images to display after current index,
-    //    move index back and display last (n) number of visible images in fetchImageCount
+    //    move index back and display the last number of visibleImages
     else if (
       visibleImages < currentVisibleImages &&
       index + currentVisibleImages > fetchImageCount

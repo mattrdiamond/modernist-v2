@@ -1,9 +1,7 @@
 import React from "react";
 import "./with-spinner.scss";
 
-// WithSpinner higher order component - passing a component into WithSpinner function
-// will wrap that component in new spinner component and give it new props (isLoading)
-// and return a spinner or the original component based on the isLoading prop value
+// Display a spinner or the original component based on the isLoading prop value
 const WithSpinner = (WrappedComponent) => ({
   isLoading,
   height,

@@ -34,7 +34,6 @@ const App = ({
   mobileNavVisible,
   history,
 }) => {
-  // equivalent to componentDidMount (will only re-render if checkUserSession changes, and we know it will not)
   useEffect(() => {
     // check if user's authentication has persisted
     checkUserSession();
@@ -76,7 +75,7 @@ const App = ({
             }
           />
           {/* If user signed in, redirect to previous page when navigating to /signin.
-              Also redirect to previous page after user signs in. Alternatively we could <Redirect to="/" /> */}
+              Also redirect to previous page after user signs in. */}
           <Route
             exact
             path="/signin"

@@ -41,12 +41,11 @@ const Header = ({
   toggleInputHidden,
   sections,
 }) => {
-  // useCallback prevents cartIcon from rendering when shop or search button clicked
   const handleCartClick = useCallback(() => {
     if (!mobileNavVisible) {
       return toggleCartHidden();
     }
-    // close mobileNav if open
+    // close mobileNav if open when cart clicked
     toggleMobileNav();
     toggleCartHidden();
   }, [mobileNavVisible, toggleMobileNav, toggleCartHidden]);
@@ -130,7 +129,7 @@ const Header = ({
         </div>
       </div>
       {/*
-        CSSTransition - applies CSS transition before adding/removing from DOM
+        CSSTransition - applies CSS transition before adding/removing element from DOM
           • in - condition must be met to display child component (mobileNav)
           • classNames - applied when element added/removed from DOM
           • timeout - transition time
@@ -156,7 +155,6 @@ const Header = ({
   );
 };
 
-// createStructuredSelector passes state into multiple selectors
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
   mobileNavVisible: selectNavVisible,

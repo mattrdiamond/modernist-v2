@@ -5,10 +5,10 @@ import "./star-rating.styles.scss";
 const StarRating = ({ rating, maxRating, reviewCount }) => {
   const starPercentage = (rating / maxRating) * 100;
 
-  // round to nearest 10
+  // Round to nearest 10%
   const starPercentageRounded = Math.round(starPercentage / 10) * 10;
 
-  // create a group of 5 stars
+  // Create a group of 5 stars
   const starArray = Array.from({ length: maxRating }, (_, i) => (
     <span className="star" key={i} aria-hidden="true">
       <Icon icon="star" />
@@ -33,5 +33,5 @@ const StarRating = ({ rating, maxRating, reviewCount }) => {
   );
 };
 
-// react memo will prevent re-render of star rating every time product page updates
+// Memoize StarRating to prevent re-render every time product page updates
 export default React.memo(StarRating);

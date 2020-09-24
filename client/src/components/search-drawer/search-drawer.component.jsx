@@ -32,15 +32,14 @@ const SearchDrawer = ({
 }) => {
   const inputRef = useRef(null);
 
-  // focus on input when component mounts
+  // Focus on input when component mounts
   useEffect(() => {
     inputRef.current.focus();
   }, []);
 
-  // prevent scrolling when drawer open
+  // Prevent scrolling when drawer open
   useLockBodyScroll();
 
-  // useCallback prevents re-creation of function every time component rebuilds
   const handleClose = useCallback(() => {
     closeSearchDrawer();
   }, [closeSearchDrawer]);
@@ -56,6 +55,7 @@ const SearchDrawer = ({
     inputRef.current.focus();
   };
 
+  // Close search drawer when clicked outside
   useOnClickOutside(inputRef, handleClose, "ignore-co-search", inputHidden);
 
   return (

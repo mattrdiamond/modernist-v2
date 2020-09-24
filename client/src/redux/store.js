@@ -9,12 +9,11 @@ const sagaMiddleware = createSagaMiddleware();
 
 const middlewares = [logger, sagaMiddleware];
 
-// spread all middlewares into applyMiddleware function as individual arguments
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
 sagaMiddleware.run(rootSaga);
 
-// persistStore allows browser to cache store using localStorage
+// Cache store using localStorage
 export const persistor = persistStore(store);
 
 export default { store, persistor };

@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import {
   selectCartItemsCount,
   selectCartHidden,
 } from "../../redux/cart/cart.selectors";
-import { createStructuredSelector } from "reselect";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import Icon from "../icon/icon.component";
 import "./cart-icon.styles.scss";

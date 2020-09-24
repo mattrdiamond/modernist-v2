@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
-// actual local storage object on window object
+// Actual local storage object on window object
 import storage from "redux-persist/lib/storage";
 import userReducer from "./user/user.reducer";
 import cartReducer from "./cart/cart.reducer";
@@ -28,5 +28,4 @@ const rootReducer = combineReducers({
   mobileNav: mobileNavReducer,
 });
 
-// export modified version of rootReducer with persistance capabilities
 export default persistReducer(persistConfig, rootReducer);

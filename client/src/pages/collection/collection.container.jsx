@@ -5,9 +5,8 @@ import { selectIsCollectionsLoaded } from "../../redux/shop/shop.selectors";
 import WithSpinner from "../../components/with-spinner/with-spinner.component";
 import CollectionPage from "./collection.component";
 
-// Have to invert state - if selectIsCollectionsLoaded is false, isLoading should be true
 const mapStateToProps = createStructuredSelector({
-  isLoading: state => !selectIsCollectionsLoaded(state)
+  isLoading: (state) => !selectIsCollectionsLoaded(state),
 });
 
 const CollectionPageContainer = compose(

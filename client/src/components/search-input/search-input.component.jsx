@@ -2,7 +2,6 @@ import React, { forwardRef } from "react";
 import Icon from "../icon/icon.component";
 import "./search-input.styles.scss";
 
-// forwardRef will pass ref on to child if included
 const SearchInput = forwardRef(
   ({ handleChange, handleClear, inputValue, children, ...otherProps }, ref) => (
     <div className="search-wrapper">

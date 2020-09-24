@@ -7,10 +7,6 @@ import "./directory.styles.scss";
 
 const Directory = ({ sections }) => (
   <section className="directory-menu page-width">
-    {/* ES6: spreading otherSectionProps (name we created) just adds
-    remaining key/value pairs from sections state object. We can then spread those
-    same values into MenuItem. This just cleans up the syntax - no longer need
-    to list out title={title} size={size} linkUrl=(linkUrl) etc.*/}
     {sections.map(({ id, ...otherSectionProps }) => (
       <MenuItem key={id} {...otherSectionProps} />
     ))}

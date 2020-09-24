@@ -26,6 +26,8 @@ const MobileNav = ({
   fetchCollectionsStart,
   currentUser,
 }) => {
+  console.log("render mobileNav");
+
   const handleChange = (e) => {
     const { value } = e.target;
     setInputValue(value);

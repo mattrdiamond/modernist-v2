@@ -16,13 +16,13 @@ const config = {
 firebase.initializeApp(config);
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
-  // 1. Return if user signed out (null)
+  // 1. Exit if user signed out (null)
   if (!userAuth) return;
 
   // Use userAuth obj to query db for documentReference to user. uid is dynamically generated id that firestore created when user authenticated
   const userRef = firestore.doc(`users/${userAuth.uid}`);
 
-  // 2. Then use documentReference object to get snapShot object, which includes a boolean 'exists' property
+  // 2. Use the documentReference object to get snapShot object, which includes a boolean 'exists' property
   //    Note: .get() returns a snapshot object which represents the data at that location in db,
   //           which we can use to see if userAuth exists
   const snapShot = await userRef.get();
@@ -91,7 +91,8 @@ export const addCollectionAndDocuments = async (
   const batch = firestore.batch();
 
   objectsToAdd.forEach((obj) => {
-    // 2. Create a new documentReference object for each category in collection (i.e. hats). Firestore's .doc() method (without params) will generate random IDs which will also be used for url path
+    // 2. Create a new documentReference object for each category in collection (i.e. decor).
+    //    Firestore's .doc() method (without params) will generate random IDs which will also be used for url path
     const newDocRef = collectionRef.doc();
     // 3. Set the value (title and items) for each docRef object by batching the .set() calls together.
     batch.set(newDocRef, obj);
@@ -105,8 +106,9 @@ export const convertCollectionsSnapshotToMap = (collections) => {
   // .docs gives us query snapshot, .data() gives us data from db
   const transformedCollection = collections.docs.map((doc) => {
     const { title, items, banner } = doc.data();
-    // return object from back end that includes data we need for front end
-    // routeName -  new value which will be the same string as title (i.e. decor). .replace simplifies routeName by only using first word (i.e. 'sofas & sectionals' becomes 'sofas')
+    // Return object from back end that includes data we need for front end:
+    // routeName -  new value which will be the same string as title (i.e. decor).
+    //              simplify routeName by only using first word (i.e. 'sofas & sectionals' becomes 'sofas')
     // encodeURI - encodes URI by replacing characters that a URL cannot process.
     return {
       routeName: encodeURI(title.replace(/ .*/, "").toLowerCase()),
@@ -116,16 +118,16 @@ export const convertCollectionsSnapshotToMap = (collections) => {
       banner,
     };
   });
-  // Convert array of objects to new object. Reduce iterates through each collection in array (i.e. decor) and adds collection title as property name for each collection in new object (i.e. decor: {routeName: 'decor', id: 123, etc.})
+  // Convert array of objects to new object using collection title as property name.
   return transformedCollection.reduce((accumulator, collection) => {
     accumulator[collection.title.replace(/ .*/, "").toLowerCase()] = collection;
     return accumulator;
   }, {});
 };
 
-// create promise oriented solution to get userAuth object from auth library that will work with sagas
-// once we get userAuth object, immediately unsubscribe using Firebase unsubscribe() function
-// resolve with userAuth object or reject with null
+// Promise oriented solution to get userAuth object from auth library that will work with sagas:
+//  Once we get userAuth object, immediately unsubscribe using Firebase's unsubscribe() function.
+//  Resolve with userAuth object or reject with null
 export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
@@ -135,14 +137,18 @@ export const getCurrentUser = () => {
   });
 };
 
-export const auth = firebase.auth(); // we imported firebase/auth above which gives us access to .auth() method on firebase. Export for anything we need related to authentication
+// Firebase .auth() method - used for authentication
+export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
-// set up google authentication utility
-export const googleProvider = new firebase.auth.GoogleAuthProvider(); // gives us access to googleAuthProvider class from auth library
-// triggers google popup when we use googleAuthProvider for authentication and sign-in
+// Set up Google authentication utility
+export const googleProvider = new firebase.auth.GoogleAuthProvider(); // Gives us access to googleAuthProvider class from auth library
+
+// Trigger Google prompt
 googleProvider.setCustomParameters({ prompt: "select_account" });
-// signInWithPopup contains popups for several services (sign in with twitter, facebook etc). We just want google
+
+// signInWithPopup contains popups for several services (sign in with twitter, facebook etc).
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
-// export firebase as default in case we want entire library
+
+// Export firebase as default in case we want entire library
 export default firebase;

@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import "./confirmation.styles.scss";
 
 const Confirmation = (data) => {
-  console.log("data", data);
   const { paymentData, totals } = data.location;
   const { amount, payment_method_details, created } = paymentData;
   const { cartSubtotal, discount, tax, shipping } = totals;

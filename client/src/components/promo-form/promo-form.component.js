@@ -50,7 +50,6 @@ const PromoForm = ({
     ) {
       return throwError("Promo has already been applied.");
     }
-    // apply promo code
     applyPromo();
   };
 

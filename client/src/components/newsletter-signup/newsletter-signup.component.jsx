@@ -6,7 +6,7 @@ import useOnScreen from "../../utils/use-on-screen";
 import "./newsletter-signup.styles.scss";
 
 const NewsletterSignup = () => {
-  // Intersection observer - will update the ref state in useOnScreen with the referenced DOM element and return visible state (intersecting)
+  // useOnScreen (Intersection observer) - setRef will update the ref state in useOnScreen with the referenced DOM element and return visible status (isIntersecting)
   const [setRef, visible] = useOnScreen({ threshold: 0.5 });
 
   // status message will display error or success message below form input
@@ -27,11 +27,8 @@ const NewsletterSignup = () => {
     // Only run on forms flagged for validation
     if (!event.target.classList.contains("validate")) return;
 
-    // Prevent form from submitting
     event.preventDefault();
 
-    // Otherwise, let the form submit normally
-    // We could also add in an Ajax form submit process here
     submitMailChimpForm(event.target);
   };
 
@@ -109,7 +106,7 @@ const NewsletterSignup = () => {
       message: data.msg.replace(/^([0-9] - )/g, ""),
       result: data.result,
     });
-    // focus on error message
+    // Focus on error message
     statusMessage.current.focus();
   };
 
@@ -141,6 +138,7 @@ const NewsletterSignup = () => {
             <p>
               Sign up to recieve product news, promotions&nbsp;and&nbsp;updates.
             </p>
+            {/* hide input if email successfully added and show success message */}
             {result !== "success" ? (
               <FormInput
                 name="EMAIL"

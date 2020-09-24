@@ -72,9 +72,8 @@ const CollectionPage = ({
   );
 };
 
-// ownProps - props of the component that we're wrapping in connect (CollectionPage)
 const mapStateToProps = () => {
-  // create a private copy of selectCollection for each collection (otherwise selectCollection will run every time)
+  // create a private copy of selectCollection for each collection to retain memoization
   const selectCollection = makeSelectCollection();
 
   return (state, ownProps) => ({

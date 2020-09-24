@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import FormInput from "../form-input/form-input.component";
-import CustomButton from "../custom-button/custom-button.component";
-import Icon from "../icon/icon.component";
+import { createStructuredSelector } from "reselect";
+import { selectErrorMessage } from "../../redux/user/user.selectors";
 import {
   googleSignInStart,
   emailSignInStart,
 } from "../../redux/user/user.actions";
-import { createStructuredSelector } from "reselect";
-import { selectErrorMessage } from "../../redux/user/user.selectors";
+import FormInput from "../form-input/form-input.component";
+import CustomButton from "../custom-button/custom-button.component";
+import Icon from "../icon/icon.component";
 import "./sign-in.styles.scss";
 
 const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
@@ -27,8 +27,7 @@ const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    // Brackets within setState will dynamically set that
-    // key to the input name (email or password)
+    // Dynamically set credential (email or password) based on target value
     setCredentials({ ...userCredentials, [name]: value });
   };
 
