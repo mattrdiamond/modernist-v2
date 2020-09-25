@@ -11,7 +11,7 @@ import { setInputValue } from "../../redux/search/search.actions";
 import { closeSearchDrawer } from "../../redux/search/search.actions";
 
 import SearchResult from "../search-result/search-result.component";
-import Spinner from "../with-spinner/spinner.component";
+import Spinner from "../spinner/spinner.component";
 
 import "./search-dropdown.styles.scss";
 

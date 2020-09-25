@@ -2,7 +2,7 @@ import React, { useEffect, useReducer, useCallback } from "react";
 import axios from "axios";
 import CarouselCard from "../carousel-card/carousel-card.component";
 import Icon from "../icon/icon.component";
-import Spinner from "../with-spinner/spinner.component";
+import Spinner from "../spinner/spinner.component";
 import useWindowSize from "../../utils/use-window-size";
 import "./carousel.styles.scss";
 
