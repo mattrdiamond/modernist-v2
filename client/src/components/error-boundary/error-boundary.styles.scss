@@ -1,0 +1,25 @@
+.error-container {
+  padding-top: var(--window-top);
+  padding-bottom: var(--window-bottom);
+  min-height: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .error-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .error-title {
+    margin-top: 2rem;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .custom-button {
+    margin-top: 1.5rem;
+  }
+}

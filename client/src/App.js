@@ -7,6 +7,7 @@ import Portal from "./components/portal/portal.component";
 import ModalManager from "./components/modals/modal-manager";
 import Footer from "./components/footer/footer.component";
 import Spinner from "./components/spinner/spinner.component";
+import ErrorBoundary from "./components/error-boundary/error-boundary.component";
 
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selectors";
@@ -70,34 +71,36 @@ const App = ({
       <Header />
       <div className="content-window">
         <Switch>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/shop" component={ShopPage} />
-            <Route exact path="/checkout" component={CheckoutPage} />
-            <Route exact path="/favorites" component={FavoritesPage} />
-            <Route
-              exact
-              path="/confirmation"
-              render={(data) =>
-                !data.location.paymentData ? (
-                  <Redirect to="/" />
-                ) : (
-                  <Confirmation />
-                )
-              }
-            />
+          <ErrorBoundary>
+            <Suspense fallback={<Spinner />}>
+              <Route exact path="/" component={HomePage} />
+              <Route path="/shop" component={ShopPage} />
+              <Route exact path="/checkout" component={CheckoutPage} />
+              <Route exact path="/favorites" component={FavoritesPage} />
+              <Route
+                exact
+                path="/confirmation"
+                render={(data) =>
+                  !data.location.paymentData ? (
+                    <Redirect to="/" />
+                  ) : (
+                    <Confirmation />
+                  )
+                }
+              />
 
-            {/* If user signed in, redirect to previous page when navigating to /signin.
+              {/* If user signed in, redirect to previous page when navigating to /signin.
               Also redirect to previous page after user signs in. */}
-            <Route
-              exact
-              path="/signin"
-              render={() =>
-                currentUser ? history.goBack() : <SignInAndSignUpPage />
-              }
-            />
-            <Route path="/search" component={SearchPage} />
-          </Suspense>
+              <Route
+                exact
+                path="/signin"
+                render={() =>
+                  currentUser ? history.goBack() : <SignInAndSignUpPage />
+                }
+              />
+              <Route path="/search" component={SearchPage} />
+            </Suspense>
+          </ErrorBoundary>
         </Switch>
       </div>
       <Footer />
