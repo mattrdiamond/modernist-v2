@@ -16,7 +16,7 @@ import StripeCheckoutButton from "../../components/stripe-button/stripe-button.c
 import PromoForm from "../../components/promo-form/promo-form.component";
 import PromoBanner from "../../components/promo-banner/promo-banner.component";
 
-import "./checkout.styles.scss";
+import "./checkout-page.styles.scss";
 
 const CheckoutPage = ({ cartItems, cartSubtotal, promoApplied }) => {
   const taxRate = 0.0625;
@@ -26,7 +26,7 @@ const CheckoutPage = ({ cartItems, cartSubtotal, promoApplied }) => {
   const total = cartSubtotal - discount + tax + shipping;
 
   return (
-    <>
+    <div className="checkout-page-container">
       <PromoBanner promoCode="SUPERSALE" />
       <div className="checkout-page page-width">
         <div className="max-width">
@@ -93,7 +93,7 @@ const CheckoutPage = ({ cartItems, cartSubtotal, promoApplied }) => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

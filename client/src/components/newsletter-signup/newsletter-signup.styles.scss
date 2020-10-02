@@ -8,7 +8,10 @@
   min-height: 18rem;
   display: flex;
   align-items: center;
-  position: relative;
+
+  #mc-embedded-subscribe-form {
+    position: relative;
+  }
 
   .img-container {
     height: calc(100% + 15px);

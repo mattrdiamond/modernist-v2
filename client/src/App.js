@@ -23,7 +23,9 @@ import "./App.css";
 // lazy load JS for each route
 const HomePage = lazy(() => import("./pages/homepage/homepage.component"));
 const ShopPage = lazy(() => import("./pages/shop/shop.component"));
-const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"));
+const CheckoutPage = lazy(() =>
+  import("./pages/checkout/checkout-page.container")
+);
 const SearchPage = lazy(() =>
   import("./pages/search-page/search-page.component")
 );
