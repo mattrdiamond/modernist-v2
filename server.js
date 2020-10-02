@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const path = require("path");
+const compression = require("compression");
 // allows window.fetch API on Node.js runtime (for unsplash-js)
 global.fetch = require("node-fetch");
 // unsplash has multiple exports. we just want default
@@ -28,6 +29,9 @@ const app = express();
 
 // Use process environment's port or 5000
 const port = process.env.PORT || 5000;
+
+// Compress files for Heroku
+app.use(compression());
 
 // Parse body of all incoming requests to JSON
 app.use(bodyParser.json());
