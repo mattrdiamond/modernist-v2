@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+import Spinner from "../spinner/spinner.component";
 import { newsletter2x, newsletter1x } from "../../assets/img/_images";
 import useOnScreen from "../../utils/use-on-screen";
 import "./newsletter-signup.styles.scss";
@@ -16,7 +17,9 @@ const NewsletterSignup = () => {
   const [mailchimpStatus, setMailchimpStatus] = useState({
     message: "",
     result: "",
+    loading: false,
   });
+  const { message, result, loading } = mailchimpStatus;
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -29,6 +32,7 @@ const NewsletterSignup = () => {
 
     event.preventDefault();
 
+    setMailchimpStatus({ ...mailchimpStatus, loading: true });
     submitMailChimpForm(event.target);
   };
 
@@ -105,12 +109,13 @@ const NewsletterSignup = () => {
     setMailchimpStatus({
       message: data.msg.replace(/^([0-9] - )/g, ""),
       result: data.result,
+      loading: false,
     });
     // Focus on error message
     statusMessage.current.focus();
   };
 
-  const { message, result } = mailchimpStatus;
+  console.log("render newsletter");
 
   return (
     <section className="newsletter-signup" ref={setRef}>
@@ -152,16 +157,22 @@ const NewsletterSignup = () => {
                 value={email}
                 required
               >
-                <CustomButton
-                  type="submit"
-                  value="Subscribe"
-                  name="subscribe"
-                  id="mc-embedded-subscribe"
-                  disabled={!email}
-                  inline
-                >
-                  Submit
-                </CustomButton>
+                <div className="btn-container">
+                  {loading ? (
+                    <Spinner />
+                  ) : (
+                    <CustomButton
+                      type="submit"
+                      value="Subscribe"
+                      name="subscribe"
+                      id="mc-embedded-subscribe"
+                      disabled={!email}
+                      inline
+                    >
+                      Submit
+                    </CustomButton>
+                  )}
+                </div>
               </FormInput>
             ) : null}
             {/* hidden input prevents form bot signups */}
@@ -177,16 +188,17 @@ const NewsletterSignup = () => {
                 value=""
               />
             </div>
-            {mailchimpStatus.message && (
+            {message ? (
               <div
                 className={`mc-status ${
                   result === "success" ? "success-message" : "error-message"
                 }`}
                 tabIndex={message ? 0 : -1}
                 ref={statusMessage}
-                dangerouslySetInnerHTML={{ __html: message }}
-              ></div>
-            )}
+              >
+                {message}
+              </div>
+            ) : null}
           </form>
         </div>
       </div>
@@ -194,4 +206,4 @@ const NewsletterSignup = () => {
   );
 };
 
-export default NewsletterSignup;
+export default React.memo(NewsletterSignup);

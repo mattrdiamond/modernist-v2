@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import CustomButton from "../custom-button/custom-button.component";
 import "./error-boundary.styles.scss";
 
 const errorIcon = require("../../assets/icons/404.svg");
 
-export default class ErrorBoundary extends Component {
+class ErrorBoundary extends Component {
   constructor() {
     super();
 
@@ -25,13 +26,21 @@ export default class ErrorBoundary extends Component {
 
   render() {
     const { hasErrored } = this.state;
+    const { history } = this.props;
 
     if (hasErrored) {
       return (
         <div className="error-container page-width">
-          <img src={errorIcon} alt="page not found" class="error-img" />
+          <img src={errorIcon} alt="page not found" className="error-img" />
           <h2 className="error-title">Oops! This page went&nbsp;missing.</h2>
-          <CustomButton inverted>Return Home</CustomButton>
+          <CustomButton
+            inverted
+            onClick={() => {
+              history.replace("/");
+            }}
+          >
+            Return Home
+          </CustomButton>
         </div>
       );
     }
@@ -39,3 +48,5 @@ export default class ErrorBoundary extends Component {
     return this.props.children;
   }
 }
+
+export default withRouter(ErrorBoundary);

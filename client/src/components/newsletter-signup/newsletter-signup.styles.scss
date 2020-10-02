@@ -41,12 +41,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+  }
+
+  .btn-container {
+    width: 70px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    button {
+      width: 100%;
+    }
   }
 
   .mc-status {
     font-style: italic;
     font-size: 0.75em;
-    margin-top: 0.5em;
+    margin-top: 0.5rem;
 
     &:focus {
       outline: none;
@@ -61,6 +74,19 @@
 
   .error-message {
     color: var(--red);
+    position: absolute;
+    width: 100%;
+  }
+
+  .spinner-overlay {
+    height: unset;
+
+    .spinner-container {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--primary-30);
+      border-top-color: var(--primary-85);
+    }
   }
 }
 
