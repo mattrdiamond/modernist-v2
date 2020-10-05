@@ -160,8 +160,7 @@ form > *:last-child {
   top: 0;
 }
 
-#app.input-visible:after,
-#app.shop-dropdown-visible:after,
+#app.dropdown-visible:after,
 #app.cart-visible:after {
   visibility: visible;
   opacity: 1;
@@ -188,6 +187,8 @@ form > *:last-child {
 @media (max-width: 800px) {
   :root {
     --nav-height: 60px;
+    --window-top: 4vw;
+    --window-bottom: 8vw;
   }
 
   /* hide shop dropdown and input dropdown elements on mobile */
@@ -197,17 +198,9 @@ form > *:last-child {
     height: 100%;
   }
 
-  #app.shop-dropdown-visible:after,
-  #app.input-visible:after {
+  #app.dropdown-visible:after {
     visibility: hidden;
     opacity: 0;
-  }
-}
-
-@media (max-width: 800px) {
-  :root {
-    --window-top: 4vw;
-    --window-bottom: 8vw;
   }
 }
 

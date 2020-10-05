@@ -7,14 +7,12 @@ const SearchInput = forwardRef(
     <div className="search-wrapper">
       <Icon icon="search" />
       <div className="form-wrapper">
-        <form className="search-form">
-          <input
-            className="search-input"
-            onChange={handleChange}
-            ref={ref}
-            {...otherProps}
-          />
-        </form>
+        <input
+          className="search-input"
+          onChange={handleChange}
+          ref={ref}
+          {...otherProps}
+        />
         {children}
       </div>
       <button

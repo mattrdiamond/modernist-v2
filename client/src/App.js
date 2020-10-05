@@ -45,7 +45,6 @@ const App = ({
   inputHidden,
   cartHidden,
   shopDropdownHidden,
-  mobileNavVisible,
   history,
 }) => {
   useEffect(() => {
@@ -53,23 +52,17 @@ const App = ({
     checkUserSession();
   }, [checkUserSession]);
 
-  const getDropdownStatus = () => {
-    switch (true) {
-      case !cartHidden:
-        return "cart-visible";
-      case !shopDropdownHidden:
-        return "shop-dropdown-visible";
-      case !inputHidden:
-        return "input-visible";
-      case mobileNavVisible:
-        return "nav-visible";
-      default:
-        return;
-    }
-  };
-
   return (
-    <div id="app" className={getDropdownStatus()}>
+    <div
+      id="app"
+      className={
+        !cartHidden
+          ? "cart-visible"
+          : !shopDropdownHidden || !inputHidden
+          ? "dropdown-visible"
+          : null
+      }
+    >
       <Header />
       <div className="content-window">
         <Switch>

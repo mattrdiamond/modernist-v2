@@ -14,7 +14,7 @@ const StripeCheckoutButton = ({
   totals,
   history,
   checkoutStart,
-  checkoutTest,
+  checkoutSuccess,
 }) => {
   const { total } = totals;
   const priceForStripe = Math.round(total * 100); // Stripe requires price in cents
@@ -32,8 +32,8 @@ const StripeCheckoutButton = ({
       },
     })
       .then((response) => {
-        clearCart();
         checkoutSuccess();
+        clearCart();
         // redirect to confirmation screen
         history.replace({
           pathname: "/confirmation",
@@ -54,9 +54,6 @@ const StripeCheckoutButton = ({
       "Please use the following test credit card for payments:\nCard Number: 4242 4242 4242 4242\nExp: 01/28\nCVV: 123"
     );
   };
-
-  console.log("test", checkoutTest);
-  console.log("test2", clearCart);
 
   return (
     <StripeCheckout
@@ -81,6 +78,7 @@ const StripeCheckoutButton = ({
 const mapDispatchToProps = (dispatch) => ({
   clearCart: () => dispatch(clearCart()),
   checkoutStart: () => dispatch(checkoutStart()),
+  checkoutSuccess: () => dispatch(checkoutSuccess()),
 });
 
 export default withRouter(
