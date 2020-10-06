@@ -1,12 +1,14 @@
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { compose } from "redux";
-import { selectIsLoading } from "../../redux/checkout/checkout.selectors";
+import { selectIsCheckoutLoading } from "../../redux/checkout/checkout.selectors";
+import { selectCartFetching } from "../../redux/cart/cart.selectors";
 import WithSpinner from "../../components/with-spinner/with-spinner.component";
 import CheckoutPage from "./checkout-page.component";
 
 const mapStateToProps = createStructuredSelector({
-  isLoading: (state) => selectIsLoading(state),
+  isLoading: (state) =>
+    selectIsCheckoutLoading(state) || selectCartFetching(state),
 });
 
 const CheckoutPageContainer = compose(

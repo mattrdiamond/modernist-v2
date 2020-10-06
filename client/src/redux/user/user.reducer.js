@@ -9,14 +9,14 @@ const INITIAL_STATE = {
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case UserActionTypes.CHECK_USER_SESSION:
+    case UserActionTypes.EMAIL_SIGN_IN_START:
+    case UserActionTypes.GOOGLE_SIGN_IN_START:
       return {
         ...state,
         isFetching: true,
       };
     case UserActionTypes.SIGN_IN_SUCCESS:
       const { id, displayName, email, createdAt, favorites } = action.payload;
-      console.log("success", action.payload);
       return {
         ...state,
         currentUser: { id, displayName, email, createdAt },

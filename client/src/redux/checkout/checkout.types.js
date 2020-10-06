@@ -1,6 +1,6 @@
 const CheckoutActionTypes = {
-  CHECKOUT_START: "CHECKOUT_START",
-  CHECKOUT_SUCCESS: "CHECKOUT_SUCCESS",
+  PAYMENT_START: "PAYMENT_START",
+  PAYMENT_SUCCESS: "PAYMENT_SUCCESS",
 };
 
 export default CheckoutActionTypes;

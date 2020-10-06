@@ -1,15 +1,81 @@
-import { all, call, takeLatest, put } from "redux-saga/effects";
+import { all, call, takeLatest, put, select } from "redux-saga/effects";
 import UserActionTypes from "../user/user.types";
-import { clearCart } from "./cart.actions";
+import { getUserCartRef } from "../../firebase/firebase.utils";
+import { selectCurrentUser } from "../user/user.selectors";
+import { selectCartItems } from "./cart.selectors";
+import {
+  clearCart,
+  fetchCartFromFirebase,
+  setCartFromFirebase,
+} from "./cart.actions";
+import CartActionTypes from "./cart.types";
 
 export function* clearCartOnSignOut() {
   yield put(clearCart());
+}
+
+export function* getCartItemsFromFirebase({ payload: user }) {
+  // Get reference to cart in db
+  const cartRef = yield getUserCartRef(user.id);
+  const cartSnapshot = yield cartRef.get();
+  console.log("update state with firebase state");
+  // Get data from snapshot object and update state
+  yield put(setCartFromFirebase(cartSnapshot.data().cartItems));
+}
+
+export function* updateCartItemsInFirebase() {
+  const currentUser = yield select(selectCurrentUser);
+  if (currentUser) {
+    try {
+      // Get reference to cart in db
+      const cartRef = yield getUserCartRef(currentUser.id);
+      // Select cart items in state
+      const cartItems = yield select(selectCartItems);
+      // Update cart items in db
+      yield cartRef.update({ cartItems });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export function* fetchCartItemsStart() {
+  // Set isFetching to true
+  yield put(fetchCartFromFirebase());
 }
 
 export function* onSignOutSuccess() {
   yield takeLatest(UserActionTypes.SIGN_OUT_SUCCESS, clearCartOnSignOut);
 }
 
+export function* onSignInStart() {
+  yield takeLatest(
+    [UserActionTypes.EMAIL_SIGN_IN_START, UserActionTypes.GOOGLE_SIGN_IN_START],
+    fetchCartItemsStart
+  );
+}
+
+export function* onUserSignIn() {
+  yield takeLatest(UserActionTypes.SIGN_IN_SUCCESS, getCartItemsFromFirebase);
+}
+
+export function* onCartChange() {
+  yield takeLatest(
+    [
+      CartActionTypes.ADD_ITEM,
+      CartActionTypes.REMOVE_ITEM,
+      CartActionTypes.CLEAR_ITEM_FROM_CART,
+      CartActionTypes.CLEAR_CART,
+    ],
+    updateCartItemsInFirebase
+  );
+}
+
 export function* cartSagas() {
-  yield all([call(onSignOutSuccess)]);
+  yield all([
+    call(onSignOutSuccess),
+    call(onSignInStart),
+    call(onUserSignIn),
+    call(onCartChange),
+  ]);
 }

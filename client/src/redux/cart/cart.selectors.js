@@ -2,6 +2,11 @@ import { createSelector } from "reselect";
 
 const selectCart = (state) => state.cart;
 
+export const selectCartFetching = createSelector(
+  [selectCart],
+  (cart) => cart.isFetching
+);
+
 export const selectCartItems = createSelector(
   [selectCart],
   (cart) => cart.cartItems

@@ -7,13 +7,12 @@ const INITIAL_STATE = {
 
 const checkoutReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case CheckoutActionTypes.CHECKOUT_START:
-      console.log("START");
+    case CheckoutActionTypes.PAYMENT_START:
       return {
         ...state,
         isLoading: true,
       };
-    case CheckoutActionTypes.CHECKOUT_SUCCESS:
+    case CheckoutActionTypes.PAYMENT_SUCCESS:
       return {
         ...state,
         isLoading: false,

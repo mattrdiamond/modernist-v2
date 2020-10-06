@@ -33,7 +33,7 @@ const SignInAndSignUpPage = lazy(() =>
   import("./pages/sign-in-and-sign-up/sign-in-and-sign-up.component")
 );
 const FavoritesPage = lazy(() =>
-  import("./pages/favorites/favorites.component")
+  import("./pages/favorites/favorites.container")
 );
 const Confirmation = lazy(() =>
   import("./pages/confirmation/confirmation.component")

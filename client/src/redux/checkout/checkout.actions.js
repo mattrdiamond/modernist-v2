@@ -1,9 +1,9 @@
 import CheckoutActionTypes from "./checkout.types";
 
-export const checkoutStart = () => ({
-  type: CheckoutActionTypes.CHECKOUT_START,
+export const paymentStart = () => ({
+  type: CheckoutActionTypes.PAYMENT_START,
 });
 
-export const checkoutSuccess = () => ({
-  type: CheckoutActionTypes.CHECKOUT_SUCCESS,
+export const paymentSuccess = () => ({
+  type: CheckoutActionTypes.PAYMENT_SUCCESS,
 });

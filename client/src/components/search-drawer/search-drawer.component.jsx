@@ -47,7 +47,7 @@ const SearchDrawer = ({
   const handleChange = (e) => {
     e.preventDefault();
     const { value } = e.target;
-    console.log("val", e.key);
+    console.log("val", value);
 
     setInputValue(value);
     if (!collectionItems.length) fetchCollectionsStart();

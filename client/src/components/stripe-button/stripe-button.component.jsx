@@ -3,8 +3,8 @@ import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 import { clearCart } from "../../redux/cart/cart.actions";
 import {
-  checkoutStart,
-  checkoutSuccess,
+  paymentStart,
+  paymentSuccess,
 } from "../../redux/checkout/checkout.actions";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
@@ -13,8 +13,8 @@ const StripeCheckoutButton = ({
   clearCart,
   totals,
   history,
-  checkoutStart,
-  checkoutSuccess,
+  paymentStart,
+  paymentSuccess,
 }) => {
   const { total } = totals;
   const priceForStripe = Math.round(total * 100); // Stripe requires price in cents
@@ -22,7 +22,7 @@ const StripeCheckoutButton = ({
 
   // Payment request -> token object sent to express server's '/payment' route, which sends payment to Stripe
   const onToken = (token) => {
-    checkoutStart();
+    paymentStart();
     axios({
       url: "payment",
       method: "post",
@@ -32,7 +32,7 @@ const StripeCheckoutButton = ({
       },
     })
       .then((response) => {
-        checkoutSuccess();
+        paymentSuccess();
         clearCart();
         // redirect to confirmation screen
         history.replace({
@@ -77,8 +77,8 @@ const StripeCheckoutButton = ({
 
 const mapDispatchToProps = (dispatch) => ({
   clearCart: () => dispatch(clearCart()),
-  checkoutStart: () => dispatch(checkoutStart()),
-  checkoutSuccess: () => dispatch(checkoutSuccess()),
+  paymentStart: () => dispatch(paymentStart()),
+  paymentSuccess: () => dispatch(paymentSuccess()),
 });
 
 export default withRouter(

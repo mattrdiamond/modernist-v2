@@ -4,6 +4,7 @@ import { addItemToCart, removeItemFromCart } from "./cart.utils";
 const INITIAL_STATE = {
   hidden: true,
   cartItems: [],
+  isFetching: false,
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -19,6 +20,11 @@ const cartReducer = (state = INITIAL_STATE, action) => {
         ...state,
         cartItems: addItemToCart(state.cartItems, item, quantity),
       };
+    case CartActionTypes.REMOVE_ITEM:
+      return {
+        ...state,
+        cartItems: removeItemFromCart(state.cartItems, action.payload),
+      };
     case CartActionTypes.CLEAR_ITEM_FROM_CART:
       return {
         ...state,
@@ -26,15 +32,21 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           (cartItem) => cartItem.id !== action.payload.id
         ),
       };
-    case CartActionTypes.REMOVE_ITEM:
-      return {
-        ...state,
-        cartItems: removeItemFromCart(state.cartItems, action.payload),
-      };
     case CartActionTypes.CLEAR_CART:
       return {
         ...state,
         cartItems: [],
+      };
+    case CartActionTypes.FETCH_CART_FROM_FIREBASE:
+      return {
+        ...state,
+        isFetching: true,
+      };
+    case CartActionTypes.SET_CART_FROM_FIREBASE:
+      return {
+        ...state,
+        cartItems: action.payload,
+        isFetching: false,
       };
     default:
       return state;
