@@ -97,14 +97,20 @@ const Carousel = () => {
 
   // Fetch data and set initial images based on screen size
   useEffect(() => {
+    // Only update state if component is mounted when fetch call completes
+    let mounted = true;
     const collectionId = 1118894; // Unsplash 'superior-interior' collection
     axios
       .get(
         `/api/photos?id=${collectionId}&page=1&perPage=${fetchImageCount}&orderBy=popular`
       )
       .then((res) => {
-        dispatch({ type: "FETCH_IMAGES", payload: res.data });
+        if (mounted) {
+          dispatch({ type: "FETCH_IMAGES", payload: res.data });
+        }
       });
+
+    return () => (mounted = false);
   }, [fetchImageCount]);
 
   const updateScreenSize = useCallback(() => {

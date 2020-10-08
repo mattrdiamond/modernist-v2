@@ -15,6 +15,7 @@ import { selectInputHidden } from "./redux/search/search.selectors";
 import { selectCartHidden } from "./redux/cart/cart.selectors";
 import { selectDropdownHidden } from "./redux/shop/shop.selectors";
 import { selectNavVisible } from "./redux/mobile-nav/mobile-nav.selectors";
+import { selectCheckoutConfirmation } from "./redux/checkout/checkout.selectors";
 
 import { checkUserSession } from "./redux/user/user.actions";
 
@@ -46,6 +47,7 @@ const App = ({
   cartHidden,
   shopDropdownHidden,
   history,
+  checkoutComplete,
 }) => {
   useEffect(() => {
     // check if user's authentication has persisted
@@ -70,17 +72,23 @@ const App = ({
             <Suspense fallback={<Spinner />}>
               <Route exact path="/" component={HomePage} />
               <Route path="/shop" component={ShopPage} />
-              <Route exact path="/checkout" component={CheckoutPage} />
               <Route exact path="/favorites" component={FavoritesPage} />
               <Route
                 exact
-                path="/confirmation"
-                render={(data) =>
-                  !data.location.paymentData ? (
-                    <Redirect to="/" />
+                path="/checkout"
+                render={() =>
+                  checkoutComplete ? (
+                    <Redirect to="/confirmation" />
                   ) : (
-                    <Confirmation />
+                    <CheckoutPage />
                   )
+                }
+              />
+              <Route
+                exact
+                path="/confirmation"
+                render={() =>
+                  !checkoutComplete ? <Redirect to="/" /> : <Confirmation />
                 }
               />
 
@@ -112,6 +120,7 @@ const mapStateToProps = createStructuredSelector({
   cartHidden: selectCartHidden,
   shopDropdownHidden: selectDropdownHidden,
   mobileNavVisible: selectNavVisible,
+  checkoutComplete: selectCheckoutConfirmation,
 });
 
 const mapDispatchToProps = (dispatch) => ({

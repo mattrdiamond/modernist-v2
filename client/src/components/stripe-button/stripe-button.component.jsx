@@ -1,53 +1,15 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
-import { clearCart } from "../../redux/cart/cart.actions";
-import {
-  paymentStart,
-  paymentSuccess,
-} from "../../redux/checkout/checkout.actions";
-import axios from "axios";
-import { withRouter } from "react-router-dom";
+import { paymentStart } from "../../redux/checkout/checkout.actions";
 
-const StripeCheckoutButton = ({
-  clearCart,
-  totals,
-  history,
-  paymentStart,
-  paymentSuccess,
-}) => {
+/*  StripeCheckout sends token object to express server's '/payment' route,
+    which creates the charge and sends to Stripe */
+
+const StripeCheckoutButton = ({ totals, paymentStart }) => {
   const { total } = totals;
-  const priceForStripe = Math.round(total * 100); // Stripe requires price in cents
   const publishableKey = "pk_test_q3amCytQBsYySSLChdL3bHlo00aKSAc7sW";
-
-  // Payment request -> token object sent to express server's '/payment' route, which sends payment to Stripe
-  const onToken = (token) => {
-    paymentStart();
-    axios({
-      url: "payment",
-      method: "post",
-      data: {
-        amount: priceForStripe,
-        token,
-      },
-    })
-      .then((response) => {
-        paymentSuccess();
-        clearCart();
-        // redirect to confirmation screen
-        history.replace({
-          pathname: "/confirmation",
-          paymentData: response.data.success,
-          totals,
-        });
-      })
-      .catch((error) => {
-        console.log("Payment error: ", JSON.parse(error));
-        alert(
-          "There was an issue with your payment. Please make sure you use the test credit card number provided"
-        );
-      });
-  };
+  const priceForStripe = Math.round(total * 100); // Stripe requires price in cents
 
   const handleClick = () => {
     alert(
@@ -65,7 +27,7 @@ const StripeCheckoutButton = ({
       description={`Your total is $${total.toFixed(2)}`}
       amount={priceForStripe}
       panelLabel="Pay Now"
-      token={onToken}
+      token={(token) => paymentStart({ token, priceForStripe, totals })}
       stripeKey={publishableKey}
     >
       <button className="custom-button" onClick={handleClick}>
@@ -76,11 +38,7 @@ const StripeCheckoutButton = ({
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  clearCart: () => dispatch(clearCart()),
-  paymentStart: () => dispatch(paymentStart()),
-  paymentSuccess: () => dispatch(paymentSuccess()),
+  paymentStart: (paymentData) => dispatch(paymentStart(paymentData)),
 });
 
-export default withRouter(
-  connect(null, mapDispatchToProps)(StripeCheckoutButton)
-);
+export default connect(null, mapDispatchToProps)(StripeCheckoutButton);
