@@ -8,8 +8,8 @@ import {
   selectCartHidden,
 } from "../../redux/cart/cart.selectors";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
-import useOnClickOutside from "../../utils/use-onclick-outside";
-import useLockBodyScroll from "../../utils/use-lock-body-scroll";
+import useOnClickOutside from "../../hooks/use-onclick-outside";
+import useLockBodyScroll from "../../hooks/use-lock-body-scroll";
 import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
 import "./cart-dropdown.styles.scss";

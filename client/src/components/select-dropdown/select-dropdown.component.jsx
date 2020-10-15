@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { handleKeyPress } from "../../utils/utils";
-import useOnClickOutside from "../../utils/use-onclick-outside";
+import useOnClickOutside from "../../hooks/use-onclick-outside";
 import ArrowButton from "../arrow-button/arrow-button.component";
 import "./select-dropdown.styles.scss";
 
@@ -18,7 +18,6 @@ const SelectDropdown = ({ handleSelect, options, selectedValue }) => {
   // Close dropdown when clicking outside
   useOnClickOutside(sortRef, closeDropdown, "ignore-co-sort");
 
-  console.log("render select");
   return (
     <div className="select-component">
       <div

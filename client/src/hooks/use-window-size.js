@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { debounce } from "./utils";
+import { debounce } from "../utils/utils";
 
 export default function useWindowSize(callback) {
   const isClient = typeof window === "object";

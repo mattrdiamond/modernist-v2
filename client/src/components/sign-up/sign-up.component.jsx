@@ -17,8 +17,6 @@ const SignUp = ({ signUpStart, error, setError }) => {
 
   const { displayName, email, password, confirmPassword } = userCredentials;
 
-  console.log("render signup", error);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 

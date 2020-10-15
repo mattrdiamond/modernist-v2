@@ -17,8 +17,8 @@ import {
 } from "../../redux/search/search.actions";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 
-import useOnClickOutside from "../../utils/use-onclick-outside";
-import useLockBodyScroll from "../../utils/use-lock-body-scroll";
+import useOnClickOutside from "../../hooks/use-onclick-outside";
+import useLockBodyScroll from "../../hooks/use-lock-body-scroll";
 
 import "./search-drawer.styles.scss";
 
@@ -47,7 +47,6 @@ const SearchDrawer = ({
   const handleChange = (e) => {
     e.preventDefault();
     const { value } = e.target;
-    console.log("val", value);
 
     setInputValue(value);
     if (!collectionItems.length) fetchCollectionsStart();

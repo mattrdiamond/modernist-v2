@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import useLockBodyScroll from "../../utils/use-lock-body-scroll";
+import useLockBodyScroll from "../../hooks/use-lock-body-scroll";
 
 import { selectDirectorySections } from "../../redux/directory/directory.selectors";
 import { selectInputValue } from "../../redux/search/search.selectors";
@@ -26,8 +26,6 @@ const MobileNav = ({
   fetchCollectionsStart,
   currentUser,
 }) => {
-  console.log("render mobileNav");
-
   const handleChange = (e) => {
     const { value } = e.target;
     setInputValue(value);

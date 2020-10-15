@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import useOnClickOutside from "../../utils/use-onclick-outside";
-import useLockBodyScroll from "../../utils/use-lock-body-scroll";
+import useOnClickOutside from "../../hooks/use-onclick-outside";
+import useLockBodyScroll from "../../hooks/use-lock-body-scroll";
 import { sortAsc } from "../../utils/utils";
 import Icon from "../icon/icon.component";
 import "./shop-dropdown.styles.scss";

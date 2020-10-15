@@ -43,7 +43,6 @@ const CollectionPage = ({
     { value: "Price: High to Low", direction: "desc", sortBy: "price", id: 4 },
   ];
 
-  console.log("render collection");
   return (
     <div className="collection-page">
       <div className={`title-banner ${title.toLowerCase()}`}>

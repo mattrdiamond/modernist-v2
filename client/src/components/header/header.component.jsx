@@ -57,8 +57,6 @@ const Header = ({
     [handleCartClick]
   );
 
-  console.log("render header");
-
   return (
     <nav className="header">
       <div className="nav-wrapper page-width">

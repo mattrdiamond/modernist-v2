@@ -3,7 +3,7 @@ import axios from "axios";
 import CarouselCard from "../carousel-card/carousel-card.component";
 import Icon from "../icon/icon.component";
 import Spinner from "../spinner/spinner.component";
-import useWindowSize from "../../utils/use-window-size";
+import useWindowSize from "../../hooks/use-window-size";
 import "./carousel.styles.scss";
 
 // Determine how many images to display based on window width

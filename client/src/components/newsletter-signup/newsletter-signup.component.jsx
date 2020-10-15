@@ -3,7 +3,7 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import Spinner from "../spinner/spinner.component";
 import { newsletter2x, newsletter1x } from "../../assets/img/_images";
-import useOnScreen from "../../utils/use-on-screen";
+import useOnScreen from "../../hooks/use-on-screen";
 import "./newsletter-signup.styles.scss";
 
 const NewsletterSignup = () => {
@@ -114,8 +114,6 @@ const NewsletterSignup = () => {
     // Focus on error message
     statusMessage.current.focus();
   };
-
-  console.log("render newsletter");
 
   return (
     <section className="newsletter-signup" ref={setRef}>

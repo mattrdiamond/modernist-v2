@@ -19,7 +19,6 @@ export function* getCartItemsFromFirebase({ payload: user }) {
   // Get reference to cart in db
   const cartRef = yield getUserCartRef(user.id);
   const cartSnapshot = yield cartRef.get();
-  console.log("update state with firebase state");
   // Get data from snapshot object and update state
   yield put(setCartFromFirebase(cartSnapshot.data().cartItems));
 }

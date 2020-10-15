@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "../icon/icon.component";
-import useOnScreen from "../../utils/use-on-screen";
+import useOnScreen from "../../hooks/use-on-screen";
 import "./about.styles.scss";
 
 const About = () => {
