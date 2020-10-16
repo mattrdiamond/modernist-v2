@@ -22,7 +22,7 @@ export const imagesFitOnScreen = () => {
 };
 
 const INITIAL_STATE = {
-  images: [],
+  images: null,
   fetchImageCount: 20,
   visibleImages: 0,
   index: 0,
@@ -44,7 +44,7 @@ function carouselReducer(state, action) {
     case "FETCH_IMAGES":
       return {
         ...state,
-        images: state.images.concat(action.payload),
+        images: action.payload,
         imagesLoaded: currentVisibleImages,
         visibleImages: currentVisibleImages,
       };
@@ -110,6 +110,7 @@ const Carousel = () => {
         }
       });
 
+    // set mounted equal to false when component unmounts
     return () => (mounted = false);
   }, [fetchImageCount]);
 
@@ -144,7 +145,6 @@ const Carousel = () => {
     dispatch({ type: "PREVIOUS_IMAGE" });
   };
 
-  if (!images) return <Spinner />;
   return (
     <section className="carousel-component">
       <div className="carousel-text page-width">
@@ -156,39 +156,43 @@ const Carousel = () => {
           own!
         </p>
       </div>
-      <div className="carousel">
-        <div className="cards-slider">
-          <button
-            className="circle-button right"
-            onClick={nextImage}
-            disabled={index + visibleImages === fetchImageCount}
-          >
-            <Icon icon="arrow-right" />
-          </button>
-          <button
-            className="circle-button left"
-            onClick={previousImage}
-            disabled={index === 0}
-          >
-            <Icon icon="arrow-left" />
-          </button>
-          <div
-            className="cards-slider-wrapper"
-            style={{ transform: `translateX(-${sliderPosition}%)` }}
-          >
-            {images
-              .filter((image, index) => index < imagesLoaded)
-              .map((image, index) => (
-                <CarouselCard
-                  key={image.id}
-                  index={index}
-                  image={image}
-                  carouselState={carouselState}
-                />
-              ))}
+      {!images ? (
+        <Spinner height="350px" />
+      ) : (
+        <div className="carousel">
+          <div className="cards-slider">
+            <button
+              className="circle-button right"
+              onClick={nextImage}
+              disabled={index + visibleImages === fetchImageCount}
+            >
+              <Icon icon="arrow-right" />
+            </button>
+            <button
+              className="circle-button left"
+              onClick={previousImage}
+              disabled={index === 0}
+            >
+              <Icon icon="arrow-left" />
+            </button>
+            <div
+              className="cards-slider-wrapper"
+              style={{ transform: `translateX(-${sliderPosition}%)` }}
+            >
+              {images
+                .filter((image, index) => index < imagesLoaded)
+                .map((image, index) => (
+                  <CarouselCard
+                    key={image.id}
+                    index={index}
+                    image={image}
+                    carouselState={carouselState}
+                  />
+                ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 };

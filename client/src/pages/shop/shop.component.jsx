@@ -2,6 +2,7 @@ import React, { useEffect, lazy, Suspense } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import Spinner from "../../components/spinner/spinner.component";
+import ErrorBoundary from "../../components/error-boundary/error-boundary.component";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 
 const CollectionsOverviewContainer = lazy(() =>
@@ -25,16 +26,28 @@ const ShopPage = ({ fetchCollectionsStart, match }) => {
         <Route
           exact
           path={`${match.path}`}
-          component={CollectionsOverviewContainer}
+          render={() => (
+            <ErrorBoundary>
+              <CollectionsOverviewContainer />
+            </ErrorBoundary>
+          )}
         />
         <Route
           exact
           path={`${match.path}/:collectionId`}
-          component={CollectionPageContainer}
+          render={() => (
+            <ErrorBoundary>
+              <CollectionPageContainer />
+            </ErrorBoundary>
+          )}
         />
         <Route
           path={`${match.path}/:collectionId/:itemId`}
-          component={ProductPageContainer}
+          render={(props) => (
+            <ErrorBoundary>
+              <ProductPageContainer {...props} />
+            </ErrorBoundary>
+          )}
         />
       </Suspense>
     </section>

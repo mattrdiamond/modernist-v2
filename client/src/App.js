@@ -68,42 +68,83 @@ const App = ({
       <Header />
       <div className="content-window">
         <Switch>
-          <ErrorBoundary>
-            <Suspense fallback={<Spinner />}>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/shop" component={ShopPage} />
-              <Route exact path="/favorites" component={FavoritesPage} />
-              <Route
-                exact
-                path="/checkout"
-                render={() =>
-                  checkoutComplete ? (
-                    <Redirect to="/confirmation" />
-                  ) : (
+          <Suspense fallback={<Spinner />}>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <ErrorBoundary>
+                  <HomePage />
+                </ErrorBoundary>
+              )}
+            />
+            <Route
+              path="/shop"
+              render={(props) => (
+                <ErrorBoundary>
+                  <ShopPage {...props} />
+                </ErrorBoundary>
+              )}
+            />
+            <Route
+              exact
+              path="/favorites"
+              render={() => (
+                <ErrorBoundary>
+                  <FavoritesPage />
+                </ErrorBoundary>
+              )}
+            />
+            <Route
+              exact
+              path="/checkout"
+              render={() =>
+                checkoutComplete ? (
+                  <Redirect to="/confirmation" />
+                ) : (
+                  <ErrorBoundary>
                     <CheckoutPage />
-                  )
-                }
-              />
-              <Route
-                exact
-                path="/confirmation"
-                render={() =>
-                  !checkoutComplete ? <Redirect to="/" /> : <Confirmation />
-                }
-              />
-
-              {/* If user signed in, redirect to previous page when navigating to /signin.
+                  </ErrorBoundary>
+                )
+              }
+            />
+            <Route
+              exact
+              path="/confirmation"
+              render={() =>
+                !checkoutComplete ? (
+                  <Redirect to="/" />
+                ) : (
+                  <ErrorBoundary>
+                    <Confirmation />
+                  </ErrorBoundary>
+                )
+              }
+            />
+            {/* If user signed in, redirect to previous page when navigating to /signin.
               Also redirect to previous page after user signs in. */}
-              <Route
-                exact
-                path="/signin"
-                render={() =>
-                  currentUser ? history.goBack() : <SignInAndSignUpPage />
-                }
-              />
-              <Route path="/search" component={SearchPage} />
-            </Suspense>
-          </ErrorBoundary>
+            <Route
+              exact
+              path="/signin"
+              render={() =>
+                currentUser ? (
+                  history.goBack()
+                ) : (
+                  <ErrorBoundary>
+                    <SignInAndSignUpPage />
+                  </ErrorBoundary>
+                )
+              }
+            />
+            <Route
+              path="/search"
+              render={(props) => (
+                <ErrorBoundary>
+                  <SearchPage {...props} />
+                </ErrorBoundary>
+              )}
+            />
+          </Suspense>
         </Switch>
       </div>
       <Footer />
