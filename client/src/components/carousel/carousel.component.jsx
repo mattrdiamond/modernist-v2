@@ -105,6 +105,7 @@ const Carousel = () => {
         `/api/photos?id=${collectionId}&page=1&perPage=${fetchImageCount}&orderBy=popular`
       )
       .then((res) => {
+        console.log("res", res);
         console.log("data", res.data);
         if (mounted) {
           dispatch({ type: "FETCH_IMAGES", payload: res.data });
