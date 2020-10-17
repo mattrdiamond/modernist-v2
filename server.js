@@ -21,7 +21,10 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const unsplash = new Unsplash({
   accessKey: process.env.UNSPLASH_ACCESS_KEY,
   secret: process.env.UNSPLASH_SECRET,
-  callbackUrl: process.env.CALLBACK_URL || "http://localhost:3000",
+  callbackUrl:
+    process.env.CALLBACK_URL ||
+    "http://localhost:3000" ||
+    "https://modernist.herokuapp.com/",
 });
 
 // Instantiate a new node server with express
