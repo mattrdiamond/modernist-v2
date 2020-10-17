@@ -23,7 +23,7 @@ const unsplash = new Unsplash({
   secret: process.env.UNSPLASH_SECRET,
   callbackUrl:
     process.env.CALLBACK_URL ||
-    "http://localhost:3000" ||
+    // "http://localhost:3000" ||
     "https://modernist.herokuapp.com/",
 });
 
