@@ -145,6 +145,9 @@ const Carousel = () => {
     dispatch({ type: "PREVIOUS_IMAGE" });
   };
 
+  console.log("images", images);
+  console.log("is array", images instanceof Array);
+
   return (
     <section className="carousel-component">
       <div className="carousel-text page-width">
