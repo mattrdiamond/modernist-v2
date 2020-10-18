@@ -45,8 +45,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Cors middleware enables us to make requests from different origins (FEND/BEND)
 app.use(cors());
 
-/* Serve client application (in production, live node server will run on a Heroku url)
-    • static middleware - serves static files from build folder
+// Unsplash - get collections photos
+app.get("/api/photos", (req, res) => {
+  unsplash.collections
+    .getCollectionPhotos(req.query.id, req.query.page, req.query.perPage)
+    .then(toJson)
+    .then((json) => res.json(json))
+    .catch((error) => {
+      console.log("error", error);
+    });
+});
+
+/*  • static middleware - serves static files from build folder in production mode
     • path.join joins all path segments together separated by '/'
     • __dirname - absolute path of the directory containing the currently executing file */
 if (process.env.NODE_ENV === "production") {
@@ -62,17 +72,6 @@ if (process.env.NODE_ENV === "production") {
 app.listen(port, (error) => {
   if (error) throw error;
   console.log("Server running on port " + port);
-});
-
-// Unsplash - get collections photos
-app.get("/api/photos", (req, res) => {
-  unsplash.collections
-    .getCollectionPhotos(req.query.id, req.query.page, req.query.perPage)
-    .then(toJson)
-    .then((json) => res.json(json))
-    .catch((error) => {
-      console.log("error", error);
-    });
 });
 
 // Stripe - FEND sends payment req with token object -> express sends payment to Stripe -> Stripe creates charge -> res back to client
