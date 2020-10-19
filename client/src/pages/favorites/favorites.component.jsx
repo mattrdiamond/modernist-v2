@@ -4,6 +4,7 @@ import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
 import { selectFavorites } from "../../redux/user/user.selectors";
 import CustomButton from "../../components/custom-button/custom-button.component";
+import CollectionItem from "../../components/collection-item/collection-item.component";
 import ImageGrid from "../../components/image-grid/image-grid.component";
 import "./favorites.styles.scss";
 
@@ -19,7 +20,11 @@ const FavoritesPage = ({ favorites }) => {
               All your top picks, together at last!
             </span>
           </div>
-          <ImageGrid items={favoritesArray} />
+          <ImageGrid>
+            {favoritesArray.map((item) => (
+              <CollectionItem key={item.id} item={item} />
+            ))}
+          </ImageGrid>
         </>
       ) : (
         <div className="empty-fav-container">

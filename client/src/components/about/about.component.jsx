@@ -8,7 +8,7 @@ const About = () => {
       setRef:       Callback function returned from useOnScreen that sets it's
                    'ref' state with the referenced DOM element.
       visible:      useOnScreen state indicating if element has intersected. */
-  const [setRef, visible] = useOnScreen({ threshold: 0.6 });
+  const [setRef, visible] = useOnScreen({ threshold: 0.5 });
 
   return (
     <section className="about-component" ref={setRef}>

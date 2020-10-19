@@ -71,6 +71,14 @@
     flex-grow: 1;
     height: 2.75rem;
   }
+
+  .spinner-overlay {
+    width: 100%;
+    background-color: var(--primary-07);
+    max-height: 575px;
+    min-height: 320px;
+    height: 50vw;
+  }
 }
 
 @media (max-width: 925px) {
@@ -84,7 +92,8 @@
       flex-basis: 50%;
     }
 
-    .product-img {
+    .product-img,
+    .spinner-overlay {
       height: 45vw;
     }
   }
@@ -98,7 +107,8 @@
       margin: 1rem 0 0;
     }
 
-    .product-img {
+    .product-img,
+    .spinner-overlay {
       height: 90vw;
     }
   }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import FavoritingButton from "../favoriting-button/favoriting-button.component";
+import ImageLoader from "../../components/image-loader/image-loader.component";
 import "./collection-item.styles.scss";
 
 const CollectionItem = ({ item }) => {
@@ -9,7 +10,7 @@ const CollectionItem = ({ item }) => {
   return (
     <div className="collection-item">
       <Link className="product-link" to={`/shop/${collection}/${item.id}`}>
-        <img src={images.small} alt={name} className="image" />
+        <ImageLoader src={images.small} alt={name} styles="image" />
       </Link>
       <FavoritingButton item={item} />
       <div className="collection-footer">

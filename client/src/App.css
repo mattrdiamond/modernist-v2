@@ -60,6 +60,7 @@ html {
 body {
   font-family: var(--font-text);
   color: var(--primary-85);
+  margin: 0;
 }
 
 #app {

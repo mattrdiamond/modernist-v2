@@ -4,7 +4,7 @@ import { selectAllCollectionItems } from "../../redux/shop/shop.selectors";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import Spinner from "../../components/spinner/spinner.component";
 import ImageGrid from "../../components/image-grid/image-grid.component";
-
+import CollectionItem from "../../components/collection-item/collection-item.component";
 import { getSearchResults } from "../../utils/utils";
 import { connect } from "react-redux";
 import "./search-page.styles.scss";
@@ -30,6 +30,11 @@ const SearchPage = ({ collectionItems, fetchCollectionsStart, location }) => {
             for <span className="bold">"{query.toLowerCase()}"</span>
           </span>
           <ImageGrid items={searchResults} />
+          <ImageGrid>
+            {searchResults.map((result) => (
+              <CollectionItem key={result.id} item={result} />
+            ))}
+          </ImageGrid>
         </>
       ) : (
         <p>

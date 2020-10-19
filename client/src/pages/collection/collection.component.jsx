@@ -8,6 +8,7 @@ import {
 } from "../../redux/shop/shop.selectors";
 import ImageGrid from "../../components/image-grid/image-grid.component";
 import SelectDropdown from "../../components/select-dropdown/select-dropdown.component";
+import CollectionItem from "../../components/collection-item/collection-item.component";
 import { setSortParam } from "../../redux/shop/shop.actions";
 import "./collection.styles.scss";
 
@@ -64,7 +65,11 @@ const CollectionPage = ({
             handleSelect={setSortParam}
             selectedValue={sortParam.value}
           />
-          <ImageGrid items={sortedItems} />
+          <ImageGrid>
+            {sortedItems.map((item) => (
+              <CollectionItem key={item.id} item={item} />
+            ))}
+          </ImageGrid>
         </div>
       </div>
     </div>
