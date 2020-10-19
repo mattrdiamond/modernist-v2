@@ -105,8 +105,6 @@ const Carousel = () => {
         `/api/photos?id=${collectionId}&page=1&perPage=${fetchImageCount}&orderBy=popular`
       )
       .then((res) => {
-        console.log("res", res);
-        console.log("data", res.data);
         if (mounted) {
           dispatch({ type: "FETCH_IMAGES", payload: res.data });
         }
@@ -146,9 +144,6 @@ const Carousel = () => {
     if (index === 0) return;
     dispatch({ type: "PREVIOUS_IMAGE" });
   };
-
-  console.log("images", images);
-  console.log("is array", images instanceof Array);
 
   return (
     <section className="carousel-component">
