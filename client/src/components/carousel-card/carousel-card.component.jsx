@@ -1,5 +1,6 @@
 import React from "react";
 import Icon from "../icon/icon.component";
+import ImageLoader from "../image-loader/image-loader.component";
 import "./carousel-card.styles.scss";
 
 const CarouselCard = ({ index, image, carouselState }) => (
@@ -13,10 +14,10 @@ const CarouselCard = ({ index, image, carouselState }) => (
     }
   >
     <a href={image.urls.regular} target="_blank" rel="noopener noreferrer">
-      <img
-        className="card-photo"
+      <ImageLoader
         src={image.urls.small}
         alt={image.alt_description}
+        styles="card-photo"
       />
       <div className="card-footer">
         <div className="user-details-container">

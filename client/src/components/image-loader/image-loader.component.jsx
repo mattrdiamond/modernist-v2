@@ -9,9 +9,9 @@ const ImageLoader = ({ src, alt, styles }) => {
       {isLoading ? <Spinner /> : null}
       <img
         className={styles}
-        style={{ display: isLoading ? "none" : "block" }}
         src={src}
         alt={alt}
+        loading="lazy"
         onLoad={() => setIsLoading(false)}
       />
     </>

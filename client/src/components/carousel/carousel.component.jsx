@@ -4,6 +4,7 @@ import CarouselCard from "../carousel-card/carousel-card.component";
 import Icon from "../icon/icon.component";
 import Spinner from "../spinner/spinner.component";
 import useWindowSize from "../../hooks/use-window-size";
+import useOnScreen from "../../hooks/use-on-screen";
 import "./carousel.styles.scss";
 
 // Determine how many images to display based on window width
@@ -85,6 +86,10 @@ function carouselReducer(state, action) {
 
 const Carousel = () => {
   const [carouselState, dispatch] = useReducer(carouselReducer, INITIAL_STATE);
+  const [setRef, visible] = useOnScreen({
+    threshold: 0,
+    rootMargin: "0px 0px 200px 0px",
+  });
 
   const {
     images,
@@ -97,22 +102,25 @@ const Carousel = () => {
 
   // Fetch data and set initial images based on screen size
   useEffect(() => {
-    // Only update state if component is mounted when fetch call completes
+    // mounted - only updates state if component is still mounted when fetch call completes
     let mounted = true;
     const collectionId = 1118894; // Unsplash 'superior-interior' collection
-    axios
-      .get(
-        `/api/photos?id=${collectionId}&page=1&perPage=${fetchImageCount}&orderBy=popular`
-      )
-      .then((res) => {
-        if (mounted) {
-          dispatch({ type: "FETCH_IMAGES", payload: res.data });
-        }
-      });
 
-    // set mounted equal to false when component unmounts
+    if (visible) {
+      axios
+        .get(
+          `/api/photos?id=${collectionId}&page=1&perPage=${fetchImageCount}&orderBy=popular`
+        )
+        .then((res) => {
+          if (mounted) {
+            dispatch({ type: "FETCH_IMAGES", payload: res.data });
+          }
+        });
+    }
+
+    // set mounted = false when component unmounts
     return () => (mounted = false);
-  }, [fetchImageCount]);
+  }, [fetchImageCount, visible]);
 
   const updateScreenSize = useCallback(() => {
     const currentVisibleImages = imagesFitOnScreen();
@@ -146,7 +154,7 @@ const Carousel = () => {
   };
 
   return (
-    <section className="carousel-component">
+    <section className="carousel-component" ref={setRef}>
       <div className="carousel-text page-width">
         <h2>Share the love.</h2>
         <p>

@@ -19,13 +19,24 @@
     opacity: 0;
   }
 
+  .spinner-overlay {
+    position: absolute;
+  }
+
+  .spinner-overlay,
+  .card-photo {
+    height: 250px;
+    border-radius: 4px 4px 0 0;
+    background-color: var(--primary-10);
+  }
+
   .card-photo {
     display: block;
-    height: 250px;
+    // height: 250px;
     width: 100%;
     object-fit: cover;
-    border-radius: 4px 4px 0 0;
-    background-color: #dddddd;
+    // border-radius: 4px 4px 0 0;
+    // background-color: var(--primary-10);
   }
 
   .card-footer {
@@ -47,7 +58,7 @@
     margin-right: 0.5rem;
     width: 32px;
     height: 32px;
-    background-color: #dddddd;
+    background-color: var(--primary-10);
   }
 
   .user-details {
@@ -101,6 +112,7 @@
     min-width: 50%;
     width: 50%;
 
+    .spinner-overlay,
     .card-photo {
       height: 35vw;
     }
@@ -119,6 +131,7 @@
       box-shadow: 0px 2px 20px 0px rgba(0, 0, 0, 0.1);
     }
 
+    .spinner-overlay,
     .card-photo {
       border-radius: 0;
       height: 70vw;
