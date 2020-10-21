@@ -8,7 +8,7 @@ import "./newsletter-signup.styles.scss";
 
 const NewsletterSignup = () => {
   // useOnScreen (Intersection observer) - setRef will update the ref state in useOnScreen with the referenced DOM element and return visible status (isIntersecting)
-  const [setRef, visible] = useOnScreen({ threshold: 0.3 });
+  const [setRef, visible] = useOnScreen({ threshold: 0.25 });
 
   // status message will display error or success message below form input
   const statusMessage = useRef(null);

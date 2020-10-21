@@ -48,17 +48,17 @@
     z-index: 5;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    color: #828282;
+    color: var(--primary-40);
     transition: color 0.3s ease, opacity 0.3s ease;
     top: 50%;
     margin-top: -45px;
 
-    &:hover {
-      color: #222;
+    &:hover,
+    &:focus {
+      color: var(--primary-85);
     }
 
     &:focus {
-      color: #222;
       outline: none;
     }
 
