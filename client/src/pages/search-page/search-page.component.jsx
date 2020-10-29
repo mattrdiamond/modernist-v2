@@ -29,7 +29,6 @@ const SearchPage = ({ collectionItems, fetchCollectionsStart, location }) => {
             Showing <span className="bold">{searchResults.length}</span> results
             for <span className="bold">"{query.toLowerCase()}"</span>
           </span>
-          <ImageGrid items={searchResults} />
           <ImageGrid>
             {searchResults.map((result) => (
               <CollectionItem key={result.id} item={result} />
