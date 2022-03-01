@@ -79,6 +79,7 @@
     color: var(--red);
     position: absolute;
     width: 100%;
+    overflow-wrap: break-word;
   }
 
   .spinner-overlay {
