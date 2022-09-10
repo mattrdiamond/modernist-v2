@@ -24,7 +24,7 @@ const unsplash = new Unsplash({
   callbackUrl:
     process.env.CALLBACK_URL ||
     "http://localhost:3000" ||
-    "https://modernist.herokuapp.com/",
+    "https://modernist.onrender.com/",
 });
 
 // Instantiate a new node server with express
