@@ -28,36 +28,36 @@ const ProductPage = ({ item, addItem, toggleCartHidden, collectionId }) => {
   };
 
   return (
-    <div className="product-page page-width">
-      <div className="col-left">
-        <ImageLoader src={images.large} alt={name} styles="product-img" />
+    <div className='product-page page-width'>
+      <div className='col-left'>
+        <ImageLoader src={images.large} alt={name} styles='product-img' />
         <FavoritingButton item={item} />
       </div>
-      <div className="col-right">
+      <div className='col-right'>
         <Link to={`/shop/${collectionId}`}>
-          <span className="collection-name">{collectionId}</span>
+          <span className='collection-name'>{collectionId}</span>
         </Link>
-        <h1 className="product-title">{name}</h1>
+        <h1 className='product-title'>{name}</h1>
         <StarRating rating={rating} maxRating={5} reviewCount={review_count} />
-        <h2 className="product-price">${price}</h2>
+        <h2 className='product-price'>${price}</h2>
         <h4>Product Description</h4>
-        <p className="product-description">
-          Lorem Ipsum eos volupta temposam eosa consequid maxim res derum id mos
-          por ratem. Ficiis mil moloria nonsectatur sequuntori nistia aut aut
-          lit harumque etumquu ntustia pe volores sin pratem quo ipsume
+        <p className='product-description'>
+          Lorem Ipsum dolor volupta temposam eosa consequid maxim res derum id
+          mos por ratem. Ficiis mil moloria nonsectatur sequuntori nistia aut
+          aut lit harumque etumquu ntustia pe volores sin pratem quo ipsume
           nimoditatem eaquas et odignih ilibusdae audis esse laborio quiam eum
           voluptaet vel molupta pernat litatquam idunt molo quiaeptat earum, aut
           omnih.
         </p>
-        <span className="product-detail">
-          <span className="bold">Availability: </span>
+        <span className='product-detail'>
+          <span className='bold'>Availability: </span>
           In stock
         </span>
-        <span className="product-detail">
-          <span className="bold">SKU: </span>
+        <span className='product-detail'>
+          <span className='bold'>SKU: </span>
           {sku}
         </span>
-        <div className="button-container">
+        <div className='button-container'>
           <Stepper
             quantity={quantity}
             increment={handleAddItem}
