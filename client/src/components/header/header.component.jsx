@@ -14,7 +14,6 @@ import { selectDirectorySections } from "../../redux/directory/directory.selecto
 import { signOutStart } from "../../redux/user/user.actions";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { toggleNav } from "../../redux/mobile-nav/mobile-nav.actions";
-import { closeSearchDrawer } from "../../redux/search/search.actions";
 import { toggleDropdownHidden } from "../../redux/shop/shop.actions";
 import { toggleInputHidden } from "../../redux/search/search.actions";
 
@@ -58,27 +57,27 @@ const Header = ({
   );
 
   return (
-    <nav className="header">
-      <div className="nav-wrapper page-width">
-        <div className="mobile-nav-btn mobile-only">
+    <nav className='header'>
+      <div className='nav-wrapper page-width'>
+        <div className='mobile-nav-btn mobile-only'>
           <HamburgerButton
             isOpen={mobileNavVisible}
             handleToggle={toggleMobileNav}
           />
         </div>
-        <ul className="nav-links left desktop-only">
-          <li className="nav-link-wrapper">
+        <ul className='nav-links left desktop-only'>
+          <li className='nav-link-wrapper'>
             {currentUser ? (
-              <div className="nav-link" onClick={signOutStart}>
+              <div className='nav-link' onClick={signOutStart}>
                 Sign Out
               </div>
             ) : (
-              <Link className="nav-link" to="/signin">
+              <Link className='nav-link' to='/signin'>
                 Sign In
               </Link>
             )}
           </li>
-          <li className="nav-link-wrapper">
+          <li className='nav-link-wrapper'>
             <div
               className={
                 "nav-link ignore-co-shop" +
@@ -86,15 +85,15 @@ const Header = ({
               }
               onClick={toggleShopDropdown}
               onKeyPress={(e) => handleKeyPress(e, toggleShopDropdown)}
-              tabIndex="0"
-              role="button"
-              aria-haspopup="true"
+              tabIndex='0'
+              role='button'
+              aria-haspopup='true'
               aria-expanded={shopDropdownHidden ? false : true}
             >
               Shop
               <ArrowButton
                 isClosed={shopDropdownHidden}
-                styleName="ignore-co-shop"
+                styleName='ignore-co-shop'
               />
             </div>
             {!shopDropdownHidden && (
@@ -106,19 +105,19 @@ const Header = ({
             )}
           </li>
         </ul>
-        <Link className="logo-container" to="/">
-          <Icon icon="modernist" />
+        <Link className='logo-container' to='/'>
+          <Icon icon='modernist' />
         </Link>
-        <div className="nav-links right">
-          <div className="nav-link-wrapper desktop-only">
-            <Link className="nav-icon" to="/favorites">
-              <Icon icon="favorites-desktop" width="20px" height="20px" />
+        <div className='nav-links right'>
+          <div className='nav-link-wrapper desktop-only'>
+            <Link className='nav-icon' to='/favorites'>
+              <Icon icon='favorites-desktop' width='20px' height='20px' />
             </Link>
           </div>
-          <div className="nav-link-wrapper desktop-only">
+          <div className='nav-link-wrapper desktop-only'>
             <SearchIcon toggleInputHidden={toggleInputHidden} />
           </div>
-          <div className="nav-link-wrapper">
+          <div className='nav-link-wrapper'>
             <CartIcon
               handleClick={handleCartClick}
               handleKeyPress={handleCartKeyPress}
@@ -135,7 +134,7 @@ const Header = ({
       */}
       <CSSTransition
         in={mobileNavVisible}
-        classNames="mobile-nav"
+        classNames='mobile-nav'
         timeout={200}
         unmountOnExit
       >
@@ -143,7 +142,7 @@ const Header = ({
       </CSSTransition>
       <CSSTransition
         in={!searchDrawerHidden}
-        classNames="search-drawer"
+        classNames='search-drawer'
         timeout={500}
         unmountOnExit
       >
@@ -165,7 +164,6 @@ const mapDispatchToProps = (dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
   toggleCartHidden: () => dispatch(toggleCartHidden()),
   toggleMobileNav: () => dispatch(toggleNav()),
-  closeSearchDrawer: () => dispatch(closeSearchDrawer()),
   toggleShopDropdown: () => dispatch(toggleDropdownHidden()),
   toggleInputHidden: () => dispatch(toggleInputHidden()),
 });
