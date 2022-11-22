@@ -15,18 +15,22 @@
     fill: var(--primary-20);
   }
 
-  &:hover {
-    .heart path {
-      fill: var(--red);
-    }
-  }
-
   &.favorite {
     .heart path {
       fill: var(--red);
     }
+  }
+}
 
+@media (min-width: 500px) {
+  .favorite-button {
     &:hover {
+      .heart path {
+        fill: var(--red);
+      }
+    }
+
+    &.favorite:hover {
       .heart path {
         fill: var(--primary-20);
       }

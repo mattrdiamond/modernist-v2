@@ -30,7 +30,12 @@ const ProductPage = ({ item, addItem, toggleCartHidden, collectionId }) => {
   return (
     <div className='product-page page-width'>
       <div className='col-left'>
-        <ImageLoader src={images.large} alt={name} styles='product-img' />
+        <ImageLoader
+          src={images.large}
+          alt={name}
+          styles='product-img'
+          withSpinner
+        />
         <FavoritingButton item={item} />
       </div>
       <div className='col-right'>

@@ -13,34 +13,35 @@ const CarouselCard = ({ index, image, carouselState }) => (
         : "")
     }
   >
-    <a href={image.urls.regular} target="_blank" rel="noopener noreferrer">
+    <a href={image.urls.regular} target='_blank' rel='noopener noreferrer'>
       <ImageLoader
         src={image.urls.small}
         alt={image.alt_description}
-        styles="card-photo"
+        styles='card-photo'
+        withSpinner
       />
-      <div className="card-footer">
-        <div className="user-details-container">
+      <div className='card-footer'>
+        <div className='user-details-container'>
           <img
-            className="user-pic"
+            className='user-pic'
             src={image.user.profile_image.small}
             srcSet={`${image.user.profile_image.small} 1x, ${image.user.profile_image.medium} 2x`}
             alt={image.user.name}
           />
-          <div className="user-details">
-            <span className="user-name">
+          <div className='user-details'>
+            <span className='user-name'>
               {image.user.name.replace(/^[^_]*: |-(.*)/, "")}
             </span>
-            <span className="user-location">
+            <span className='user-location'>
               {image.user.location
                 ? image.user.location.replace(/ and(.*)/, "")
                 : "Planet Earth"}
             </span>
           </div>
         </div>
-        <div className="user-likes">
-          <Icon icon="heart" />
-          <span className="like-count">{image.likes}</span>
+        <div className='user-likes'>
+          <Icon icon='heart' />
+          <span className='like-count'>{image.likes}</span>
         </div>
       </div>
     </a>

@@ -6,11 +6,21 @@ import {
   selectSortedCollectionItems,
   makeSelectCollection,
 } from "../../redux/shop/shop.selectors";
+import { setSortParam } from "../../redux/shop/shop.actions";
+import "./collection.styles.scss";
+
 import ImageGrid from "../../components/image-grid/image-grid.component";
 import SelectDropdown from "../../components/select-dropdown/select-dropdown.component";
 import CollectionItem from "../../components/collection-item/collection-item.component";
-import { setSortParam } from "../../redux/shop/shop.actions";
-import "./collection.styles.scss";
+import ImageLoader from "../../components/image-loader/image-loader.component";
+
+const sortOptions = [
+  { value: "Highest Rated", direction: "desc", sortBy: "rating", id: 0 },
+  { value: "Name: A - Z", direction: "asc", sortBy: "name", id: 1 },
+  { value: "Name: Z - A", direction: "desc", sortBy: "name", id: 2 },
+  { value: "Price: Low to High", direction: "asc", sortBy: "price", id: 3 },
+  { value: "Price: High to Low", direction: "desc", sortBy: "price", id: 4 },
+];
 
 const CollectionPage = ({
   collection,
@@ -36,30 +46,22 @@ const CollectionPage = ({
     return () => unlisten();
   }, [history, sortParam, setSortParam]);
 
-  const sortOptions = [
-    { value: "Highest Rated", direction: "desc", sortBy: "rating", id: 0 },
-    { value: "Name: A - Z", direction: "asc", sortBy: "name", id: 1 },
-    { value: "Name: Z - A", direction: "desc", sortBy: "name", id: 2 },
-    { value: "Price: Low to High", direction: "asc", sortBy: "price", id: 3 },
-    { value: "Price: High to Low", direction: "desc", sortBy: "price", id: 4 },
-  ];
-
   return (
-    <div className="collection-page">
+    <div className='collection-page'>
       <div className={`title-banner ${title.toLowerCase()}`}>
-        <img
-          className="background-img"
+        <ImageLoader
           src={small}
           srcSet={`${small} 1x, ${large} 2x`}
           alt={title}
+          styles='background-img'
         />
-        <div className="title-content">
-          <h1 className="title">{title}</h1>
-          <span className="subtitle">for every style & space</span>
+        <div className='title-content'>
+          <h1 className='title'>{title}</h1>
+          <span className='subtitle'>for every style & space</span>
         </div>
       </div>
-      <div className="collection-container">
-        <div className="page-width">
+      <div className='collection-container'>
+        <div className='page-width'>
           <SelectDropdown
             options={sortOptions}
             handleSelect={setSortParam}

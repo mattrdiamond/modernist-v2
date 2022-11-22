@@ -1,18 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Spinner from "../../components/spinner/spinner.component";
 import "./image-loader.styles.scss";
 
-const ImageLoader = ({ src, alt, styles }) => {
-  const [isLoading, setIsLoading] = useState(true);
+const ImageLoader = ({ src, srcSet, alt, styles, withSpinner, ...props }) => {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+  }, [src]);
+
   return (
     <>
-      {isLoading ? <Spinner /> : null}
+      {loading && withSpinner && <Spinner />}
       <img
-        className={styles}
-        src={src}
-        alt={alt}
-        loading="lazy"
-        onLoad={() => setIsLoading(false)}
+        {...{ src: src, ...props }}
+        className={styles + (loading ? " loading" : "")}
+        srcSet={srcSet}
+        alt={alt || ""}
+        loading='lazy'
+        onLoad={() => setLoading(false)}
+        onError={() => setLoading(false)}
       />
     </>
   );
