@@ -12,7 +12,7 @@ import "./collection.styles.scss";
 import ImageGrid from "../../components/image-grid/image-grid.component";
 import SelectDropdown from "../../components/select-dropdown/select-dropdown.component";
 import CollectionItem from "../../components/collection-item/collection-item.component";
-import ImageLoader from "../../components/image-loader/image-loader.component";
+import ImageReloader from "../../components/image-loader/image-reloader.component";
 
 const sortOptions = [
   { value: "Highest Rated", direction: "desc", sortBy: "rating", id: 0 },
@@ -49,7 +49,7 @@ const CollectionPage = ({
   return (
     <div className='collection-page'>
       <div className={`title-banner ${title.toLowerCase()}`}>
-        <ImageLoader
+        <ImageReloader
           src={small}
           srcSet={`${small} 1x, ${large} 2x`}
           alt={title}
