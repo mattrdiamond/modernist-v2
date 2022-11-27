@@ -6,7 +6,7 @@ import { selectItem } from "../../redux/shop/shop.selectors";
 import StarRating from "../../components/star-rating/star-rating.component";
 import Stepper from "../../components/stepper/stepper.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
-import ImageLoader from "../../components/image-loader/image-loader.component";
+import ImageReloader from "../../components/image-loader/image-reloader.component";
 import FavoritingButton from "../../components/favoriting-button/favoriting-button.component";
 import "./product-page.styles.scss";
 
@@ -30,7 +30,7 @@ const ProductPage = ({ item, addItem, toggleCartHidden, collectionId }) => {
   return (
     <div className='product-page page-width'>
       <div className='col-left'>
-        <ImageLoader
+        <ImageReloader
           src={images.large}
           alt={name}
           styles='product-img'
