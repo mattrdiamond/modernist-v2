@@ -2,7 +2,7 @@
 
 **Modernist** is a full-stack e-commerce application built with React, Redux, Firebase, the Stripe API, Node.js and Express.
 
-👉 [Visit the live version](https://modernist.herokuapp.com/), or follow the running instructions below to run locally.
+👉 [Visit the live version](https://modernist-mattrdiamond.vercel.app/), or follow the running instructions below to run locally.
 
 ![Screenshot of Modernist](/../screenshot/screenshot.jpg?raw=true)
 
