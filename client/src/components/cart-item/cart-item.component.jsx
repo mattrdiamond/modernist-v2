@@ -9,36 +9,34 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
   const { images, price, name, quantity, collection, id } = item;
 
   return (
-    <div className="cart-item">
+    <div className='cart-item'>
       <Link
         to={`/shop/${collection}/${id}`}
         onClick={toggleCartHidden}
-        className="ignore-co-cart"
+        className='ignore-co-cart'
       >
         <img src={images.small} alt={name} />
       </Link>
-      <div className="item-details">
-        <div className="col-1">
+      <div className='item-info'>
+        <div className='text-column'>
           <Link
             to={`/shop/${collection}/${id}`}
             onClick={toggleCartHidden}
-            className="ignore-co-cart"
+            className='ignore-co-cart'
           >
-            <span className="name bold">{name}</span>
+            <span className='item-name bold'>{name}</span>
           </Link>
-          <span className="quantity">Quantity: {quantity}</span>
+          <span className='item-detail'>Price: ${price.toFixed(2)}</span>
+          <span className='item-detail'>Quantity: {quantity}</span>
         </div>
-        <div className="col-2">
-          <span className="price bold">${price}</span>
-        </div>
+        <button
+          className='delete-button ignore-co-cart'
+          onClick={() => clearItem(item)}
+          aria-label='remove item from cart'
+        >
+          <Icon icon='remove' />
+        </button>
       </div>
-      <button
-        className="delete-button ignore-co-cart"
-        onClick={() => clearItem(item)}
-        aria-label="remove item from cart"
-      >
-        <Icon icon="trash" />
-      </button>
     </div>
   );
 };

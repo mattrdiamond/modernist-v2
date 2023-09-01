@@ -154,37 +154,37 @@ const Carousel = () => {
   };
 
   return (
-    <section className="carousel-component" ref={setRef}>
-      <div className="carousel-text page-width">
+    <section className='carousel-component' ref={setRef}>
+      <div className='carousel-text page-width'>
         <h2>Share the love.</h2>
         <p>
           Great home decorating ideas are meant to be shared. Check out our
           customer gallery below for design inspiration in a variety of styles.
-          Use <span className="bold">#Modernist</span> to share ideas of your
+          Use <span className='bold'>#Modernist</span> to share ideas of your
           own!
         </p>
       </div>
       {!images ? (
-        <Spinner height="350px" />
+        <Spinner height='350px' />
       ) : (
-        <div className="carousel">
-          <div className="cards-slider">
+        <div className='carousel'>
+          <div className='cards-slider'>
             <button
-              className="circle-button right"
+              className='circle-button right'
               onClick={nextImage}
               disabled={index + visibleImages === fetchImageCount}
             >
-              <Icon icon="arrow-right" />
+              <Icon icon='arrow-right-btn' />
             </button>
             <button
-              className="circle-button left"
+              className='circle-button left'
               onClick={previousImage}
               disabled={index === 0}
             >
-              <Icon icon="arrow-left" />
+              <Icon icon='arrow-left-btn' />
             </button>
             <div
-              className="cards-slider-wrapper"
+              className='cards-slider-wrapper'
               style={{ transform: `translateX(-${sliderPosition}%)` }}
             >
               {images

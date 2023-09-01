@@ -23,10 +23,10 @@ const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
   useLockBodyScroll();
 
   return (
-    <div className="cart-dropdown" ref={cartRef}>
+    <div className='cart-dropdown' ref={cartRef}>
       {cartItems.length ? (
         <>
-          <div className="cart-items">
+          <div className='cart-items'>
             {cartItems.map((cartItem) => (
               <CartItem
                 key={cartItem.id}
@@ -35,10 +35,10 @@ const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
               />
             ))}
           </div>
-          <span className="cart-total">Subtotal: ${cartTotal.toFixed(2)}</span>
-          <div className="btn-container">
+          <span className='cart-total'>Subtotal: ${cartTotal.toFixed(2)}</span>
+          <div className='btn-container'>
             <CustomButton
-              className="custom-button ignore-co-cart"
+              className='custom-button ignore-co-cart'
               onClick={() => {
                 history.push("/checkout");
                 toggleCartHidden();
@@ -49,7 +49,7 @@ const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
           </div>
         </>
       ) : (
-        <span className="empty-message">Your cart is empty</span>
+        <span className='empty-message'>Your cart is empty</span>
       )}
     </div>
   );

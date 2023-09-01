@@ -1,7 +1,9 @@
 .search-drawer {
   background-color: #fff;
   height: var(--nav-height);
-  top: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
   position: absolute;
   width: 100%;
   color: var(--primary-85);
