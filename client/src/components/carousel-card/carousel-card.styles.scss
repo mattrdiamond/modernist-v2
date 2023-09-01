@@ -48,7 +48,7 @@
     padding: 0.875rem;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     font-size: 0.8rem;
   }
 
@@ -89,12 +89,12 @@
   .user-likes {
     display: flex;
     align-items: center;
-    font-weight: bold;
     color: var(--primary-80);
   }
 
   .like-count {
-    margin-left: 0.25rem;
+    margin-left: 0.3rem;
+    padding-bottom: 1px;
   }
 
   .icon-heart {

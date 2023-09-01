@@ -47,7 +47,7 @@ const ProductPage = ({ item, addItem, toggleCartHidden, collectionId }) => {
         <h2 className='product-price'>${price}</h2>
         <h4>Product Description</h4>
         <p className='product-description'>
-          Lorem Ipsum dolor volupta temposam eosa consequid maxim res derum id
+          Lorem ipsum dolor volupta temposam eosa consequid maxim res derum id
           mos por ratem. Ficiis mil moloria nonsectatur sequuntori nistia aut
           aut lit harumque etumquu ntustia pe volores sin pratem quo ipsume
           nimoditatem eaquas et odignih ilibusdae audis esse laborio quiam eum

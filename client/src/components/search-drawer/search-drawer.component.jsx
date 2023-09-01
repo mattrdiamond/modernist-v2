@@ -65,7 +65,7 @@ const SearchDrawer = ({
       <SearchInput
         handleChange={handleChange}
         handleClear={handleClear}
-        placeholder="Search Modernist"
+        placeholder='Search Modernist'
         value={inputValue}
         ref={inputRef}
         inputValue={inputValue}
@@ -78,8 +78,8 @@ const SearchDrawer = ({
         )}
       </SearchInput>
 
-      <button className="close-button ignore-co-search" onClick={handleClose}>
-        <Icon icon="collapse" />
+      <button className='close-button ignore-co-search' onClick={handleClose}>
+        <Icon icon='collapse' />
       </button>
     </div>
   );

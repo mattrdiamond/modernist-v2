@@ -48,7 +48,7 @@
     z-index: 5;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    color: var(--primary-40);
+    color: var(--primary-50);
     transition: color 0.3s ease, opacity 0.3s ease;
     top: 50%;
     margin-top: -45px;
@@ -68,10 +68,12 @@
 
     &.right {
       right: 1.2rem;
+      padding-left: 2px;
     }
 
     &.left {
       left: 1.2rem;
+      padding-right: 2px;
     }
 
     /* Remove excess padding and border in Firefox 4+ */
@@ -81,9 +83,9 @@
     }
   }
 
-  .icon {
-    width: 15px;
-    height: 15px;
+  [class*="icon-arrow"] {
+    width: 1.412rem;
+    height: 1.412rem;
   }
 }
 
