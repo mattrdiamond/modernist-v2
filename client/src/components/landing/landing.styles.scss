@@ -39,12 +39,8 @@
   }
 
   .landing-subtitle {
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    display: block;
     opacity: 0;
-    color: var(--accent-50);
+    color: var(--white);
 
     // name / duration / function / delay / iterations / direction
     animation: fadeInUp 1s ease 0s 1 forwards;
@@ -62,7 +58,7 @@
 
   .landing-txt {
     text-align: left;
-    color: #fff;
+    color: var(--white);
     padding-bottom: 6rem;
     transition: padding 0.2s;
   }

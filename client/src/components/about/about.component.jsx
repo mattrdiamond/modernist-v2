@@ -1,25 +1,24 @@
 import React from "react";
 import Icon from "../icon/icon.component";
-import useOnScreen from "../../hooks/use-on-screen";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import "./about.styles.scss";
 
 const About = () => {
-  /*  UseOnScreen:  Displays ribbon logo when about component is 60% visible
-      setRef:       Callback function returned from useOnScreen that sets it's
-                   'ref' state with the referenced DOM element.
-      visible:      useOnScreen state indicating if element has intersected. */
-  const [setRef, visible] = useOnScreen({ threshold: 0.5 });
+  const { targetRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0.5,
+    observeOnce: true,
+  });
 
   return (
-    <section className="about-component" ref={setRef}>
-      <div className="ribbon-container">
-        <div className={"ribbon" + (visible ? " visible" : "")}>
-          <Icon icon="logomark" />
+    <section className='about-component' ref={targetRef}>
+      <div className='ribbon-container'>
+        <div className={"ribbon" + (isIntersecting ? " visible" : "")}>
+          <Icon icon='logomark' />
         </div>
       </div>
-      <div className="about-content page-width">
+      <div className='about-content page-width'>
         <h2>Simplicity is the ultimate sophistication.</h2>
-        <p className="about-text">
+        <p className='about-text'>
           Good design is obvious. Great design is transparent. No matter what
           style is trending right now, minimalism is here to stay. From
           mid-century classics to today’s icons, our furniture is tested for

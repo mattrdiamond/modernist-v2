@@ -4,7 +4,7 @@ import CarouselCard from "../carousel-card/carousel-card.component";
 import Icon from "../icon/icon.component";
 import Spinner from "../spinner/spinner.component";
 import useWindowSize from "../../hooks/use-window-size";
-import useOnScreen from "../../hooks/use-on-screen";
+import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 import "./carousel.styles.scss";
 
 // Determine how many images to display based on window width
@@ -86,9 +86,9 @@ function carouselReducer(state, action) {
 
 const Carousel = () => {
   const [carouselState, dispatch] = useReducer(carouselReducer, INITIAL_STATE);
-  const [setRef, visible] = useOnScreen({
-    threshold: 0,
+  const { targetRef, isIntersecting } = useIntersectionObserver({
     rootMargin: "0px 0px 200px 0px",
+    observeOnce: true,
   });
 
   const {
@@ -106,7 +106,7 @@ const Carousel = () => {
     let mounted = true;
     const collectionId = 1118894; // Unsplash 'superior-interior' collection
 
-    if (visible) {
+    if (isIntersecting) {
       axios
         .get(
           `/api/photos?id=${collectionId}&page=1&perPage=${fetchImageCount}&orderBy=popular`
@@ -120,7 +120,7 @@ const Carousel = () => {
 
     // set mounted = false when component unmounts
     return () => (mounted = false);
-  }, [fetchImageCount, visible]);
+  }, [fetchImageCount, isIntersecting]);
 
   const updateScreenSize = useCallback(() => {
     const currentVisibleImages = imagesFitOnScreen();
@@ -154,7 +154,7 @@ const Carousel = () => {
   };
 
   return (
-    <section className='carousel-component' ref={setRef}>
+    <section className='carousel-component' ref={targetRef}>
       <div className='carousel-text page-width'>
         <h2>Share the love.</h2>
         <p>

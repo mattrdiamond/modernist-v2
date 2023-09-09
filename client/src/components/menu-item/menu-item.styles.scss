@@ -80,7 +80,7 @@
       transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
     }
 
-    & .subtitle {
+    & .shop-link {
       border-bottom: 1px solid var(--primary-30);
     }
   }
@@ -110,7 +110,7 @@
     margin-bottom: 0.375rem;
   }
 
-  .subtitle {
+  .shop-link {
     font-size: 0.875rem;
     color: var(--primary-60);
     border-bottom: 1px solid transparent;
