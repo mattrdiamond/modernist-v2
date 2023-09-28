@@ -5,8 +5,9 @@ import NewsletterSignup from "../../components/newsletter-signup/newsletter-sign
 import Carousel from "../../components/carousel/carousel.component";
 import Landing from "../../components/landing/landing.component";
 import About from "../../components/about/about.component";
+import CuratedRoom from "../../components/curated-room/curated-room.component";
+
 import lightingVideo from "../../assets/video/lighting_video.mp4";
-// import { videoPoster } from "../../assets/img/_images";
 import "./homepage.styles.scss";
 
 const Homepage = () => (
@@ -15,6 +16,7 @@ const Homepage = () => (
     <About />
     <Directory />
     <VideoBanner videoSrc={lightingVideo} />
+    <CuratedRoom />
     <NewsletterSignup />
     <Carousel />
   </div>

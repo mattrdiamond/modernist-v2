@@ -35,18 +35,6 @@
     padding-right: 1rem;
   }
 
-  .item-name {
-    /* Limit the number of lines to 2 */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-
-    /* Add ellipsis at the end of the second line */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
-  }
-
   .item-detail {
     color: var(--primary-65);
     font-size: 0.75rem;

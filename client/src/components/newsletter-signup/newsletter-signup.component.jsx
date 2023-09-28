@@ -3,7 +3,7 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import Spinner from "../spinner/spinner.component";
 import { newsletter2x, newsletter1x } from "../../assets/img/_images";
-import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import useIntersectionObserver from "../../hooks/use-intersection-observer";
 import "./newsletter-signup.styles.scss";
 
 const NewsletterSignup = () => {

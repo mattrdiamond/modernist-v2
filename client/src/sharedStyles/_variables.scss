@@ -42,6 +42,15 @@
   --nav-height: 65px;
   --window-top: 3rem;
   --window-bottom: 6rem;
+  --max-page-width: 1320px;
+  --page-margin-x: 3rem;
+  --section-margin-y: 6rem;
+}
+
+@media (max-width: 1320px) {
+  :root {
+    --page-margin-x: 4%;
+  }
 }
 
 @media (max-width: 800px) {
@@ -49,6 +58,7 @@
     --nav-height: 60px;
     --window-top: 4vw;
     --window-bottom: 8vw;
+    --section-margin-y: 3rem;
   }
 }
 
@@ -56,5 +66,6 @@
   :root {
     --window-top: 1.5rem;
     --window-bottom: 3rem;
+    --page-margin-x: 1.5rem;
   }
 }

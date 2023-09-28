@@ -5,7 +5,7 @@ import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import Spinner from "../../components/spinner/spinner.component";
 import ImageGrid from "../../components/image-grid/image-grid.component";
 import CollectionItem from "../../components/collection-item/collection-item.component";
-import { getSearchResults } from "../../utils/utils";
+import getSearchResults from "../../utils/getSearchResults";
 import { connect } from "react-redux";
 import "./search-page.styles.scss";
 
@@ -21,13 +21,13 @@ const SearchPage = ({ collectionItems, fetchCollectionsStart, location }) => {
   const searchResults = getSearchResults(query, collectionItems);
 
   return (
-    <div className="search-page page-width">
-      <h1 className="title">Search results</h1>
+    <div className='search-page page-width'>
+      <h1 className='title'>Search results</h1>
       {searchResults.length ? (
         <>
-          <span className="search-intro">
-            Showing <span className="bold">{searchResults.length}</span> results
-            for <span className="bold">"{query.toLowerCase()}"</span>
+          <span className='search-intro'>
+            Showing <span className='bold'>{searchResults.length}</span> results
+            for <span className='bold'>"{query.toLowerCase()}"</span>
           </span>
           <ImageGrid>
             {searchResults.map((result) => (
@@ -37,7 +37,7 @@ const SearchPage = ({ collectionItems, fetchCollectionsStart, location }) => {
         </>
       ) : (
         <p>
-          Sorry, no search results for <span className="bold">"{query}"</span>
+          Sorry, no search results for <span className='bold'>"{query}"</span>
         </p>
       )}
     </div>

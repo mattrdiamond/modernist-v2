@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
-import { handleKeyPress } from "../../utils/utils";
+import handleKeyPress from "../../utils/handleKeyPress";
 
 import { selectDropdownHidden } from "../../redux/shop/shop.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
@@ -84,7 +84,7 @@ const Header = ({
                 (!shopDropdownHidden ? " is-open" : "")
               }
               onClick={toggleShopDropdown}
-              onKeyPress={(e) => handleKeyPress(e, toggleShopDropdown)}
+              onKeyDown={(e) => handleKeyPress(e, toggleShopDropdown)}
               tabIndex='0'
               role='button'
               aria-haspopup='true'

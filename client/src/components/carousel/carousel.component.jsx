@@ -4,7 +4,7 @@ import CarouselCard from "../carousel-card/carousel-card.component";
 import Icon from "../icon/icon.component";
 import Spinner from "../spinner/spinner.component";
 import useWindowSize from "../../hooks/use-window-size";
-import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import useIntersectionObserver from "../../hooks/use-intersection-observer";
 import "./carousel.styles.scss";
 
 // Determine how many images to display based on window width
@@ -140,7 +140,7 @@ const Carousel = () => {
   }, [fetchImageCount, index, visibleImages]);
 
   // useWindowSize hook - keeps track of window dimensions and calls updateScreenSize when window resized
-  useWindowSize(updateScreenSize);
+  useWindowSize(updateScreenSize, 500);
 
   const nextImage = () => {
     // If we've reached the end, return

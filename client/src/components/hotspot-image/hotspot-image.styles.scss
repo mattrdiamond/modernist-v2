@@ -1,0 +1,67 @@
+@import "../../sharedStyles/breakpoints.scss";
+
+@mixin aspect-ratio {
+  --mobile-aspect-ratio: 7/9;
+  --tablet-aspect-ratio: 1000/613;
+  --desktop-aspect-ratio: 2/1;
+  aspect-ratio: var(--desktop-aspect-ratio);
+  @media (max-width: #{$tablet}) {
+    aspect-ratio: var(--tablet-aspect-ratio);
+  }
+  @media (max-width: #{$mobile}) {
+    aspect-ratio: var(--mobile-aspect-ratio);
+  }
+}
+
+.hotspot-image-wrapper {
+  position: relative;
+  max-width: var(--max-page-width);
+  margin: 0 auto;
+  padding: 0 var(--page-margin-x);
+
+  .image-container {
+    @include aspect-ratio;
+    background-color: var(--primary-07);
+  }
+
+  .curated-image {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+
+    &.loading {
+      opacity: 0;
+      position: absolute;
+      left: -9999px;
+    }
+  }
+
+  .spinner-overlay {
+    @include aspect-ratio;
+    height: unset;
+  }
+
+  .img-error {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 0 2rem;
+    height: 100%;
+    width: 100%;
+  }
+
+  .pins-container {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 0 var(--page-margin-x);
+  }
+}
+
+@media (max-width: #{$mobile}) {
+  .hotspot-image-wrapper {
+    padding: 0;
+  }
+}

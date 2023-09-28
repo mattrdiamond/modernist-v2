@@ -1,5 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
 
+/**
+ * A custom hook for observing an element's intersection with its container.
+ *
+ * @param {object} options - Configuration options for the IntersectionObserver.
+ * @param {number} options.threshold - A threshold value for intersection.
+ * @param {Element} options.root - The container element to use as the viewport.
+ * @param {string} options.rootMargin - Margin around the root element.
+ * @param {boolean} options.observeOnce - Whether to observe only once and disconnect.
+ * @returns {object} - An object containing the targetRef and isIntersecting state.
+ */
 const useIntersectionObserver = ({
   threshold = 0,
   root = null,
@@ -14,7 +25,6 @@ const useIntersectionObserver = ({
   const hasIOSupport = !!window.IntersectionObserver;
 
   useEffect(() => {
-    console.log("UE-observer");
     if (!hasIOSupport || !node) return;
 
     const observer = new IntersectionObserver(
@@ -38,12 +48,21 @@ const useIntersectionObserver = ({
         observerRef.current.disconnect();
       }
     };
-  }, [threshold, root, observeOnce, node, hasIOSupport]);
+  }, [threshold, root, observeOnce, node, hasIOSupport, rootMargin]);
 
   return {
     targetRef,
     isIntersecting,
   };
+};
+
+useIntersectionObserver.propTypes = {
+  options: PropTypes.shape({
+    threshold: PropTypes.number,
+    root: PropTypes.instanceOf(Element),
+    rootMargin: PropTypes.string,
+    observeOnce: PropTypes.bool,
+  }),
 };
 
 export default useIntersectionObserver;

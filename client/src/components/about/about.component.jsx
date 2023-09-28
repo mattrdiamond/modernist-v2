@@ -1,6 +1,6 @@
 import React from "react";
 import Icon from "../icon/icon.component";
-import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import useIntersectionObserver from "../../hooks/use-intersection-observer";
 import "./about.styles.scss";
 
 const About = () => {

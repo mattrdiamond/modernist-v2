@@ -1,3 +1,5 @@
+@import "../../sharedStyles/breakpoints.scss";
+
 .menu-item {
   display: flex;
   justify-content: center;
@@ -165,7 +167,7 @@
 }
 
 // switch to single column
-@media (max-width: 700px) {
+@media (max-width: #{$mobile}) {
   .menu-item {
     &:nth-of-type(1),
     &:nth-of-type(2),

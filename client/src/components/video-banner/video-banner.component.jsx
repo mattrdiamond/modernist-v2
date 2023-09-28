@@ -1,12 +1,13 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import useIntersectionObserver from "../../hooks/use-intersection-observer";
 import CustomButton from "../custom-button/custom-button.component";
+import PropTypes from "prop-types";
 import "./video-banner.styles.scss";
 
 function VideoBanner({ videoSrc, posterSrc = "", history }) {
   const { targetRef, isIntersecting } = useIntersectionObserver({
-    threshold: 0.25,
+    threshold: 0.125,
     observeOnce: false,
   });
 
@@ -21,7 +22,7 @@ function VideoBanner({ videoSrc, posterSrc = "", history }) {
     } else {
       video.pause();
     }
-  }, [isIntersecting]);
+  }, [isIntersecting, targetRef]);
 
   return (
     <section className='vidbanner-wrapper'>
@@ -44,5 +45,11 @@ function VideoBanner({ videoSrc, posterSrc = "", history }) {
     </section>
   );
 }
+
+VideoBanner.propTypes = {
+  videoSrc: PropTypes.string.isRequired,
+  posterSrc: PropTypes.string,
+  history: PropTypes.object.isRequired,
+};
 
 export default withRouter(VideoBanner);

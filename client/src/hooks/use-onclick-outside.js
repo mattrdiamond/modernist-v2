@@ -1,29 +1,52 @@
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 
-// useOnClickOutside hook - closes referenced element when user clicks or tabs outside element
-export default function useOnClickOutside(
+/**
+ * A custom hook for detecting clicks outside a specified element.
+ *
+ * @param {Object} options - The hook options.
+ * @param {React.RefObject} options.ref - The reference to the element to detect clicks outside of.
+ * @param {function} options.handler - The callback function to execute when a click outside is detected.
+ * @param {string} [options.ignoreOutsideElementClass=""] - The class name of elements to ignore outside clicks on.
+ * @param {string} [options.includeInsideElementClass=""] - The class name of elements to include for inside clicks.
+ * @param {boolean} [options.isHidden=false] - If true, the click detection is hidden (disabled).
+ */
+
+export default function useOnClickOutside({
   ref,
   handler,
-  ignoredClass,
-  isHidden
-) {
+  ignoreOutsideElementClass = "",
+  includeInsideElementClass = "",
+  isHidden = false,
+}) {
   useEffect(() => {
     const listener = (e) => {
-      if (
-        // Exit when:
-        // 1. Pressing a key other than "Tab"
-        (e.type === "keyup" && e.key !== "Tab") ||
-        // 2. Clicking ref's element or descendent elements
-        !ref.current ||
-        ref.current.contains(e.target) ||
-        // 3. Target element contains ignored class
-        e.target.classList.contains(ignoredClass) ||
-        // 4. Element is hidden
-        isHidden
-      ) {
-        return;
+      try {
+        if (
+          (e.type === "keyup" && e.key !== "Tab") ||
+          !ref.current ||
+          e.target.classList.contains(ignoreOutsideElementClass) || // Ignored outside elements
+          isHidden
+        ) {
+          console.log("return");
+          return;
+        }
+
+        if (
+          includeInsideElementClass &&
+          e.target.classList.contains(includeInsideElementClass)
+        ) {
+          // Execute the handler when e.target has the includeInsideElementClass class
+          console.log("clicked inside element class. run handler");
+          handler(e);
+        } else if (!ref.current.contains(e.target)) {
+          console.log("clicked outside. run handler");
+          handler(e);
+        }
+      } catch (error) {
+        // TO DO: Handle any errors that occur during event handling
+        console.error("Error in useOnClickOutside:", error);
       }
-      handler(e);
     };
 
     document.addEventListener("mousedown", listener);
@@ -35,5 +58,19 @@ export default function useOnClickOutside(
       document.removeEventListener("touchstart", listener);
       document.removeEventListener("keyup", listener);
     };
-  }, [ref, handler, ignoredClass, isHidden]);
+  }, [
+    ref,
+    handler,
+    ignoreOutsideElementClass,
+    includeInsideElementClass,
+    isHidden,
+  ]);
 }
+
+useOnClickOutside.propTypes = {
+  ref: PropTypes.object.isRequired,
+  handler: PropTypes.func.isRequired,
+  ignoreOutsideElementClass: PropTypes.string,
+  includeInsideElementClass: PropTypes.string,
+  isHidden: PropTypes.bool,
+};

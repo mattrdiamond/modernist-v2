@@ -42,19 +42,24 @@
 }
 
 .page-width {
-  max-width: 1320px;
+  max-width: var(--max-page-width);
   width: 100%;
-  padding-left: 3rem;
-  padding-right: 3rem;
+  padding-left: var(--page-margin-x);
+  padding-right: var(--page-margin-x);
   margin-left: auto;
   margin-right: auto;
 }
 
-@media (max-width: 1320px) {
-  .page-width {
-    padding-left: 4%;
-    padding-right: 4%;
-  }
+.line-clamp-2 {
+  /* Limit the number of lines to 2 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  /* Add ellipsis at the end of the second line */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 @media (max-width: 800px) {
@@ -70,12 +75,5 @@
       visibility: hidden;
       opacity: 0;
     }
-  }
-}
-
-@media (max-width: 680px) {
-  .page-width {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
   }
 }

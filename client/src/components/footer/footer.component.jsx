@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectDirectorySections } from "../../redux/directory/directory.selectors";
-import { sortAsc } from "../../utils/utils";
+import { sortAsc } from "../../utils/sort";
 import Icon from "../icon/icon.component";
 import Accordion from "../accordion/accordion.component";
 import "./footer.styles.scss";
@@ -22,26 +22,26 @@ const Footer = ({ sections }) => {
   const sortedShopSections = sortAsc(sections, sections.title);
 
   return (
-    <section className="footer">
-      <div className="footer-inner">
-        <div className="footer-logo">
-          <Link to="/">
-            <Icon icon="modernist" />
+    <section className='footer'>
+      <div className='footer-inner'>
+        <div className='footer-logo'>
+          <Link to='/'>
+            <Icon icon='modernist' />
           </Link>
-          <span className="small">
+          <span className='small'>
             Copyright ©{new Date().getFullYear()} modernist.
           </span>
-          <span className="small">All Rights Reserved.</span>
+          <span className='small'>All Rights Reserved.</span>
         </div>
-        <div className="footer-links">
-          <div className="col-1">
+        <div className='footer-links'>
+          <div className='col-1'>
             <Accordion
-              title="Company"
+              title='Company'
               toggle={toggle}
               expandedTitle={expandedTitle}
-              key="1"
+              key='1'
             >
-              <ul className="footer-ul">
+              <ul className='footer-ul'>
                 <li>About Us</li>
                 <li>Store Locations</li>
                 <li>Privacy Policy</li>
@@ -50,13 +50,13 @@ const Footer = ({ sections }) => {
               </ul>
             </Accordion>
           </div>
-          <div className="col-2">
+          <div className='col-2'>
             <Accordion
-              title="shop"
+              title='shop'
               toggle={toggle}
               expandedTitle={expandedTitle}
             >
-              <ul className="footer-ul">
+              <ul className='footer-ul'>
                 {sortedShopSections.map(({ id, title, linkUrl }) => (
                   <li key={id}>
                     <Link to={`/${linkUrl}`}>{title}</Link>
@@ -65,13 +65,13 @@ const Footer = ({ sections }) => {
               </ul>
             </Accordion>
           </div>
-          <div className="col-3">
+          <div className='col-3'>
             <Accordion
-              title="Resources"
+              title='Resources'
               toggle={toggle}
               expandedTitle={expandedTitle}
             >
-              <ul className="footer-ul">
+              <ul className='footer-ul'>
                 <li>Shipping</li>
                 <li>Guarantee</li>
                 <li>Financing</li>
@@ -80,42 +80,42 @@ const Footer = ({ sections }) => {
               </ul>
             </Accordion>
           </div>
-          <div className="col-4">
+          <div className='col-4'>
             <Accordion
-              title="Connect"
+              title='Connect'
               toggle={toggle}
               expandedTitle={expandedTitle}
             >
-              <ul className="footer-ul">
+              <ul className='footer-ul'>
                 <li>Customer Care</li>
                 <li>Blog</li>
                 <li>Reviews</li>
               </ul>
             </Accordion>
-            <div className="social-media">
+            <div className='social-media'>
               <a
-                className="icon-link"
-                href="http://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                className='icon-link'
+                href='http://twitter.com'
+                target='_blank'
+                rel='noopener noreferrer'
               >
-                <Icon icon="twitter" />
+                <Icon icon='twitter' />
               </a>
               <a
-                className="icon-link"
-                href="http://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                className='icon-link'
+                href='http://facebook.com'
+                target='_blank'
+                rel='noopener noreferrer'
               >
-                <Icon icon="facebook" />
+                <Icon icon='facebook' />
               </a>
               <a
-                className="icon-link"
-                href="http://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                className='icon-link'
+                href='http://instagram.com'
+                target='_blank'
+                rel='noopener noreferrer'
               >
-                <Icon icon="instagram" />
+                <Icon icon='instagram' />
               </a>
             </div>
           </div>

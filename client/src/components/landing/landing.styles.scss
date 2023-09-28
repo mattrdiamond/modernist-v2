@@ -1,3 +1,5 @@
+@import "../../sharedStyles/breakpoints.scss";
+
 .landing {
   position: relative;
   margin-bottom: 0;
@@ -152,7 +154,7 @@
 }
 
 // change to vertical view
-@media (max-width: 700px) {
+@media (max-width: #{$mobile}) {
   .landing {
     // set full vh (still min 500, max 700
     height: calc(100vh - var(--nav-height));
