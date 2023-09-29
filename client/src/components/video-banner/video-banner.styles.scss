@@ -55,6 +55,11 @@
 
     .custom-button {
       align-self: center;
+
+      &:hover {
+        border-color: var(--white);
+        background-color: var(--white);
+      }
     }
   }
 }

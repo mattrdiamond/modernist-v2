@@ -33,9 +33,11 @@ const getHotspotContentPosition = (hotspot, screenSize, imageDimensions) => {
     if (pixelsFromLeft > safetyMargin.x && pixelsFromRight > safetyMargin.x) {
       return "below";
     }
-  } else if (pixelsFromLeft <= safetyMargin.x) {
+  }
+  if (pixelsFromLeft <= safetyMargin.x) {
     return "right";
-  } else if (pixelsFromRight <= safetyMargin.x) {
+  }
+  if (pixelsFromRight <= safetyMargin.x) {
     return "left";
   }
   return "above";
@@ -51,7 +53,8 @@ export default function Pin({
   onMouseLeave,
   isTouchDevice,
 }) {
-  const { id, coordinates, name, price, thumbnail } = hotspot;
+  const { id, shopId, collection, coordinates, name, price, thumbnail } =
+    hotspot;
   const isPinOpen = openHotspotId === id;
 
   const handleClick = (e) => {
@@ -98,14 +101,13 @@ export default function Pin({
       aria-expanded={isPinOpen ? "true" : "false"}
     >
       <div className={`pin-content-anchor ${contentPosition || ""}`}>
-        {/*-------- TO DO: update link with actual product --------*/}
-        <Link to='shop/lighting/14'>
+        <Link to={`shop/${collection}/${shopId}`}>
           <div className='pin-content'>
             <div className='pin-content_thumbnail'>
               <ImageLoader
                 src={thumbnail}
                 alt={name}
-                styles='pin-thumbnail object-cover'
+                styles='pin-thumbnail object-contain'
                 withSpinner
               />
             </div>

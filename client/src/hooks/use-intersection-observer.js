@@ -21,10 +21,11 @@ const useIntersectionObserver = ({
   const observerRef = useRef(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
 
-  const node = targetRef?.current; // DOM Ref
   const hasIOSupport = !!window.IntersectionObserver;
 
   useEffect(() => {
+    const node = targetRef?.current; // DOM Ref
+
     if (!hasIOSupport || !node) return;
 
     const observer = new IntersectionObserver(
@@ -48,7 +49,7 @@ const useIntersectionObserver = ({
         observerRef.current.disconnect();
       }
     };
-  }, [threshold, root, observeOnce, node, hasIOSupport, rootMargin]);
+  }, [threshold, root, observeOnce, hasIOSupport, rootMargin]);
 
   return {
     targetRef,
