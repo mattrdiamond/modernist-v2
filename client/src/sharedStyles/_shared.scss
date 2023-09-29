@@ -50,6 +50,11 @@
   margin-right: auto;
 }
 
+.object-cover {
+  object-fit: cover;
+  width: 100%;
+}
+
 .line-clamp-2 {
   /* Limit the number of lines to 2 */
   display: -webkit-box;

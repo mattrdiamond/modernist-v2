@@ -159,7 +159,11 @@
   .pin-content_thumbnail {
     width: 3.5rem;
     height: 3.5rem;
-    background: gray;
+    background: var(--primary-07);
+    padding: 0.25rem;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
   }
 
   .pin-content_text {

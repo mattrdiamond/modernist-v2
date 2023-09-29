@@ -9,6 +9,7 @@ import {
 import handleKeyPress from "../../utils/handleKeyPress";
 
 import Icon from "../icon/icon.component";
+import ImageLoader from "../image-loader/image-loader.component";
 import "./pin.styles.scss";
 
 const getHotspotContentPosition = (hotspot, screenSize, imageDimensions) => {
@@ -50,7 +51,8 @@ export default function Pin({
   onMouseLeave,
   isTouchDevice,
 }) {
-  const isPinOpen = openHotspotId === hotspot.id;
+  const { id, coordinates, name, price, thumbnail } = hotspot;
+  const isPinOpen = openHotspotId === id;
 
   const handleClick = (e) => {
     // Stop the event from propagating to handleClickOutside
@@ -68,7 +70,7 @@ export default function Pin({
         handlePinClick(null);
       }
     } else {
-      handlePinClick(hotspot.id);
+      handlePinClick(id);
     }
   };
 
@@ -82,27 +84,34 @@ export default function Pin({
     <div
       className={`pin-anchor${isPinOpen ? " open" : ""}`}
       style={{
-        left: `${hotspot.coordinates[screenSize].x}%`,
-        top: `${hotspot.coordinates[screenSize].y}%`,
+        left: `${coordinates[screenSize].x}%`,
+        top: `${coordinates[screenSize].y}%`,
       }}
       tabIndex='0'
       onClick={(e) => handleClick(e)}
-      onMouseEnter={() => onMouseEnter(hotspot.id)}
+      onMouseEnter={() => onMouseEnter(id)}
       onMouseLeave={onMouseLeave}
       onKeyDown={(e) => handleKeyPress(e, handleClick)}
       role='button'
-      aria-label={hotspot.name}
-      aria-describedby={`hotspot-description-${hotspot.id}`}
+      aria-label={name}
+      aria-describedby={`hotspot-description-${id}`}
       aria-expanded={isPinOpen ? "true" : "false"}
     >
       <div className={`pin-content-anchor ${contentPosition || ""}`}>
         {/*-------- TO DO: update link with actual product --------*/}
         <Link to='shop/lighting/14'>
           <div className='pin-content'>
-            <div className='pin-content_thumbnail' />
+            <div className='pin-content_thumbnail'>
+              <ImageLoader
+                src={thumbnail}
+                alt={name}
+                styles='pin-thumbnail object-cover'
+                withSpinner
+              />
+            </div>
             <div className='pin-content_text'>
-              <p className='pin-content_name line-clamp-2'>{hotspot.name}</p>
-              <p className='pin-content_price'>{hotspot.price}</p>
+              <p className='pin-content_name line-clamp-2'>{name}</p>
+              <p className='pin-content_price'>{price}</p>
             </div>
             <div className='arrow-container'>
               <Icon icon='arrow-right' />
