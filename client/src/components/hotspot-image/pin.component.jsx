@@ -33,9 +33,11 @@ const getHotspotContentPosition = (hotspot, screenSize, imageDimensions) => {
     if (pixelsFromLeft > safetyMargin.x && pixelsFromRight > safetyMargin.x) {
       return "below";
     }
-  } else if (pixelsFromLeft <= safetyMargin.x) {
+  }
+  if (pixelsFromLeft <= safetyMargin.x) {
     return "right";
-  } else if (pixelsFromRight <= safetyMargin.x) {
+  }
+  if (pixelsFromRight <= safetyMargin.x) {
     return "left";
   }
   return "above";
