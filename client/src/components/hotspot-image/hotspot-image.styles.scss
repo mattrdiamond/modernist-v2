@@ -25,6 +25,11 @@
   .image-container {
     @include aspect-ratio;
     background-color: var(--primary-07);
+
+    .spinner-overlay {
+      @include aspect-ratio;
+      height: unset;
+    }
   }
 
   .curated-image {
@@ -37,11 +42,6 @@
       position: absolute;
       left: -9999px;
     }
-  }
-
-  .spinner-overlay {
-    @include aspect-ratio;
-    height: unset;
   }
 
   .img-error {

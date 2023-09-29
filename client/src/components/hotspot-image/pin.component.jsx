@@ -107,7 +107,7 @@ export default function Pin({
               <ImageLoader
                 src={thumbnail}
                 alt={name}
-                styles='pin-thumbnail object-cover'
+                styles='pin-thumbnail object-contain'
                 withSpinner
               />
             </div>
