@@ -19,7 +19,7 @@ import { selectCheckoutConfirmation } from "./redux/checkout/checkout.selectors"
 
 import { checkUserSession } from "./redux/user/user.actions";
 
-import "./App.css";
+import "./sharedStyles/index.scss";
 
 // lazy load JS for each route
 const HomePage = lazy(() => import("./pages/homepage/homepage.component"));
@@ -56,7 +56,7 @@ const App = ({
 
   return (
     <div
-      id="app"
+      id='app'
       className={
         !cartHidden
           ? "cart-visible"
@@ -66,12 +66,12 @@ const App = ({
       }
     >
       <Header />
-      <div className="content-window">
+      <div className='content-window'>
         <Switch>
           <Suspense fallback={<Spinner />}>
             <Route
               exact
-              path="/"
+              path='/'
               render={() => (
                 <ErrorBoundary>
                   <HomePage />
@@ -79,7 +79,7 @@ const App = ({
               )}
             />
             <Route
-              path="/shop"
+              path='/shop'
               render={(props) => (
                 <ErrorBoundary>
                   <ShopPage {...props} />
@@ -88,7 +88,7 @@ const App = ({
             />
             <Route
               exact
-              path="/favorites"
+              path='/favorites'
               render={() => (
                 <ErrorBoundary>
                   <FavoritesPage />
@@ -97,10 +97,10 @@ const App = ({
             />
             <Route
               exact
-              path="/checkout"
+              path='/checkout'
               render={() =>
                 checkoutComplete ? (
-                  <Redirect to="/confirmation" />
+                  <Redirect to='/confirmation' />
                 ) : (
                   <ErrorBoundary>
                     <CheckoutPage />
@@ -110,10 +110,10 @@ const App = ({
             />
             <Route
               exact
-              path="/confirmation"
+              path='/confirmation'
               render={() =>
                 !checkoutComplete ? (
-                  <Redirect to="/" />
+                  <Redirect to='/' />
                 ) : (
                   <ErrorBoundary>
                     <Confirmation />
@@ -125,7 +125,7 @@ const App = ({
               Also redirect to previous page after user signs in. */}
             <Route
               exact
-              path="/signin"
+              path='/signin'
               render={() =>
                 currentUser ? (
                   history.goBack()
@@ -137,7 +137,7 @@ const App = ({
               }
             />
             <Route
-              path="/search"
+              path='/search'
               render={(props) => (
                 <ErrorBoundary>
                   <SearchPage {...props} />

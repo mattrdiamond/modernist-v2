@@ -1,0 +1,32 @@
+@import "../../sharedStyles/breakpoints.scss";
+
+.section-heading-wrapper {
+  text-align: left;
+  margin: 4rem auto 1.5rem;
+
+  .heading {
+    display: inline;
+    margin-bottom: 0.25rem;
+  }
+
+  .subheading {
+    display: inline-block;
+    margin-left: 1rem;
+  }
+}
+
+@media (max-width: #{$mobile}) {
+  .section-heading-wrapper {
+    text-align: center;
+    margin: var(--section-margin-y) auto;
+
+    .heading,
+    .subheading {
+      display: block;
+    }
+
+    .subheading {
+      margin-left: 0;
+    }
+  }
+}

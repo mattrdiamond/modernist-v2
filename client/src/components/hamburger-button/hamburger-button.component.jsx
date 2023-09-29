@@ -6,13 +6,14 @@ const HamburgerButton = React.memo(({ isOpen, handleToggle }) => (
   <div
     className={"hamburger" + (isOpen ? " is-open" : "")}
     onClick={handleToggle}
-    role="button"
+    onKeyDown={handleToggle}
+    role='button'
     aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
     aria-expanded={isOpen ? true : false}
-    tabIndex="0"
+    tabIndex='0'
   >
-    <div className="hamburger-btn">
-      <div className="hamburger-bar"></div>
+    <div className='hamburger-btn'>
+      <div className='hamburger-bar'></div>
     </div>
   </div>
 ));

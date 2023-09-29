@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { sortAsc, sortDesc } from "../../utils/utils";
+import { sortAsc, sortDesc } from "../../utils/sort";
 
 const selectShop = (state) => state.shop;
 

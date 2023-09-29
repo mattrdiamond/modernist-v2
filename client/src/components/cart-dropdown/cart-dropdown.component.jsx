@@ -15,10 +15,13 @@ import CartItem from "../cart-item/cart-item.component";
 import "./cart-dropdown.styles.scss";
 
 const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
-  const cartRef = useRef();
-
+  const cartRef = useRef(null);
   // Close cart when clicking outside
-  useOnClickOutside(cartRef, toggleCartHidden, "ignore-co-cart");
+  useOnClickOutside({
+    ref: cartRef,
+    handler: toggleCartHidden,
+    ignoreOutsideElementClass: "ignore-co-cart",
+  });
 
   useLockBodyScroll();
 

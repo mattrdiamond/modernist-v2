@@ -1,0 +1,220 @@
+@import "../../sharedStyles/breakpoints";
+
+.pin-anchor {
+  --circle-radius: 0.5rem;
+  --circle-border-width: 1px; // test
+  border: 1.5rem solid transparent;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  height: 0;
+  overflow: visible;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 0;
+  z-index: 0;
+
+  &:before,
+  &:after {
+    position: absolute;
+    content: "";
+    width: calc(var(--circle-radius) * 2 - (var(--circle-border-width) * 2));
+    height: calc(var(--circle-radius) * 2 - (var(--circle-border-width) * 2));
+    border-radius: 50%;
+    border: var(--circle-border-width) solid var(--white);
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    transition: transform 0.25s ease;
+  }
+
+  &:after {
+    animation: pulse 2s ease infinite;
+  }
+
+  &:before {
+    background-color: rgba(57, 68, 96, 0.1);
+  }
+
+  &.open {
+    z-index: 1;
+
+    &:after {
+      visibility: hidden;
+    }
+
+    &:before {
+      transform: translate(-50%, -50%) scale(1.25);
+    }
+
+    .pin-content-anchor {
+      display: block;
+    }
+
+    .pin-circle {
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+  }
+
+  .pin-circle {
+    background: #fff;
+    border-radius: var(--circle-radius);
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: calc(var(--circle-radius) * 2);
+    width: calc(var(--circle-radius) * 2);
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    transition: transform 0.2s ease;
+  }
+
+  .pin-content-anchor {
+    --content-shift: 0.875rem; // shift content away from hotspot
+    height: 0;
+    width: 0;
+    position: absolute;
+    left: 0;
+    display: none;
+
+    &.right {
+      left: calc(var(--circle-radius) + var(--content-shift));
+      top: 0;
+
+      .pin-content {
+        transform: translateY(-50%);
+
+        &:after {
+          left: calc(-1 * var(--triangle-width) / 2);
+          top: calc(50% - (var(--triangle-width) / 2));
+        }
+      }
+    }
+
+    &.left {
+      left: calc((var(--circle-radius) + var(--content-shift)) * -1);
+      top: 0;
+
+      .pin-content {
+        transform: translate(-100%, -50%);
+
+        &:after {
+          right: calc(-1 * var(--triangle-width) / 2);
+          top: calc(50% - (var(--triangle-width) / 2));
+        }
+      }
+    }
+
+    &.below {
+      top: calc((var(--circle-radius) + var(--content-shift)));
+
+      .pin-content {
+        transform: translate(-50%, 0%);
+
+        &:after {
+          top: calc(-1 * (var(--triangle-width) / 2));
+          left: calc(50% - var(--triangle-width) / 2);
+        }
+      }
+    }
+
+    &.above {
+      top: calc((var(--circle-radius) + var(--content-shift)) * -1);
+
+      .pin-content {
+        transform: translate(-50%, -100%);
+
+        &:after {
+          bottom: calc(var(--triangle-width) / 2 * -1);
+          left: calc(50% - var(--triangle-width) / 2);
+        }
+      }
+    }
+  }
+
+  .pin-content {
+    --content-spacing: 0.75rem;
+    --triangle-width: 0.75rem;
+    background: var(--white);
+    position: absolute;
+    padding: 0.75rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: var(--content-spacing);
+    border-radius: 0.5rem;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+    &:after {
+      content: "";
+      width: var(--triangle-width);
+      height: var(--triangle-width);
+      position: absolute;
+      transform: rotate(45deg);
+      transform-origin: center;
+      background: var(--white);
+    }
+  }
+
+  .pin-content_thumbnail {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: gray;
+  }
+
+  .pin-content_text {
+    font-size: 0.875rem;
+    min-width: 8rem;
+
+    p {
+      line-height: 1.25;
+    }
+  }
+
+  .pin-content_name {
+    margin: 0 0 0.25rem;
+  }
+
+  .pin-content_price {
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .arrow-container {
+    align-self: center;
+  }
+
+  .icon {
+    width: 0.5rem;
+    height: 0.75rem;
+    color: var(--primary-50);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2);
+  }
+}
+
+@media (max-width: #{$mobile}) {
+  .pin-anchor {
+    .pin-content {
+      grid-template-columns: 1fr auto;
+    }
+
+    .pin-content_text {
+      min-width: 7rem;
+    }
+
+    .pin-content_thumbnail {
+      display: none;
+    }
+  }
+}

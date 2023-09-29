@@ -13,37 +13,37 @@ import "./landing.styles.scss";
 const Landing = ({ history }) => {
   const [isLoading, setIsLoading] = useState(true);
   return (
-    <section className="landing">
+    <section className='landing'>
       {isLoading ? <Spinner /> : null}
       <picture>
         <source
-          media="(max-width: 700px)"
-          sizes="100vw"
+          media='(max-width: 700px)'
+          sizes='100vw'
           srcSet={`${landingMobile2x} 2x, ${landingMobile1x} 1x`}
         />
         <source
-          media="(min-width: 771px)"
-          sizes="100vw"
+          media='(min-width: 771px)'
+          sizes='100vw'
           srcSet={`${landing2x} 2x, ${landing1x} 1x`}
         />
         <img
-          className="landing-img"
+          className='landing-img'
           src={landing1x}
-          alt="Modern chair with table and lamp"
+          alt='Modern chair with table and lamp'
           onLoad={() => setIsLoading(false)}
         />
       </picture>
       {!isLoading ? (
-        <div className="landing-txt-container">
-          <div className="landing-txt page-width">
-            <div className="landing-txt-inner">
-              <span className="landing-subtitle">New Arrivals</span>
-              <h2 className="landing-title">
+        <div className='landing-txt-container'>
+          <div className='landing-txt page-width'>
+            <div className='landing-txt-inner'>
+              <span className='subtitle landing-subtitle'>New Arrivals</span>
+              <h2 className='landing-title'>
                 A simple touch of
                 <br />
                 modern elegance.
               </h2>
-              <p className="landing-intro">
+              <p className='landing-intro'>
                 Chic, sleek, and thoroughly modern, these timeless pieces
                 showcase clean lines and geometric shapes.
               </p>
@@ -59,46 +59,3 @@ const Landing = ({ history }) => {
 };
 
 export default withRouter(Landing);
-
-// const Landing = ({ history }) => (
-//   <section className="landing">
-//     <picture>
-//       <source
-//         media="(max-width: 700px)"
-//         sizes="100vw"
-//         srcSet={`${landingMobile2x} 2x, ${landingMobile1x} 1x`}
-//       />
-//       <source
-//         media="(min-width: 771px)"
-//         sizes="100vw"
-//         srcSet={`${landing2x} 2x, ${landing1x} 1x`}
-//       />
-//       <img
-//         className="landing-img"
-//         src={landing1x}
-//         alt="Modern chair with table and lamp"
-//       />
-//     </picture>
-//     <div className="landing-txt-container">
-//       <div className="landing-txt page-width">
-//         <div className="landing-txt-inner">
-//           <span className="landing-subtitle">New Arrivals</span>
-//           <h2 className="landing-title">
-//             A simple touch of
-//             <br />
-//             modern elegance.
-//           </h2>
-//           <p className="landing-intro">
-//             Chic, sleek, and thoroughly modern, these timeless pieces showcase
-//             clean lines and geometric shapes.
-//           </p>
-//           <CustomButton inverted onClick={() => history.push("/shop")}>
-//             Shop Now
-//           </CustomButton>
-//         </div>
-//       </div>
-//     </div>
-//   </section>
-// );
-
-// export default withRouter(Landing);

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
-import { getSearchResults } from "../../utils/utils";
+import getSearchResults from "../../utils/getSearchResults";
 
 import { selectInputHidden } from "../../redux/search/search.selectors";
 import { selectNavVisible } from "../../redux/mobile-nav/mobile-nav.selectors";
@@ -38,10 +38,10 @@ const SearchDropdown = ({
   };
 
   return (
-    <div className="search-dropdown">
-      <ul className="search-results">
+    <div className='search-dropdown'>
+      <ul className='search-results'>
         {!collectionItems.length ? (
-          <Spinner height="88px" />
+          <Spinner height='88px' />
         ) : searchResults.length ? (
           searchResults
             .filter((item, index) => index < 4)
@@ -57,14 +57,14 @@ const SearchDropdown = ({
       {searchResults.length > 4 && (
         <Link
           to={{ pathname: "/search", search: `q=${inputValue}` }}
-          className="view-results ignore-co-search"
+          className='view-results ignore-co-search'
           onClick={closeSearch}
         >
           View all {searchResults.length} items
         </Link>
       )}
       {collectionItems.length && !searchResults.length ? (
-        <div className="no-results ignore-co-search">
+        <div className='no-results ignore-co-search'>
           No results for '{inputValue}'
         </div>
       ) : null}

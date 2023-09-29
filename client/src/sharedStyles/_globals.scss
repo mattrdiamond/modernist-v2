@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+#app {
+  height: 100%;
+}
+
+html {
+  font-size: 17px;
+}
+
+body {
+  font-family: var(--font-text);
+  color: var(--primary-85);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: 0.25px;
+  line-height: 1.25;
+  font-weight: normal;
+}
+
+h1,
+h2 {
+  font-size: 2.125rem;
+  transition: font-size 0.2s;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+h4 {
+  font-family: var(--font-text);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+h1 + *,
+h2 + *,
+h3 + *,
+h4 + * {
+  margin-top: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  line-height: 1.75;
+}
+
+section {
+  width: 100%;
+}
+
+button {
+  border: none;
+  background: transparent;
+  font-family: var(--font-text);
+  padding: 0;
+}
+
+div > *:first-child:not(section),
+form > *:first-child {
+  margin-top: 0;
+}
+
+div > *:last-child:not(section),
+form > *:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 16px;
+  }
+}

@@ -58,7 +58,12 @@ const SearchDrawer = ({
   };
 
   // Close search drawer when clicked outside
-  useOnClickOutside(inputRef, handleClose, "ignore-co-search", inputHidden);
+  useOnClickOutside({
+    ref: inputRef,
+    handler: handleClose,
+    ignoreOutsideElementClass: "ignore-co-search",
+    isHidden: inputHidden,
+  });
 
   return (
     <div className={"search-drawer ignore-co-search page-width"}>

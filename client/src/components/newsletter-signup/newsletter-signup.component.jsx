@@ -3,12 +3,14 @@ import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 import Spinner from "../spinner/spinner.component";
 import { newsletter2x, newsletter1x } from "../../assets/img/_images";
-import useOnScreen from "../../hooks/use-on-screen";
+import useIntersectionObserver from "../../hooks/use-intersection-observer";
 import "./newsletter-signup.styles.scss";
 
 const NewsletterSignup = () => {
-  // useOnScreen (Intersection observer) - setRef will update the ref state in useOnScreen with the referenced DOM element and return visible status (isIntersecting)
-  const [setRef, visible] = useOnScreen({ threshold: 0.25 });
+  const { targetRef, isIntersecting } = useIntersectionObserver({
+    threshold: 0.375,
+    observeOnce: true,
+  });
 
   // status message will display error or success message below form input
   const statusMessage = useRef(null);
@@ -116,25 +118,25 @@ const NewsletterSignup = () => {
   };
 
   return (
-    <section className="newsletter-signup" ref={setRef}>
-      <div className="page-width content-wrapper">
-        <div className="img-container">
+    <section className='newsletter-signup' ref={targetRef}>
+      <div className='page-width content-wrapper'>
+        <div className='img-container'>
           <img
             src={newsletter1x}
             srcSet={`${newsletter2x} 2x, ${newsletter1x} 1x`}
-            alt="Stack of pillows"
-            className={"newsletter-img" + (visible ? " visible" : "")}
+            alt='Stack of pillows'
+            className={"newsletter-img" + (isIntersecting ? " visible" : "")}
           />
         </div>
-        <div className="newsletter-form">
+        <div className='newsletter-form'>
           <form
-            action="https://gmail.us8.list-manage.com/subscribe/post?u=a826694112117741e6cd0d13f&amp;id=946b9658d7"
+            action='https://gmail.us8.list-manage.com/subscribe/post?u=a826694112117741e6cd0d13f&amp;id=946b9658d7'
             onSubmit={handleSubmit}
-            method="post"
-            id="mc-embedded-subscribe-form"
-            name="mc-embedded-subscribe-form"
-            className="validate"
-            target="_blank"
+            method='post'
+            id='mc-embedded-subscribe-form'
+            name='mc-embedded-subscribe-form'
+            className='validate'
+            target='_blank'
             noValidate
           >
             <h2>Join the club.</h2>
@@ -144,26 +146,26 @@ const NewsletterSignup = () => {
             {/* hide input if email successfully added and show success message */}
             {result !== "success" ? (
               <FormInput
-                name="EMAIL"
-                type="email"
-                aria-label="Email"
-                title="The domain portion of the email address is invalid (the portion after the @)."
-                pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
-                label="email"
-                id="mce-EMAIL"
+                name='EMAIL'
+                type='email'
+                aria-label='Email'
+                title='The domain portion of the email address is invalid (the portion after the @).'
+                pattern='^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$'
+                label='email'
+                id='mce-EMAIL'
                 handleChange={handleChange}
                 value={email}
                 required
               >
-                <div className="btn-container">
+                <div className='btn-container'>
                   {loading ? (
                     <Spinner />
                   ) : (
                     <CustomButton
-                      type="submit"
-                      value="Subscribe"
-                      name="subscribe"
-                      id="mc-embedded-subscribe"
+                      type='submit'
+                      value='Subscribe'
+                      name='subscribe'
+                      id='mc-embedded-subscribe'
                       disabled={!email}
                       inline
                     >
@@ -176,14 +178,14 @@ const NewsletterSignup = () => {
             {/* hidden input prevents form bot signups */}
             <div
               style={{ position: "absolute", left: "-5000px" }}
-              aria-hidden="true"
+              aria-hidden='true'
             >
               <input
-                type="text"
-                name="b_f2d244c0df42a0431bd08ddea_aeaa9dd034"
-                tabIndex="-1"
+                type='text'
+                name='b_f2d244c0df42a0431bd08ddea_aeaa9dd034'
+                tabIndex='-1'
                 readOnly
-                value=""
+                value=''
               />
             </div>
             {message ? (
@@ -204,4 +206,4 @@ const NewsletterSignup = () => {
   );
 };
 
-export default React.memo(NewsletterSignup);
+export default NewsletterSignup;

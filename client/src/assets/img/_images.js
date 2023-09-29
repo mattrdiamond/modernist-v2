@@ -33,3 +33,17 @@ export const chairs2x = require("../../assets/img/chairs_2x.jpg");
 export const chairs1x = require("../../assets/img/chairs_1x.jpg");
 export const chairsMobile2x = require("../../assets/img/chairs_mobile_2x.jpg");
 export const chairsMobile1x = require("../../assets/img/chairs_mobile_1x.jpg");
+
+// video banner
+export const videoPoster = require("../../assets/img/video_poster.jpg");
+
+// curated room
+export const curatedMobile_400w = require("../../assets/img/home/curated_mobile_400w.jpg");
+export const curatedMobile_800w = require("../../assets/img/home/curated_mobile_800w.jpg");
+export const curatedMobile_1400w = require("../../assets/img/home/curated_mobile_1400w.jpg");
+export const curatedTablet_1000w = require("../../assets/img/home/curated_tablet_1000w.jpg");
+export const curatedTablet_2000w = require("../../assets/img/home/curated_tablet_2000w.jpg");
+export const curatedDesktop_1200w = require("../../assets/img/home/curated_desktop_1200w.jpg");
+export const curatedDesktop_1800w = require("../../assets/img/home/curated_desktop_1800w.jpg");
+export const curatedDesktop_2400w = require("../../assets/img/home/curated_desktop_2400w.jpg");
+export const curatedDesktop_3000w = require("../../assets/img/home/curated_desktop_3000w.jpg");
