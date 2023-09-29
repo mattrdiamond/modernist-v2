@@ -28,7 +28,6 @@ export default function useOnClickOutside({
           e.target.classList.contains(ignoreOutsideElementClass) || // Ignored outside elements
           isHidden
         ) {
-          console.log("return");
           return;
         }
 
@@ -37,10 +36,8 @@ export default function useOnClickOutside({
           e.target.classList.contains(includeInsideElementClass)
         ) {
           // Execute the handler when e.target has the includeInsideElementClass class
-          console.log("clicked inside element class. run handler");
           handler(e);
         } else if (!ref.current.contains(e.target)) {
-          console.log("clicked outside. run handler");
           handler(e);
         }
       } catch (error) {

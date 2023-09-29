@@ -4,6 +4,7 @@ export const hotspotPropTypes = PropTypes.shape({
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string,
   coordinates: PropTypes.shape({
     mobile: PropTypes.shape({
       x: PropTypes.number.isRequired,
