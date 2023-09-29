@@ -2,6 +2,15 @@ import PropTypes from "prop-types";
 
 export const hotspotPropTypes = PropTypes.shape({
   id: PropTypes.number.isRequired,
+  shopId: PropTypes.number.isRequired,
+  collection: PropTypes.oneOf([
+    "bedding",
+    "decor",
+    "chairs",
+    "lighting",
+    "sofas",
+    "tables",
+  ]).isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
   thumbnail: PropTypes.string,

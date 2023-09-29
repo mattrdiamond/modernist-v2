@@ -1,6 +1,8 @@
 export const hotspotData = [
   {
     id: 1,
+    shopId: 4,
+    collection: "sofas",
     name: "Sloan 5-Piece Sectional",
     price: "$2190",
     thumbnail:
@@ -13,6 +15,8 @@ export const hotspotData = [
   },
   {
     id: 2,
+    shopId: 34,
+    collection: "tables",
     name: "Ravi Coffee Table",
     price: "$299",
     thumbnail:
@@ -25,8 +29,10 @@ export const hotspotData = [
   },
   {
     id: 3,
+    shopId: 58,
+    collection: "decor",
     name: "Hand-Knit Boho Pillow Cover",
-    price: "$49",
+    price: "$39",
     thumbnail:
       "https://raw.githubusercontent.com/mattrdiamond/modernist-v2/master/client/src/assets/img/shop/decor/shop-decor-58-thumb.jpg",
     coordinates: {
@@ -37,6 +43,8 @@ export const hotspotData = [
   },
   {
     id: 4,
+    shopId: 71,
+    collection: "chairs",
     name: "Sloan Armchair",
     price: "$179",
     thumbnail:
@@ -49,6 +57,8 @@ export const hotspotData = [
   },
   {
     id: 5,
+    shopId: 57,
+    collection: "decor",
     name: `"Divided By 3" Abstract Wall Art`,
     price: "$199",
     thumbnail:
@@ -61,6 +71,8 @@ export const hotspotData = [
   },
   {
     id: 6,
+    shopId: 24,
+    collection: "lighting",
     name: "White Terrazzo Table\u00A0Lamp",
     price: "$159",
     thumbnail:

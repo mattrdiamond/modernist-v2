@@ -53,7 +53,8 @@ export default function Pin({
   onMouseLeave,
   isTouchDevice,
 }) {
-  const { id, coordinates, name, price, thumbnail } = hotspot;
+  const { id, shopId, collection, coordinates, name, price, thumbnail } =
+    hotspot;
   const isPinOpen = openHotspotId === id;
 
   const handleClick = (e) => {
@@ -100,8 +101,7 @@ export default function Pin({
       aria-expanded={isPinOpen ? "true" : "false"}
     >
       <div className={`pin-content-anchor ${contentPosition || ""}`}>
-        {/*-------- TO DO: update link with actual product --------*/}
-        <Link to='shop/lighting/14'>
+        <Link to={`shop/${collection}/${shopId}`}>
           <div className='pin-content'>
             <div className='pin-content_thumbnail'>
               <ImageLoader
