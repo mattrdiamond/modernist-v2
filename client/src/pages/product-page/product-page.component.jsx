@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { addItem, toggleCartHidden } from "../../redux/cart/cart.actions";
+import { createStructuredSelector } from "reselect";
+import { selectProductReviews } from "../../redux/reviews/reviews.selectors";
 import { selectItem } from "../../redux/shop/shop.selectors";
+import { addItem, toggleCartHidden } from "../../redux/cart/cart.actions";
+import { fetchReviewsStart } from "../../redux/reviews/reviews.actions";
 import StarRating from "../../components/star-rating/star-rating.component";
 import Stepper from "../../components/stepper/stepper.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
@@ -10,9 +13,22 @@ import ImageReloader from "../../components/image-loader/image-reloader.componen
 import FavoritingButton from "../../components/favoriting-button/favoriting-button.component";
 import "./product-page.styles.scss";
 
-const ProductPage = ({ item, addItem, toggleCartHidden, collectionId }) => {
-  const { name, price, images, rating, review_count, sku } = item;
+const ProductPage = ({
+  item,
+  addItem,
+  toggleCartHidden,
+  collectionId,
+  fetchReviewsStart,
+  productReviews,
+}) => {
+  const { name, price, images, rating, review_count, sku, id } = item;
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    if (!productReviews.length) {
+      fetchReviewsStart(id);
+    }
+  }, [fetchReviewsStart]);
 
   const handleAddItem = () => {
     setQuantity(quantity + 1);
@@ -75,14 +91,17 @@ const ProductPage = ({ item, addItem, toggleCartHidden, collectionId }) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  item: selectItem(state, ownProps),
-  collectionId: ownProps.match.params.collectionId,
+const mapStateToProps = createStructuredSelector({
+  item: selectItem,
+  collectionId: (state, ownProps) => ownProps.match.params.collectionId,
+  productReviews: (state, ownProps) =>
+    selectProductReviews(ownProps.match.params.itemId)(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (item, quantity) => dispatch(addItem(item, quantity)),
   toggleCartHidden: () => dispatch(toggleCartHidden()),
+  fetchReviewsStart: (productId) => dispatch(fetchReviewsStart(productId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);
