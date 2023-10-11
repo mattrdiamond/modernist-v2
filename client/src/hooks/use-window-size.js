@@ -36,7 +36,9 @@ export default function useWindowSize(callback, delay) {
     const handleResize = debounce(() => {
       const newSize = getSize();
       setWindowSize(newSize);
-      callback(newSize);
+      if (callback) {
+        callback(newSize);
+      }
     }, delay);
 
     window.addEventListener("resize", handleResize);
@@ -60,6 +62,6 @@ function determineScreenSize(width) {
 }
 
 useWindowSize.propTypes = {
-  callback: PropTypes.func.isRequired,
-  delay: PropTypes.number.isRequired,
+  callback: PropTypes.func,
+  delay: PropTypes.number,
 };

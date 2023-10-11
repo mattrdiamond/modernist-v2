@@ -114,7 +114,7 @@
   }
 }
 
-@media (max-width: #{$mobile}) {
+@media (max-width: $mobile) {
   .newsletter-signup {
     height: unset;
     max-height: unset;

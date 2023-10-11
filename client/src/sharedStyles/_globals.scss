@@ -80,6 +80,7 @@ button {
   background: transparent;
   font-family: var(--font-text);
   padding: 0;
+  color: inherit;
 }
 
 div > *:first-child:not(section),

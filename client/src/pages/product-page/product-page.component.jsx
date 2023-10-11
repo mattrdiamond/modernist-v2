@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { selectProductReviews } from "../../redux/reviews/reviews.selectors";
 import { selectItem } from "../../redux/shop/shop.selectors";
 import { addItem, toggleCartHidden } from "../../redux/cart/cart.actions";
 import { fetchReviewsStart } from "../../redux/reviews/reviews.actions";
-import StarRating from "../../components/star-rating/star-rating.component";
 import Stepper from "../../components/stepper/stepper.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import ImageReloader from "../../components/image-loader/image-reloader.component";
 import FavoritingButton from "../../components/favoriting-button/favoriting-button.component";
+import ProductPageTopContent from "./product-page-top-content.component";
+import ProductPageAccordions from "./product-page-accordions.component";
 import "./product-page.styles.scss";
 
 const ProductPage = ({
@@ -21,14 +21,14 @@ const ProductPage = ({
   fetchReviewsStart,
   productReviews,
 }) => {
-  const { name, price, images, rating, review_count, sku, id } = item;
+  const { name, images, rating, review_count, sku, id } = item;
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     if (!productReviews.length) {
       fetchReviewsStart(id);
     }
-  }, [fetchReviewsStart]);
+  }, [fetchReviewsStart, id, productReviews.length]);
 
   const handleAddItem = () => {
     setQuantity(quantity + 1);
@@ -55,29 +55,8 @@ const ProductPage = ({
         <FavoritingButton item={item} />
       </div>
       <div className='col-right'>
-        <Link to={`/shop/${collectionId}`}>
-          <span className='collection-name'>{collectionId}</span>
-        </Link>
-        <h1 className='product-title'>{name}</h1>
-        <StarRating rating={rating} maxRating={5} reviewCount={review_count} />
-        <h2 className='product-price'>${price}</h2>
-        <h4>Product Description</h4>
-        <p className='product-description'>
-          Lorem ipsum dolor volupta temposam eosa consequid maxim res derum id
-          mos por ratem. Ficiis mil moloria nonsectatur sequuntori nistia aut
-          aut lit harumque etumquu ntustia pe volores sin pratem quo ipsume
-          nimoditatem eaquas et odignih ilibusdae audis esse laborio quiam eum
-          voluptaet vel molupta pernat litatquam idunt molo quiaeptat earum, aut
-          omnih.
-        </p>
-        <span className='product-detail'>
-          <span className='bold'>Availability: </span>
-          In stock
-        </span>
-        <span className='product-detail'>
-          <span className='bold'>SKU: </span>
-          {sku}
-        </span>
+        <ProductPageTopContent item={item} collectionId={collectionId} />
+        <p>INSERT SELECT ITEMS</p>
         <div className='button-container'>
           <Stepper
             quantity={quantity}
@@ -86,6 +65,20 @@ const ProductPage = ({
           />
           <CustomButton onClick={addToCart}>Add to Bag</CustomButton>
         </div>
+        <ProductPageAccordions
+          productReviews={productReviews}
+          rating={rating}
+          reviewCount={review_count}
+        />
+
+        <span className='product-detail'>
+          <span className='font-bold'>Availability: </span>
+          In stock
+        </span>
+        <span className='product-detail'>
+          <span className='font-bold'>SKU: </span>
+          {sku}
+        </span>
       </div>
     </div>
   );

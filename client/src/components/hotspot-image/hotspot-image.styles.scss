@@ -62,7 +62,7 @@
   }
 }
 
-@media (max-width: #{$mobile}) {
+@media (max-width: $mobile) {
   .hotspot-image-wrapper {
     padding: 0;
   }

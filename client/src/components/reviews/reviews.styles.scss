@@ -1,0 +1,38 @@
+.reviews-section {
+  .reviews-overview {
+    padding: 0.5rem 0 1.5rem;
+  }
+  .total-reviews {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+    line-height: 0.9;
+  }
+
+  .verified-statement {
+    display: flex;
+    align-items: center;
+    font-size: 0.75rem;
+
+    .text-link {
+      margin-left: 0.375rem;
+    }
+  }
+
+  .icon-verified {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  .rating {
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
+    line-height: 0.875;
+  }
+
+  .review-count {
+    margin-left: 0.75rem;
+    margin-top: 0.3rem;
+  }
+}

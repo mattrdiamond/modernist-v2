@@ -23,7 +23,6 @@ const reviewsReducer = (state = INITIAL_STATE, action) => {
         },
       };
     case ReviewsActionTypes.FETCH_REVIEWS_FAILURE:
-      console.log("wtf", action.payload.productId);
       return {
         ...state,
         [action.payload.productId]: {

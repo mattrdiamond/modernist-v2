@@ -24,7 +24,7 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
             onClick={toggleCartHidden}
             className='ignore-co-cart'
           >
-            <span className='item-name bold line-clamp-2'>{name}</span>
+            <span className='item-name font-bold line-clamp-2'>{name}</span>
           </Link>
           <span className='item-detail'>Price: ${price.toFixed(2)}</span>
           <span className='item-detail'>Quantity: {quantity}</span>
