@@ -26,8 +26,9 @@ const SearchPage = ({ collectionItems, fetchCollectionsStart, location }) => {
       {searchResults.length ? (
         <>
           <span className='search-intro'>
-            Showing <span className='bold'>{searchResults.length}</span> results
-            for <span className='bold'>"{query.toLowerCase()}"</span>
+            Showing <span className='font-bold'>{searchResults.length}</span>{" "}
+            results for{" "}
+            <span className='font-bold'>"{query.toLowerCase()}"</span>
           </span>
           <ImageGrid>
             {searchResults.map((result) => (
@@ -37,7 +38,8 @@ const SearchPage = ({ collectionItems, fetchCollectionsStart, location }) => {
         </>
       ) : (
         <p>
-          Sorry, no search results for <span className='bold'>"{query}"</span>
+          Sorry, no search results for{" "}
+          <span className='font-bold'>"{query}"</span>
         </p>
       )}
     </div>

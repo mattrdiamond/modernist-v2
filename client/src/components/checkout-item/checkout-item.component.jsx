@@ -12,26 +12,26 @@ import "./checkout-item.styles.scss";
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   const { name, images, price, quantity } = cartItem;
   return (
-    <div className="checkout-item">
-      <img className="item-img" src={images.small} alt={name} />
-      <div className="content-wrapper">
-        <div className="col-description">
-          <span className="name">{name}</span>
+    <div className='checkout-item'>
+      <img className='item-img' src={images.small} alt={name} />
+      <div className='content-wrapper'>
+        <div className='col-description'>
+          <span className='name'>{name}</span>
         </div>
-        <div className="col-qty">
+        <div className='col-qty'>
           <Stepper
             quantity={quantity}
             increment={() => addItem(cartItem)}
             decrement={() => removeItem(cartItem)}
           />
         </div>
-        <div className="col-price">
-          <span className="price">${price}</span>
+        <div className='col-price'>
+          <span className='price'>${price}</span>
         </div>
-        <div className="col-delete">
-          <button className="remove-button" onClick={() => clearItem(cartItem)}>
-            <Icon icon="trash" />
-            <span className="remove-text">Remove</span>
+        <div className='col-delete'>
+          <button className='remove-button' onClick={() => clearItem(cartItem)}>
+            <Icon icon='remove' />
+            <span className='remove-text'>Remove</span>
           </button>
         </div>
       </div>

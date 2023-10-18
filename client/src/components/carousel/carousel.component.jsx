@@ -160,8 +160,8 @@ const Carousel = () => {
         <p>
           Great home decorating ideas are meant to be shared. Check out our
           customer gallery below for design inspiration in a variety of styles.
-          Use <span className='bold'>#Modernist</span> to share ideas of your
-          own!
+          Use <span className='font-bold'>#Modernist</span> to share ideas of
+          your own!
         </p>
       </div>
       {!images ? (

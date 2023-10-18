@@ -1,0 +1,49 @@
+.review-item {
+  --review-spacing: 1.5rem;
+  padding-top: var(--review-spacing);
+  border-top: 1px dashed var(--primary-20);
+
+  &:not(:last-of-type) {
+    margin-bottom: var(--review-spacing);
+  }
+
+  .review-headline {
+    font-size: 0.9375rem;
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .review-text {
+    margin: 0;
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+
+    &.expanded {
+      -webkit-line-clamp: none;
+      overflow: visible;
+      display: block;
+    }
+  }
+
+  .reviewer {
+    margin: 0.75rem 0 0;
+    font-size: 0.816rem;
+  }
+
+  .reviewer-name {
+    margin-right: 0.5rem;
+    font-weight: bold;
+  }
+
+  .created-at {
+    color: var(--primary-50);
+  }
+
+  .read-more-button {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+}

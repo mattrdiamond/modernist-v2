@@ -154,7 +154,7 @@
 }
 
 // change to vertical view
-@media (max-width: #{$mobile}) {
+@media (max-width: $mobile) {
   .landing {
     // set full vh (still min 500, max 700
     height: calc(100vh - var(--nav-height));

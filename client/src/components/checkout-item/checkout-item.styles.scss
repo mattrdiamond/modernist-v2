@@ -24,13 +24,19 @@
   .remove-button {
     cursor: pointer;
     padding: 0.5rem;
-    margin: 0 0.5rem 0 0;
+    transition: stroke 0.1s;
+    stroke: var(--primary-50);
+    stroke-width: 1px;
     display: flex;
-    color: var(--primary-40);
-    transition: color 0.2s;
+    align-items: center;
+
+    .icon {
+      width: 1rem;
+      height: 1rem;
+    }
 
     &:hover {
-      color: var(--red);
+      stroke: var(--red);
     }
   }
 

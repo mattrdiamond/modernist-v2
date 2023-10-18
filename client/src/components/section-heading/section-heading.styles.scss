@@ -15,7 +15,7 @@
   }
 }
 
-@media (max-width: #{$mobile}) {
+@media (max-width: $mobile) {
   .section-heading-wrapper {
     text-align: center;
     margin: var(--section-margin-y) auto;

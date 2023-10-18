@@ -54,19 +54,19 @@ const PromoForm = ({
   };
 
   return (
-    <div className="promo-container">
-      <span className="bold">Add a promo or gift card</span>
-      <form className="promo-form" onSubmit={handleSubmit}>
+    <div className='promo-container'>
+      <span className='font-bold'>Add a promo or gift card</span>
+      <form className='promo-form' onSubmit={handleSubmit}>
         <FormInput
-          name="promo"
+          name='promo'
           handleChange={handleChange}
-          type="text"
+          type='text'
           value={inputValue}
-          placeholder="Promo or gift card"
+          placeholder='Promo or gift card'
           required
         >
           <CustomButton
-            type="button"
+            type='button'
             onClick={handleSubmit}
             disabled={!inputValue}
             inline
@@ -76,16 +76,16 @@ const PromoForm = ({
         </FormInput>
       </form>
       {error ? (
-        <div className="alert-container">
-          <span className="error">{error}</span>
+        <div className='alert-container'>
+          <span className='error'>{error}</span>
         </div>
       ) : null}
       {promoApplied ? (
-        <div className="success-container">
-          <Icon icon="check" />
-          <div className="success-text">
-            <span className="promo-name">{validCode}</span>
-            <p className="success-details">20% off your entire purchase</p>
+        <div className='success-container'>
+          <Icon icon='check' />
+          <div className='success-text'>
+            <span className='promo-name'>{validCode}</span>
+            <p className='success-details'>20% off your entire purchase</p>
           </div>
         </div>
       ) : null}

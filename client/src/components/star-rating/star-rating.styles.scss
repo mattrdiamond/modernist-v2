@@ -1,6 +1,10 @@
-.star-rating {
-  display: flex;
-  align-items: center;
+.star-rating-wrapper {
+  display: inline-block;
+
+  .star-rating {
+    display: flex;
+    align-items: center;
+  }
 
   .stars-background,
   .stars-fill {
@@ -12,23 +16,20 @@
     color: var(--primary-20);
   }
 
+  .star {
+    display: grid;
+    place-content: center;
+
+    &:not(:last-of-type) {
+      margin-right: 0.125rem;
+    }
+  }
+
   .stars-fill {
     position: absolute;
 
     .icon-star {
       color: var(--yellow);
     }
-  }
-
-  .icon-star {
-    width: 20px;
-    height: 16px;
-  }
-
-  .review-count {
-    margin-left: 0.75rem;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: var(--primary-40);
   }
 }

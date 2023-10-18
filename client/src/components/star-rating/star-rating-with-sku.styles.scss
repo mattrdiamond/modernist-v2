@@ -1,0 +1,17 @@
+.star-rating-sku-wrapper {
+  --star-spacing: 0.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-top: var(--star-spacing);
+
+  .review-count {
+    margin-left: var(--star-spacing);
+  }
+
+  .pipe-spacer {
+    margin: 0 var(--star-spacing);
+    font-size: 1rem;
+    color: var(--primary-20);
+  }
+}

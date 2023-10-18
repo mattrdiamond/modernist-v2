@@ -1,3 +1,5 @@
+@import "../../sharedStyles/breakpoints.scss";
+
 .footer {
   background-color: var(--primary-90);
   color: var(--primary-30);
@@ -97,6 +99,23 @@
     font-size: 0.75rem;
     line-height: 1.5;
   }
+
+  .accordion-component {
+    --hover-color: var(--white);
+    --button-color: var(--primary-20);
+    border: 0;
+    margin-bottom: 0;
+
+    .accordion-title-container {
+      padding: 0 0 0.5rem;
+    }
+
+    .accordion-content {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      padding-top: 0.5rem;
+    }
+  }
 }
 
 @media (max-width: 1200px) {
@@ -144,8 +163,7 @@
   }
 }
 
-// collapse columns into expandable dropdowns
-@media (max-width: 740px) {
+@media (max-width: $mobile) {
   .footer {
     .footer-inner {
       padding: 3rem 1.675rem;
@@ -177,6 +195,16 @@
 
     .footer-logo {
       margin-top: 2.375rem;
+    }
+
+    .toggle-button {
+      display: flex;
+    }
+
+    .accordion-component {
+      .accordion-content {
+        margin-bottom: 1rem;
+      }
     }
   }
 }

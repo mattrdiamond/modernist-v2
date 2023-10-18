@@ -25,8 +25,12 @@
   }
 }
 
-.bold {
+.font-bold {
   font-weight: bold;
+}
+
+.font-normal {
+  font-weight: normal;
 }
 
 .content-window {
@@ -56,6 +60,16 @@
   height: 100%;
 }
 
+.text-link {
+  text-decoration: underline;
+  transition: color 0.2s ease;
+  color: var(--primary-60);
+  cursor: pointer;
+  &:hover {
+    color: var(--primary-85);
+  }
+}
+
 .line-clamp-2 {
   /* Limit the number of lines to 2 */
   display: -webkit-box;
@@ -66,6 +80,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
+}
+
+// temp fix for iframe appearing after hot reload
+iframe {
+  pointer-events: none;
 }
 
 @media (max-width: 800px) {

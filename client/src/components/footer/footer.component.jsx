@@ -9,14 +9,16 @@ import Accordion from "../accordion/accordion.component";
 import "./footer.styles.scss";
 
 const Footer = ({ sections }) => {
-  const [expandedTitle, setExpandedTitle] = useState(null);
+  const [openAccordion, setOpenAccordion] = useState(null);
+  const accordionBreakpoint = 700;
 
   const toggle = (title) => {
+    if (window.innerWidth > accordionBreakpoint) return;
     // toggle closed if same title clicked twice
-    if (title === expandedTitle) {
-      return setExpandedTitle(null);
+    if (title === openAccordion) {
+      return setOpenAccordion(null);
     }
-    setExpandedTitle(title);
+    setOpenAccordion(title);
   };
 
   const sortedShopSections = sortAsc(sections, sections.title);
@@ -38,8 +40,8 @@ const Footer = ({ sections }) => {
             <Accordion
               title='Company'
               toggle={toggle}
-              expandedTitle={expandedTitle}
-              key='1'
+              openAccordion={openAccordion}
+              isMobileAccordion={true}
             >
               <ul className='footer-ul'>
                 <li>About Us</li>
@@ -54,7 +56,8 @@ const Footer = ({ sections }) => {
             <Accordion
               title='shop'
               toggle={toggle}
-              expandedTitle={expandedTitle}
+              openAccordion={openAccordion}
+              isMobileAccordion={true}
             >
               <ul className='footer-ul'>
                 {sortedShopSections.map(({ id, title, linkUrl }) => (
@@ -69,7 +72,8 @@ const Footer = ({ sections }) => {
             <Accordion
               title='Resources'
               toggle={toggle}
-              expandedTitle={expandedTitle}
+              openAccordion={openAccordion}
+              isMobileAccordion={true}
             >
               <ul className='footer-ul'>
                 <li>Shipping</li>
@@ -84,7 +88,8 @@ const Footer = ({ sections }) => {
             <Accordion
               title='Connect'
               toggle={toggle}
-              expandedTitle={expandedTitle}
+              openAccordion={openAccordion}
+              isMobileAccordion={true}
             >
               <ul className='footer-ul'>
                 <li>Customer Care</li>

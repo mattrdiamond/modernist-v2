@@ -73,7 +73,7 @@
   }
 }
 
-@media (max-width: #{$mobile}) {
+@media (max-width: $mobile) {
   .vidbanner-wrapper {
     height: 132vw;
     video {

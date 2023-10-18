@@ -11,6 +11,7 @@ import searchReducer from "./search/search.reducer";
 import promoReducer from "./promo/promo.reducer";
 import mobileNavReducer from "./mobile-nav/mobile-nav.reducer";
 import checkoutReducer from "./checkout/checkout.reducer";
+import reviewsReducer from "./reviews/reviews.reducer";
 
 const persistConfig = {
   key: "root", // part of reducer object we want to start storage
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   promo: promoReducer,
   mobileNav: mobileNavReducer,
   checkout: checkoutReducer,
+  reviews: reviewsReducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
