@@ -5,9 +5,10 @@ import Dimensions from "../../components/dimensions/dimensions.component";
 import "./product-page-accordions.styles.scss";
 
 const testDimensions = [
-  { type: "Width", value: '63"' },
-  { type: "Height", value: '45"' },
-  { type: "Depth", value: '29"' },
+  { type: "Overall", value: '87"w x 78"d x 31"h' },
+  { type: "Lorem depth", value: '63"' },
+  { type: "Ipsum height", value: '45"' },
+  { type: "Dolor width", value: '29"' },
   { type: "Weight", value: "60 lbs." },
 ];
 

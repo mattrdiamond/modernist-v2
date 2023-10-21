@@ -2,6 +2,11 @@
   width: 100%;
   border-collapse: collapse;
 
+  th,
+  td {
+    width: 50%;
+  }
+
   th {
     display: none;
   }

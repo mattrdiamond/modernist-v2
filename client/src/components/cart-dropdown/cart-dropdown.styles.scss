@@ -25,7 +25,7 @@ $cart-items-height: calc(#{$cart-item-height} * 3 + 2px);
     max-height: $cart-items-height;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
   }
 
   .cart-total {

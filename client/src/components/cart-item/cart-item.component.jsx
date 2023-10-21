@@ -6,7 +6,11 @@ import { Link } from "react-router-dom";
 import "./cart-item.styles.scss";
 
 const CartItem = ({ item, clearItem, toggleCartHidden }) => {
-  const { images, price, name, quantity, collection, id } = item;
+  const { images, price, name, quantity, collection, id, selectedOptions } =
+    item;
+
+  const hasSelectedOptions =
+    selectedOptions && Object.keys(selectedOptions).length > 0;
 
   return (
     <div className='cart-item'>
@@ -17,24 +21,30 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
       >
         <img src={images.small} alt={name} />
       </Link>
-      <div className='item-info'>
-        <div className='text-column'>
-          <Link
-            to={`/shop/${collection}/${id}`}
-            onClick={toggleCartHidden}
-            className='ignore-co-cart'
-          >
-            <span className='item-name font-bold line-clamp-2'>{name}</span>
-          </Link>
-          <span className='item-detail'>Price: ${price.toFixed(2)}</span>
-          <span className='item-detail'>Quantity: {quantity}</span>
+      <div className='item-content-grid'>
+        <Link
+          to={`/shop/${collection}/${id}`}
+          onClick={toggleCartHidden}
+          className='ignore-co-cart'
+        >
+          <span className='item-name font-bold line-clamp-2'>{name}</span>
+        </Link>
+        <span className='item-price font-bold'>{`$${price}`}</span>
+        <div className='item-detail-container'>
+          {hasSelectedOptions &&
+            Object.entries(selectedOptions).map(([category, option], index) => (
+              <p key={index} className='item-detail selected-options'>
+                <span className='option-category'>{`${category}: `}</span>
+                <span className='option-value'>{option.value}</span>
+              </p>
+            ))}
+          <p className='item-detail'>{`Qty: ${quantity}`}</p>
         </div>
         <button
-          className='delete-button ignore-co-cart'
+          className='text-link remove-button'
           onClick={() => clearItem(item)}
-          aria-label='remove item from cart'
         >
-          <Icon icon='remove' />
+          Remove
         </button>
       </div>
     </div>

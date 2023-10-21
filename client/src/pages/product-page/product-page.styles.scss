@@ -1,10 +1,12 @@
 .product-page {
+  --product-details-font-size: 0.875rem;
   display: flex;
   max-width: 1200px;
   margin: var(--window-top) auto var(--window-bottom);
 
   .product-img {
     width: 100%;
+    min-width: 100%;
     object-fit: contain;
     background-color: var(--primary-07);
     max-height: 575px;
@@ -21,24 +23,16 @@
   .col-right {
     margin-left: 2.5rem;
     flex-basis: 40%;
-  }
-
-  .product-detail {
-    display: block;
-    font-size: 0.875rem;
-
-    &:not(:first-of-type) {
-      margin-top: 0.5rem;
-    }
+    font-size: var(--product-details-font-size);
   }
 
   .button-container {
-    margin-top: 2rem;
+    margin: 2rem 0;
     display: flex;
   }
 
   .stepper-component {
-    margin-right: 1.5rem;
+    margin-right: 1rem;
     .stepper-container {
       height: 2.75rem;
     }

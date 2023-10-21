@@ -83,6 +83,14 @@ button {
   color: inherit;
 }
 
+fieldset,
+legend,
+label {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
 div > *:first-child:not(section),
 form > *:first-child {
   margin-top: 0;

@@ -26,61 +26,66 @@ const CheckoutPage = ({ cartItems, cartSubtotal, promoApplied }) => {
   const total = cartSubtotal - discount + tax + shipping;
 
   return (
-    <div className="checkout-page-container">
-      <PromoBanner promoCode="SUPERSALE" />
-      <div className="checkout-page page-width">
-        <div className="max-width">
+    <div className='checkout-page-container'>
+      <PromoBanner promoCode='SUPERSALE' />
+      <div className='checkout-page page-width'>
+        <div className='max-width'>
           {!cartItems.length ? (
-            <div className="empty">
+            <div className='empty'>
               <h2>Your shopping bag is empty</h2>
-              <Link to="/shop">
+              <Link to='/shop'>
                 <CustomButton>Shop Now</CustomButton>
               </Link>
             </div>
           ) : (
             <>
-              <h1 className="title">Shopping bag</h1>
-              <div className="checkout-wrapper">
+              <h1 className='title'>Shopping bag</h1>
+              <div className='checkout-wrapper'>
                 {/*----------- cart ---------------*/}
-                <div className="left-col">
-                  <div className="cart">
-                    <div className="checkout-header">
-                      <div className="col-description header-block">
+                <div className='left-col'>
+                  <div className='cart'>
+                    <div className='checkout-header'>
+                      <div className='col-description header-block'>
                         <span>Item</span>
                       </div>
-                      <div className="col-qty header-block">
+                      <div className='col-qty header-block'>
                         <span>Qty</span>
                       </div>
-                      <div className="col-price header-block">
+                      <div className='col-price header-block'>
                         <span>Price</span>
                       </div>
-                      <div className="col-delete" />
+                      <div className='col-delete' />
                     </div>
                     {cartItems.map((cartItem) => (
-                      <CheckoutItem key={cartItem.id} cartItem={cartItem} />
+                      <CheckoutItem
+                        key={`${cartItem.id}-${JSON.stringify(
+                          cartItem.selectedOptions
+                        )}`}
+                        cartItem={cartItem}
+                      />
                     ))}
                   </div>
                 </div>
-                <div className="right-col">
+                <div className='right-col'>
                   {/*----------- summary ---------------*/}
-                  <div className="summary-container">
-                    <h3 className="summary-title">Summary</h3>
-                    <span className="label">Subtotal:</span>
-                    <span className="amount">${cartSubtotal.toFixed(2)}</span>
+                  <div className='summary-container'>
+                    <h3 className='summary-title'>Summary</h3>
+                    <span className='label'>Subtotal:</span>
+                    <span className='amount'>${cartSubtotal.toFixed(2)}</span>
                     {promoApplied && (
                       <>
-                        <span className="label promo">Promo:</span>
-                        <span className="amount promo">
+                        <span className='label promo'>Promo:</span>
+                        <span className='amount promo'>
                           -${discount.toFixed(2)}
                         </span>
                       </>
                     )}
-                    <span className="label">Sales Tax:</span>
-                    <span className="amount">${tax.toFixed(2)}</span>
-                    <span className="label">Shipping:</span>
-                    <span className="amount">${shipping.toFixed(2)}</span>
-                    <span className="label total">Total:</span>
-                    <span className="amount total">${total.toFixed(2)}</span>
+                    <span className='label'>Sales Tax:</span>
+                    <span className='amount'>${tax.toFixed(2)}</span>
+                    <span className='label'>Shipping:</span>
+                    <span className='amount'>${shipping.toFixed(2)}</span>
+                    <span className='label total'>Total:</span>
+                    <span className='amount total'>${total.toFixed(2)}</span>
                     <StripeCheckoutButton
                       totals={{ cartSubtotal, shipping, tax, discount, total }}
                     />
