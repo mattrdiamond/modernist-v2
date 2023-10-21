@@ -66,7 +66,7 @@ export function* onUserSignIn() {
 export function* onCartChange() {
   yield takeLatest(
     [
-      CartActionTypes.ADD_ITEM,
+      CartActionTypes.ADD_ITEM_WITH_OPTIONS,
       CartActionTypes.REMOVE_ITEM,
       CartActionTypes.CLEAR_ITEM_FROM_CART,
       CartActionTypes.CLEAR_CART,

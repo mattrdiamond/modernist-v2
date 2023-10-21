@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectProductReviews } from "../../redux/reviews/reviews.selectors";
 import { selectItem } from "../../redux/shop/shop.selectors";
-import { addItem, toggleCartHidden } from "../../redux/cart/cart.actions";
+import {
+  addItemWithOptions,
+  toggleCartHidden,
+} from "../../redux/cart/cart.actions";
 import { fetchReviewsStart } from "../../redux/reviews/reviews.actions";
 import Stepper from "../../components/stepper/stepper.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
@@ -11,18 +14,23 @@ import ImageReloader from "../../components/image-loader/image-reloader.componen
 import FavoritingButton from "../../components/favoriting-button/favoriting-button.component";
 import ProductPageTopContent from "./product-page-top-content.component";
 import ProductPageAccordions from "./product-page-accordions.component";
+import ProductPageOptions from "./product-page-options.component";
+import { newProductData } from "../../utils/newProductData";
+
 import "./product-page.styles.scss";
 
 const ProductPage = ({
   item,
-  addItem,
+  addItemWithOptions,
   toggleCartHidden,
   collectionId,
   fetchReviewsStart,
   productReviews,
 }) => {
-  const { name, images, rating, review_count, sku, id } = item;
+  const { name, images, rating, review_count, price, id } = item;
   const [quantity, setQuantity] = useState(1);
+  const [selectedOptions, setSelectedOptions] = useState({});
+  const [priceWithOptions, setPriceWithOptions] = useState(price);
 
   useEffect(() => {
     if (!productReviews.length) {
@@ -39,9 +47,71 @@ const ProductPage = ({
   };
 
   const addToCart = () => {
-    addItem(item, quantity);
+    const itemWithOptions = {
+      ...item,
+      selectedOptions,
+      quantity,
+      price: priceWithOptions,
+    };
+    addItemWithOptions(itemWithOptions);
     toggleCartHidden();
   };
+
+  const calculatePriceWithOptions = (productPrice, selectedOptions) => {
+    // Start with the base product price
+    let totalPrice = productPrice;
+
+    // Loop through the selected options and apply price modifiers
+    for (const category in selectedOptions) {
+      const selectedOption = selectedOptions[category];
+      if (selectedOption.priceModifier) {
+        totalPrice += selectedOption.priceModifier;
+      }
+    }
+    return totalPrice;
+  };
+
+  const selectOption = (category, option) => {
+    setSelectedOptions((prevSelectedOptions) => {
+      const newOptions = { ...prevSelectedOptions, [category]: option };
+      const newTotalPrice = calculatePriceWithOptions(price, newOptions);
+      // update displayed total price
+      setPriceWithOptions(newTotalPrice);
+      // return the updated options to set the state
+      return newOptions;
+    });
+  };
+
+  // temp - replace with actual product data
+  const { options } = newProductData[1];
+
+  // Use the first option from each category by default
+  useEffect(() => {
+    if (options && Object.keys(options).length > 0) {
+      const initialSelectedOptions = {};
+      let basePrice = price;
+
+      Object.keys(options).forEach((category) => {
+        if (options[category] && options[category].length > 0) {
+          const defaultOption = options[category][0];
+
+          // Use the default option's priceModifier if available
+          const priceModifier = defaultOption.priceModifier || 0;
+
+          // Set the initial selected option with the adjusted priceModifier
+          initialSelectedOptions[category] = {
+            ...defaultOption,
+            priceModifier,
+          };
+
+          // Add the priceModifier to the basePrice
+          basePrice += priceModifier;
+        }
+      });
+      setSelectedOptions(initialSelectedOptions);
+      setPriceWithOptions(basePrice);
+    }
+  }, [options]);
 
   return (
     <div className='product-page page-width'>
@@ -55,8 +125,19 @@ const ProductPage = ({
         <FavoritingButton item={item} />
       </div>
       <div className='col-right'>
-        <ProductPageTopContent item={item} collectionId={collectionId} />
-        <p>INSERT SELECT ITEMS</p>
+        <ProductPageTopContent
+          item={item}
+          collectionId={collectionId}
+          priceWithOptions={priceWithOptions}
+        />
+        {options && Object.keys(options).length > 0 && (
+          <ProductPageOptions
+            options={options}
+            selectedOptions={selectedOptions}
+            selectOption={selectOption}
+          />
+        )}
+
         <div className='button-container'>
           <Stepper
             quantity={quantity}
@@ -70,15 +151,6 @@ const ProductPage = ({
           rating={rating}
           reviewCount={review_count}
         />
-
-        <span className='product-detail'>
-          <span className='font-bold'>Availability: </span>
-          In stock
-        </span>
-        <span className='product-detail'>
-          <span className='font-bold'>SKU: </span>
-          {sku}
-        </span>
       </div>
     </div>
   );
@@ -92,7 +164,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addItem: (item, quantity) => dispatch(addItem(item, quantity)),
+  addItemWithOptions: (itemWithOptions) =>
+    dispatch(addItemWithOptions(itemWithOptions)),
   toggleCartHidden: () => dispatch(toggleCartHidden()),
   fetchReviewsStart: (productId) => dispatch(fetchReviewsStart(productId)),
 });
