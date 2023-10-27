@@ -1,39 +1,61 @@
 import { createSelector } from "reselect";
 import { sortAsc, sortDesc } from "../../utils/sort";
 
+const collectionIds = [
+  "bedding",
+  "chairs",
+  "decor",
+  "lighting",
+  "sofas",
+  "tables",
+];
+
 const selectShop = (state) => state.shop;
 
-export const selectCollections = createSelector(
-  [selectShop],
-  (shop) => shop.collections
-);
-
+// sortParam
 export const selectSortParam = createSelector(
   [selectShop],
   (shop) => shop.sortParam
 );
 
+// Collections
+export const selectCollections = createSelector(
+  [selectShop],
+  (shop) => shop.collections
+);
+
+export const selectCollection = createSelector(
+  [selectCollections, (state, props) => props.match.params.collectionId],
+  (collections, collectionId) =>
+    collections ? collections[collectionId] : null
+);
+
 export const selectIsCollectionFetching = createSelector(
   [selectShop],
-  (shop) => shop.isFetching
+  (shop) => shop.isFetchingCollections
 );
 
-// Select shop collection boolean value - return true if loaded, false if not loaded
-export const selectIsCollectionsLoaded = createSelector(
+export const selectIsCollectionLoaded = createSelector(
+  [selectCollection],
+  (collection) => !!collection
+);
+
+export const selectAreAllCollectionsLoaded = createSelector(
+  [selectCollections],
+  (collections) => {
+    return collections ? collectionIds.every((id) => id in collections) : false;
+  }
+);
+
+export const SelectCollectionsError = createSelector(
   [selectShop],
-  (shop) => !!shop.collections
+  (shop) => shop.collectionsError
 );
 
-export const selectDropdownHidden = createSelector(
-  [selectShop],
-  (shop) => shop.dropdownHidden
-);
-
-// If collections exists, turn collection object into array of keys, then map over them to return array of collections
 export const selectCollectionsForPreview = createSelector(
   [selectCollections],
   (collections) =>
-    collections ? Object.keys(collections).map((key) => collections[key]) : []
+    collections ? Object.keys(collections).map((key) => collections[key]) : [] // Transform object into array of collections
 );
 
 // Create a private copy of selector that selects collection based on url param
@@ -43,12 +65,6 @@ export const makeSelectCollection = () =>
     (collections, collectionId) =>
       collections ? collections[collectionId] : null
   );
-
-export const selectCollection = createSelector(
-  [selectCollections, (state, props) => props.match.params.collectionId],
-  (collections, collectionId) =>
-    collections ? collections[collectionId] : null
-);
 
 export const selectCollectionItems = createSelector(
   [selectCollection],
@@ -72,13 +88,6 @@ export const selectSortedCollectionItems = createSelector(
   }
 );
 
-// Select collection item id that matches the url param
-export const selectItem = createSelector(
-  [selectCollectionItems, (state, props) => props.match.params.itemId],
-  (items, itemUrlParam) =>
-    items.find((item) => item.id === parseInt(itemUrlParam))
-);
-
 // Select combined items from all collections
 export const selectAllCollectionItems = createSelector(
   [selectCollections],
@@ -88,4 +97,30 @@ export const selectAllCollectionItems = createSelector(
       : [];
     return [].concat.apply([], collectionItemsArray);
   }
+);
+
+// Products
+export const selectProducts = createSelector(
+  [selectShop],
+  (shop) => shop.products
+);
+
+export const selectProductById = (productId) =>
+  createSelector([selectProducts], (products) => products[productId]);
+
+export const selectProductErrorMessage = (productId) =>
+  createSelector(
+    [selectProducts],
+    (products) => products[productId]?.errorMessage
+  );
+
+export const selectIsProductFetching = createSelector(
+  [selectShop],
+  (shop) => shop.isFetchingProduct
+);
+
+// dropdown
+export const selectDropdownHidden = createSelector(
+  [selectShop],
+  (shop) => shop.dropdownHidden
 );

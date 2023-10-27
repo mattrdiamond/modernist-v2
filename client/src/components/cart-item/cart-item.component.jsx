@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { clearItemFromCart } from "../../redux/cart/cart.actions";
-import Icon from "../icon/icon.component";
 import { Link } from "react-router-dom";
 import "./cart-item.styles.scss";
 

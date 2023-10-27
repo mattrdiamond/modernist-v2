@@ -7,14 +7,13 @@ import Icon from "../../components/icon/icon.component";
 import "./product-page-top-content.styles.scss";
 
 export default function ProductPageTopContent({
-  item: { name, rating, review_count, sku },
-  collectionId,
+  product: { name, rating, review_count, sku, collection },
   priceWithOptions,
 }) {
   return (
     <div className='product-page-top-wrapper'>
-      <Link to={`/shop/${collectionId}`}>
-        <span className='collection-name'>{collectionId}</span>
+      <Link to={`/shop/${collection}`}>
+        <span className='collection-name'>{collection}</span>
       </Link>
       <h1 className='product-title'>{name}</h1>
       <StarRatingWithSku
@@ -39,12 +38,12 @@ export default function ProductPageTopContent({
 }
 
 ProductPageTopContent.propTypes = {
-  item: PropTypes.shape({
+  product: PropTypes.shape({
     name: PropTypes.string.isRequired,
     rating: PropTypes.number,
     review_count: PropTypes.number.isRequired,
     sku: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
+    collection: PropTypes.string.isRequired,
   }).isRequired,
-  collectionId: PropTypes.string.isRequired,
 };

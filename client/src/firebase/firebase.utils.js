@@ -118,17 +118,17 @@ export const addCollectionAndDocuments = async (
   return await batch.commit();
 };
 
-export const convertCollectionsSnapshotToMap = (collections) => {
+const extractFirstWord = (string) => string.replace(/ .*/, "").toLowerCase();
+
+export const transformCollectionsData = (collections) => {
   // .docs gives us query snapshot, .data() gives us data from db
   const transformedCollection = collections.docs.map((doc) => {
-    const { title, items, banner } = doc.data();
-    // Return object from back end that includes data we need for front end:
-    // routeName -  new value which will be the same string as title (i.e. decor).
-    //              simplify routeName by only using first word (i.e. 'sofas & sectionals' becomes 'sofas')
+    const { title, items, banner, collectionId } = doc.data();
     // encodeURI - encodes URI by replacing characters that a URL cannot process.
+    const routeName = encodeURI(extractFirstWord(title));
     return {
-      routeName: encodeURI(title.replace(/ .*/, "").toLowerCase()),
-      id: doc.id,
+      routeName: routeName,
+      id: collectionId,
       title,
       items,
       banner,
@@ -136,9 +136,28 @@ export const convertCollectionsSnapshotToMap = (collections) => {
   });
   // Convert array of objects to new object using collection title as property name.
   return transformedCollection.reduce((accumulator, collection) => {
-    accumulator[collection.title.replace(/ .*/, "").toLowerCase()] = collection;
+    accumulator[extractFirstWord(collection.title)] = collection;
     return accumulator;
   }, {});
+};
+
+export const transformCollectionData = (snapshot) => {
+  const collectionDoc = snapshot.docs[0];
+  if (collectionDoc) {
+    const { title, items, banner, collectionId } = collectionDoc.data();
+    const routeName = encodeURI(extractFirstWord(title));
+
+    return {
+      [collectionId]: {
+        id: collectionId,
+        title,
+        items,
+        banner,
+        routeName,
+      },
+    };
+  }
+  return null; // The document isn't found
 };
 
 // Promise oriented solution to get userAuth object from auth library that will work with sagas:
