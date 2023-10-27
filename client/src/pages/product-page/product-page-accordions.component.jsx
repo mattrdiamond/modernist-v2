@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import Accordion from "../../components/accordion/accordion.component";
 import Reviews from "../../components/reviews/reviews.component";
 import Dimensions from "../../components/dimensions/dimensions.component";
@@ -12,7 +13,11 @@ const testDimensions = [
   { type: "Weight", value: "60 lbs." },
 ];
 
-export default function ProductPageAccordions({ reviewCount, ...props }) {
+export default function ProductPageAccordions({
+  reviewCount,
+  description,
+  ...props
+}) {
   const [openAccordion, setOpenAccordion] = useState("Product Description");
   const handleToggle = (title) => {
     if (title === openAccordion) {
@@ -29,14 +34,7 @@ export default function ProductPageAccordions({ reviewCount, ...props }) {
         openAccordion={openAccordion}
       >
         <section className='description-section'>
-          <p className='product-description'>
-            Lorem ipsum dolor volupta temposam eosa consequid maxim res derum id
-            mos por ratem. Ficiis mil moloria nonsectatur sequuntori nistia aut
-            aut lit harumque etumquu ntustia pe volores sin pratem quo ipsume
-            nimoditatem eaquas et odignih ilibusdae audis esse laborio quiam eum
-            voluptaet vel molupta pernat litatquam idunt molo quiaeptat earum,
-            aut omnih.
-          </p>
+          <p className='product-description'>{description}</p>
         </section>
       </Accordion>
       <Accordion
@@ -51,7 +49,8 @@ export default function ProductPageAccordions({ reviewCount, ...props }) {
       <Accordion
         customTitle={
           <>
-            Reviews <span className='font-normal'>({reviewCount})</span>
+            Reviews{" "}
+            <span className='font-normal review-count'>({reviewCount})</span>
           </>
         }
         title='Reviews'
@@ -63,3 +62,8 @@ export default function ProductPageAccordions({ reviewCount, ...props }) {
     </div>
   );
 }
+
+ProductPageAccordions.propTypes = {
+  reviewCount: PropTypes.number,
+  description: PropTypes.string.isRequired,
+};

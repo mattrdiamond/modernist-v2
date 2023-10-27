@@ -1,19 +1,19 @@
 import React from "react";
 import "./product-page-options.styles.scss";
 
-const Option = ({ category, option, selectedOption, selectOption }) => {
+const Option = ({ category, option, selectedOptions, selectOption }) => {
   const handleSelectOption = () => {
     selectOption(category, option);
   };
 
   return (
-    <div className={"option-wrapper"}>
+    <div className='option-wrapper'>
       <input
         type='radio'
         name={category}
         value={option.value}
         id={option.value}
-        checked={selectedOption?.value === option.value}
+        checked={selectedOptions[category]?.value === option.value}
         onChange={handleSelectOption}
         className='visually-hidden'
         aria-label={option.value}
@@ -21,7 +21,7 @@ const Option = ({ category, option, selectedOption, selectOption }) => {
       {option.type === "color-swatch" && (
         <button
           className={`color-swatch${
-            selectedOption?.value === option.value ? " selected" : ""
+            selectedOptions[category]?.value === option.value ? " selected" : ""
           }`}
           style={{ background: option.swatch }}
           onClick={handleSelectOption}
@@ -31,7 +31,7 @@ const Option = ({ category, option, selectedOption, selectOption }) => {
       {option.type.includes("image-swatch") && (
         <button
           className={`image-swatch-container${
-            selectedOption?.value === option.value ? " selected" : ""
+            selectedOptions[category]?.value === option.value ? " selected" : ""
           }`}
           onClick={handleSelectOption}
         >
@@ -49,16 +49,14 @@ const Option = ({ category, option, selectedOption, selectOption }) => {
         </button>
       )}
       {option.type === "text-label" && (
-        <>
-          <label
-            htmlFor={option.value}
-            className={`text-option-label${
-              selectedOption?.value === option.value ? " selected" : ""
-            }`}
-          >
-            <span>{option.value}</span>
-          </label>
-        </>
+        <label
+          htmlFor={option.value}
+          className={`text-option-label${
+            selectedOptions[category]?.value === option.value ? " selected" : ""
+          }`}
+        >
+          <span>{option.value}</span>
+        </label>
       )}
     </div>
   );
@@ -76,12 +74,12 @@ const Category = ({ category, options, selectedOptions, ...props }) => {
           </span>
         </legend>
         <div className='options-container'>
-          {options[category].map((option) => (
+          {options.map((option) => (
             <Option
               key={option.value}
-              option={option}
               category={category}
-              selectedOption={selectedOptions[category]}
+              option={option}
+              selectedOptions={selectedOptions}
               {...props}
             />
           ))}
@@ -94,12 +92,12 @@ const Category = ({ category, options, selectedOptions, ...props }) => {
 export default function ProductPageOptions({ options, ...props }) {
   return (
     <div className='product-options-wrapper'>
-      {Object.keys(options).length > 0 &&
-        Object.keys(options).map((category) => (
+      {options.length > 0 &&
+        options.map((categoryOptions, index) => (
           <Category
-            key={category}
-            category={category}
-            options={options}
+            key={index}
+            category={categoryOptions.name}
+            options={categoryOptions.choices}
             {...props}
           />
         ))}
