@@ -99,13 +99,17 @@ export default function ProductPage({
   return (
     <div className='product-page page-width'>
       <div className='col-left'>
-        <ImageReloader
-          src={images.large}
-          alt={name}
-          styles='product-img'
-          withSpinner
-        />
-        <FavoritingButton item={product} />
+        <div className='sticky-container'>
+          <div className='img-wrapper'>
+            <ImageReloader
+              src={images.large}
+              alt={name}
+              styles='product-img'
+              withSpinner
+            />
+            <FavoritingButton item={product} />
+          </div>
+        </div>
       </div>
       <div className='col-right'>
         <ProductPageTopContent

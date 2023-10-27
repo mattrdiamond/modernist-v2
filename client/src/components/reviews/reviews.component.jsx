@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { reviewsPropTypes } from "./reviews.propTypes";
 import useWindowSize from "../../hooks/use-window-size";
 import Review from "./review.component";
 import StarRating from "../star-rating/star-rating.component";
 import Icon from "../icon/icon.component";
+import CustomButton from "../custom-button/custom-button.component";
 import "./reviews.styles.scss";
 
 export default function Reviews({ productReviews, rating }) {
+  const [visibleReviews, setVisibleReviews] = useState(5);
   const { screenSize } = useWindowSize(null, 1000);
+
   return (
     <section className='reviews-section'>
       {productReviews.length ? (
@@ -27,9 +30,23 @@ export default function Reviews({ productReviews, rating }) {
             </p>
           </div>
           <div className='reviews-container'>
-            {productReviews.map(({ reviewId, ...props }) => (
-              <Review key={reviewId} screenSize={screenSize} {...props} />
-            ))}
+            {productReviews
+              .slice(0, visibleReviews)
+              .map(({ reviewId, ...props }) => (
+                <Review key={reviewId} screenSize={screenSize} {...props} />
+              ))}
+            {visibleReviews < productReviews.length && (
+              <CustomButton
+                inverted
+                onClick={() =>
+                  setVisibleReviews(
+                    (prevVisibleReviews) => prevVisibleReviews + 5
+                  )
+                }
+              >
+                Show More Reviews
+              </CustomButton>
+            )}
           </div>
         </>
       ) : (

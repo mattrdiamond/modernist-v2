@@ -59,6 +59,34 @@ export default function ProductPageAccordions({
       >
         <Reviews {...props} />
       </Accordion>
+      <Accordion
+        title='Materials & Care'
+        toggle={handleToggle}
+        openAccordion={openAccordion}
+      >
+        <section className='care-section'>
+          <p>
+            You've put a lot of care into choosing your furnishings. And with
+            continued care at home, they should share your address for many
+            years to come. Now for your owner's manual...
+          </p>
+          <ul>
+            <li>Do not leave spills unattended.</li>
+            <li>Do not use abrasive cleaner.</li>
+            <li>
+              Blot spills immediately with a clean, absorbent white cloth.
+            </li>
+            <li>Cleaning code will vary depending on material selected.</li>
+            <li>Slight fading may occur in direct sunlight.</li>
+            <h5>FABRIC CARE INSTRUCTIONS</h5>
+            <p>
+              Blot spills immediately with a clean, absorbent cloth. Spot clean
+              with a water-free stain remover. For stubborn or set stains, work
+              with a professional upholstery cleaning service.
+            </p>
+          </ul>
+        </section>
+      </Accordion>
     </div>
   );
 }
