@@ -7,7 +7,7 @@ export default function StarRatingWithSku({ sku, reviewCount, ...props }) {
   return (
     <div className='star-rating-sku-wrapper'>
       <StarRating {...props} />
-      <span className='review-count'>({reviewCount || 0} Reviews)</span>
+      <span className='review-count'>{reviewCount || 0} Reviews</span>
       <span className='pipe-spacer'>|</span>
       <span className='product-sku'>SKU: {sku}</span>
     </div>

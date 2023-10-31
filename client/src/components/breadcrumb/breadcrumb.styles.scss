@@ -1,15 +1,25 @@
 .breadcrumb-wrapper {
-  font-size: 0.675rem;
+  font-size: 0.75rem;
   margin-bottom: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  color: var(--primary-65);
 
   .breadcrumb-list-item {
     display: inline;
   }
 
+  .collection-id {
+    text-transform: capitalize;
+  }
+
   .breadcrumb-slash {
     margin: 0 0.5em;
     color: var(--primary-40);
+  }
+
+  a {
+    &:hover {
+      text-decoration: underline;
+      color: var(--primary-85);
+    }
   }
 }

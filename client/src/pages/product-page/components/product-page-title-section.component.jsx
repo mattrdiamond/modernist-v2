@@ -1,21 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { productType } from "../../../components/shared/sharedPropTypes";
 import StarRatingWithSku from "../../../components/star-rating/star-rating-with-sku.component";
 import AfterPayLogo from "../../../assets/icons/afterpay.svg";
 import Icon from "../../../components/icon/icon.component";
+import ProductTag from "../../../components/product-tag/product-tag.component";
 import "./product-page-title-section.styles.scss";
 
 export default function ProductPageTopContent({
-  product: { name, rating, review_count, sku, collection },
+  product: { name, rating, review_count, sku, tags },
   priceWithOptions,
 }) {
   return (
     <div className='product-page-top-wrapper'>
-      <Link to={`/shop/${collection}`}>
-        <span className='collection-name'>{collection}</span>
-      </Link>
+      {tags && Object.keys(tags).length > 0 && <ProductTag tags={tags} />}
       <h1 className='product-title'>{name}</h1>
       <StarRatingWithSku
         rating={rating}
