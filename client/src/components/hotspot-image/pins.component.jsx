@@ -4,7 +4,7 @@ import {
   screenSizePropTypes,
   imageDimensionsPropTypes,
   hotspotPropTypes,
-} from "./commonPropTypes";
+} from "../shared/sharedPropTypes";
 
 import Pin from "./pin.component";
 import "./hotspot-image.styles.scss";

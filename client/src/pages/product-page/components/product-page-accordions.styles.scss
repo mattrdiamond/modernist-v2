@@ -1,0 +1,58 @@
+.product-page-accordion-wrapper {
+  .accordion-title {
+    font-size: 0.9375rem;
+  }
+
+  .product-description {
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .heading-with-icon {
+    display: flex;
+    align-items: center;
+    margin: var(--h5-margin);
+
+    h5 {
+      margin: 0;
+    }
+
+    .icon {
+      margin-right: 0.5rem;
+    }
+
+    &:first-child {
+      padding-top: 0.375rem;
+    }
+
+    + p {
+      margin-top: 0;
+    }
+  }
+
+  .icon-delivery-options {
+    fill: none;
+    stroke: var(--primary-85);
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+    width: 1.75rem;
+    height: 1.75rem;
+    stroke-width: 1.25px;
+  }
+
+  .icon-service {
+    position: relative;
+    bottom: 2px;
+  }
+
+  .accordion-content > section {
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    > h5:first-child {
+      margin-top: 0.375rem;
+    }
+  }
+}

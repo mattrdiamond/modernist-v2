@@ -5,7 +5,7 @@ import {
   screenSizePropTypes,
   imageDimensionsPropTypes,
   hotspotPropTypes,
-} from "./commonPropTypes";
+} from "../shared/sharedPropTypes";
 import handleKeyPress from "../../utils/handleKeyPress";
 
 import Icon from "../icon/icon.component";

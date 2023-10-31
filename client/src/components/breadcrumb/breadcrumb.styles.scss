@@ -1,0 +1,15 @@
+.breadcrumb-wrapper {
+  font-size: 0.675rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  .breadcrumb-list-item {
+    display: inline;
+  }
+
+  .breadcrumb-slash {
+    margin: 0 0.5em;
+    color: var(--primary-40);
+  }
+}

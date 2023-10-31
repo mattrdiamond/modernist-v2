@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import StarRatingWithSku from "../../components/star-rating/star-rating-with-sku.component";
-import AfterPayLogo from "../../assets/icons/afterpay.svg";
-import Icon from "../../components/icon/icon.component";
-import "./product-page-top-content.styles.scss";
+import { productType } from "../../../components/shared/sharedPropTypes";
+import StarRatingWithSku from "../../../components/star-rating/star-rating-with-sku.component";
+import AfterPayLogo from "../../../assets/icons/afterpay.svg";
+import Icon from "../../../components/icon/icon.component";
+import "./product-page-title-section.styles.scss";
 
 export default function ProductPageTopContent({
   product: { name, rating, review_count, sku, collection },
@@ -38,12 +39,6 @@ export default function ProductPageTopContent({
 }
 
 ProductPageTopContent.propTypes = {
-  product: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    rating: PropTypes.number,
-    review_count: PropTypes.number.isRequired,
-    sku: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-    collection: PropTypes.string.isRequired,
-  }).isRequired,
+  product: productType.isRequired,
+  priceWithOptions: PropTypes.number.isRequired,
 };

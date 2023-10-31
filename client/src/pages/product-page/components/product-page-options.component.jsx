@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { optionPropType } from "../../../components/shared/sharedPropTypes";
 import "./product-page-options.styles.scss";
 
 const Option = ({ category, option, selectedOptions, selectOption }) => {
@@ -104,3 +106,25 @@ export default function ProductPageOptions({ options, ...props }) {
     </div>
   );
 }
+
+Option.propTypes = {
+  category: PropTypes.string.isRequired,
+  option: optionPropType.isRequired,
+  selectedOptions: PropTypes.objectOf(optionPropType).isRequired,
+  selectOption: PropTypes.func.isRequired,
+};
+
+Category.propTypes = {
+  category: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(optionPropType).isRequired,
+  selectedOptions: PropTypes.objectOf(optionPropType).isRequired,
+};
+
+ProductPageOptions.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      choices: PropTypes.arrayOf(optionPropType).isRequired,
+    })
+  ).isRequired,
+};

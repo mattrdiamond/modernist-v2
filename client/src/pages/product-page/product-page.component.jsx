@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { productType } from "../../components/shared/sharedPropTypes";
 import Stepper from "../../components/stepper/stepper.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import ImageReloader from "../../components/image-loader/image-reloader.component";
 import FavoritingButton from "../../components/favoriting-button/favoriting-button.component";
-import ProductPageTopContent from "./product-page-top-content.component";
-import ProductPageAccordions from "./product-page-accordions.component";
-import ProductPageOptions from "./product-page-options.component";
+import ProductPageTopContent from "./components/product-page-title-section.component";
+import ProductPageAccordions from "./components/product-page-accordions.component";
+import ProductPageOptions from "./components/product-page-options.component";
+import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
 
 import "./product-page.styles.scss";
 
@@ -98,62 +100,56 @@ export default function ProductPage({
 
   return (
     <div className='product-page page-width'>
-      <div className='col-left'>
-        <div className='sticky-container'>
-          <div className='img-wrapper'>
-            <ImageReloader
-              src={images.large}
-              alt={name}
-              styles='product-img'
-              withSpinner
-            />
-            <FavoritingButton item={product} />
+      <Breadcrumb />
+      <div className='product-details-container'>
+        <div className='col-left'>
+          <div className='sticky-container'>
+            <div className='img-wrapper'>
+              <ImageReloader
+                src={images.large}
+                alt={name}
+                styles='product-img'
+                withSpinner
+              />
+              <FavoritingButton item={product} />
+            </div>
           </div>
         </div>
-      </div>
-      <div className='col-right'>
-        <ProductPageTopContent
-          product={product}
-          priceWithOptions={priceWithOptions}
-        />
-        {options && options.length > 0 && (
-          <ProductPageOptions
-            options={options}
-            selectedOptions={selectedOptions}
-            selectOption={selectOption}
+        <div className='col-right'>
+          <ProductPageTopContent
+            product={product}
+            priceWithOptions={priceWithOptions}
           />
-        )}
+          {options && options.length > 0 && (
+            <ProductPageOptions
+              options={options}
+              selectedOptions={selectedOptions}
+              selectOption={selectOption}
+            />
+          )}
 
-        <div className='button-container'>
-          <Stepper
-            quantity={quantity}
-            increment={handleAddItem}
-            decrement={handleRemoveItem}
+          <div className='button-container'>
+            <Stepper
+              quantity={quantity}
+              increment={handleAddItem}
+              decrement={handleRemoveItem}
+            />
+            <CustomButton onClick={addToCart}>Add to Bag</CustomButton>
+          </div>
+          <ProductPageAccordions
+            description={description}
+            productReviews={productReviews}
+            rating={rating}
+            reviewCount={review_count}
           />
-          <CustomButton onClick={addToCart}>Add to Bag</CustomButton>
         </div>
-        <ProductPageAccordions
-          description={description}
-          productReviews={productReviews}
-          rating={rating}
-          reviewCount={review_count}
-        />
       </div>
     </div>
   );
 }
 
 ProductPage.propTypes = {
-  product: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    images: PropTypes.shape({
-      large: PropTypes.string.isRequired,
-    }).isRequired,
-    rating: PropTypes.number.isRequired,
-    review_count: PropTypes.number,
-    price: PropTypes.number.isRequired,
-    options: PropTypes.array,
-  }).isRequired,
+  product: productType.isRequired,
   addItemWithOptions: PropTypes.func.isRequired,
   toggleCartHidden: PropTypes.func.isRequired,
   productReviews: PropTypes.array,

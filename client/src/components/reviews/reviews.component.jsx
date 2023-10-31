@@ -17,7 +17,7 @@ export default function Reviews({ productReviews, rating }) {
         <>
           <div className='reviews-overview'>
             <div className='total-reviews'>
-              <span className='rating'>{rating}</span>
+              <span className='rating'>{rating.toFixed(1)}</span>
               <StarRating rating={rating} starSize='1.125rem' />
               <span className='review-count'>
                 {productReviews.length} Reviews
