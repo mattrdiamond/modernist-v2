@@ -12,7 +12,7 @@ export const selectError = createSelector(
   (promo) => promo.error
 );
 
-export const selectApplied = createSelector(
+export const selectPromoApplied = createSelector(
   [selectPromo],
   (promo) => promo.applied
 );

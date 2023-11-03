@@ -20,7 +20,7 @@ export default function ShippingAccordionContent() {
         Shipping costs are indicated on each item's page and will be
         automatically calculated during the checkout. For purchases totaling
         $100 or more, Modernist offers FREE SHIPPING, unless otherwise specified
-        on the item's page. Orders under $100 incur a flat shipping fee of $5
+        on the item's page. Orders under $150 incur a flat shipping fee of $5
         per item. Please note that certain manufacturers may impose mandatory
         shipping charges.
       </p>

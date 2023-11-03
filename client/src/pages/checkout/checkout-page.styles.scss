@@ -1,22 +1,16 @@
-:root {
-  --grid-gap: 2.5rem;
-}
-
 .checkout-page {
+  --cart-col-gap: 3rem;
+  --checkout-col-gap: 4rem;
   padding-top: var(--window-top);
   padding-bottom: var(--window-bottom);
   height: 100%;
 
-  .max-width {
-    max-width: 62rem;
-    margin: 0 auto;
-  }
-
-  .title {
+  .checkout-title {
     font-size: 2rem;
+    margin-bottom: 1.5rem;
   }
 
-  .empty {
+  .empty-cart-container {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -31,6 +25,7 @@
 
   .checkout-wrapper {
     display: flex;
+    gap: var(--checkout-col-gap);
   }
 
   .left-col {
@@ -38,18 +33,17 @@
   }
 
   .right-col {
-    width: 20rem;
-    margin-left: 2rem;
-    transition: width 0.2s;
+    flex-basis: 35%;
+    max-width: 22rem;
   }
 
-  .checkout-header {
+  .checkout-header-row {
     width: 100%;
     padding: 0.5rem 0;
     display: flex;
+    gap: var(--cart-col-gap);
     align-items: center;
     border-bottom: 1px solid var(--primary-20);
-    border-top: 1px solid var(--primary-20);
   }
 
   .header-block {
@@ -64,159 +58,82 @@
     }
   }
 
-  [class^="col-"] {
-    transition: margin 0.3s;
-  }
-
   .col-description {
     flex: 1;
-    margin-right: var(--grid-gap);
   }
 
   .col-qty {
     min-width: 6rem;
-    margin-right: var(--grid-gap);
     display: flex;
     justify-content: center;
   }
 
   .col-price {
-    width: 2.75rem;
-    margin-right: calc(var(--grid-gap) - 0.5rem);
+    width: 4.75rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   .col-delete {
     width: 2rem;
   }
-
-  .price {
-    font-weight: bold;
-    position: relative;
-    top: 1px;
-  }
-
-  .summary-container,
-  .promo-container {
-    width: 100%;
-  }
-
-  .summary-container {
-    margin-bottom: 1rem;
-    display: flex;
-    background: var(--primary-05);
-    flex-wrap: wrap;
-    padding: 1rem;
-
-    .label,
-    .amount {
-      display: inline-block;
-      flex-basis: 50%;
-    }
-
-    .summary-title {
-      flex-basis: 100%;
-      margin: 0 0 1rem;
-      font-family: var(--font-text);
-      letter-spacing: 0;
-      font-size: 1.125rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: bold;
-    }
-
-    span:not(.total) {
-      margin-bottom: 0.75rem;
-    }
-
-    span:last-of-type {
-      margin: 1.5rem 0 0;
-      width: 100%;
-    }
-
-    .custom-button {
-      width: 100%;
-    }
-
-    .amount {
-      text-align: right;
-    }
-
-    .promo {
-      color: var(--red);
-    }
-
-    .total {
-      border-top: 1px solid var(--primary-85);
-      padding: 0.75rem 0 0;
-      font-weight: bold;
-    }
-  }
 }
 
-@media (max-width: 1050px) {
-  :root {
-    --grid-gap: 2rem;
-  }
-
+@media (max-width: 1200px) {
   .checkout-page {
+    --cart-col-gap: 2.75vw;
+    --checkout-col-gap: 4.25vw;
+
     .right-col {
-      width: 18rem;
+      flex-basis: 33%;
+      min-width: 300px;
     }
   }
 }
 
-@media screen and (max-width: 975px) {
-  :root {
-    --grid-gap: 3.5rem;
-  }
+@media screen and (max-width: 1000px) {
   .checkout-page {
+    --cart-col-gap: 5vw;
+    --checkout-col-gap: 1.5rem;
+
     .checkout-wrapper {
-      display: block;
+      flex-direction: column;
     }
 
     .right-col {
       margin-left: 0;
       width: 100%;
-      margin-top: 1.5rem;
-      transition: none;
+      max-width: unset;
       display: flex;
+      gap: var(--checkout-col-gap);
       flex-direction: row-reverse;
       align-items: flex-start;
     }
 
-    .summary-container {
-      margin-left: 1.5rem;
+    .checkout-summary-wrapper,
+    .promo-container {
+      flex: 1;
+    }
+
+    .checkout-summary-wrapper {
       margin-bottom: 0;
     }
   }
 }
 
-@media (max-width: 760px) {
-  :root {
-    --grid-gap: 2rem;
-  }
-
+@media (max-width: 750px) {
   .checkout-page {
     .right-col {
       display: block;
-    }
-
-    .summary-container {
-      margin-left: 0;
-      margin-bottom: 1.5rem;
     }
   }
 }
 
 @media (max-width: 650px) {
-  :root {
-    --grid-gap: 0.75rem;
-  }
-
   .checkout-page {
-    .checkout-header {
+    --cart-col-gap: 0;
+
+    .checkout-header-row {
       display: none;
 
       + .checkout-item {
@@ -224,16 +141,11 @@
       }
     }
 
-    [class^="col-"] {
-      transition: none;
-    }
-
     .col-description {
-      // 100% - photo and margin
-      flex-basis: calc(100% - 3.5rem);
+      flex-basis: calc(100% - 6rem);
       order: 1;
       line-height: 1.375;
-      margin-bottom: 0.35rem;
+      padding-right: 1rem;
     }
 
     .col-price {
@@ -252,6 +164,10 @@
       order: 4;
       margin: 0;
       align-self: flex-end;
+    }
+
+    .checkout-summary-wrapper {
+      margin-bottom: 1.5rem;
     }
   }
 }

@@ -1,22 +1,18 @@
 .promo-container {
-  background: var(--accent-10);
-  padding: 1rem;
-
-  .promo-inner {
-    padding: 1rem;
-  }
+  padding: 0.25rem 1.5rem;
+  border: 1px solid var(--primary-20);
 
   .promo-form {
     display: flex;
-    margin-top: 1rem;
-    padding-bottom: 0.25rem;
 
     input {
       width: 100%;
       border: none;
       height: 100%;
+      font-size: 0.9rem;
     }
   }
+
   .custom-button {
     margin-left: 0.5rem;
   }
@@ -58,5 +54,24 @@
   .success-details {
     color: var(--primary-60);
     margin: 0 0 0 0.5rem;
+  }
+
+  .accordion-component {
+    border: none;
+  }
+
+  .icon-promo {
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  .promo-accordion-title {
+    display: flex;
+    align-items: center;
+  }
+
+  .accordion-content {
+    margin-bottom: 1.25rem;
   }
 }
