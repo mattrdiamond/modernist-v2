@@ -42,7 +42,7 @@ $details-width: calc(100% - #{$label-width});
     padding-bottom: 2rem;
 
     > .label {
-      font-weight: bold;
+      font-weight: var(--font-bold);
       text-align: right;
 
       &:not(:last-of-type) {
@@ -75,12 +75,12 @@ $details-width: calc(100% - #{$label-width});
 
     .details {
       text-align: right;
-      font-weight: bold;
+      font-weight: var(--font-bold);
     }
 
     .subtotal,
     .total {
-      font-weight: bold;
+      font-weight: var(--font-bold);
     }
 
     .tax,

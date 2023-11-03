@@ -15,7 +15,7 @@
   }
 
   .option-title-category {
-    font-weight: bold;
+    font-weight: var(--font-bold);
     text-transform: capitalize;
   }
 
@@ -120,7 +120,7 @@
       border: var(--selected-border-width) solid var(--primary-85);
 
       > span {
-        font-weight: bold;
+        font-weight: var(--font-bold);
       }
     }
   }

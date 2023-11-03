@@ -61,7 +61,7 @@ $tab-width: 8rem;
     outline: none;
     padding: 1rem;
     font-family: var(--font-text);
-    font-weight: bold;
+    font-weight: var(--font-bold);
     font-size: 1rem;
     width: $tab-width;
     color: var(--primary-30);

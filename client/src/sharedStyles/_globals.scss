@@ -27,7 +27,7 @@ h3 {
   font-family: var(--font-display);
   letter-spacing: 0.25px;
   line-height: 1.25;
-  font-weight: normal;
+  font-weight: var(--font-normal);
 }
 
 h1,
@@ -44,7 +44,7 @@ h3 {
 
 h4 {
   font-family: var(--font-text);
-  font-weight: bold;
+  font-weight: var(--font-bold);
   margin-bottom: 0.5rem;
 }
 

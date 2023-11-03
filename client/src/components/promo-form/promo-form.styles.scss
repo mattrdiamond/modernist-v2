@@ -41,7 +41,7 @@
 
   .promo-name {
     margin-left: 0.5rem;
-    font-weight: bold;
+    font-weight: var(--font-bold);
     text-transform: uppercase;
     color: var(--accent-100);
   }

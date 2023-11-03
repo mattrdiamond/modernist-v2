@@ -11,7 +11,7 @@
     color 0.2s ease;
   justify-content: center;
   border-radius: 5px;
-  font-weight: bold;
+  font-weight: var(--font-bold);
 
   &:hover {
     background-color: var(--primary-100);

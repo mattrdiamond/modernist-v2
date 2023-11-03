@@ -2,7 +2,7 @@
   font-family: "proxima_nova";
   src: url("proximanova-regular-webfont.woff2") format("woff2"),
     url("proximanova-regular-webfont.woff") format("woff");
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -20,7 +20,7 @@
   font-family: "proxima_nova";
   src: url("proximanova-bold-webfont.woff2") format("woff2"),
     url("proximanova-bold-webfont.woff") format("woff");
-  font-weight: bold;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -29,7 +29,7 @@
   font-family: "proxima_nova_condensedmedium";
   src: url("proximanovacond-medium.woff2") format("woff2"),
     url("proximanovacond-medium.woff") format("woff");
-  font-weight: normal;
+  font-weight: var(--font-normal);
   font-style: normal;
 }
 
@@ -37,7 +37,7 @@
   font-family: "domaine_disp_nar";
   src: url("domainedispnar-semibold.woff2") format("woff2"),
     url("domainedispnar-semibold.woff") format("woff");
-  font-weight: normal;
+  font-weight: var(--font-normal);
   font-style: normal;
   font-display: swap;
 }

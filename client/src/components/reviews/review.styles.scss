@@ -11,7 +11,7 @@
   .review-headline {
     font-size: 0.9375rem;
     margin: 0.5rem 0;
-    font-weight: bold;
+    font-weight: var(--font-bold);
     letter-spacing: 0;
     text-transform: unset;
   }
@@ -38,7 +38,7 @@
 
   .reviewer-name {
     margin-right: 0.5rem;
-    font-weight: bold;
+    font-weight: var(--font-bold);
   }
 
   .created-at {
