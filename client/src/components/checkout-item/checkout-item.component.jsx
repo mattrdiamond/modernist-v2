@@ -11,16 +11,8 @@ import Icon from "../icon/icon.component";
 import "./checkout-item.styles.scss";
 
 const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
-  const {
-    name,
-    images,
-    price,
-    quantity,
-    selectedOptions,
-    collection,
-    id,
-    sku,
-  } = cartItem;
+  const { name, images, price, quantity, selectedOptions, collection, id } =
+    cartItem;
 
   return (
     <div className='checkout-item'>

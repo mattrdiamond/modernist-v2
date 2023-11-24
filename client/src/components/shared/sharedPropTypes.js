@@ -60,3 +60,5 @@ export const productType = PropTypes.shape({
 });
 
 export const screenSizePropTypes = PropTypes.string.isRequired;
+
+export const slidePropType = PropTypes.arrayOf(PropTypes.node);

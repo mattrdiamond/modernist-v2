@@ -1,0 +1,48 @@
+.slideshow-nav-wrapper {
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+
+  .slideshow-nav-buttons {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(3, auto);
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .nav-button {
+    --button-size: 0.75rem;
+    width: var(--button-size);
+    height: var(--button-size);
+    border: 1.5px solid rgba(255, 255, 255, 0.875);
+    background-color: transparent;
+    transition: background-color 0.25s ease, width 0.75s ease;
+    cursor: pointer;
+    border-radius: calc(var(--button-size) / 2);
+
+    &.active {
+      background-color: rgba(255, 255, 255, 0.875);
+      cursor: auto;
+      width: calc(var(--button-size) * 2);
+    }
+
+    &.inactive {
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+
+  .bottom-fade {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
+    mix-blend-mode: multiply;
+  }
+}

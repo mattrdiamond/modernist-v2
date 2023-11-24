@@ -10,7 +10,7 @@ export default function ProductTag({ tags }) {
     } else if (tags["bestseller"]) {
       return "bestseller";
     } else if (tags["new"]) {
-      return "new";
+      return "new arrival";
     }
     return null;
   };

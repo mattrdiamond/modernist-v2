@@ -29,8 +29,20 @@
   font-weight: var(--font-bold);
 }
 
+.font-semibold {
+  font-weight: var(--font-semibold);
+}
+
 .font-normal {
   font-weight: var(--font-normal);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .content-window {

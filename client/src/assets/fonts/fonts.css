@@ -29,7 +29,7 @@
   font-family: "proxima_nova_condensedmedium";
   src: url("proximanovacond-medium.woff2") format("woff2"),
     url("proximanovacond-medium.woff") format("woff");
-  font-weight: var(--font-normal);
+  font-weight: normal;
   font-style: normal;
 }
 
@@ -37,7 +37,16 @@
   font-family: "domaine_disp_nar";
   src: url("domainedispnar-semibold.woff2") format("woff2"),
     url("domainedispnar-semibold.woff") format("woff");
-  font-weight: var(--font-normal);
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "domaine_disp_nar_med";
+  src: url("domainedispnar-medium.woff2") format("woff2"),
+    url("domainedispnar-medium.woff") format("woff");
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
 }

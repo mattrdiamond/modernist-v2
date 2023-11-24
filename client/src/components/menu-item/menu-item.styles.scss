@@ -6,16 +6,21 @@
   overflow: hidden;
   position: relative;
   background-color: var(--beige);
+  min-height: 400px;
 
   &:nth-of-type(1),
   &:nth-of-type(2),
   &:nth-of-type(5),
   &:nth-of-type(6) {
     .content {
-      text-align: left;
       left: 2rem;
       bottom: 2rem;
     }
+  }
+
+  &:nth-of-type(3),
+  &:nth-of-type(4) {
+    text-align: center;
   }
 
   &:nth-of-type(1) {
@@ -123,6 +128,8 @@
 // switch to equal width column
 @media (max-width: 950px) {
   .menu-item {
+    min-height: unset;
+
     &:nth-of-type(1),
     &:nth-of-type(5) {
       grid-column: 1/4;

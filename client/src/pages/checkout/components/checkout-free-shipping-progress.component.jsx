@@ -15,15 +15,16 @@ export default function FreeShippingProgress({ subtotal }) {
         {subtotal < shippingThreshold ? (
           <span>
             Add{" "}
-            <span className='font-bold'>
+            <span className='font-semibold'>
               {`$${(shippingThreshold - subtotal).toFixed(2)}`}
             </span>{" "}
-            for <span className='font-bold'>FREE Shipping!</span>
+            for <span className='font-semibold'>FREE Shipping!</span>
             <Icon icon='information' width='0.75rem' height='0.75rem' />
           </span>
         ) : (
           <span>
-            You've unlocked <span className='font-bold'>FREE Shipping!</span>
+            You've unlocked{" "}
+            <span className='font-semibold'>FREE Shipping!</span>
           </span>
         )}
       </p>
