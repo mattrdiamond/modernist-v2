@@ -1,4 +1,4 @@
-@import "../../sharedStyles/breakpoints.scss";
+// @import "../../sharedStyles/breakpoints.scss";
 
 .menu-item {
   display: flex;
@@ -39,7 +39,7 @@
     grid-column: 5/-1;
 
     .background-image {
-      object-position: 30% 50%;
+      object-position: 15% 50%;
     }
   }
 
@@ -59,7 +59,7 @@
     grid-column: 4/-1;
 
     .content {
-      top: 4.25rem;
+      top: 16%;
     }
   }
 
@@ -125,7 +125,7 @@
   }
 }
 
-// switch to equal width column
+// switch to 2 columns of equal width
 @media (max-width: 950px) {
   .menu-item {
     min-height: unset;
@@ -151,7 +151,14 @@
 
     &:nth-of-type(1) {
       .background-image {
-        object-position: 7% 50%;
+        object-position: left;
+      }
+
+      .content {
+        top: 10%;
+        text-align: center;
+        left: unset;
+        bottom: unset;
       }
     }
 
@@ -164,6 +171,10 @@
       .content {
         top: 15%;
       }
+
+      .background-image {
+        object-position: bottom;
+      }
     }
     &:nth-of-type(6) {
       .background-image {
@@ -174,7 +185,7 @@
 }
 
 // switch to single column
-@media (max-width: $mobile) {
+@media (max-width: 800px) {
   .menu-item {
     &:nth-of-type(1),
     &:nth-of-type(2),
@@ -185,9 +196,22 @@
       grid-column: 1/2;
     }
 
+    &:nth-of-type(1) {
+      .background-image {
+        object-position: 7% 50%;
+      }
+
+      .content {
+        left: 2rem;
+        bottom: 2rem;
+        top: unset;
+        text-align: left;
+      }
+    }
+
     &:nth-of-type(2) {
       .background-image {
-        object-position: 82% 50%;
+        object-position: 60% 50%;
       }
     }
 
@@ -202,7 +226,11 @@
 
     &:nth-of-type(4) {
       .content {
-        top: 16%;
+        top: 17%;
+      }
+
+      .background-image {
+        object-position: top;
       }
     }
 
@@ -214,14 +242,43 @@
 
     &:nth-of-type(6) {
       .background-image {
-        object-position: center;
+        object-position: left;
       }
 
       .content {
         left: unset;
         bottom: unset;
-        top: 15%;
+        left: 2rem;
+        bottom: 2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 470px) {
+  .menu-item {
+    &:nth-of-type(1) {
+      .content {
         text-align: center;
+        top: 12%;
+        left: unset;
+      }
+
+      .background-image {
+        object-position: 10% 50%;
+      }
+    }
+
+    &:nth-of-type(6) {
+      .content {
+        left: unset;
+        bottom: unset;
+        top: 14%;
+        text-align: center;
+      }
+
+      .background-image {
+        object-position: center;
       }
     }
   }

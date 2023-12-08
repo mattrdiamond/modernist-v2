@@ -20,7 +20,7 @@
 }
 
 // switch to single column
-@media (max-width: $mobile) {
+@media (max-width: 800px) {
   .directory-menu {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(6, 425px);
