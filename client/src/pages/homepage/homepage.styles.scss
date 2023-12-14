@@ -1,27 +1,13 @@
 @import "../../sharedStyles/breakpoints.scss";
 
-.homepage {
-  .directory-menu {
-    margin: var(--section-margin-y) auto;
-  }
-
-  .carousel-component {
-    margin: var(--section-margin-y) auto 0;
-  }
-
-  h2 {
-    font-size: 2.375rem;
-  }
-}
-
 @media (max-width: $tablet) {
   .homepage h2 {
-    font-size: 2.125rem;
+    font-size: 2rem;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: $mobile) {
   .homepage h2 {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 }

@@ -1,6 +1,6 @@
 const mobileLarge = 471;
 const tablet = 801;
-const desktop = 951;
+const desktop = 1001;
 
 const directoryData = [
   {

@@ -35,10 +35,10 @@ function VideoBanner({ videoSrc, posterSrc = "", history }) {
         poster={posterSrc}
         preload='none'
       />
-      <div className='content-wrapper'>
-        <span className='subtitle'>New Arrivals</span>
-        <h2>Statement lighting you'll&nbsp;love.</h2>
-        <CustomButton inverted onClick={() => history.push("/shop/lighting")}>
+      <div className='content-wrapper page-width'>
+        <span className='subtitle'>Available Now</span>
+        <h2 className='video-title'>Our all-new curtain&nbsp;lineup</h2>
+        <CustomButton white onClick={() => history.push("/shop/lighting")}>
           Shop Now
         </CustomButton>
       </div>

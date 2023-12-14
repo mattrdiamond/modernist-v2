@@ -79,7 +79,7 @@ const PromoForm = ({
                 type='button'
                 onClick={handleSubmit}
                 disabled={!inputValue}
-                inline
+                submit
               >
                 Apply
               </CustomButton>

@@ -1,29 +1,39 @@
 @import "../../sharedStyles/breakpoints.scss";
 
-.directory-menu {
-  display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(3, minmax(0, 33%));
+.directory-wrapper {
+  margin: var(--section-margin-y) auto;
+
+  .directory-menu {
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, minmax(0, 33%));
+  }
 }
 
 @media (max-width: 1320px) {
-  .directory-menu {
-    grid-gap: 2.5vw;
+  .directory-wrapper {
+    .directory-menu {
+      grid-gap: 2.5vw;
+    }
   }
 }
 
 @media (max-width: $tablet) {
-  .directory-menu {
-    grid-template-rows: repeat(3, 42vw);
+  .directory-wrapper {
+    .directory-menu {
+      grid-template-rows: repeat(3, 42vw);
+    }
   }
 }
 
 // switch to single column
 @media (max-width: 800px) {
-  .directory-menu {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 425px);
-    grid-gap: 1.5rem;
+  .directory-wrapper {
+    .directory-menu {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(6, 425px);
+      grid-gap: 1.5rem;
+    }
   }
 }

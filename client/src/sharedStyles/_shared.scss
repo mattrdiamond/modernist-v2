@@ -41,6 +41,10 @@
   text-align: center;
 }
 
+.grey-text {
+  color: var(--primary-65);
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -73,12 +77,16 @@
 }
 
 .text-link {
-  text-decoration: underline;
-  transition: color 0.2s ease;
-  color: var(--primary-60);
+  border-bottom: 1px solid var(--primary-50);
+  display: inline-block;
+  line-height: 1.25;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  color: var(--primary-70);
   cursor: pointer;
+
   &:hover {
     color: var(--primary-85);
+    border-color: var(--primary-85);
   }
 }
 
@@ -107,7 +115,7 @@
   left: -9999px;
 }
 
-// temp fix for iframe appearing after hot reload
+// temp fix for iframe appearing after hot reload during development
 iframe {
   pointer-events: none;
 }

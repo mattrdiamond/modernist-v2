@@ -12,7 +12,7 @@ import "./homepage.styles.scss";
 const Homepage = () => (
   <div className='homepage'>
     <HeroSlideshow />
-    <About />
+    {/* <About /> */}
     <Directory />
     <VideoBanner videoSrc={lightingVideo} />
     <CuratedRoom />

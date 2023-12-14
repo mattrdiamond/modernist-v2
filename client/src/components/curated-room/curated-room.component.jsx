@@ -8,10 +8,12 @@ import "./curated-room.styles.scss";
 
 export default function CuratedRoom() {
   return (
-    <section className='curated-wrapper'>
+    <section className='curated-section-wrapper page-width'>
       <SectionHeading
         heading='Shop the look.'
-        subheading='Explore this thoughtfully curated collection.'
+        subheading='Explore our carefully curated collection of modern&nbsp;designs.'
+        buttonText='Shop All'
+        linkDestination='/shop'
       />
       <HotspotImage backgroundImage={curatedRoomImage} hotspots={hotspotData} />
     </section>

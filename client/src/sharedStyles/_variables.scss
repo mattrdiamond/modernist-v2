@@ -7,6 +7,7 @@
   --primary-70: #5c647c;
   --primary-65: #676f86;
   --primary-60: #737a8f;
+  --primary-55: #7f8599;
   --primary-50: #8a91a1;
   --primary-40: #a2a7b4;
   --primary-30: #b9bcc7;
@@ -30,7 +31,7 @@
   --black-60: #808285;
   --black-20: #d1d3d4;
   --red: #fc5c5f;
-  --beige: #f4f3ee;
+  --beige: #f7f4f0;
   --yellow: #fdbc35;
   --white: #ffffff;
   --shadow-color: rgba(0, 0, 0, 0.2);
@@ -49,8 +50,9 @@
   --window-top: 3rem;
   --window-bottom: 6rem;
   --max-page-width: 1552px;
+  --max-element-width: 2600px;
   --page-margin-x: 3rem;
-  --section-margin-y: 6rem;
+  --section-margin-y: 4rem;
 }
 
 @media (max-width: 1320px) {

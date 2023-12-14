@@ -1,14 +1,14 @@
 [
   {
     "id": "hero-slide-1",
-    "heading": "timeless beauty,\ncrafted for forever",
+    "heading": "Timeless beauty,\ncrafted for forever",
     "subtitle": "Livable Luxury",
     "image": {
       "alt": "the harmony collection by Modernist",
       "styles": "hero-image",
       "sources": [
         {
-          "media": "(max-width: 500px)",
+          "media": "(max-width: 450px)",
           "srcSet": "/images/home/slideshow/slide_01_mobile_2x.webp 2x, /images/home/slideshow/slide_01_mobile_2x.jpg 2x,/images/home/slideshow/slide_01_mobile_1x.webp 1x, /images/home/slideshow/slide_01_mobile_1x.jpg 1x"
         },
         {
@@ -26,14 +26,14 @@
   },
   {
     "id": "hero-slide-2",
-    "heading": "the beauty of\nnew beginnings",
+    "heading": "The beauty of\nnew beginnings",
     "subtitle": "now trending",
     "image": {
       "alt": "new arrivals at Modernist",
       "styles": "hero-image",
       "sources": [
         {
-          "media": "(max-width: 500px)",
+          "media": "(max-width: 450px)",
           "srcSet": "/images/home/slideshow/slide_02_mobile_2x.webp 2x, /images/home/slideshow/slide_02_mobile_2x.jpg 2x, /images/home/slideshow/slide_02_mobile_1x.webp 1x, /images/home/slideshow/slide_02_mobile_1x.jpg 1x"
         },
         {
@@ -51,14 +51,14 @@
   },
   {
     "id": "hero-slide-3",
-    "heading": "talk about good bones",
+    "heading": "Talk about good bones",
     "subtitle": "modern dining",
     "image": {
       "alt": "modern oak table with black chairs",
       "styles": "hero-image",
       "sources": [
         {
-          "media": "(max-width: 500px)",
+          "media": "(max-width: 450px)",
           "srcSet": "/images/home/slideshow/slide_03_mobile_2x.webp 2x, /images/home/slideshow/slide_03_mobile_2x.jpg 2x,/images/home/slideshow/slide_03_mobile_1x.webp 1x, /images/home/slideshow/slide_03_mobile_1x.jpg 1x"
         },
         {

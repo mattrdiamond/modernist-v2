@@ -1,4 +1,8 @@
 .carousel-component {
+  --shadow-overflow: 50px;
+  margin: var(--section-margin-y) auto
+    calc(var(--section-margin-y) - var(--shadow-overflow));
+
   .carousel-text {
     margin: 0 auto;
     padding: 0 3rem;
@@ -9,7 +13,6 @@
   .carousel {
     overflow: hidden;
     margin-top: calc(3rem - 25px);
-    margin-bottom: calc(6rem - 50px);
     max-width: var(--max-page-width);
     margin-left: auto;
     margin-right: auto;
@@ -20,7 +23,7 @@
     margin-left: var(--page-margin-x);
     margin-right: var(--page-margin-x);
     padding-top: 25px;
-    padding-bottom: 50px;
+    padding-bottom: var(--shadow-overflow);
   }
 
   .cards-slider-wrapper {
