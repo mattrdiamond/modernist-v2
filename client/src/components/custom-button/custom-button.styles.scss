@@ -1,8 +1,8 @@
 .custom-button {
   padding: 0.75rem 1.5rem;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   background-color: var(--primary-85);
-  color: white;
+  color: var(--white);
   font-family: var(--font-text);
   cursor: pointer;
   display: flex;
@@ -10,8 +10,8 @@
   transition: border-color 0.2s ease, background-color 0.2s ease,
     color 0.2s ease;
   justify-content: center;
-  border-radius: 5px;
-  font-weight: bold;
+  font-weight: var(--font-bold);
+  border-radius: 1px;
 
   &:hover {
     background-color: var(--primary-100);
@@ -43,7 +43,16 @@
     }
   }
 
-  &.inline {
+  &.white {
+    background-color: var(--white);
+    color: var(--primary-85);
+
+    &:hover {
+      background-color: var(--primary-07);
+    }
+  }
+
+  &.submit {
     background: none;
     color: var(--primary-85);
     padding: 10px;
@@ -51,6 +60,19 @@
     &:disabled {
       color: var(--primary-40);
       cursor: default;
+    }
+  }
+
+  &.text-button {
+    background: none;
+    padding: 0;
+    color: inherit;
+    border-bottom: 1.5px solid var(--primary-70);
+    color: var(--primary-80);
+
+    &:hover {
+      color: var(--primary-85);
+      border-color: var(--primary-85);
     }
   }
 }

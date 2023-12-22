@@ -1,22 +1,25 @@
 @import "../../sharedStyles/breakpoints";
 
 .newsletter-signup {
-  background: var(--accent-20);
+  --image-extension: 1rem;
+  background: var(--beige);
   width: 100%;
   text-align: center;
   height: 30vw;
-  max-height: 375px;
-  min-height: 18rem;
+  max-height: 425px;
+  min-height: 20rem;
   display: flex;
   align-items: center;
+  margin: var(--image-extension) auto 0;
+  max-width: var(--max-element-width);
 
   #mc-embedded-subscribe-form {
     position: relative;
   }
 
   .img-container {
-    height: calc(100% + 15px);
-    margin-top: -15px;
+    height: calc(100% + var(--image-extension));
+    margin-top: calc(var(--image-extension) * -1);
     overflow: hidden;
   }
 
@@ -72,7 +75,7 @@
 
   .success-message {
     color: var(--primary-85);
-    font-weight: bold;
+    font-weight: var(--font-bold);
     font-size: 0.875rem;
   }
 
@@ -114,11 +117,12 @@
   }
 }
 
-@media (max-width: $mobile) {
+@media (max-width: 750px) {
   .newsletter-signup {
     height: unset;
     max-height: unset;
     min-height: unset;
+    margin-top: 0;
 
     .content-wrapper {
       flex-direction: column-reverse;

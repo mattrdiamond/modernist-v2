@@ -1,0 +1,39 @@
+@import "../../sharedStyles/breakpoints.scss";
+
+.breadcrumb-sort-header {
+  margin-bottom: 0.5rem;
+  position: sticky;
+  top: var(--nav-height);
+  background: var(--white);
+  z-index: 1;
+  padding: 1rem 0;
+
+  &.sticky {
+    border-bottom: 1px solid var(--primary-10);
+  }
+
+  .breadcrumb-sort-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .breadcrumb-sort-right-col {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+
+  .item-count {
+    padding-right: 1rem;
+    border-right: 1px solid var(--primary-10);
+  }
+}
+
+@media (max-width: $mobile) {
+  .breadcrumb-sort-header {
+    .item-count {
+      display: none;
+    }
+  }
+}

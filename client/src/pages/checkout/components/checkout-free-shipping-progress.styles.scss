@@ -1,0 +1,58 @@
+.free-shipping-progress-wrapper {
+  margin-top: 0.75rem;
+
+  .progress-bar-container {
+    --progress-bar-height: 0.3rem;
+    display: flex;
+    align-items: center;
+    margin-top: -0.25rem;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: var(--progress-bar-height);
+    background: var(--primary-10);
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent-100);
+    border-radius: 4px 0 0 4px;
+    overflow: hidden;
+  }
+
+  .checkmark-container {
+    --border-width: 4px;
+    width: 1.3rem;
+    height: 1.3rem;
+    flex-shrink: 0;
+    box-sizing: content-box;
+    border: var(--border-width) solid var(--white);
+    border-radius: 50%;
+    margin-right: calc(-1 * var(--border-width));
+  }
+
+  .icon-checkmark {
+    width: 100%;
+    height: 100%;
+  }
+
+  .shipping-progress-message {
+    font-size: 0.705rem;
+    margin: 0rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .icon-information {
+    margin-left: 0.25rem;
+    color: var(--primary-60);
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary-85);
+    }
+  }
+}

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import {
-  selectCartItemsCount,
+  getTotalQuantity,
   selectCartHidden,
 } from "../../redux/cart/cart.selectors";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
@@ -29,7 +29,7 @@ const CartIcon = ({ cartHidden, itemCount, handleClick, handleKeyPress }) => (
 );
 
 const mapStateToProps = createStructuredSelector({
-  itemCount: selectCartItemsCount,
+  itemCount: getTotalQuantity,
   cartHidden: selectCartHidden,
 });
 

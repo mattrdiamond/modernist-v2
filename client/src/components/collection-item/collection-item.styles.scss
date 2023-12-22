@@ -6,14 +6,16 @@
 
   .product-link {
     width: 100%;
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
   }
 
   .image,
   .spinner-overlay {
     width: 100%;
-    height: 33vw;
-    max-height: 420px;
-    min-height: 170px;
+    aspect-ratio: 1/1;
     background-color: var(--primary-07);
   }
 
@@ -32,13 +34,6 @@
     display: block;
   }
 
-  &:hover {
-    .image {
-      opacity: 0.8;
-      cursor: pointer;
-    }
-  }
-
   .collection-footer {
     width: 100%;
     display: flex;
@@ -49,19 +44,10 @@
   }
 
   .price {
-    font-weight: bold;
+    font-weight: var(--font-bold);
     position: relative;
     line-height: 1.5;
     margin-left: 1rem;
-  }
-}
-
-@media (max-width: 975px) {
-  .collection-item {
-    .image,
-    .spinner-overlay {
-      height: 45vw;
-    }
   }
 }
 

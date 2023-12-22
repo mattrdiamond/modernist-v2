@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { promoCode } from "../../utils/constants";
 
 import {
   selectInput,
   selectError,
-  selectApplied,
+  selectPromoApplied,
 } from "../../redux/promo/promo.selectors";
 import {
   setPromoInputValue,
@@ -17,6 +18,8 @@ import {
 import CustomButton from "../../components/custom-button/custom-button.component";
 import FormInput from "../../components/form-input/form-input.component";
 import Icon from "../../components/icon/icon.component";
+import AccordionGroup from "../accordion/accordion-group.component";
+import Accordion from "../accordion/accordion.component";
 
 import "./promo-form.styles.scss";
 
@@ -29,8 +32,6 @@ const PromoForm = ({
   applyPromo,
   promoApplied,
 }) => {
-  const validCode = "SUPERSALE";
-
   const handleChange = (e) => {
     const { value } = e.target;
 
@@ -42,10 +43,10 @@ const PromoForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue.toLowerCase() !== validCode.toLowerCase()) {
+    if (inputValue.toLowerCase() !== promoCode.toLowerCase()) {
       return throwError("Your promo could not be applied. Please try again!");
     } else if (
-      inputValue.toLowerCase() === validCode.toLowerCase() &&
+      inputValue.toLowerCase() === promoCode.toLowerCase() &&
       promoApplied
     ) {
       return throwError("Promo has already been applied.");
@@ -55,40 +56,51 @@ const PromoForm = ({
 
   return (
     <div className='promo-container'>
-      <span className='font-bold'>Add a promo or gift card</span>
-      <form className='promo-form' onSubmit={handleSubmit}>
-        <FormInput
-          name='promo'
-          handleChange={handleChange}
-          type='text'
-          value={inputValue}
-          placeholder='Promo or gift card'
-          required
+      <AccordionGroup>
+        <Accordion
+          title='Add Promo Code'
+          customTitle={
+            <span className='promo-accordion-title'>
+              <Icon icon='promo' />
+              Add Promo Code
+            </span>
+          }
         >
-          <CustomButton
-            type='button'
-            onClick={handleSubmit}
-            disabled={!inputValue}
-            inline
-          >
-            Apply
-          </CustomButton>
-        </FormInput>
-      </form>
-      {error ? (
-        <div className='alert-container'>
-          <span className='error'>{error}</span>
-        </div>
-      ) : null}
-      {promoApplied ? (
-        <div className='success-container'>
-          <Icon icon='check' />
-          <div className='success-text'>
-            <span className='promo-name'>{validCode}</span>
-            <p className='success-details'>20% off your entire purchase</p>
-          </div>
-        </div>
-      ) : null}
+          <form className='promo-form' onSubmit={handleSubmit}>
+            <FormInput
+              name='promo'
+              handleChange={handleChange}
+              type='text'
+              value={inputValue}
+              placeholder='Promo or gift card'
+              required
+            >
+              <CustomButton
+                type='button'
+                onClick={handleSubmit}
+                disabled={!inputValue}
+                submit
+              >
+                Apply
+              </CustomButton>
+            </FormInput>
+          </form>
+          {error ? (
+            <div className='alert-container'>
+              <span className='error'>{error}</span>
+            </div>
+          ) : null}
+          {promoApplied ? (
+            <div className='success-container'>
+              <Icon icon='check' />
+              <div className='success-text'>
+                <span className='promo-name'>{promoCode}</span>
+                <p className='success-details'>20% off your entire purchase</p>
+              </div>
+            </div>
+          ) : null}
+        </Accordion>
+      </AccordionGroup>
     </div>
   );
 };
@@ -96,7 +108,7 @@ const PromoForm = ({
 const mapStateToProps = createStructuredSelector({
   inputValue: selectInput,
   error: selectError,
-  promoApplied: selectApplied,
+  promoApplied: selectPromoApplied,
 });
 
 const mapDispatchToProps = (dispatch) => ({

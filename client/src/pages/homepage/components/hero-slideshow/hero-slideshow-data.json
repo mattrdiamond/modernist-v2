@@ -1,0 +1,77 @@
+[
+  {
+    "id": "hero-slide-1",
+    "heading": "Timeless beauty,\ncrafted for forever",
+    "subtitle": "Livable Luxury",
+    "image": {
+      "alt": "the harmony collection by Modernist",
+      "styles": "hero-image",
+      "sources": [
+        {
+          "media": "(max-width: 450px)",
+          "srcSet": "/images/home/slideshow/slide_01_mobile_2x.webp 2x, /images/home/slideshow/slide_01_mobile_2x.jpg 2x,/images/home/slideshow/slide_01_mobile_1x.webp 1x, /images/home/slideshow/slide_01_mobile_1x.jpg 1x"
+        },
+        {
+          "media": "(max-width: 1000px)",
+          "srcSet": "/images/home/slideshow/slide_01_tablet_1x.webp 1x, /images/home/slideshow/slide_01_tablet_1x.jpg 1x, /images/home/slideshow/slide_01_tablet_2x.webp 2x, /images/home/slideshow/slide_01_tablet_2x.jpg 2x"
+        },
+        {
+          "srcSet": "/images/home/slideshow/slide_01_1200w.webp 1200w, /images/home/slideshow/slide_01_1200w.jpg 1200w, /images/home/slideshow/slide_01_1800w.webp 1800w, /images/home/slideshow/slide_01_1800w.jpg 1800w, /images/home/slideshow/slide_01_2400w.webp 2400w, /images/home/slideshow/slide_01_2400w.jpg 2400w, /images/home/slideshow/slide_01_3000w.webp 3000w, /images/home/slideshow/slide_01_3000w.jpg 3000w,/images/home/slideshow/slide_01_3800w.webp 3800w, /images/home/slideshow/slide_01_3800w.jpg 3800w"
+        }
+      ]
+    },
+    "ctaLink": "./shop",
+    "ctaText": "Shop Collection",
+    "base64LoaderImage": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wgARCAAfABQDAREAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAABwgCAwYF/8QAGAEBAQEBAQAAAAAAAAAAAAAAAgQDAQD/2gAMAwEAAhADEAAAAGehqxGbHGTcO+UPT7JtMzhR3CINyT0KMqOKR9//xAAqEAABAwMDBAEDBQAAAAAAAAABAgMEBQYRABIhBxMxUQhBQoEUFTKRof/aAAgBAQABPwBm0y7EFTntBSnBuSwOQj1uP3H/ADV1vriJcQulQn2hx23WBj8KThQ/B08bAmOqdfuFVEd8LhyYzsgoPtLjYwpPrICvfswY0Q0JtOFDYjaQscgjV/fto74W+lIGr6v+PSLpn080KY8llzCHGuUrT9Dq+79rHyCrL/Tm158+0YlHlPolVchbD7S0rG3Ynuo3JWMlaMbm8fXdqJ8badRb9o9UvP5JVqo0mHUGluwGn3e7UI6SSoJ2OqKTwPI8ag9EOlxQ5OiWha9YiT1JkxpDsRCj2ihIA3HJV4JyT92NRulluUyTKmUumUmG/MeU+8tmCElxav5KPPk6X0qtJ6YJTtMp/wCpCdyXEwwFf3nTlHbpyjDi1N+M0jw2wVoQM8k4CscnX//EABwRAAICAgMAAAAAAAAAAAAAAAABAhESIQMTUf/aAAgBAgEBPwDDVjbMl7RRyULYpZvZcIpigkLjR1R8OuJ//8QAIBEAAgAFBQEAAAAAAAAAAAAAAAECERITUQMQISIxQf/aAAgBAwEBPwBOXBCkyW2nMra+FNtHeIqyXG/WXHkUbP/Z"
+  },
+  {
+    "id": "hero-slide-2",
+    "heading": "The beauty of\nnew beginnings",
+    "subtitle": "now trending",
+    "image": {
+      "alt": "new arrivals at Modernist",
+      "styles": "hero-image",
+      "sources": [
+        {
+          "media": "(max-width: 450px)",
+          "srcSet": "/images/home/slideshow/slide_02_mobile_2x.webp 2x, /images/home/slideshow/slide_02_mobile_2x.jpg 2x, /images/home/slideshow/slide_02_mobile_1x.webp 1x, /images/home/slideshow/slide_02_mobile_1x.jpg 1x"
+        },
+        {
+          "media": "(max-width: 1000px)",
+          "srcSet": "/images/home/slideshow/slide_02_tablet_1x.webp 1x, /images/home/slideshow/slide_02_tablet_1x.jpg 1x, /images/home/slideshow/slide_02_tablet_2x.webp 2x, /images/home/slideshow/slide_02_tablet_2x.jpg 2x"
+        },
+        {
+          "srcSet": "/images/home/slideshow/slide_02_1200w.webp 1200w, /images/home/slideshow/slide_02_1200w.jpg 1200w, /images/home/slideshow/slide_02_1800w.webp 1800w, /images/home/slideshow/slide_02_1800w.jpg 1800w, /images/home/slideshow/slide_02_2400w.webp 2400w, /images/home/slideshow/slide_02_2400w.jpg 2400w, /images/home/slideshow/slide_02_3000w.webp 3000w, /images/home/slideshow/slide_02_3000w.jpg 3000w,/images/home/slideshow/slide_02_3800w.webp 3800w, /images/home/slideshow/slide_02_3800w.jpg 3800w"
+        }
+      ]
+    },
+    "ctaLink": "./shop",
+    "ctaText": "Shop New Arrivals",
+    "base64LoaderImage": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAIBAQEBAQIBAQECAgICAgQDAgICAgUEBAMEBgUGBgYFBgYGBwkIBgcJBwYGCAsICQoKCgoKBggLDAsKDAkKCgr/2wBDAQICAgICAgUDAwUKBwYHCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgr/wgARCAAKABQDAREAAhEBAxEB/8QAFwABAAMAAAAAAAAAAAAAAAAACAYHCf/EABgBAQADAQAAAAAAAAAAAAAAAAUDBAcG/9oADAMBAAIQAxAAAAABSyWhSSGqZOhGW6mianVxxAX/xAApEAABAwQBAwIHAQAAAAAAAAABAgMEBQYHERIACCEiMQkUIyQlQUJx/9oACAEBAAE/AOwT4aU/vQ7fbwzdjnuCoMCv2PUNzLCq0ZDMqbBCQoyGZC3koCt7TwUn3/rq7u7q4cg4erltZHz81ctfrNWp0xd3T3oTk9EWA24lMBGh4aXySQQQtOlDZC1bz3kBmt36ZiOavsmtnZPk8la3ob0Fa6xJjXHJu6mINg0QpctmivOJNKZ0txUMFSz6fKifJPuT1jrHGPDPuQmw6LuNBKo/4tn6SgU+U+n0n/OrUs60Z9OdfnWrTX1/NODm9BbUdcj+yOv/xAAjEQABBAAFBQEAAAAAAAAAAAABAAIDEQUhMUFRBBMycYGx/9oACAECAQE/AJMT7LTG1turnlRYjMZmkMqjWV7/ABQSNLXG9zr7KMshiNuOp/U2SQv8iunc4x5lf//EACERAAEDAgcBAAAAAAAAAAAAAAECAwQAEQUSITFBYZEU/9oACAEDAQE/AGIJdAWtVgTalYawGlXdv5xRjmOcp12PtLZZTJsEjZPHVNRYvxpOQa24HdTGWQ+bJHlf/9k="
+  },
+  {
+    "id": "hero-slide-3",
+    "heading": "Talk about good bones",
+    "subtitle": "modern dining",
+    "image": {
+      "alt": "modern oak table with black chairs",
+      "styles": "hero-image",
+      "sources": [
+        {
+          "media": "(max-width: 450px)",
+          "srcSet": "/images/home/slideshow/slide_03_mobile_2x.webp 2x, /images/home/slideshow/slide_03_mobile_2x.jpg 2x,/images/home/slideshow/slide_03_mobile_1x.webp 1x, /images/home/slideshow/slide_03_mobile_1x.jpg 1x"
+        },
+        {
+          "media": "(max-width: 1000px)",
+          "srcSet": "/images/home/slideshow/slide_03_tablet_1x.webp 1x, /images/home/slideshow/slide_03_tablet_1x.jpg 1x, /images/home/slideshow/slide_03_tablet_2x.webp 2x, /images/home/slideshow/slide_03_tablet_2x.jpg 2x"
+        },
+        {
+          "srcSet": "/images/home/slideshow/slide_03_1200w.webp 1200w, /images/home/slideshow/slide_03_1200w.jpg 1200w, /images/home/slideshow/slide_03_1800w.webp 1800w, /images/home/slideshow/slide_03_1800w.jpg 1800w, /images/home/slideshow/slide_03_2400w.webp 2400w, /images/home/slideshow/slide_03_2400w.jpg 2400w, /images/home/slideshow/slide_03_3000w.webp 3000w, /images/home/slideshow/slide_03_3000w.jpg 3000w,/images/home/slideshow/slide_03_3800w.webp 3800w, /images/home/slideshow/slide_03_3800w.jpg 3800w"
+        }
+      ]
+    },
+    "ctaLink": "./shop/tables",
+    "ctaText": "Shop Tables",
+    "base64LoaderImage": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wgARCAAKABQDAREAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAABAUGCP/EABkBAAMAAwAAAAAAAAAAAAAAAAECAwAFBv/aAAwDAQACEAMQAAAA0rC5ili6wXP7lqMNtP8A/8QAJhAAAgIBAwMDBQAAAAAAAAAAAQIDBBEABSEHEhMUYXEVIyQxQf/aAAgBAQABPwDcOr1PZtst3js3mWFkESep7TOGk7B2gIxJ/vAPGtv6ty3bdNvoUEdKeRYvK1zDBmGeVZQwA+NQdU9nk8nqo4aWGwiSz5ZlwCGOBx8c6obZtr2VD7fVYBhgGJff21SpU/Kn4kHBUj7Y/fHOpqVN5mL1IGxwMxg6/8QAHREAAQQCAwAAAAAAAAAAAAAAAAECE1EDEEJhkf/aAAgBAgEBPwBcrbJu09JmXrkIf//EABwRAAEDBQAAAAAAAAAAAAAAABMAARACQlFxkf/aAAgBAwEBPwATug74g1Yi2P/Z"
+  }
+]

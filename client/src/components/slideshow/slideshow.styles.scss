@@ -1,0 +1,10 @@
+.slideshow-wrapper {
+  width: 100%;
+  position: relative;
+
+  .slide-image {
+    width: 100%;
+    object-fit: cover;
+    max-height: 900px;
+  }
+}

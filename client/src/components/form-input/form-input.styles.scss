@@ -47,7 +47,7 @@
   .form-input-label {
     color: var(--primary-50);
     font-size: 0.95rem;
-    font-weight: normal;
+    font-weight: var(--font-normal);
     position: absolute;
     pointer-events: none;
     left: 5px;

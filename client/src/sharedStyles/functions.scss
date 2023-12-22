@@ -1,0 +1,28 @@
+@use "sass:math";
+
+/**
+ * Scales a value between a given range based on screen width.
+ *
+ * @param {Number} $minValue - Minimum value of the range.
+ * @param {Number} $maxValue - Maximum value of the range.
+ * @param {Number} $minScreen - Minimum screen width.
+ * @param {Number} $maxScreen - Maximum screen width.
+ * @returns {Number} - The scaled value within the range.
+ */
+@function scaleValue($minValue, $maxValue, $minScreen, $maxScreen) {
+  // Convert to unitless
+  $minScreenUnitless: math.div($minScreen, 1px);
+  $maxScreenUnitless: math.div($maxScreen, 1px);
+  $minMarginUnitless: math.div($minValue, 1px);
+  $maxMarginUnitless: math.div($maxValue, 1px);
+
+  @return clamp(
+    #{$minValue},
+    calc(
+      #{$minValue} + (#{$maxMarginUnitless} - #{$minMarginUnitless}) * ((
+              100vw - #{$minScreen}
+            ) / (#{$maxScreenUnitless} - #{$minScreenUnitless}))
+    ),
+    #{$maxValue}
+  );
+}

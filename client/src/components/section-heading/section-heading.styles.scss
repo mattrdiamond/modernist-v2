@@ -2,31 +2,43 @@
 
 .section-heading-wrapper {
   text-align: left;
-  margin: 4rem auto 1.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 4rem;
 
   .heading {
     display: inline;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0;
+    margin-right: 1rem;
   }
 
   .subheading {
     display: inline-block;
-    margin-left: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  .custom-button {
+    flex-shrink: 0;
+    margin-bottom: 0.25rem;
+  }
+}
+
+@media (max-width: $mobile-large) {
+  .section-heading-wrapper {
+    .heading {
+      margin-bottom: 0;
+    }
+
+    .subheading.mobile-hidden {
+      display: none;
+    }
   }
 }
 
 @media (max-width: $mobile) {
   .section-heading-wrapper {
-    text-align: center;
-    margin: var(--section-margin-y) auto;
-
-    .heading,
-    .subheading {
-      display: block;
-    }
-
-    .subheading {
-      margin-left: 0;
-    }
+    gap: 1rem;
   }
 }

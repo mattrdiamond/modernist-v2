@@ -1,3 +1,5 @@
+@import "../sharedStyles/breakpoints";
+
 :root {
   /*-- color palette --*/
   --primary-100: #162245;
@@ -7,16 +9,19 @@
   --primary-70: #5c647c;
   --primary-65: #676f86;
   --primary-60: #737a8f;
+  --primary-55: #7f8599;
   --primary-50: #8a91a1;
   --primary-40: #a2a7b4;
   --primary-30: #b9bcc7;
   --primary-20: #d0d2d9;
   --primary-15: #dcdee3;
+  --primary-13: #e0e1e6;
   --primary-10: #e7e9ec;
   --primary-07: #f0f1f3;
   --primary-05: #f3f4f5;
   --primary-03: #f8f8f9;
-  --accent-100: #30c3e3;
+  --accent-100: #02a3bf;
+  // --accent-100: #30c3e3;
   --accent-90: #3dd0f0;
   --accent-80: #33dbff;
   --accent-70: #4cdfff;
@@ -28,7 +33,7 @@
   --black-60: #808285;
   --black-20: #d1d3d4;
   --red: #fc5c5f;
-  --beige: #f4f3ee;
+  --beige: #f7f4f0;
   --yellow: #fdbc35;
   --white: #ffffff;
   --shadow-color: rgba(0, 0, 0, 0.2);
@@ -37,14 +42,19 @@
   /*-- typography --*/
   --font-text: "proxima_nova", Helvetica, sans-serif;
   --font-text-cond: "proxima_nova_condensedmedium", Helvetica, sans-serif;
-  --font-display: "domaine_disp_nar", Helvetica, sans-serif;
+  --font-display: "domaine_disp_nar", Times, serif;
+  --font-bold: 700;
+  --font-semibold: 600;
+  --font-medium: 500;
+  --font-normal: 400;
   /*-- measurements --*/
   --nav-height: 65px;
-  --window-top: 3rem;
-  --window-bottom: 6rem;
-  --max-page-width: 1320px;
-  --page-margin-x: 3rem;
-  --section-margin-y: 6rem;
+  --window-top: 2rem;
+  --window-bottom: 4rem;
+  --max-page-width: 1552px;
+  --max-element-width: 2600px;
+  --page-margin-x: 2rem;
+  --section-margin-y: 4rem;
 }
 
 @media (max-width: 1320px) {
@@ -56,16 +66,9 @@
 @media (max-width: 800px) {
   :root {
     --nav-height: 60px;
-    --window-top: 4vw;
-    --window-bottom: 8vw;
-    --section-margin-y: 3rem;
-  }
-}
-
-@media (max-width: 680px) {
-  :root {
     --window-top: 1.5rem;
     --window-bottom: 3rem;
+    --section-margin-y: 3rem;
     --page-margin-x: 1.5rem;
   }
 }

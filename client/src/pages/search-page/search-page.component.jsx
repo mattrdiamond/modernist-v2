@@ -3,8 +3,7 @@ import { createStructuredSelector } from "reselect";
 import { selectAllCollectionItems } from "../../redux/shop/shop.selectors";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import Spinner from "../../components/spinner/spinner.component";
-import ImageGrid from "../../components/image-grid/image-grid.component";
-import CollectionItem from "../../components/collection-item/collection-item.component";
+import ProductGrid from "../../components/product-grid/product-grid.component";
 import getSearchResults from "../../utils/getSearchResults";
 import { connect } from "react-redux";
 import "./search-page.styles.scss";
@@ -30,11 +29,7 @@ const SearchPage = ({ collectionItems, fetchCollectionsStart, location }) => {
             results for{" "}
             <span className='font-bold'>"{query.toLowerCase()}"</span>
           </span>
-          <ImageGrid>
-            {searchResults.map((result) => (
-              <CollectionItem key={result.id} item={result} />
-            ))}
-          </ImageGrid>
+          <ProductGrid items={searchResults} />
         </>
       ) : (
         <p>

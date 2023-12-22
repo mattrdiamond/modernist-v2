@@ -140,8 +140,8 @@ const NewsletterSignup = () => {
             noValidate
           >
             <h2>Join the club.</h2>
-            <p>
-              Sign up to recieve product news, promotions&nbsp;and&nbsp;updates.
+            <p className='grey-text'>
+              Sign up to receive product news, promotions&nbsp;and&nbsp;updates.
             </p>
             {/* hide input if email successfully added and show success message */}
             {result !== "success" ? (
@@ -167,7 +167,7 @@ const NewsletterSignup = () => {
                       name='subscribe'
                       id='mc-embedded-subscribe'
                       disabled={!email}
-                      inline
+                      submit
                     >
                       Submit
                     </CustomButton>

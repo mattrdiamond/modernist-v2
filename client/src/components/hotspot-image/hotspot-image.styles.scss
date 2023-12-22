@@ -1,14 +1,14 @@
-@import "../../sharedStyles/breakpoints.scss";
+@import "../../sharedStyles/breakpoints";
 
 @mixin aspect-ratio {
   --mobile-aspect-ratio: 7/9;
   --tablet-aspect-ratio: 1000/613;
   --desktop-aspect-ratio: 2/1;
   aspect-ratio: var(--desktop-aspect-ratio);
-  @media (max-width: #{$tablet}) {
+  @media (max-width: $tablet) {
     aspect-ratio: var(--tablet-aspect-ratio);
   }
-  @media (max-width: #{$mobile}) {
+  @media (max-width: $mobile-large) {
     aspect-ratio: var(--mobile-aspect-ratio);
   }
 }
@@ -16,7 +16,6 @@
 .hotspot-image-wrapper {
   max-width: var(--max-page-width);
   margin: 0 auto;
-  padding: 0 var(--page-margin-x);
 
   .hotspot-image_inner-wrapper {
     position: relative;
@@ -62,7 +61,7 @@
   }
 }
 
-@media (max-width: $mobile) {
+@media (max-width: $mobile-large) {
   .hotspot-image-wrapper {
     padding: 0;
   }

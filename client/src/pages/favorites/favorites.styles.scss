@@ -1,35 +1,15 @@
-.favorites-page {
-  display: flex;
-  flex-direction: column;
+.favorites-page,
+.empty-fav-container {
   padding-top: var(--window-top);
   padding-bottom: var(--window-bottom);
   height: 100%;
+}
 
-  .title {
-    font-size: 38px;
-    margin: 0 auto;
-  }
-
-  .favorites-text {
-    margin-bottom: 3rem;
-    text-align: center;
-  }
-
-  .heart.inline {
-    position: relative;
-    top: 2px;
-  }
-
-  .empty-fav-container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 200px;
-
-    h2 {
-      text-align: center;
-    }
-  }
+.empty-fav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  text-align: center;
 }

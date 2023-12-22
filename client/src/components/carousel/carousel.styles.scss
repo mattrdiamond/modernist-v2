@@ -1,4 +1,8 @@
 .carousel-component {
+  --shadow-overflow: 50px;
+  margin: var(--section-margin-y) auto
+    calc(var(--section-margin-y) - var(--shadow-overflow));
+
   .carousel-text {
     margin: 0 auto;
     padding: 0 3rem;
@@ -6,26 +10,20 @@
     text-align: center;
   }
 
-  .carousel.carousel.page-width {
-    max-width: 1340px;
-  }
-
   .carousel {
     overflow: hidden;
     margin-top: calc(3rem - 25px);
-    margin-bottom: calc(6rem - 50px);
-    max-width: 1320px;
+    max-width: var(--max-page-width);
     margin-left: auto;
     margin-right: auto;
   }
 
   .cards-slider {
     position: relative;
-    // margin-left and right match .page-width values
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin-left: var(--page-margin-x);
+    margin-right: var(--page-margin-x);
     padding-top: 25px;
-    padding-bottom: 50px;
+    padding-bottom: var(--shadow-overflow);
   }
 
   .cards-slider-wrapper {
@@ -90,29 +88,11 @@
   }
 }
 
-@media (max-width: 1320px) {
-  .carousel-component {
-    .cards-slider {
-      margin-left: 4%;
-      margin-right: 4%;
-    }
-  }
-}
-
 @media (max-width: 800px) {
   .carousel-component {
     .carousel {
       margin-top: 23px;
       margin-bottom: 10px;
-    }
-  }
-}
-
-@media (max-width: 680px) {
-  .carousel-component {
-    .cards-slider {
-      margin-left: 1.5rem;
-      margin-right: 1.5rem;
     }
   }
 }

@@ -1,3 +1,4 @@
-.curated-wrapper {
-  margin: 0 auto var(--section-margin-y);
+.curated-section-wrapper {
+  margin: calc(var(--section-margin-y) - 0.5rem) auto 0;
+  padding-bottom: var(--section-margin-y);
 }

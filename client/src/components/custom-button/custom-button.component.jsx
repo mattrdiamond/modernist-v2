@@ -5,20 +5,27 @@ const CustomButton = ({
   children,
   isGoogleSignIn,
   inverted,
-  inline,
+  submit,
+  textButton,
+  white,
   ...otherProps
-}) => (
-  <button
-    className={
-      "custom-button" +
-      (inverted ? " inverted" : "") +
-      (isGoogleSignIn ? " google-sign-in" : "") +
-      (inline ? " inline" : "")
-    }
-    {...otherProps}
-  >
-    {children}
-  </button>
-);
+}) => {
+  const buttonClasses = `
+    custom-button
+    ${inverted ? "inverted" : ""}
+    ${white ? "white" : ""}
+    ${isGoogleSignIn ? "google-sign-in" : ""}
+    ${submit ? "submit" : ""}
+    ${textButton ? "text-button" : ""}
+  `
+    .trim()
+    .replace(/\s+/g, " ");
+
+  return (
+    <button className={buttonClasses} {...otherProps}>
+      {children}
+    </button>
+  );
+};
 
 export default CustomButton;

@@ -2,6 +2,7 @@
   --review-spacing: 1.5rem;
   padding-top: var(--review-spacing);
   border-top: 1px dashed var(--primary-20);
+  line-height: 1.5;
 
   &:not(:last-of-type) {
     margin-bottom: var(--review-spacing);
@@ -9,12 +10,14 @@
 
   .review-headline {
     font-size: 0.9375rem;
-    margin: 0.5rem 0 0.75rem;
+    margin: 0.5rem 0;
+    font-weight: var(--font-bold);
+    letter-spacing: 0;
+    text-transform: unset;
   }
 
   .review-text {
     margin: 0;
-    line-height: 1.5;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -35,7 +38,7 @@
 
   .reviewer-name {
     margin-right: 0.5rem;
-    font-weight: bold;
+    font-weight: var(--font-bold);
   }
 
   .created-at {

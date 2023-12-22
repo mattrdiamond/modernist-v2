@@ -1,0 +1,21 @@
+.breadcrumb-wrapper {
+  font-size: 0.75rem;
+  color: var(--primary-65);
+  text-transform: capitalize;
+
+  .breadcrumb-list-item {
+    display: inline;
+  }
+
+  .breadcrumb-slash {
+    margin: 0 0.5em;
+    color: var(--primary-40);
+  }
+
+  a {
+    &:hover {
+      text-decoration: underline;
+      color: var(--primary-85);
+    }
+  }
+}

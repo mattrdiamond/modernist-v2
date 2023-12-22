@@ -42,8 +42,8 @@ export default function Accordion({
 Accordion.propTypes = {
   title: PropTypes.string.isRequired, // The title of the accordion section.
   customTitle: PropTypes.node, // Allows you to insert HTML into the title, e.g., span tags.
-  toggle: PropTypes.func.isRequired, // Function to toggle the accordion open/closed.
-  openAccordion: PropTypes.string, // The currently expanded accordion (only one open at a time).
+  toggle: PropTypes.func, // Function to toggle the accordion open/closed.
+  openAccordion: PropTypes.string, // The currently expanded accordion.
   children: PropTypes.node, // The content of the accordion section.
   isMobileAccordion: PropTypes.bool, // Set to true to make it function as an accordion only on mobile.
 };
