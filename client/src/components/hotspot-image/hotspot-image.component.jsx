@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import useIntersectionObserver from "../../hooks/use-intersection-observer";
 import useWindowSize from "../../hooks/use-window-size";
-import { hotspotPropTypes } from "../shared/sharedPropTypes";
+import { hotspotPropTypes } from "../../sharedPropTypes/sharedPropTypes";
 
 import Spinner from "../spinner/spinner.component";
 import ResponsiveImage from "../responsive-image/responsive-image.component";

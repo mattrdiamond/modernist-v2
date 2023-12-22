@@ -1,3 +1,5 @@
+@import "../sharedStyles/breakpoints";
+
 :root {
   /*-- color palette --*/
   --primary-100: #162245;
@@ -47,11 +49,11 @@
   --font-normal: 400;
   /*-- measurements --*/
   --nav-height: 65px;
-  --window-top: 3rem;
-  --window-bottom: 6rem;
+  --window-top: 2rem;
+  --window-bottom: 4rem;
   --max-page-width: 1552px;
   --max-element-width: 2600px;
-  --page-margin-x: 3rem;
+  --page-margin-x: 2rem;
   --section-margin-y: 4rem;
 }
 
@@ -64,16 +66,9 @@
 @media (max-width: 800px) {
   :root {
     --nav-height: 60px;
-    --window-top: 4vw;
-    --window-bottom: 8vw;
-    --section-margin-y: 3rem;
-  }
-}
-
-@media (max-width: 680px) {
-  :root {
     --window-top: 1.5rem;
     --window-bottom: 3rem;
+    --section-margin-y: 3rem;
     --page-margin-x: 1.5rem;
   }
 }

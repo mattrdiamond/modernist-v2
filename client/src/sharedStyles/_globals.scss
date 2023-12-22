@@ -1,3 +1,5 @@
+@import "../sharedStyles/breakpoints.scss";
+
 * {
   box-sizing: border-box;
 }
@@ -101,7 +103,19 @@ form > *:last-child {
   margin-bottom: 0;
 }
 
-@media (max-width: 450px) {
+@media (max-width: $tablet) {
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: $mobile-large) {
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: $mobile) {
   html {
     font-size: 16px;
   }

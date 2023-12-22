@@ -26,7 +26,7 @@ const SelectDropdown = ({ handleSelect, options, selectedValue }) => {
         tabIndex={0}
       >
         <span className='select-header-text'>
-          {selectedValue ? selectedValue : "Sort by"}
+          {selectedValue ? selectedValue : "Sort By"}
         </span>
         <ArrowButton isClosed={!isOpen} />
         {isOpen && (

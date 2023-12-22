@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { slidePropType } from "../shared/sharedPropTypes";
+import { slidePropType } from "../../sharedPropTypes/sharedPropTypes";
 
 import "./slideshow-nav-buttons.styles.scss";
 

@@ -82,18 +82,3 @@ $tab-width: 8rem;
     }
   }
 }
-
-@media (max-width: 500px) {
-  .sign-in-and-sign-up {
-    .sign-in-content {
-      padding: 0rem 2rem 2rem;
-    }
-  }
-}
-@media (max-width: 400px) {
-  .sign-in-and-sign-up {
-    .background-screen {
-      padding: 2rem 3.5%;
-    }
-  }
-}

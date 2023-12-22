@@ -14,6 +14,7 @@
     height: 100vh;
     background: var(--overlay);
     top: 0;
+    z-index: 1;
   }
 
   &.dropdown-visible:after,

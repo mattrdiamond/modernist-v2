@@ -10,6 +10,7 @@ import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { setInputValue } from "../../redux/search/search.actions";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import { toggleNav } from "../../redux/mobile-nav/mobile-nav.actions";
+import { signOutStart } from "../../redux/user/user.actions";
 
 import MobileNavLink from "../mobile-nav-link/mobile-nav-link.component";
 import SearchDropdown from "../search-dropdown/search-dropdown.component";
@@ -25,6 +26,7 @@ const MobileNav = ({
   collectionItems,
   fetchCollectionsStart,
   currentUser,
+  signOutStart,
 }) => {
   const handleChange = (e) => {
     const { value } = e.target;
@@ -38,13 +40,21 @@ const MobileNav = ({
 
   useLockBodyScroll();
 
+  const handleSignAndSignUp = () => {
+    if (currentUser) {
+      signOutStart();
+    } else {
+      toggleNav();
+    }
+  };
+
   return (
     <div className={"mobile-nav-directory"}>
-      <div className="inner-wrapper page-width">
+      <div className='inner-wrapper page-width'>
         <SearchInput
           handleChange={handleChange}
           handleClear={handleClear}
-          placeholder="Search Modernist"
+          placeholder='Search Modernist'
           value={inputValue}
           inputValue={inputValue}
         />
@@ -55,23 +65,23 @@ const MobileNav = ({
           />
         )}
 
-        <ul className="mbl-nav-links">
+        <ul className='mbl-nav-links'>
           {sections.map(({ id, ...otherSectionProps }) => (
             <MobileNavLink
               key={id}
-              toggleNav={toggleNav}
+              handleClick={toggleNav}
               {...otherSectionProps}
             />
           ))}
           <MobileNavLink
             title={currentUser ? "Sign Out" : "Sign In"}
             linkUrl={"signin"}
-            toggleNav={toggleNav}
+            handleClick={handleSignAndSignUp}
           />
           <MobileNavLink
-            title="Favorites"
+            title='Favorites'
             linkUrl={"favorites"}
-            toggleNav={toggleNav}
+            handleClick={toggleNav}
           />
         </ul>
       </div>
@@ -83,6 +93,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleNav: () => dispatch(toggleNav()),
   setInputValue: (inputValue) => dispatch(setInputValue(inputValue)),
   fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
+  signOutStart: () => dispatch(signOutStart()),
 });
 
 const mapStateToProps = createStructuredSelector({

@@ -11,9 +11,10 @@ export default function CuratedRoom() {
     <section className='curated-section-wrapper page-width'>
       <SectionHeading
         heading='Shop the look.'
-        subheading='Explore our carefully curated collection of modern&nbsp;designs.'
+        subheading='Explore our carefully curated collection of modern designs.'
+        hideSubheadingOnMobile
         buttonText='Shop All'
-        linkDestination='/shop'
+        linkDestination='/shop-the-look'
       />
       <HotspotImage backgroundImage={curatedRoomImage} hotspots={hotspotData} />
     </section>

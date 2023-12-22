@@ -8,7 +8,7 @@
   @media (max-width: $tablet) {
     aspect-ratio: var(--tablet-aspect-ratio);
   }
-  @media (max-width: $mobile) {
+  @media (max-width: $mobile-large) {
     aspect-ratio: var(--mobile-aspect-ratio);
   }
 }
@@ -61,7 +61,7 @@
   }
 }
 
-@media (max-width: $mobile) {
+@media (max-width: $mobile-large) {
   .hotspot-image-wrapper {
     padding: 0;
   }

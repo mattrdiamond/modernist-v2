@@ -1,40 +1,70 @@
 import React from "react";
-import { productType } from "../shared/sharedPropTypes";
+import { productDetailType } from "../../sharedPropTypes/sharedPropTypes";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
-import { Link, useParams, withRouter } from "react-router-dom";
+import { Link, useParams, withRouter, useLocation } from "react-router-dom";
 import { selectProductById } from "../../redux/shop/shop.selectors";
 import "./breadcrumb.styles.scss";
 
 const Breadcrumb = ({ product }) => {
+  const location = useLocation();
   const { collectionId, itemId } = useParams();
+  const segments = location.pathname
+    .split("/")
+    .filter((segment) => segment !== "");
+
+  const replaceHyphensWithSpaces = (text) => {
+    return text.replace(/-/g, " ");
+  };
+
+  const replaceSpacesWithHyphens = (breadcrumb) => {
+    return breadcrumb.toLowerCase().replace(/\s/g, "-");
+  };
+
+  let breadcrumbs = [];
+
+  if (segments[0] === "shop") {
+    breadcrumbs.push({ text: "Shop", link: "/shop" });
+
+    if (collectionId) {
+      breadcrumbs.push({
+        text: replaceHyphensWithSpaces(collectionId),
+        link: `/shop/${replaceSpacesWithHyphens(collectionId)}`,
+      });
+    }
+
+    if (itemId) {
+      breadcrumbs.push({
+        text: product.name,
+        link: `/shop/${replaceSpacesWithHyphens(collectionId)}/${itemId}`,
+      });
+    }
+  } else {
+    breadcrumbs.push({ text: "Home", link: "/" });
+
+    segments.forEach((segment) => {
+      breadcrumbs.push({
+        text: replaceHyphensWithSpaces(segment),
+        link: `/${replaceSpacesWithHyphens(segment)}`,
+      });
+    });
+  }
 
   return (
     <div className='breadcrumb-wrapper'>
       <ol>
-        <li className='breadcrumb-list-item'>
-          <Link to='/shop'>Shop</Link>
-        </li>
-
-        {collectionId && (
-          <li className='breadcrumb-list-item'>
-            <span className='breadcrumb-slash'>/</span>
-            {product ? (
-              <Link to={`/shop/${collectionId}`}>
-                <span className='collection-id'>{collectionId}</span>
-              </Link>
+        {breadcrumbs.map((breadcrumb, index) => (
+          <li key={index} className='breadcrumb-list-item'>
+            {index !== breadcrumbs.length - 1 ? (
+              <>
+                <Link to={breadcrumb.link}>{breadcrumb.text}</Link>
+                <span className='breadcrumb-slash'>/</span>
+              </>
             ) : (
-              <span>{collectionId}</span>
+              <span>{breadcrumb.text}</span>
             )}
           </li>
-        )}
-
-        {itemId && product && (
-          <li className='breadcrumb-list-item'>
-            <span className='breadcrumb-slash'>/</span>
-            <span>{product.name}</span>
-          </li>
-        )}
+        ))}
       </ol>
     </div>
   );
@@ -48,5 +78,5 @@ const mapStateToProps = createStructuredSelector({
 export default withRouter(connect(mapStateToProps, null)(Breadcrumb));
 
 Breadcrumb.propTypes = {
-  product: productType,
+  product: productDetailType,
 };

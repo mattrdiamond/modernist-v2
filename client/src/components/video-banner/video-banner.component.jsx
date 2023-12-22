@@ -38,7 +38,7 @@ function VideoBanner({ videoSrc, posterSrc = "", history }) {
       <div className='content-wrapper page-width'>
         <span className='subtitle'>Available Now</span>
         <h2 className='video-title'>Our all-new curtain&nbsp;lineup</h2>
-        <CustomButton white onClick={() => history.push("/shop/lighting")}>
+        <CustomButton white onClick={() => history.push("/shop/decor/53")}>
           Shop Now
         </CustomButton>
       </div>

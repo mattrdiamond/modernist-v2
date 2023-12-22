@@ -1,3 +1,5 @@
+@import "../../sharedStyles/breakpoints.scss";
+
 .modal-wrapper {
   position: fixed;
   top: 0;
@@ -49,7 +51,7 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: $mobile) {
   .modal-wrapper {
     .modal-box {
       padding: 2rem;

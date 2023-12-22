@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { productType } from "../../components/shared/sharedPropTypes";
+import { productDetailType } from "../../sharedPropTypes/sharedPropTypes";
 import Stepper from "../../components/stepper/stepper.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import ImageReloader from "../../components/image-loader/image-reloader.component";
@@ -149,7 +149,7 @@ export default function ProductPage({
 }
 
 ProductPage.propTypes = {
-  product: productType.isRequired,
+  product: productDetailType.isRequired,
   addItemWithOptions: PropTypes.func.isRequired,
   toggleCartHidden: PropTypes.func.isRequired,
   productReviews: PropTypes.array,

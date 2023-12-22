@@ -7,6 +7,7 @@ import "./section-heading.styles.scss";
 export default function SectionHeading({
   heading,
   subheading,
+  hideSubheadingOnMobile,
   buttonText,
   linkDestination,
 }) {
@@ -15,7 +16,14 @@ export default function SectionHeading({
     <div className='section-heading-wrapper'>
       <div className='section-heading-text'>
         <h2 className='heading'>{heading}</h2>
-        {subheading && <p className='subheading grey-text'>{subheading}</p>}
+        {subheading && (
+          <p
+            className={`subheading grey-text 
+            ${hideSubheadingOnMobile ? "mobile-hidden" : ""}`}
+          >
+            {subheading}
+          </p>
+        )}
       </div>
       {linkDestination && (
         <CustomButton textButton onClick={() => history.push(linkDestination)}>
@@ -31,4 +39,5 @@ SectionHeading.propTypes = {
   subheading: PropTypes.string,
   buttonText: PropTypes.string,
   linkDestination: PropTypes.string,
+  hideSubheadingOnMobile: PropTypes.bool,
 };

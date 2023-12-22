@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { productType } from "../../../components/shared/sharedPropTypes";
+import { productDetailType } from "../../../sharedPropTypes/sharedPropTypes";
 import StarRatingWithSku from "../../../components/star-rating/star-rating-with-sku.component";
 import AfterPayLogo from "../../../assets/icons/afterpay.svg";
 import Icon from "../../../components/icon/icon.component";
@@ -37,6 +37,6 @@ export default function ProductPageTopContent({
 }
 
 ProductPageTopContent.propTypes = {
-  product: productType.isRequired,
+  product: productDetailType.isRequired,
   priceWithOptions: PropTypes.number.isRequired,
 };

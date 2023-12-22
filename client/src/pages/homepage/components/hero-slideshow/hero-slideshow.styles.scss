@@ -306,7 +306,7 @@
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: $mobile) {
   .hero-slideshow {
     $vw-max-mobile: 500px;
     $vw-min-mobile: 350px;

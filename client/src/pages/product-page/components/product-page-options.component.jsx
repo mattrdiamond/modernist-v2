@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { optionPropType } from "../../../components/shared/sharedPropTypes";
+import { optionPropType } from "../../../sharedPropTypes/sharedPropTypes";
 import "./product-page-options.styles.scss";
 
 const Option = ({ category, option, selectedOptions, selectOption }) => {

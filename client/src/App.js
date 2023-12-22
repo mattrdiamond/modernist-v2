@@ -36,6 +36,9 @@ const SignInAndSignUpPage = lazy(() =>
 const FavoritesPage = lazy(() =>
   import("./pages/favorites/favorites.component")
 );
+const ShopTheLookPage = lazy(() =>
+  import("./pages/shop-the-look/shop-the-look.component")
+);
 const Confirmation = lazy(() =>
   import("./pages/confirmation/confirmation.component")
 );
@@ -92,6 +95,15 @@ const App = ({
               render={() => (
                 <ErrorBoundary>
                   <FavoritesPage />
+                </ErrorBoundary>
+              )}
+            />
+            <Route
+              exact
+              path='/shop-the-look'
+              render={() => (
+                <ErrorBoundary>
+                  <ShopTheLookPage />
                 </ErrorBoundary>
               )}
             />

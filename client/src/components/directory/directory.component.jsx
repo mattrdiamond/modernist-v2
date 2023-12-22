@@ -12,6 +12,7 @@ const Directory = ({ sections }) => {
       <SectionHeading
         heading='Shop by category.'
         subheading='Modern designs, crafted for every day adventures.'
+        hideSubheadingOnMobile
         buttonText='Shop All'
         linkDestination='/shop'
       />

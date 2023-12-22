@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { slidePropType } from "../shared/sharedPropTypes";
+import { slidePropType } from "../../sharedPropTypes/sharedPropTypes";
 import useIntersectionObserver from "../../hooks/use-intersection-observer";
 
 import SlideshowNavButtons from "./slideshow-nav-buttons.component";

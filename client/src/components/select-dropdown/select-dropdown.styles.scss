@@ -1,20 +1,12 @@
-$border-radius: 5px;
-$select-height: 45px;
-
 .select-component {
-  margin-bottom: 1.5rem;
+  $border-radius: 5px;
   font-size: 0.9rem;
   cursor: pointer;
 
   .select-header {
-    padding: 0 1rem;
-    border: 1px solid var(--primary-20);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    border-radius: $border-radius;
     position: relative;
-    height: $select-height;
     font-weight: var(--font-bold);
     color: var(--primary-85);
 
@@ -33,9 +25,8 @@ $select-height: 45px;
     box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.06);
     background-color: #fff;
     z-index: 1;
-    width: calc(100% + 2px);
-    top: $select-height;
-    left: -1px;
+    top: 1.75rem;
+    right: 0;
     border: 1px solid var(--primary-20);
     border-radius: $border-radius;
     font-weight: var(--font-normal);
@@ -44,6 +35,7 @@ $select-height: 45px;
   .select-list-item {
     list-style: none;
     padding: 0.5rem 1rem;
+    white-space: nowrap;
 
     &:hover {
       background-color: var(--primary-05);

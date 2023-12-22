@@ -6,15 +6,17 @@
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+  gap: 4rem;
 
   .heading {
     display: inline;
     margin-bottom: 0;
+    margin-right: 1rem;
   }
 
   .subheading {
     display: inline-block;
-    margin-left: 1rem;
+    margin-top: 0.25rem;
   }
 
   .custom-button {
@@ -23,31 +25,20 @@
   }
 }
 
-@media (max-width: $tablet) {
+@media (max-width: $mobile-large) {
   .section-heading-wrapper {
-    .heading,
-    .subheading {
-      display: block;
-    }
-
     .heading {
-      margin-bottom: 0.25rem;
+      margin-bottom: 0;
     }
 
-    .subheading {
-      margin-left: 0;
+    .subheading.mobile-hidden {
+      display: none;
     }
   }
 }
 
 @media (max-width: $mobile) {
   .section-heading-wrapper {
-    .heading {
-      margin-bottom: 0;
-    }
-
-    .subheading {
-      display: none;
-    }
+    gap: 1rem;
   }
 }

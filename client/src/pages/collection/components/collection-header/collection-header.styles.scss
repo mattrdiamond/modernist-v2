@@ -1,0 +1,14 @@
+.collection-header-wrapper {
+  padding-top: var(--window-top);
+
+  .heading-itemcount-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 1.5rem 0 0;
+  }
+
+  .collection-heading {
+    margin-bottom: 0;
+  }
+}
