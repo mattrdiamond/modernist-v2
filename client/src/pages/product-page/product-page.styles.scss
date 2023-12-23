@@ -34,6 +34,8 @@
     aspect-ratio: 1/1;
     background-color: var(--primary-07);
     line-height: 0;
+    max-height: 100vh;
+    width: 100%;
   }
 
   .col-right {
