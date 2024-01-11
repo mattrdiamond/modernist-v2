@@ -12,13 +12,22 @@ import BreadcrumbSortHeader from "../../components/breadcrumb-sort-header/breadc
 
 import "./collection.styles.scss";
 
-export default function CollectionPage({ title, collectionItems, heroImages }) {
+export default function CollectionPage({
+  title,
+  subtitle,
+  collectionItems,
+  heroImages,
+}) {
   const hasHeroImages = heroImages && Object.keys(heroImages).length > 0;
 
   return (
     <div className='collection-page'>
       {hasHeroImages ? (
-        <HeroImageHeader title={title} heroImages={heroImages} />
+        <HeroImageHeader
+          title={title}
+          subtitle={subtitle}
+          heroImages={heroImages}
+        />
       ) : (
         <div className='top-breadcrumb-container page-width'>
           <Breadcrumb />

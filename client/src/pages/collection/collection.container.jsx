@@ -41,6 +41,7 @@ const CollectionPageContainer = ({
     return (
       <CollectionPage
         title={collection.title}
+        subtitle={collection.subtitle}
         collectionItems={sortedCollectionItems}
         heroImages={collection.banner}
       />
