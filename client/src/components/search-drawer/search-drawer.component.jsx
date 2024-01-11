@@ -10,7 +10,10 @@ import {
   selectInputValue,
   selectInputHidden,
 } from "../../redux/search/search.selectors";
-import { selectAllCollectionItems } from "../../redux/shop/shop.selectors";
+import {
+  selectAllCollectionItems,
+  selectAreAllCollectionsLoaded,
+} from "../../redux/shop/shop.selectors";
 import {
   setInputValue,
   closeSearchDrawer,
@@ -29,6 +32,7 @@ const SearchDrawer = ({
   collectionItems,
   fetchCollectionsStart,
   closeSearchDrawer,
+  allCollectionsLoaded,
 }) => {
   const inputRef = useRef(null);
 
@@ -49,7 +53,7 @@ const SearchDrawer = ({
     const { value } = e.target;
 
     setInputValue(value);
-    if (!collectionItems.length) fetchCollectionsStart();
+    if (!allCollectionsLoaded) fetchCollectionsStart();
   };
 
   const handleClear = () => {
@@ -100,6 +104,7 @@ const mapStateToProps = createStructuredSelector({
   inputValue: selectInputValue,
   collectionItems: selectAllCollectionItems,
   inputHidden: selectInputHidden,
+  allCollectionsLoaded: selectAreAllCollectionsLoaded,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchDrawer);

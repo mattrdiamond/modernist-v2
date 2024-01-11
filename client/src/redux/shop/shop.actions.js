@@ -44,8 +44,8 @@ export const fetchProductFailure = (productId, error) => ({
   payload: { productId, error },
 });
 
-export const toggleDropdownHidden = () => ({
-  type: ShopActionTypes.TOGGLE_DROPDOWN_HIDDEN,
+export const toggleShopDropdown = () => ({
+  type: ShopActionTypes.TOGGLE_SHOP_DROPDOWN,
 });
 
 export const setSortParam = (param) => ({

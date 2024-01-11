@@ -1,6 +1,9 @@
 import React from "react";
 import { createStructuredSelector } from "reselect";
-import { selectAllCollectionItems } from "../../redux/shop/shop.selectors";
+import {
+  selectAllCollectionItems,
+  selectAreAllCollectionsLoaded,
+} from "../../redux/shop/shop.selectors";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
 import Spinner from "../../components/spinner/spinner.component";
 import ProductGrid from "../../components/product-grid/product-grid.component";
@@ -8,8 +11,13 @@ import getSearchResults from "../../utils/getSearchResults";
 import { connect } from "react-redux";
 import "./search-page.styles.scss";
 
-const SearchPage = ({ collectionItems, fetchCollectionsStart, location }) => {
-  if (!collectionItems.length) {
+const SearchPage = ({
+  collectionItems,
+  fetchCollectionsStart,
+  allCollectionsLoaded,
+  location,
+}) => {
+  if (!allCollectionsLoaded) {
     fetchCollectionsStart();
     return <Spinner />;
   }
@@ -43,6 +51,7 @@ const SearchPage = ({ collectionItems, fetchCollectionsStart, location }) => {
 
 const mapStateToProps = createStructuredSelector({
   collectionItems: selectAllCollectionItems,
+  allCollectionsLoaded: selectAreAllCollectionsLoaded,
 });
 
 const mapDispatchToProps = (dispatch) => ({

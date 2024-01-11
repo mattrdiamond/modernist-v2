@@ -17,6 +17,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetchingCollections: true,
+        collectionsError: null,
       };
     case ShopActionTypes.FETCH_COLLECTIONS_SUCCESS:
       return {
@@ -34,6 +35,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetchingCollections: true,
+        collectionsError: null,
       };
     case ShopActionTypes.FETCH_COLLECTION_SUCCESS:
       const collectionData = action.payload;
@@ -49,7 +51,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isFetchingCollections: false,
-        errorMessage: action.payload,
+        collectionsError: action.payload,
       };
     case ShopActionTypes.FETCH_PRODUCT_START:
       return {
@@ -86,7 +88,7 @@ const shopReducer = (state = INITIAL_STATE, action) => {
         },
         isFetchingProduct: false,
       };
-    case ShopActionTypes.TOGGLE_DROPDOWN_HIDDEN:
+    case ShopActionTypes.TOGGLE_SHOP_DROPDOWN:
       return {
         ...state,
         dropdownHidden: !state.dropdownHidden,

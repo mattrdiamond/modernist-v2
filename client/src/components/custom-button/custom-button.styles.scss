@@ -36,10 +36,10 @@
     background-color: transparent;
     color: inherit;
     border: thin solid;
+    border-color: var(--primary-20);
 
     &:hover {
-      color: var(--primary-100);
-      border-color: var(--primary-100);
+      border-color: var(--primary-85);
     }
   }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { heroBannerPropType } from "../../../../sharedPropTypes/sharedPropTypes";
 
 import ImageReloader from "../../../../components/image-loader/image-reloader.component";
 import "./hero-image-header.styles.scss";
@@ -24,8 +25,5 @@ export default function HeroImageHeader({ title, heroImages }) {
 
 HeroImageHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  heroImages: PropTypes.shape({
-    large: PropTypes.string.isRequired,
-    small: PropTypes.string.isRequired,
-  }).isRequired,
+  heroImages: heroBannerPropType.isRequired,
 };

@@ -12,9 +12,9 @@ import {
 } from "../../redux/cart/cart.actions";
 import { fetchReviewsStart } from "../../redux/reviews/reviews.actions";
 import { fetchProductStart } from "../../redux/shop/shop.actions";
-import CustomButton from "../../components/custom-button/custom-button.component";
 import WithSpinner from "../../components/with-spinner/with-spinner.component";
 import ProductPage from "../../pages/product-page/product-page.component";
+import ErrorMessage from "../../components/error-message/error-message.component";
 
 import "./product-page.styles.scss";
 
@@ -46,12 +46,7 @@ const ProductPageContainer = ({
   return (
     <>
       {errorMessage ? (
-        <div className='error-container'>
-          <h1>Product not found.</h1>
-          <CustomButton onClick={() => history.push(`/shop/${collectionId}`)}>
-            {`Back to ${collectionId}`}
-          </CustomButton>
-        </div>
+        <ErrorMessage errorType='productNotFound' />
       ) : (
         <ProductPageWithSpinner
           isLoading={!product || Object.keys(product).length === 0} // Display spinner if product doesn't exist or if the data is not available yet.

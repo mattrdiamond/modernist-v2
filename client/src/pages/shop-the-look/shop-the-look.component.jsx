@@ -1,76 +1,33 @@
-import React, { useEffect, useState } from "react";
-import { createStructuredSelector } from "reselect";
-import PropTypes from "prop-types";
-import { hotspotData } from "../../components/curated-room/hotspot-data";
-import { connect } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
+
+import { selectSortedHotspotItems } from "../../redux/shop/shop.selectors";
+
 import Spinner from "../../components/spinner/spinner.component";
-
-import {
-  selectCollections,
-  selectAreAllCollectionsLoaded,
-} from "../../redux/shop/shop.selectors";
-import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
-
+import ErrorMessage from "../../components/error-message/error-message.component";
 import CollectionPage from "../collection/collection.component";
 
-const ShopTheLook = ({
-  fetchCollectionsStart,
-  allCollectionsLoaded,
-  hotspots,
-  collections,
-}) => {
-  const [shopTheLookProducts, setShopTheLookProducts] = useState([]);
+import useFetchAllCollections from "../../hooks/use-fetch-all-collections";
 
-  useEffect(() => {
-    if (!allCollectionsLoaded) {
-      fetchCollectionsStart();
-    }
-  }, [fetchCollectionsStart, allCollectionsLoaded]);
+const ShopTheLook = () => {
+  const hotspotCollectionItems = useSelector(selectSortedHotspotItems);
 
-  useEffect(() => {
-    if (!allCollectionsLoaded || !hotspots) return;
+  const { loading, error } = useFetchAllCollections();
 
-    const hotspotProductData = hotspots.map((hotspot) => {
-      const collection = collections[hotspot.collection];
-
-      const product = collection?.items?.find(
-        (item) => item.id === hotspot.shopId
-      );
-
-      return product || null;
-    });
-
-    setShopTheLookProducts(hotspotProductData);
-  }, [collections, hotspots, allCollectionsLoaded]);
-
-  return allCollectionsLoaded ? (
-    <CollectionPage
-      title='Shop the look'
-      collectionItems={shopTheLookProducts}
-    />
-  ) : (
-    <Spinner />
-  );
+  if (loading && !error) {
+    return <Spinner />;
+  } else if (error) {
+    return <ErrorMessage errorType='loading' />;
+  } else if (hotspotCollectionItems && hotspotCollectionItems?.length > 0) {
+    return (
+      <CollectionPage
+        title='Shop the look'
+        collectionItems={hotspotCollectionItems}
+      />
+    );
+  } else {
+    return <ErrorMessage errorType='noItemsFound' />;
+  }
 };
 
-const mapStateToProps = createStructuredSelector({
-  allCollectionsLoaded: selectAreAllCollectionsLoaded,
-  collections: selectCollections,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionsStart: () => dispatch(fetchCollectionsStart()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShopTheLook);
-
-ShopTheLook.propTypes = {
-  fetchCollectionsStart: PropTypes.func.isRequired,
-  allCollectionsLoaded: PropTypes.bool.isRequired,
-  hotspots: PropTypes.array,
-  collections: PropTypes.object,
-};
-
-ShopTheLook.defaultProps = {
-  hotspots: hotspotData,
-};
+export default ShopTheLook;

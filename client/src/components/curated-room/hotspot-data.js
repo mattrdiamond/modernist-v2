@@ -1,3 +1,4 @@
+// TO DO: Move hotspotData to database
 export const hotspotData = [
   {
     id: 1,

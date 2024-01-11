@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { productTagPropType } from "../../sharedPropTypes/sharedPropTypes";
 import "./product-tag.styles.scss";
 
 export default function ProductTag({ tags, tagStyle = "default" }) {
@@ -30,10 +31,6 @@ export default function ProductTag({ tags, tagStyle = "default" }) {
 }
 
 ProductTag.propTypes = {
-  tags: PropTypes.shape({
-    new: PropTypes.bool,
-    bestseller: PropTypes.bool,
-    "top-rated": PropTypes.bool,
-  }),
+  tags: productTagPropType,
   tagStyle: PropTypes.string,
 };

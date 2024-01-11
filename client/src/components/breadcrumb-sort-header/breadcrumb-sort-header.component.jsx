@@ -12,25 +12,29 @@ import ItemCount from "../item-count/item-count.component";
 import Breadcrumb from "../breadcrumb/breadcrumb.component";
 import useIntersectionObserver from "../../hooks/use-intersection-observer";
 
-import "./breadcrumb-sort-header.styles.scss";
+import "./breadcrumb-sort-header..styles.scss";
 
-const BreadcrumbSortHeader = ({ resultsCount, sortParam, setSortParam }) => {
+const BreadcrumbSortHeader = ({
+  resultsCount,
+  sortParam,
+  setSortParam,
+  heading,
+}) => {
   const history = useHistory();
   const [isSticky, setIsSticky] = useState(false);
+
   const { targetRef, isIntersecting } = useIntersectionObserver({
     rootMargin: "-66px 0px 0px 0px", // navheight (65px) + 1px border = 66px
     threshold: 1,
   });
 
   useEffect(() => {
-    // Clear sort param when url changes
     let unlisten = history.listen(() => {
       if (sortParam) {
         setSortParam("");
       }
     });
 
-    // When component unmounts, stop listening for changes
     return () => unlisten();
   }, [history, sortParam, setSortParam]);
 
@@ -43,11 +47,14 @@ const BreadcrumbSortHeader = ({ resultsCount, sortParam, setSortParam }) => {
       className={`breadcrumb-sort-header ${isSticky ? "sticky" : ""}`}
       ref={targetRef}
     >
-      <div className='breadcrumb-sort-wrapper page-width'>
-        <Breadcrumb />
-        <div className='breadcrumb-sort-right-col'>
+      <div className={`header-flex-container page-width`}>
+        <div className='header-col-left'>
+          {heading && !isSticky && <h2>{heading}</h2>}
+          {(!heading || isSticky) && <Breadcrumb />}
+        </div>
+        <div className='header-col-right'>
           <ItemCount count={resultsCount} />
-          <div className='dropdown-wrapper'>
+          <div className='sort-dropdown-wrapper'>
             <SelectDropdown
               options={sortOptions}
               handleSelect={setSortParam}
@@ -85,4 +92,5 @@ BreadcrumbSortHeader.propTypes = {
     PropTypes.string,
   ]),
   setSortParam: PropTypes.func.isRequired,
+  heading: PropTypes.string,
 };

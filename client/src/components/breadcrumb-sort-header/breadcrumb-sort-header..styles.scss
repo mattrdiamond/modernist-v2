@@ -12,16 +12,17 @@
     border-bottom: 1px solid var(--primary-10);
   }
 
-  .breadcrumb-sort-wrapper {
+  .header-flex-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  .breadcrumb-sort-right-col {
+  .header-col-right {
     display: flex;
     gap: 1rem;
     align-items: baseline;
+    justify-content: space-between;
   }
 
   .item-count {
