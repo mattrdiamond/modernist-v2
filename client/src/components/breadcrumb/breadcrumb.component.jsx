@@ -25,7 +25,12 @@ const Breadcrumb = ({ product }) => {
     };
 
     let updatedBreadcrumbs = [];
-    let specialShopPages = ["bestsellers", "top-rated", "new-arrivals"];
+    let specialShopPages = [
+      "bestsellers",
+      "top-rated",
+      "new-arrivals",
+      "shop-the-look",
+    ];
 
     if (segments[0] === "shop") {
       updatedBreadcrumbs.push({ text: "Shop", link: "/shop" });

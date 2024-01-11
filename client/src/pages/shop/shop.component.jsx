@@ -21,6 +21,9 @@ const TopRatedPageContainer = lazy(() =>
 const NewArrivalsPageContainer = lazy(() =>
   import("../new-arrivals/new-arrivals-page.container")
 );
+const ShopTheLookPage = lazy(() =>
+  import("../shop-the-look/shop-the-look.component")
+);
 
 const ShopPage = ({ match }) => {
   return (
@@ -60,6 +63,15 @@ const ShopPage = ({ match }) => {
             render={(props) => (
               <ErrorBoundary>
                 <NewArrivalsPageContainer {...props} />
+              </ErrorBoundary>
+            )}
+          />
+          <Route
+            exact
+            path={`${match.path}/shop-the-look`}
+            render={(props) => (
+              <ErrorBoundary>
+                <ShopTheLookPage {...props} />
               </ErrorBoundary>
             )}
           />
