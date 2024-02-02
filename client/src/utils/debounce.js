@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 /**
  * Debounces a function, ensuring it's only called after a specified delay.
  *
@@ -16,8 +14,3 @@ export default function debounce(func, delay) {
     }, delay);
   };
 }
-
-debounce.propTypes = {
-  func: PropTypes.func.isRequired,
-  delay: PropTypes.number.isRequired,
-};

@@ -6,10 +6,7 @@ import {
   selectProductById,
   selectProductErrorMessage,
 } from "../../redux/shop/shop.selectors";
-import {
-  addItemWithOptions,
-  toggleCartHidden,
-} from "../../redux/cart/cart.actions";
+import { toggleCartHidden, addItemToCart } from "../../redux/cart/cart.actions";
 import { fetchReviewsStart } from "../../redux/reviews/reviews.actions";
 import { fetchProductStart } from "../../redux/shop/shop.actions";
 import WithSpinner from "../../components/with-spinner/with-spinner.component";
@@ -71,8 +68,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addItemWithOptions: (itemWithOptions) =>
-    dispatch(addItemWithOptions(itemWithOptions)),
+  addItemToCart: (item, quantity) => dispatch(addItemToCart(item, quantity)),
   toggleCartHidden: () => dispatch(toggleCartHidden()),
   fetchProductStart: (productId) => dispatch(fetchProductStart(productId)),
   fetchReviewsStart: (productId) => dispatch(fetchReviewsStart(productId)),

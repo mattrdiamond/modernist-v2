@@ -11,7 +11,7 @@
     color 0.2s ease;
   justify-content: center;
   font-weight: var(--font-bold);
-  border-radius: 1px;
+  border-radius: var(--border-radius);
 
   &:hover {
     background-color: var(--primary-100);
@@ -20,6 +20,7 @@
   &:disabled {
     background-color: var(--primary-10);
     color: var(--primary-40);
+    cursor: default;
   }
 
   &.google-sign-in {
@@ -52,6 +53,16 @@
     }
   }
 
+  &.transparent {
+    background-color: transparent;
+    color: var(--primary-85);
+    padding: 0.75rem;
+
+    &:disabled {
+      color: var(--primary-40);
+    }
+  }
+
   &.submit {
     background: none;
     color: var(--primary-85);
@@ -59,7 +70,6 @@
 
     &:disabled {
       color: var(--primary-40);
-      cursor: default;
     }
   }
 

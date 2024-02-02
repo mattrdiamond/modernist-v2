@@ -1,12 +1,11 @@
 .checkout-summary-wrapper {
   --summary-spacing: 0.75rem;
   margin-bottom: 1.5rem;
-  border: 1px solid var(--primary-20);
-  padding: 1.5rem;
 
   .summary-title {
     margin: 0 0 1rem;
     font-size: 1.5rem;
+    line-height: 1;
   }
 
   .summary-item-container {
@@ -16,6 +15,7 @@
   .summary-item-category {
     border-bottom: 1px solid var(--primary-20);
     padding-bottom: var(--summary-spacing);
+    // font-size: 0.9rem;
 
     + .summary-item-category {
       margin-top: var(--summary-spacing);

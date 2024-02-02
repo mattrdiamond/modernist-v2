@@ -38,7 +38,7 @@ export default function Review({
       <StarRating rating={rating} maxRating={5} starSize='0.875rem' />
       <h5 className='review-headline'>{headline}</h5>
       <p
-        className={`review-text ${showFullReview ? "expanded" : ""}`}
+        className={`review-text grey-text${showFullReview ? "expanded" : ""}`}
         ref={reviewTextRef}
       >
         {reviewText}

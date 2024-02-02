@@ -4,11 +4,16 @@
   padding: 1rem 0;
   display: flex;
 
+  &:last-of-type {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+
   .content-wrapper {
     display: flex;
     flex-wrap: wrap;
     width: calc(100% - 8rem);
-    gap: var(--cart-col-gap);
+    gap: var(--bag-column-gap);
   }
 
   .item-img {
@@ -41,8 +46,16 @@
     text-transform: capitalize;
   }
 
-  .price {
+  .original-price,
+  .discounted-price {
     font-weight: var(--font-semibold);
+  }
+
+  .original-price.strikethrough {
+    font-weight: var(--font-normal);
+    text-decoration: line-through;
+    font-size: 0.875rem;
+    color: var(--primary-70);
   }
 
   .remove-button {

@@ -10,7 +10,7 @@ const SignInToAddFav = ({ closeModal, history }) => {
     <ModalShell>
       <h1>Save this product</h1>
       <p>Please login or register to save your&nbsp;Favorites.</p>
-      <div className="modal-button-container">
+      <div className='modal-button-container'>
         <CustomButton
           onClick={() => {
             history.push("/signin");
@@ -19,7 +19,7 @@ const SignInToAddFav = ({ closeModal, history }) => {
         >
           Sign In
         </CustomButton>
-        <CustomButton onClick={closeModal} inverted>
+        <CustomButton onClick={closeModal} buttonStyle='inverted'>
           Cancel
         </CustomButton>
       </div>

@@ -17,16 +17,16 @@ export default function ProductTag({ tags, tagStyle = "default" }) {
   };
 
   const tagStyles = {
-    default: "product-tag",
+    default: "product-detail-tag",
     "collection-item": "collection-item-tag",
   };
 
   return (
-    <>
+    <div className='product-tag'>
       <span className={tagStyles[tagStyle] || tagStyles["default"]}>
         {getHighestPriorityTag(tags)}
       </span>
-    </>
+    </div>
   );
 }
 

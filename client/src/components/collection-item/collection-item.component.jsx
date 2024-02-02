@@ -6,7 +6,7 @@ import ProductTag from "../product-tag/product-tag.component";
 import "./collection-item.styles.scss";
 
 const CollectionItem = ({ item }) => {
-  const { name, price, collection, images, tags } = item;
+  const { name, price, collection, images, tags, hasOptions } = item;
 
   return (
     <div className='collection-item'>
@@ -14,12 +14,21 @@ const CollectionItem = ({ item }) => {
         <ImageLoader src={images.small} alt={name} styles='image' withSpinner />
       </Link>
       <FavoritingButton item={item} />
-      {tags && Object.keys(tags).length > 0 && (
-        <ProductTag tags={tags} tagStyle='collection-item' />
-      )}
-      <div className='collection-footer'>
-        <span className='name'>{name}</span>
-        <span className='price'>${price}</span>
+      <div className='collection-item-footer'>
+        <div className='collection-item-footer__col-1'>
+          {tags && Object.keys(tags).length > 0 && (
+            <ProductTag tags={tags} tagStyle='collection-item' />
+          )}
+          <Link to={`/shop/${collection}/${item.id}`}>
+            <span className='collection-item-name'>{name}</span>
+          </Link>
+          <span className='collection-item-price'>${price.toFixed(2)}</span>
+        </div>
+        {hasOptions && (
+          <Link to={`/shop/${collection}/${item.id}`}>
+            <span className='collection-item-more-options'>+ More Options</span>
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
@@ -60,7 +60,6 @@ const Header = ({
 
   const handleShopClick = () => {
     shopLinkRef.current.blur();
-    toggleShopDropdown();
   };
 
   const handleShopMouseLeave = () => {
@@ -68,6 +67,32 @@ const Header = ({
       toggleShopDropdown();
     }
   };
+
+  const handleShopTouchStart = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (shopDropdownHidden) {
+        toggleShopDropdown();
+      }
+    },
+    [shopDropdownHidden, toggleShopDropdown]
+  );
+
+  useEffect(() => {
+    const shopLink = shopLinkRef.current;
+
+    if (shopLink) {
+      shopLink.addEventListener("touchstart", handleShopTouchStart, {
+        passive: false,
+      });
+    }
+
+    return () => {
+      if (shopLink) {
+        shopLink.removeEventListener("touchstart", handleShopTouchStart);
+      }
+    };
+  }, [handleShopTouchStart]);
 
   return (
     <nav className='header'>
@@ -82,7 +107,7 @@ const Header = ({
           <li className='nav-link-wrapper'>
             {currentUser ? (
               <div
-                className='nav-link'
+                className='nav-link sign-in-out'
                 tabIndex='0'
                 onClick={signOutStart}
                 onKeyDown={(e) => handleKeyPress(e, signOutStart)}
@@ -90,7 +115,7 @@ const Header = ({
                 Sign Out
               </div>
             ) : (
-              <Link className='nav-link' to='/signin'>
+              <Link className='nav-link sign-in-out' to='/signin'>
                 Sign In
               </Link>
             )}
@@ -120,7 +145,12 @@ const Header = ({
         <div className='nav-links right'>
           <div className='nav-link-wrapper desktop-only'>
             <Link className='nav-icon' to='/favorites'>
-              <Icon icon='favorites-desktop' width='20px' height='20px' />
+              <Icon
+                icon='favorites-desktop'
+                title='favorites'
+                width='20px'
+                height='20px'
+              />
             </Link>
           </div>
           <div className='nav-link-wrapper desktop-only'>

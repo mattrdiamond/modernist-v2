@@ -57,6 +57,11 @@ export const productDetailType = PropTypes.shape({
   price: PropTypes.number.isRequired,
   options: PropTypes.array,
   sku: PropTypes.number.isRequired,
+  tags: PropTypes.shape({
+    bestseller: PropTypes.bool,
+    topRated: PropTypes.bool,
+    new: PropTypes.bool,
+  }),
 });
 
 export const heroBannerPropType = PropTypes.shape({
@@ -114,3 +119,12 @@ export const errorPropType = PropTypes.oneOfType([
 export const screenSizePropTypes = PropTypes.string.isRequired;
 
 export const slidePropType = PropTypes.arrayOf(PropTypes.node);
+
+export const promoDataPropType = PropTypes.shape({
+  discount: PropTypes.number,
+  code: PropTypes.string,
+  discountType: PropTypes.oneOf(["percentage", "fixed"]),
+  message: PropTypes.string,
+});
+
+export const appliedPromosPropType = PropTypes.arrayOf(PropTypes.string);

@@ -39,6 +39,7 @@
   --shadow-color: rgba(0, 0, 0, 0.2);
   --box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
   --overlay: rgba(0, 0, 20, 0.4);
+  --border-radius: 1px;
   /*-- typography --*/
   --font-text: "proxima_nova", Helvetica, sans-serif;
   --font-text-cond: "proxima_nova_condensedmedium", Helvetica, sans-serif;
@@ -55,12 +56,6 @@
   --max-element-width: 2600px;
   --page-margin-x: 2rem;
   --section-margin-y: 4rem;
-}
-
-@media (max-width: 1320px) {
-  :root {
-    --page-margin-x: 4%;
-  }
 }
 
 @media (max-width: 800px) {

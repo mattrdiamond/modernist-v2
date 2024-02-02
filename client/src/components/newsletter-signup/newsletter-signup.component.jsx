@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import FormInput from "../form-input/form-input.component";
-import CustomButton from "../custom-button/custom-button.component";
-import Spinner from "../spinner/spinner.component";
+import CustomButtonWithSpinner from "../custom-button/custom-button-with-spinner.component";
 import { newsletter2x, newsletter1x } from "../../assets/img/_images";
 import useIntersectionObserver from "../../hooks/use-intersection-observer";
 import "./newsletter-signup.styles.scss";
@@ -158,20 +157,18 @@ const NewsletterSignup = () => {
                 required
               >
                 <div className='btn-container'>
-                  {loading ? (
-                    <Spinner />
-                  ) : (
-                    <CustomButton
-                      type='submit'
-                      value='Subscribe'
-                      name='subscribe'
-                      id='mc-embedded-subscribe'
-                      disabled={!email}
-                      submit
-                    >
-                      Submit
-                    </CustomButton>
-                  )}
+                  <CustomButtonWithSpinner
+                    isLoading={loading}
+                    buttonStyle='transparent'
+                    type='submit'
+                    name='subscribe'
+                    value='Subscribe'
+                    id='mc-embedded-subscribe'
+                    onClick={handleSubmit}
+                    disabled={!email}
+                  >
+                    Submit
+                  </CustomButtonWithSpinner>
                 </div>
               </FormInput>
             ) : null}

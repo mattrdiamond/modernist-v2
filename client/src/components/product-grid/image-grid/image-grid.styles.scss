@@ -1,7 +1,7 @@
 .image-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 3rem 1rem;
+  grid-gap: 3rem 1.5rem;
 }
 
 @media (max-width: 975px) {
@@ -11,10 +11,18 @@
   }
 }
 
-@media (max-width: 499px) {
+@media (max-width: 599px) {
   .image-grid {
     .favorite-button {
-      display: none;
+      top: 0.5rem;
+      right: 0.5rem;
+      width: 1.875rem;
+      height: 1.875rem;
+    }
+
+    .heart {
+      width: 18px;
+      height: 18px;
     }
   }
 }

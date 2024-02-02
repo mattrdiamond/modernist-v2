@@ -1,57 +1,41 @@
 import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { promoCode } from "../../utils/constants";
+import { appliedPromosPropType } from "../../sharedPropTypes/sharedPropTypes";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   selectInput,
-  selectError,
-  selectPromoApplied,
+  selectPromoError,
+  selectCodeValidationLoading,
 } from "../../redux/promo/promo.selectors";
 import {
   setPromoInputValue,
-  throwError,
-  clearError,
-  applyPromo,
+  validatePromoStart,
 } from "../../redux/promo/promo.actions";
 
-import CustomButton from "../../components/custom-button/custom-button.component";
 import FormInput from "../../components/form-input/form-input.component";
 import Icon from "../../components/icon/icon.component";
 import AccordionGroup from "../accordion/accordion-group.component";
 import Accordion from "../accordion/accordion.component";
+import CouponTag from "./components/coupon-tag/coupon-tag.component";
+import CustomButtonWithSpinner from "../custom-button/custom-button-with-spinner.component";
 
 import "./promo-form.styles.scss";
 
-const PromoForm = ({
-  inputValue,
-  error,
-  throwError,
-  clearError,
-  setInputValue,
-  applyPromo,
-  promoApplied,
-}) => {
+const PromoForm = ({ appliedPromos }) => {
+  const inputValue = useSelector(selectInput);
+  const error = useSelector(selectPromoError);
+  const codeValidationLoading = useSelector(selectCodeValidationLoading);
+
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     const { value } = e.target;
-
-    if (error) {
-      return clearError(value);
-    }
-    setInputValue(value);
+    dispatch(setPromoInputValue(value));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue.toLowerCase() !== promoCode.toLowerCase()) {
-      return throwError("Your promo could not be applied. Please try again!");
-    } else if (
-      inputValue.toLowerCase() === promoCode.toLowerCase() &&
-      promoApplied
-    ) {
-      return throwError("Promo has already been applied.");
-    }
-    applyPromo();
+    dispatch(validatePromoStart(inputValue));
   };
 
   return (
@@ -61,7 +45,7 @@ const PromoForm = ({
           title='Add Promo Code'
           customTitle={
             <span className='promo-accordion-title'>
-              <Icon icon='promo' />
+              <Icon icon='promo' width='1rem' height='1rem' />
               Add Promo Code
             </span>
           }
@@ -75,14 +59,15 @@ const PromoForm = ({
               placeholder='Promo or gift card'
               required
             >
-              <CustomButton
+              <CustomButtonWithSpinner
+                isLoading={codeValidationLoading}
+                buttonStyle='transparent'
                 type='button'
                 onClick={handleSubmit}
                 disabled={!inputValue}
-                submit
               >
                 Apply
-              </CustomButton>
+              </CustomButtonWithSpinner>
             </FormInput>
           </form>
           {error ? (
@@ -90,32 +75,18 @@ const PromoForm = ({
               <span className='error'>{error}</span>
             </div>
           ) : null}
-          {promoApplied ? (
-            <div className='success-container'>
-              <Icon icon='check' />
-              <div className='success-text'>
-                <span className='promo-name'>{promoCode}</span>
-                <p className='success-details'>20% off your entire purchase</p>
-              </div>
-            </div>
-          ) : null}
+          {appliedPromos.length > 0 &&
+            appliedPromos.map((appliedCode) => (
+              <CouponTag key={appliedCode} promoCode={appliedCode} />
+            ))}
         </Accordion>
       </AccordionGroup>
     </div>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  inputValue: selectInput,
-  error: selectError,
-  promoApplied: selectPromoApplied,
-});
+export default PromoForm;
 
-const mapDispatchToProps = (dispatch) => ({
-  throwError: (error) => dispatch(throwError(error)),
-  setInputValue: (input) => dispatch(setPromoInputValue(input)),
-  clearError: (input) => dispatch(clearError(input)),
-  applyPromo: () => dispatch(applyPromo()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(PromoForm);
+PromoForm.propTypes = {
+  appliedPromos: appliedPromosPropType,
+};

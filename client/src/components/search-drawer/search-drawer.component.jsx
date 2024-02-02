@@ -88,7 +88,7 @@ const SearchDrawer = ({
       </SearchInput>
 
       <button className='close-button ignore-co-search' onClick={handleClose}>
-        <Icon icon='collapse' />
+        <Icon icon='collapse' title='collapse' />
       </button>
     </div>
   );

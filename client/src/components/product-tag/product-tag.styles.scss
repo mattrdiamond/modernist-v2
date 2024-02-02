@@ -1,22 +1,18 @@
 .product-tag {
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  color: var(--primary-50);
-  font-size: 0.8rem;
-  display: block;
-  margin-bottom: 0.75rem;
-}
+  .product-detail-tag {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--primary-65);
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
 
-.collection-item-tag {
-  color: var(--white);
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  background-color: #996c49; // citizenry bronze
-  padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
-  font-weight: var(--font-semibold);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  border-radius: 0.125rem;
+  .collection-item-tag {
+    font-size: 0.75rem;
+    font-weight: var(--font-bold);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.25rem;
+  }
 }

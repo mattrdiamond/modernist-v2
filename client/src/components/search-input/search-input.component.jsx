@@ -4,11 +4,11 @@ import "./search-input.styles.scss";
 
 const SearchInput = forwardRef(
   ({ handleChange, handleClear, inputValue, children, ...otherProps }, ref) => (
-    <div className="search-wrapper">
-      <Icon icon="search" />
-      <div className="form-wrapper">
+    <div className='search-wrapper'>
+      <Icon icon='search' title='search' />
+      <div className='form-wrapper'>
         <input
-          className="search-input"
+          className='search-input'
           onChange={handleChange}
           ref={ref}
           {...otherProps}
@@ -16,12 +16,12 @@ const SearchInput = forwardRef(
         {children}
       </div>
       <button
-        className="clear-btn ignore-co-search"
+        className='clear-btn ignore-co-search'
         onClick={handleClear}
         disabled={!inputValue}
         tabIndex={inputValue ? 0 : -1}
       >
-        <Icon icon="close" />
+        <Icon icon='close' title='close' />
       </button>
     </div>
   )

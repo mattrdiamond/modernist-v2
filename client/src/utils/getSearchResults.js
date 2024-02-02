@@ -1,5 +1,3 @@
-import PropTypes from "prop-types";
-
 /**
  * Removes special characters and extra whitespace from a string.
  *
@@ -30,8 +28,3 @@ export default function getSearchResults(input, shopItems) {
     return itemName.match(wordsThatStartWithQuery);
   });
 }
-
-getSearchResults.propTypes = {
-  input: PropTypes.string,
-  shopItems: PropTypes.arrayOf(PropTypes.object),
-};

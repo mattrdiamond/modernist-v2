@@ -104,7 +104,7 @@ const Footer = ({ sections }) => {
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <Icon icon='twitter' />
+                <Icon icon='twitter' title='twitter' />
               </a>
               <a
                 className='icon-link'
@@ -112,7 +112,7 @@ const Footer = ({ sections }) => {
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <Icon icon='facebook' />
+                <Icon icon='facebook' title='facebook' />
               </a>
               <a
                 className='icon-link'
@@ -120,7 +120,7 @@ const Footer = ({ sections }) => {
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <Icon icon='instagram' />
+                <Icon icon='instagram' title='instagram' />
               </a>
             </div>
           </div>

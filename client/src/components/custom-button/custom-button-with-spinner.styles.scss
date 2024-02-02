@@ -1,0 +1,21 @@
+.custom-button.with-spinner {
+  position: relative;
+
+  &.loading {
+    .button-text {
+      visibility: hidden;
+    }
+  }
+
+  .spinner-overlay {
+    height: 80%;
+    width: 80%;
+    position: absolute;
+  }
+
+  .spinner-container {
+    height: 100%;
+    width: unset;
+    aspect-ratio: 1/1;
+  }
+}

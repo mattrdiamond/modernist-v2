@@ -91,7 +91,7 @@ Slideshow.propTypes = {
 Slideshow.defaultProps = {
   className: "",
   interval: 4000,
-  showNavButtons: true,
+  showNavButtons: false,
   darkenBottom: false,
   autoPlay: false,
 };

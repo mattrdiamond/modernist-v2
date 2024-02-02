@@ -2,12 +2,18 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { shopDropdownImages } from "./shop-dropdown-images";
 import useLockBodyScroll from "../../hooks/use-lock-body-scroll";
+import useOnClickOutside from "../../hooks/use-onclick-outside";
 import "./shop-dropdown.styles.scss";
 
 const ShopDropdown = ({ toggleShopDropdown, sections }) => {
   const shopDropdownRef = useRef(null);
 
   useLockBodyScroll();
+
+  useOnClickOutside({
+    ref: shopDropdownRef,
+    handler: toggleShopDropdown,
+  });
 
   const handleKeyDown = (e) => {
     const links = shopDropdownRef.current.querySelectorAll("a");
@@ -20,7 +26,6 @@ const ShopDropdown = ({ toggleShopDropdown, sections }) => {
 
   const handleClick = (e) => {
     let clickedElement = e.target;
-
     // close shop dropdown when clicking a link
     while (clickedElement) {
       if (
@@ -35,10 +40,22 @@ const ShopDropdown = ({ toggleShopDropdown, sections }) => {
     }
   };
 
+  const handleMouseEnter = () => {
+    if (
+      !(
+        "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        navigator.msMaxTouchPoints > 0
+      )
+    ) {
+      toggleShopDropdown();
+    }
+  };
+
   return (
     <section
       className='shop-dropdown-wrapper'
-      onMouseEnter={toggleShopDropdown}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={toggleShopDropdown}
       onKeyDown={handleKeyDown}
       onClick={handleClick}

@@ -14,7 +14,7 @@ import "./product-page.styles.scss";
 
 export default function ProductPage({
   product,
-  addItemWithOptions,
+  addItemToCart,
   toggleCartHidden,
   productReviews,
 }) {
@@ -40,7 +40,7 @@ export default function ProductPage({
       quantity,
       price: priceWithOptions,
     };
-    addItemWithOptions(itemWithOptions);
+    addItemToCart(itemWithOptions, quantity);
     toggleCartHidden();
   };
 
@@ -150,7 +150,7 @@ export default function ProductPage({
 
 ProductPage.propTypes = {
   product: productDetailType.isRequired,
-  addItemWithOptions: PropTypes.func.isRequired,
+  addItemToCart: PropTypes.func.isRequired,
   toggleCartHidden: PropTypes.func.isRequired,
   productReviews: PropTypes.array,
 };

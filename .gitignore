@@ -19,7 +19,7 @@
 /client/.env.test.local
 /client/.env.production.local
 
-
+/config
 .env
 
 /client/npm-debug.log*

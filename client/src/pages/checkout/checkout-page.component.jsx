@@ -1,113 +1,71 @@
 import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { promoDataPropType } from "../../sharedPropTypes/sharedPropTypes";
+import { useSelector } from "react-redux";
 
-import { createStructuredSelector } from "reselect";
 import {
-  selectCartItems,
   selectCartSubtotal,
   getTotalQuantity,
   getShipping,
   getTax,
-  getDiscount,
   getTotal,
+  selectCartItemsWithDiscounts,
+  selectTotalDiscount,
 } from "../../redux/cart/cart.selectors";
-import { selectCurrentUser } from "../../redux/user/user.selectors";
-import { selectPromoApplied } from "../../redux/promo/promo.selectors";
+import { selectAppliedPromos } from "../../redux/promo/promo.selectors";
 
-import CheckoutItem from "../../components/checkout-item/checkout-item.component";
-import CustomButton from "../../components/custom-button/custom-button.component";
 import PromoForm from "../../components/promo-form/promo-form.component";
 import PromoBanner from "../../components/promo-banner/promo-banner.component";
-import CheckoutSummary from "./components/checkout-summary.component";
+import CheckoutSummary from "./components/checkout-summary/checkout-summary.component";
+import EmptyBagMessage from "./components/empty-bag-message/empty-bag-message";
+import CheckoutShoppingBag from "./components/checkout-shopping-bag/checkout-shopping-bag.component";
 
 import "./checkout-page.styles.scss";
 
-const CheckoutPage = ({
-  cartItems,
-  cartSubtotal,
-  promoApplied,
-  totalQuantity,
-  shipping,
-  tax,
-  discount,
-  total,
-}) => {
+const CheckoutPage = ({ promoData }) => {
+  const cartSubtotal = useSelector(selectCartSubtotal);
+  const appliedPromos = useSelector(selectAppliedPromos);
+  const totalQuantity = useSelector(getTotalQuantity);
+  const shipping = useSelector(getShipping);
+  const tax = useSelector(getTax);
+  const total = useSelector(getTotal);
+  const cartItemsWithDiscounts = useSelector(selectCartItemsWithDiscounts);
+  const totalDiscount = useSelector(selectTotalDiscount);
+
   return (
     <div className='checkout-page-container'>
-      <PromoBanner promoCode='SUPERSALE' />
-      <div className='checkout-page page-width'>
-        {!cartItems.length ? (
-          <div className='empty-cart-container'>
-            <h2>Your shopping bag is empty</h2>
-            <Link to='/shop'>
-              <CustomButton>Shop Now</CustomButton>
-            </Link>
-          </div>
-        ) : (
-          <>
-            <div className='checkout-wrapper'>
-              {/*----------- cart ---------------*/}
-              <div className='left-col'>
-                <h1 className='checkout-title'>Shopping Bag</h1>
-                <div className='cart'>
-                  <div className='checkout-header-row'>
-                    <div className='col-description header-block'>
-                      <span>
-                        {totalQuantity > 1
-                          ? `${totalQuantity} Items`
-                          : "1 Item"}
-                      </span>
-                    </div>
-                    <div className='col-qty header-block'>
-                      <span>Qty</span>
-                    </div>
-                    <div className='col-price header-block'>
-                      <span>Price</span>
-                    </div>
-                    <div className='col-delete' />
-                  </div>
-                  {cartItems.map((cartItem) => (
-                    <CheckoutItem
-                      key={`${cartItem.id}-${JSON.stringify(
-                        cartItem.selectedOptions
-                      )}`}
-                      cartItem={cartItem}
-                    />
-                  ))}
-                </div>
-              </div>
-              <div className='right-col'>
-                {/*----------- summary ---------------*/}
+      {promoData && <PromoBanner promoData={promoData} />}
+      {!cartItemsWithDiscounts.length ? (
+        <EmptyBagMessage />
+      ) : (
+        <div className='checkout-background-screen'>
+          <div className='checkout-page-content page-width'>
+            <div className='checkout-flex-container'>
+              <CheckoutShoppingBag
+                totalQuantity={totalQuantity}
+                cartItems={cartItemsWithDiscounts}
+                appliedPromos={appliedPromos}
+              />
+              <div className='summary-column'>
                 <CheckoutSummary
                   cartSubtotal={cartSubtotal}
-                  promoApplied={promoApplied}
+                  appliedPromos={appliedPromos}
                   shipping={shipping}
                   tax={tax}
-                  discount={discount}
+                  totalDiscount={totalDiscount}
                   total={total}
                 />
-                {/*----------- promo ---------------*/}
-                <PromoForm />
+                <PromoForm appliedPromos={appliedPromos} />
               </div>
             </div>
-          </>
-        )}
-      </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  cartItems: selectCartItems,
-  cartSubtotal: selectCartSubtotal,
-  currentUser: selectCurrentUser,
-  promoApplied: selectPromoApplied,
-  totalQuantity: getTotalQuantity,
-  shipping: getShipping,
-  tax: getTax,
-  discount: getDiscount,
-  total: getTotal,
-});
+export default CheckoutPage;
 
-export default connect(mapStateToProps)(CheckoutPage);
+CheckoutPage.propTypes = {
+  promoData: promoDataPropType,
+};
