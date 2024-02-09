@@ -294,6 +294,15 @@
       }
     }
   }
+
+  .slideshow-nav-wrapper {
+    .slideshow-nav-buttons {
+      gap: 0.675rem;
+    }
+    .nav-button {
+      --button-size: 11px;
+    }
+  }
 }
 
 @media (max-width: 700px) {

@@ -1,3 +1,5 @@
+@import "../../sharedStyles/breakpoints";
+
 .checkout-item {
   width: 100%;
   border-bottom: 1px solid var(--primary-20);
@@ -29,6 +31,7 @@
   .item-name {
     font-weight: var(--font-semibold);
     margin-bottom: 0.5rem;
+    line-height: 1.25;
   }
 
   .item-option {
@@ -74,12 +77,22 @@
 
     &:hover {
       stroke: var(--primary-85);
+
+      .remove-text {
+        color: var(--primary-85);
+        border-color: var(--primary-85);
+      }
     }
   }
 
   .remove-text {
     display: none;
-    margin-left: 0.25rem;
+    margin-left: 0.375rem;
+    font-size: 0.7rem;
+    border-bottom: 0;
+    line-height: 1.125;
+    border-bottom: 1px solid var(--primary-30);
+    color: var(--primary-50);
   }
 
   .icon-trash {
@@ -100,7 +113,7 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: $mobile-large) {
   .checkout-item {
     font-size: 0.9375rem;
 
@@ -117,6 +130,13 @@
 
     .remove-button {
       padding: 0;
+
+      .icon {
+        width: 0.875rem;
+        height: 0.875rem;
+        position: relative;
+        bottom: 1px;
+      }
     }
 
     .remove-text {

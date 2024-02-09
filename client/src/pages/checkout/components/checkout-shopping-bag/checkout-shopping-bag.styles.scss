@@ -1,3 +1,5 @@
+@import "../../../../sharedStyles/breakpoints";
+
 .shopping-bag {
   --bag-column-gap: 3rem;
   flex: 1;
@@ -48,19 +50,23 @@
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
   .shopping-bag {
-    --bag-column-gap: 2.75vw;
+    --bag-column-gap: 2.5vw;
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .shopping-bag {
-    --bag-column-gap: 5vw;
+    --bag-column-gap: 3.5vw;
+
+    .checkout-title {
+      margin-bottom: 1.5rem;
+    }
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: $mobile-large) {
   .shopping-bag {
     --bag-column-gap: 0;
 
@@ -74,7 +80,6 @@
     .price-column {
       order: 2;
       margin: 0;
-      justify-content: flex-end;
     }
 
     .delete-column {

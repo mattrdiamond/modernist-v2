@@ -20,9 +20,8 @@
   .nav-button {
     width: var(--button-size);
     height: var(--button-size);
-    border: 1.5px solid var(--white);
-    background-color: transparent;
-    transition: background-color 0.25s ease, width 0.75s ease;
+    background-color: var(--white);
+    transition: opacity 0.75s ease, width 0.75s ease;
     cursor: pointer;
     border-radius: calc(var(--button-size) / 2);
 
@@ -33,8 +32,9 @@
     }
 
     &.inactive {
+      opacity: 0.6;
       &:hover {
-        background-color: var(--white);
+        opacity: 1;
       }
     }
   }
@@ -45,16 +45,5 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0));
     mix-blend-mode: multiply;
     height: 100px;
-  }
-}
-
-@media (max-width: $tablet) {
-  .slideshow-nav-wrapper {
-    .slideshow-nav-buttons {
-      gap: 0.675rem;
-    }
-    .nav-button {
-      --button-size: 11px;
-    }
   }
 }
