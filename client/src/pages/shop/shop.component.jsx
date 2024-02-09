@@ -1,10 +1,10 @@
 import React, { lazy, Suspense } from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Spinner from "../../components/spinner/spinner.component";
 import ErrorBoundary from "../../components/error-boundary/error-boundary.component";
 
 const CollectionsOverviewContainer = lazy(() =>
-  import("../../components/collections-overview/collections-overview.container")
+  import("../collections-overview/collections-overview.container")
 );
 const CollectionPageContainer = lazy(() =>
   import("../collection/collection.container")
@@ -12,37 +12,87 @@ const CollectionPageContainer = lazy(() =>
 const ProductPageContainer = lazy(() =>
   import("../product-page/product-page.container")
 );
+const BestsellersPageContainer = lazy(() =>
+  import("../bestsellers/bestsellers.container")
+);
+const TopRatedPageContainer = lazy(() =>
+  import("../top-rated/top-rated-page.container")
+);
+const NewArrivalsPageContainer = lazy(() =>
+  import("../new-arrivals/new-arrivals-page.container")
+);
+const ShopTheLookPage = lazy(() =>
+  import("../shop-the-look/shop-the-look.component")
+);
 
 const ShopPage = ({ match }) => {
   return (
     <section className='shop-page'>
       <Suspense fallback={<Spinner />}>
-        <Route
-          exact
-          path={`${match.path}`}
-          render={(props) => (
-            <ErrorBoundary>
-              <CollectionsOverviewContainer {...props} />
-            </ErrorBoundary>
-          )}
-        />
-        <Route
-          exact
-          path={`${match.path}/:collectionId`}
-          render={(props) => (
-            <ErrorBoundary>
-              <CollectionPageContainer {...props} />
-            </ErrorBoundary>
-          )}
-        />
-        <Route
-          path={`${match.path}/:collectionId/:itemId`}
-          render={(props) => (
-            <ErrorBoundary>
-              <ProductPageContainer {...props} />
-            </ErrorBoundary>
-          )}
-        />
+        <Switch>
+          <Route
+            exact
+            path={`${match.path}`}
+            render={(props) => (
+              <ErrorBoundary>
+                <CollectionsOverviewContainer {...props} />
+              </ErrorBoundary>
+            )}
+          />
+          <Route
+            exact
+            path={`${match.path}/bestsellers`}
+            render={(props) => (
+              <ErrorBoundary>
+                <BestsellersPageContainer {...props} />
+              </ErrorBoundary>
+            )}
+          />
+          <Route
+            exact
+            path={`${match.path}/top-rated`}
+            render={(props) => (
+              <ErrorBoundary>
+                <TopRatedPageContainer {...props} />
+              </ErrorBoundary>
+            )}
+          />
+          <Route
+            exact
+            path={`${match.path}/new-arrivals`}
+            render={(props) => (
+              <ErrorBoundary>
+                <NewArrivalsPageContainer {...props} />
+              </ErrorBoundary>
+            )}
+          />
+          <Route
+            exact
+            path={`${match.path}/shop-the-look`}
+            render={(props) => (
+              <ErrorBoundary>
+                <ShopTheLookPage {...props} />
+              </ErrorBoundary>
+            )}
+          />
+          <Route
+            exact
+            path={`${match.path}/:collectionId`}
+            render={(props) => (
+              <ErrorBoundary>
+                <CollectionPageContainer {...props} />
+              </ErrorBoundary>
+            )}
+          />
+          <Route
+            path={`${match.path}/:collectionId/:itemId`}
+            render={(props) => (
+              <ErrorBoundary>
+                <ProductPageContainer {...props} />
+              </ErrorBoundary>
+            )}
+          />
+        </Switch>
       </Suspense>
     </section>
   );

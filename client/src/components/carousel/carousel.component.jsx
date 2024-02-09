@@ -1,5 +1,6 @@
 import React, { useEffect, useReducer, useCallback } from "react";
-import axios from "axios";
+import { unsplashCollectionId } from "../../utils/constants";
+import { apiFetchUnsplashImages } from "../../api/api";
 import CarouselCard from "../carousel-card/carousel-card.component";
 import Icon from "../icon/icon.component";
 import Spinner from "../spinner/spinner.component";
@@ -102,23 +103,26 @@ const Carousel = () => {
 
   // Fetch data and set initial images based on screen size
   useEffect(() => {
-    // mounted - only updates state if component is still mounted when fetch call completes
     let mounted = true;
-    const collectionId = 1118894; // Unsplash 'superior-interior' collection
 
     if (isIntersecting) {
-      axios
-        .get(
-          `/api/photos?id=${collectionId}&page=1&perPage=${fetchImageCount}&orderBy=popular`
-        )
+      apiFetchUnsplashImages(
+        unsplashCollectionId,
+        1,
+        fetchImageCount,
+        "popular"
+      )
         .then((res) => {
           if (mounted) {
-            dispatch({ type: "FETCH_IMAGES", payload: res.data });
+            dispatch({ type: "FETCH_IMAGES", payload: res });
           }
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error("Error fetching images:", error);
         });
     }
 
-    // set mounted = false when component unmounts
     return () => (mounted = false);
   }, [fetchImageCount, isIntersecting]);
 
@@ -174,14 +178,14 @@ const Carousel = () => {
               onClick={nextImage}
               disabled={index + visibleImages === fetchImageCount}
             >
-              <Icon icon='arrow-right-btn' />
+              <Icon icon='arrow-right-btn' title='next' />
             </button>
             <button
               className='circle-button left'
               onClick={previousImage}
               disabled={index === 0}
             >
-              <Icon icon='arrow-left-btn' />
+              <Icon icon='arrow-left-btn' title='previous' />
             </button>
             <div
               className='cards-slider-wrapper'

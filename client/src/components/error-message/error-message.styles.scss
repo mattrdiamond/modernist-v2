@@ -1,0 +1,15 @@
+.error-message-wrapper {
+  padding-top: var(--window-top);
+  padding-bottom: var(--window-bottom);
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .error-heading {
+    margin-bottom: 2rem;
+    font-size: 1.75rem;
+  }
+}

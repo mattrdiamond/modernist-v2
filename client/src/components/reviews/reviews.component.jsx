@@ -24,7 +24,7 @@ export default function Reviews({ productReviews, rating }) {
               </span>
             </div>
             <p className='verified-statement'>
-              <Icon icon='verified' />
+              <Icon icon='verified' title='verified' />
               All reviews are verified for authenticity.
               <span className='text-link'>Learn More</span>
             </p>
@@ -37,7 +37,7 @@ export default function Reviews({ productReviews, rating }) {
               ))}
             {visibleReviews < productReviews.length && (
               <CustomButton
-                inverted
+                buttonStyle='inverted'
                 onClick={() =>
                   setVisibleReviews(
                     (prevVisibleReviews) => prevVisibleReviews + 5

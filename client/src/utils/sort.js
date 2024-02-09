@@ -16,3 +16,15 @@ sortDesc.propTypes = {
   arr: PropTypes.array.isRequired,
   property: PropTypes.string.isRequired,
 };
+
+export const applySortParam = (arr, sortParam) => {
+  if (!sortParam) return arr;
+
+  const { direction, sortBy } = sortParam;
+
+  if (direction === "asc") {
+    return sortAsc(arr, sortBy);
+  } else {
+    return sortDesc(arr, sortBy);
+  }
+};

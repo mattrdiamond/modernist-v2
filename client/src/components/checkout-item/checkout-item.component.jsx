@@ -1,24 +1,35 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   clearItemFromCart,
-  addItem,
-  removeItem,
+  addItemToCart,
+  removeItemFromCart,
 } from "../../redux/cart/cart.actions";
 import Stepper from "../stepper/stepper.component";
 import Icon from "../icon/icon.component";
 import "./checkout-item.styles.scss";
 
-const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
-  const { name, images, price, quantity, selectedOptions, collection, id } =
-    cartItem;
+const CheckoutItem = ({ cartItem }) => {
+  const dispatch = useDispatch();
+
+  const {
+    name,
+    images,
+    price,
+    quantity,
+    selectedOptions,
+    collection,
+    id,
+    discountedPrice,
+    discountApplied,
+  } = cartItem;
 
   return (
     <div className='checkout-item'>
       <img className='item-img' src={images.small} alt={name} />
       <div className='content-wrapper'>
-        <div className='col-description'>
+        <div className='description-column'>
           <Link
             to={`/shop/${collection}/${id}`}
             className='item-name line-clamp-2'
@@ -34,19 +45,33 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
               </p>
             ))}
         </div>
-        <div className='col-qty'>
+        <div className='quantity-column'>
           <Stepper
             quantity={quantity}
-            increment={() => addItem(cartItem)}
-            decrement={() => removeItem(cartItem)}
+            increment={() => dispatch(addItemToCart(cartItem, 1))}
+            decrement={() => dispatch(removeItemFromCart(cartItem, 1))}
           />
         </div>
-        <div className='col-price'>
-          <span className='price'>${price.toFixed(2)}</span>
+        <div className='price-column'>
+          {discountApplied ? (
+            <>
+              <span className='discounted-price red-text'>
+                ${discountedPrice.toFixed(2)}
+              </span>
+              <span className='original-price strikethrough'>
+                ${price.toFixed(2)}
+              </span>
+            </>
+          ) : (
+            <span className='original-price'>${price.toFixed(2)}</span>
+          )}
         </div>
-        <div className='col-delete'>
-          <button className='remove-button' onClick={() => clearItem(cartItem)}>
-            <Icon icon='remove' />
+        <div className='delete-column'>
+          <button
+            className='remove-button'
+            onClick={() => dispatch(clearItemFromCart(cartItem))}
+          >
+            <Icon icon='remove' title='remove' />
             <span className='remove-text text-link'>Remove</span>
           </button>
         </div>
@@ -55,10 +80,4 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  clearItem: (item) => dispatch(clearItemFromCart(item)),
-  addItem: (item) => dispatch(addItem(item)),
-  removeItem: (item) => dispatch(removeItem(item)),
-});
-
-export default connect(null, mapDispatchToProps)(CheckoutItem);
+export default CheckoutItem;

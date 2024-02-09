@@ -16,7 +16,7 @@ export default function ShippingAccordionContent() {
         </svg>
         <h5>Flat Rate Delivery Fee</h5>
       </div>
-      <p>
+      <p className='grey-text'>
         Shipping costs are indicated on each item's page and will be
         automatically calculated during the checkout. For purchases totaling
         $100 or more, Modernist offers FREE SHIPPING, unless otherwise specified
@@ -38,7 +38,7 @@ export default function ShippingAccordionContent() {
         </svg>
         <h5>White Glove Service</h5>
       </div>
-      <p>
+      <p className='grey-text'>
         If having the item delivered into your home as White Glove, it will be
         brought in by a skilled delivery team on a pre-scheduled date, unpacked
         in the room of your choice and fully assembled. (Doorstep Delivery does
@@ -60,7 +60,7 @@ export default function ShippingAccordionContent() {
         </svg>
         <h5>Easy Returns</h5>
       </div>
-      <p>
+      <p className='grey-text'>
         You can return eligible items within 30 days of receiving an order or 7
         days for quick-ship upholstery items. Made-to-order items are not
         eligible.

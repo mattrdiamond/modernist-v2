@@ -1,8 +1,7 @@
 import { createSelector } from "reselect";
-import { selectPromoApplied } from "../promo/promo.selectors";
+import { selectAppliedPromos, selectPromoData } from "../promo/promo.selectors";
 import {
   taxRate,
-  promoPercentage,
   shippingThreshold,
   shippingCostPerItem,
 } from "../../utils/constants";
@@ -55,16 +54,58 @@ export const getTax = createSelector([selectCartSubtotal], (cartSubtotal) => {
   return cartSubtotal * taxRate;
 });
 
-export const getDiscount = createSelector(
-  [selectCartSubtotal, selectPromoApplied],
-  (cartSubtotal, promoApplied) => {
-    return promoApplied ? cartSubtotal * promoPercentage : 0;
+export const selectTotalDiscount = createSelector(
+  [selectCartSubtotal, selectAppliedPromos, selectPromoData],
+  (cartSubtotal, appliedPromos, promoData) => {
+    let totalDiscount = 0;
+    appliedPromos.forEach((code) => {
+      const promoInfo = promoData && promoData[code];
+      if (promoInfo && promoInfo.discountType === "percentage") {
+        const discountAmount = (promoInfo.discount / 100) * cartSubtotal;
+        totalDiscount += discountAmount;
+      } else if (promoInfo && promoInfo.discountType === "fixed") {
+        totalDiscount += promoInfo.discount;
+      }
+    });
+    return totalDiscount;
   }
 );
 
 export const getTotal = createSelector(
-  [selectCartSubtotal, getDiscount, getTax, getShipping],
-  (cartSubtotal, discount, tax, shipping) => {
-    return cartSubtotal - discount + tax + shipping;
+  [selectCartSubtotal, selectTotalDiscount, getTax, getShipping],
+  (cartSubtotal, totalDiscount, tax, shipping) => {
+    return cartSubtotal - totalDiscount + tax + shipping;
+  }
+);
+
+export const selectCartItemsWithDiscounts = createSelector(
+  [selectCartItems, selectAppliedPromos, selectPromoData],
+  (cartItems, appliedPromos, promoData) => {
+    return cartItems.map((item) => {
+      // Calculate total price without discounts
+      let totalPrice = item.price * item.quantity;
+
+      // Check if there are applied promos for this item
+      const itemAppliedPromos = appliedPromos.filter((code) =>
+        promoData.hasOwnProperty(code)
+      );
+
+      // Apply discounts based on promoData
+      itemAppliedPromos.forEach((code) => {
+        const promo = promoData[code];
+        if (promo.discountType === "percentage") {
+          totalPrice -= (promo.discount / 100) * totalPrice;
+        } else if (promo.discountType === "fixed") {
+          totalPrice -= promo.discount;
+        }
+      });
+
+      return {
+        ...item,
+        discountedPrice: totalPrice,
+        discountApplied:
+          totalPrice !== undefined && totalPrice / item.quantity < item.price,
+      };
+    });
   }
 );

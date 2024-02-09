@@ -5,7 +5,10 @@ import useLockBodyScroll from "../../hooks/use-lock-body-scroll";
 
 import { selectDirectorySections } from "../../redux/directory/directory.selectors";
 import { selectInputValue } from "../../redux/search/search.selectors";
-import { selectAllCollectionItems } from "../../redux/shop/shop.selectors";
+import {
+  selectAllCollectionItems,
+  selectAreAllCollectionsLoaded,
+} from "../../redux/shop/shop.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { setInputValue } from "../../redux/search/search.actions";
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
@@ -27,11 +30,12 @@ const MobileNav = ({
   fetchCollectionsStart,
   currentUser,
   signOutStart,
+  allCollectionsLoaded,
 }) => {
   const handleChange = (e) => {
     const { value } = e.target;
     setInputValue(value);
-    if (!collectionItems.length) fetchCollectionsStart();
+    if (!allCollectionsLoaded) fetchCollectionsStart();
   };
 
   const handleClear = () => {
@@ -101,6 +105,7 @@ const mapStateToProps = createStructuredSelector({
   inputValue: selectInputValue,
   collectionItems: selectAllCollectionItems,
   currentUser: selectCurrentUser,
+  allCollectionsLoaded: selectAreAllCollectionsLoaded,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MobileNav);

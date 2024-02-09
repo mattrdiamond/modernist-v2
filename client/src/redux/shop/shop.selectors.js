@@ -1,5 +1,7 @@
 import { createSelector } from "reselect";
-import { sortAsc, sortDesc } from "../../utils/sort";
+import { hotspotData } from "../../components/curated-room/hotspot-data";
+import { selectFavorites } from "../user/user.selectors";
+import { applySortParam } from "../../utils/sort";
 
 const collectionIds = [
   "bedding",
@@ -30,7 +32,7 @@ export const selectCollection = createSelector(
     collections ? collections[collectionId] : null
 );
 
-export const selectIsCollectionFetching = createSelector(
+export const selectIsFetchingCollections = createSelector(
   [selectShop],
   (shop) => shop.isFetchingCollections
 );
@@ -47,7 +49,7 @@ export const selectAreAllCollectionsLoaded = createSelector(
   }
 );
 
-export const SelectCollectionsError = createSelector(
+export const selectCollectionsError = createSelector(
   [selectShop],
   (shop) => shop.collectionsError
 );
@@ -58,7 +60,7 @@ export const selectCollectionsForPreview = createSelector(
     collections ? Object.keys(collections).map((key) => collections[key]) : [] // Transform object into array of collections
 );
 
-// Create a private copy of selector that selects collection based on url param
+// Create a private copy of selector that selects collection based on url param, allowing multiple instances of the selector for each collectionId
 export const makeSelectCollection = () =>
   createSelector(
     [selectCollections, (state, props) => props.match.params.collectionId],
@@ -75,16 +77,7 @@ export const selectSortedCollectionItems = createSelector(
   selectCollectionItems,
   selectSortParam,
   (items, sortParam) => {
-    // If no sort param, return unsorted items
-    if (!sortParam) return items;
-
-    const { direction, sortBy } = sortParam;
-
-    if (direction === "asc") {
-      return sortAsc(items, sortBy);
-    } else {
-      return sortDesc(items, sortBy);
-    }
+    return applySortParam(items, sortParam);
   }
 );
 
@@ -96,6 +89,85 @@ export const selectAllCollectionItems = createSelector(
       ? Object.keys(collections).map((key) => collections[key].items)
       : [];
     return [].concat.apply([], collectionItemsArray);
+  }
+);
+
+export const selectBestsellerItems = createSelector(
+  [selectAllCollectionItems],
+  (allItems) =>
+    allItems.filter((item) => item.tags && item.tags.bestseller === true)
+);
+
+export const selectSortedBestsellers = createSelector(
+  selectBestsellerItems,
+  selectSortParam,
+  (bestsellers, sortParam) => {
+    return applySortParam(bestsellers, sortParam);
+  }
+);
+
+export const selectTopRatedItems = createSelector(
+  [selectAllCollectionItems],
+  (allItems) =>
+    allItems.filter((item) => item.tags && item.tags["top-rated"] === true)
+);
+
+export const selectSortedTopRatedItems = createSelector(
+  selectTopRatedItems,
+  selectSortParam,
+  (topRatedItems, sortParam) => {
+    return applySortParam(topRatedItems, sortParam);
+  }
+);
+
+export const selectNewItems = createSelector(
+  [selectAllCollectionItems],
+  (allItems) => allItems.filter((item) => item.tags && item.tags.new === true)
+);
+
+export const selectSortedNewItems = createSelector(
+  selectNewItems,
+  selectSortParam,
+  (newItems, sortParam) => {
+    return applySortParam(newItems, sortParam);
+  }
+);
+
+export const selectHotspotItems = createSelector(
+  [selectCollections],
+  (collections) => {
+    if (!collections) return [];
+    console.log("serious", hotspotData, collections);
+    const hotspotItems = hotspotData.map((hotspot) => {
+      const collection = collections[hotspot.collection];
+
+      const product = collection?.items?.find(
+        (item) => item.id === hotspot.shopId
+      );
+
+      return product || null;
+    });
+    return hotspotItems;
+  }
+);
+
+export const selectSortedHotspotItems = createSelector(
+  selectHotspotItems,
+  selectSortParam,
+  (hotspotItems, sortParam) => {
+    return applySortParam(hotspotItems, sortParam);
+  }
+);
+
+export const selectSortedFavorites = createSelector(
+  selectFavorites,
+  selectSortParam,
+  (favorites, sortParam) => {
+    let favoritesArray = [];
+    if (favorites !== null && typeof favorites !== "undefined") {
+      favoritesArray = Object.values(favorites);
+    }
+    return applySortParam(favoritesArray, sortParam);
   }
 );
 

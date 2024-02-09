@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { productTagPropType } from "../../sharedPropTypes/sharedPropTypes";
 import "./product-tag.styles.scss";
 
-export default function ProductTag({ tags }) {
+export default function ProductTag({ tags, tagStyle = "default" }) {
   const getHighestPriorityTag = (tags) => {
     if (!tags) return null;
     if (tags["top-rated"]) {
@@ -15,17 +16,21 @@ export default function ProductTag({ tags }) {
     return null;
   };
 
+  const tagStyles = {
+    default: "product-detail-tag",
+    "collection-item": "collection-item-tag",
+  };
+
   return (
-    <>
-      <span className='product-tag'>{getHighestPriorityTag(tags)}</span>
-    </>
+    <div className='product-tag'>
+      <span className={tagStyles[tagStyle] || tagStyles["default"]}>
+        {getHighestPriorityTag(tags)}
+      </span>
+    </div>
   );
 }
 
 ProductTag.propTypes = {
-  tags: PropTypes.shape({
-    new: PropTypes.bool,
-    bestseller: PropTypes.bool,
-    "top-rated": PropTypes.bool,
-  }),
+  tags: productTagPropType,
+  tagStyle: PropTypes.string,
 };

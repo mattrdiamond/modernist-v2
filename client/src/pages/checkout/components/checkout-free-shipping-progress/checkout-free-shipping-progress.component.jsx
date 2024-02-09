@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { shippingThreshold } from "../../../utils/constants";
-import Icon from "../../../components/icon/icon.component";
+import { shippingThreshold } from "../../../../utils/constants";
+import Icon from "../../../../components/icon/icon.component";
 import "./checkout-free-shipping-progress.styles.scss";
 
 export default function FreeShippingProgress({ subtotal }) {
@@ -19,7 +19,12 @@ export default function FreeShippingProgress({ subtotal }) {
               {`$${(shippingThreshold - subtotal).toFixed(2)}`}
             </span>{" "}
             for <span className='font-semibold'>FREE Shipping!</span>
-            <Icon icon='information' width='0.75rem' height='0.75rem' />
+            <Icon
+              icon='information'
+              title='information'
+              width='0.75rem'
+              height='0.75rem'
+            />
           </span>
         ) : (
           <span>

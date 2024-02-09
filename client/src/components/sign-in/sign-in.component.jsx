@@ -32,40 +32,40 @@ const SignIn = ({ emailSignInStart, googleSignInStart, error }) => {
   };
 
   return (
-    <div className="sign-in-component">
+    <div className='sign-in-component'>
       <h3>Sign in</h3>
       <span>Sign in with your email and password.</span>
 
       <form onSubmit={handleSubmit}>
         <FormInput
-          name="email"
+          name='email'
           handleChange={handleChange}
-          type="email"
+          type='email'
           value={email}
-          label="email"
+          label='email'
           required
         />
         <FormInput
           handleChange={handleChange}
-          name="password"
-          type="password"
+          name='password'
+          type='password'
           value={password}
-          label="password"
+          label='password'
           required
         />
-        <div className="buttons">
-          <CustomButton type="submit">Sign In</CustomButton>
+        <div className='buttons'>
+          <CustomButton type='submit'>Sign In</CustomButton>
           <CustomButton
-            type="button"
+            type='button'
             onClick={googleSignInStart}
-            isGoogleSignIn
+            buttonStyle='google-sign-in'
           >
-            <Icon icon="google" />
+            <Icon icon='google' />
             Sign in with Google
           </CustomButton>
         </div>
         {error && (
-          <span className="error">
+          <span className='error'>
             Incorrect username or password. Please try again.
           </span>
         )}

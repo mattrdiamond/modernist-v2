@@ -28,7 +28,7 @@ export default function ProductPageAccordions({
       >
         <Accordion title='Product Description'>
           <section className='description-section'>
-            <p className='product-description'>{description}</p>
+            <p className='product-description grey-text'>{description}</p>
           </section>
         </Accordion>
         <Accordion title='Dimensions'>
@@ -52,12 +52,12 @@ export default function ProductPageAccordions({
         </Accordion>
         <Accordion title='Materials & Care'>
           <section className='care-section'>
-            <p>
+            <p className='grey-text'>
               You've put a lot of care into choosing your furnishings. And with
               continued care at home, they should share your address for many
               years to come. Now for your owner's manual...
             </p>
-            <ul>
+            <ul className='grey-text'>
               <li>Do not leave spills unattended.</li>
               <li>Do not use abrasive cleaner.</li>
               <li>
@@ -65,13 +65,13 @@ export default function ProductPageAccordions({
               </li>
               <li>Cleaning code will vary depending on material selected.</li>
               <li>Slight fading may occur in direct sunlight.</li>
-              <h5>Fabric Care Instructions</h5>
-              <p>
-                Blot spills immediately with a clean, absorbent cloth. Spot
-                clean with a water-free stain remover. For stubborn or set
-                stains, work with a professional upholstery cleaning service.
-              </p>
             </ul>
+            <h5>Fabric Care Instructions</h5>
+            <p className='grey-text'>
+              Blot spills immediately with a clean, absorbent cloth. Spot clean
+              with a water-free stain remover. For stubborn or set stains, work
+              with a professional upholstery cleaning service.
+            </p>
           </section>
         </Accordion>
       </AccordionGroup>

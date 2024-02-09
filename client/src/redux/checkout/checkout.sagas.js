@@ -33,6 +33,7 @@ export function* postPaymentToStripe({
     const paymentData = { amount, card: { last4, brand }, created, ...totals };
     yield put(paymentSuccess(paymentData));
   } catch (error) {
+    console.log("error", error);
     alert(
       "There was an issue with your payment. Please make sure you use the test credit card number provided"
     );

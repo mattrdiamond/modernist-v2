@@ -144,13 +144,15 @@ export const transformCollectionsData = (collections) => {
 export const transformCollectionData = (snapshot) => {
   const collectionDoc = snapshot.docs[0];
   if (collectionDoc) {
-    const { title, items, banner, collectionId } = collectionDoc.data();
+    const { title, subtitle, items, banner, collectionId } =
+      collectionDoc.data();
     const routeName = encodeURI(extractFirstWord(title));
 
     return {
       [collectionId]: {
         id: collectionId,
         title,
+        subtitle,
         items,
         banner,
         routeName,

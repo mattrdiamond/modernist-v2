@@ -14,7 +14,7 @@ export default function CuratedRoom() {
         subheading='Explore our carefully curated collection of modern designs.'
         hideSubheadingOnMobile
         buttonText='Shop All'
-        linkDestination='/shop-the-look'
+        linkDestination='/shop/shop-the-look'
       />
       <HotspotImage backgroundImage={curatedRoomImage} hotspots={hotspotData} />
     </section>

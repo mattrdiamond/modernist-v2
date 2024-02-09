@@ -1,32 +1,55 @@
 import React from "react";
-import "./collection.styles.scss";
+import PropTypes from "prop-types";
+import {
+  heroBannerPropType,
+  categoryItemType,
+} from "../../sharedPropTypes/sharedPropTypes";
 
 import ProductGrid from "../../components/product-grid/product-grid.component";
 import HeroImageHeader from "./components/hero-image-header/hero-image-header.component";
-import CollectionHeader from "./components/collection-header/collection-header.component";
+import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
+import BreadcrumbSortHeader from "../../components/breadcrumb-sort-header/breadcrumb-sort-header.component";
+
+import "./collection.styles.scss";
 
 export default function CollectionPage({
   title,
+  subtitle,
   collectionItems,
   heroImages,
-  showSortHeader,
-  useHeroImageHeader,
 }) {
+  const hasHeroImages = heroImages && Object.keys(heroImages).length > 0;
+
   return (
     <div className='collection-page'>
-      {useHeroImageHeader ? (
-        <HeroImageHeader title={title} heroImages={heroImages} />
+      {hasHeroImages ? (
+        <HeroImageHeader
+          title={title}
+          subtitle={subtitle}
+          heroImages={heroImages}
+        />
       ) : (
-        <CollectionHeader heading={title} itemCount={collectionItems.length} />
+        <div className='top-breadcrumb-container page-width'>
+          <Breadcrumb />
+        </div>
       )}
-
       <div
         className={`collection-items-container ${
-          useHeroImageHeader ? "hero-image-margin" : ""
+          hasHeroImages ? "hero-image-margin" : ""
         }`}
       >
-        <ProductGrid items={collectionItems} showSortHeader={showSortHeader} />
+        <BreadcrumbSortHeader
+          resultsCount={collectionItems.length || 0}
+          heading={!hasHeroImages ? title : undefined}
+        />
+        <ProductGrid items={collectionItems} />
       </div>
     </div>
   );
 }
+
+CollectionPage.propTypes = {
+  title: PropTypes.string.isRequired,
+  collectionItems: PropTypes.arrayOf(categoryItemType).isRequired,
+  heroImages: heroBannerPropType,
+};

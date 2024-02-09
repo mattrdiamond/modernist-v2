@@ -23,6 +23,10 @@ export const checkUserSession = () => ({
   type: UserActionTypes.CHECK_USER_SESSION,
 });
 
+export const checkUserSessionNoUser = () => ({
+  type: UserActionTypes.CHECK_USER_SESSION_NO_USER,
+});
+
 export const signOutStart = () => ({
   type: UserActionTypes.SIGN_OUT_START,
 });

@@ -1,0 +1,28 @@
+.coupon-tag {
+  font-size: 0.75rem;
+  margin-top: 1rem;
+  border-radius: var(--border-radius);
+  padding: 0.5rem 0.25rem 0.5rem 0.75rem;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: var(--font-semibold);
+  letter-spacing: 1px;
+  border: 1px solid var(--primary-20);
+  text-transform: uppercase;
+
+  .icon {
+    vertical-align: middle;
+  }
+
+  .remove-coupon {
+    padding: 0 0.5rem;
+    position: relative;
+    bottom: 0.08rem;
+    color: var(--primary-40);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--primary-85);
+    }
+  }
+}

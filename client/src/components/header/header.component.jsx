@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useRef, useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
@@ -14,7 +14,7 @@ import { selectDirectorySections } from "../../redux/directory/directory.selecto
 import { signOutStart } from "../../redux/user/user.actions";
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { toggleNav } from "../../redux/mobile-nav/mobile-nav.actions";
-import { toggleDropdownHidden } from "../../redux/shop/shop.actions";
+import { toggleShopDropdown } from "../../redux/shop/shop.actions";
 import { toggleInputHidden } from "../../redux/search/search.actions";
 
 import ArrowButton from "../arrow-button/arrow-button.component";
@@ -40,6 +40,8 @@ const Header = ({
   toggleInputHidden,
   sections,
 }) => {
+  const shopLinkRef = useRef(null);
+
   const handleCartClick = useCallback(() => {
     if (!mobileNavVisible) {
       return toggleCartHidden();
@@ -56,6 +58,42 @@ const Header = ({
     [handleCartClick]
   );
 
+  const handleShopClick = () => {
+    shopLinkRef.current.blur();
+  };
+
+  const handleShopMouseLeave = () => {
+    if (!shopDropdownHidden) {
+      toggleShopDropdown();
+    }
+  };
+
+  const handleShopTouchStart = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (shopDropdownHidden) {
+        toggleShopDropdown();
+      }
+    },
+    [shopDropdownHidden, toggleShopDropdown]
+  );
+
+  useEffect(() => {
+    const shopLink = shopLinkRef.current;
+
+    if (shopLink) {
+      shopLink.addEventListener("touchstart", handleShopTouchStart, {
+        passive: false,
+      });
+    }
+
+    return () => {
+      if (shopLink) {
+        shopLink.removeEventListener("touchstart", handleShopTouchStart);
+      }
+    };
+  }, [handleShopTouchStart]);
+
   return (
     <nav className='header'>
       <div className='nav-wrapper page-width'>
@@ -68,41 +106,37 @@ const Header = ({
         <ul className='nav-links left desktop-only'>
           <li className='nav-link-wrapper'>
             {currentUser ? (
-              <div className='nav-link' onClick={signOutStart}>
+              <div
+                className='nav-link sign-in-out'
+                tabIndex='0'
+                onClick={signOutStart}
+                onKeyDown={(e) => handleKeyPress(e, signOutStart)}
+              >
                 Sign Out
               </div>
             ) : (
-              <Link className='nav-link' to='/signin'>
+              <Link className='nav-link sign-in-out' to='/signin'>
                 Sign In
               </Link>
             )}
           </li>
           <li className='nav-link-wrapper'>
-            <div
-              className={
-                "nav-link ignore-co-shop" +
-                (!shopDropdownHidden ? " is-open" : "")
-              }
-              onClick={toggleShopDropdown}
+            <Link
+              to='/shop'
+              className={"nav-link" + (!shopDropdownHidden ? " is-open" : "")}
+              onClick={handleShopClick}
               onKeyDown={(e) => handleKeyPress(e, toggleShopDropdown)}
+              onMouseEnter={toggleShopDropdown}
+              onMouseLeave={handleShopMouseLeave}
               tabIndex='0'
               role='button'
               aria-haspopup='true'
               aria-expanded={shopDropdownHidden ? false : true}
+              ref={shopLinkRef}
             >
               Shop
-              <ArrowButton
-                isClosed={shopDropdownHidden}
-                styleName='ignore-co-shop'
-              />
-            </div>
-            {!shopDropdownHidden && (
-              <ShopDropdown
-                toggleShopDropdown={toggleShopDropdown}
-                shopDropdownHidden={shopDropdownHidden}
-                sections={sections}
-              />
-            )}
+              <ArrowButton isClosed={shopDropdownHidden} />
+            </Link>
           </li>
         </ul>
         <Link className='logo-container' to='/'>
@@ -111,7 +145,12 @@ const Header = ({
         <div className='nav-links right'>
           <div className='nav-link-wrapper desktop-only'>
             <Link className='nav-icon' to='/favorites'>
-              <Icon icon='favorites-desktop' width='20px' height='20px' />
+              <Icon
+                icon='favorites-desktop'
+                title='favorites'
+                width='20px'
+                height='20px'
+              />
             </Link>
           </div>
           <div className='nav-link-wrapper desktop-only'>
@@ -148,6 +187,12 @@ const Header = ({
       >
         <SearchDrawer />
       </CSSTransition>
+      {!shopDropdownHidden && (
+        <ShopDropdown
+          toggleShopDropdown={toggleShopDropdown}
+          sections={sections}
+        />
+      )}
     </nav>
   );
 };
@@ -164,7 +209,7 @@ const mapDispatchToProps = (dispatch) => ({
   signOutStart: () => dispatch(signOutStart()),
   toggleCartHidden: () => dispatch(toggleCartHidden()),
   toggleMobileNav: () => dispatch(toggleNav()),
-  toggleShopDropdown: () => dispatch(toggleDropdownHidden()),
+  toggleShopDropdown: () => dispatch(toggleShopDropdown()),
   toggleInputHidden: () => dispatch(toggleInputHidden()),
 });
 

@@ -10,7 +10,7 @@ const SearchIcon = ({ toggleInputHidden }) => (
     onKeyDown={(e) => handleKeyPress(e, toggleInputHidden)}
     tabIndex='0'
   >
-    <Icon icon='search' width='20px' height='20px' />
+    <Icon icon='search' title='search' width='20px' height='20px' />
   </div>
 );
 

@@ -4,14 +4,9 @@ export const toggleCartHidden = () => ({
   type: CartActionTypes.TOGGLE_CART_HIDDEN,
 });
 
-export const addItem = (item, quantity) => ({
-  type: CartActionTypes.ADD_ITEM,
+export const addItemToCart = (item, quantity) => ({
+  type: CartActionTypes.ADD_ITEM_TO_CART,
   payload: { item, quantity },
-});
-
-export const addItemWithOptions = (itemWithOptions) => ({
-  type: CartActionTypes.ADD_ITEM_WITH_OPTIONS,
-  payload: itemWithOptions,
 });
 
 export const clearItemFromCart = (item) => ({
@@ -19,9 +14,9 @@ export const clearItemFromCart = (item) => ({
   payload: item,
 });
 
-export const removeItem = (item) => ({
-  type: CartActionTypes.REMOVE_ITEM,
-  payload: item,
+export const removeItemFromCart = (cartItem, quantityToRemove = 1) => ({
+  type: CartActionTypes.REMOVE_ITEM_FROM_CART,
+  payload: { cartItem, quantityToRemove },
 });
 
 export const clearCart = () => ({

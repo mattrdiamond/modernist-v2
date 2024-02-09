@@ -1,33 +1,32 @@
 import React from "react";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
-import { Link } from "react-router-dom";
-import { selectFavorites } from "../../redux/user/user.selectors";
-import CustomButton from "../../components/custom-button/custom-button.component";
+import { useSelector } from "react-redux";
+import { selectSortedFavorites } from "../../redux/shop/shop.selectors";
+
 import CollectionPage from "../collection/collection.component";
+import Spinner from "../../components/spinner/spinner.component";
+import ErrorMessage from "../../components/error-message/error-message.component";
+import FavoritesEmptyMessage from "./components/favorites-empty-message.component.jsx";
+
 import "./favorites.styles.scss";
 
-const FavoritesPage = ({ favorites }) => {
-  let favoritesArray = favorites ? Object.values(favorites) : null;
+import {
+  selectErrorMessage,
+  selectIsUserFetching,
+} from "../../redux/user/user.selectors";
 
-  return (
-    <>
-      {favorites ? (
-        <CollectionPage title='Favorites' collectionItems={favoritesArray} />
-      ) : (
-        <div className='empty-fav-container'>
-          <h2>Your wishlist is empty.</h2>
-          <Link to='/shop'>
-            <CustomButton>Shop Now</CustomButton>
-          </Link>
-        </div>
-      )}
-    </>
-  );
+const FavoritesPage = () => {
+  const favorites = useSelector(selectSortedFavorites);
+  const loading = useSelector(selectIsUserFetching);
+  const error = useSelector(selectErrorMessage);
+
+  if (loading && !error) {
+    return <Spinner />;
+  } else if (error) {
+    return <ErrorMessage errorType='loading' />;
+  } else if (!loading && favorites?.length > 0) {
+    return <CollectionPage title='Favorites' collectionItems={favorites} />;
+  } else {
+    return <FavoritesEmptyMessage />;
+  }
 };
-
-const mapStateToProps = createStructuredSelector({
-  favorites: selectFavorites,
-});
-
-export default connect(mapStateToProps)(FavoritesPage);
+export default FavoritesPage;

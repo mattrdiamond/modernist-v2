@@ -20,7 +20,7 @@ const CartIcon = ({ cartHidden, itemCount, handleClick, handleKeyPress }) => (
       tabIndex='0'
     >
       <div className='icon-wrapper'>
-        <Icon icon='shopping-bag' />
+        <Icon icon='shopping-bag' title='shopping bag' />
         <span className='item-count'>{itemCount}</span>
       </div>
     </div>

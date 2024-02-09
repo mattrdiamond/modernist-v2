@@ -1,19 +1,19 @@
 import React from "react";
 import "./checkout-summary.styles.scss";
 import PropTypes from "prop-types";
-import FreeShippingProgress from "./checkout-free-shipping-progress.component";
-import StripeCheckoutButton from "../../../components/stripe-button/stripe-button.component";
+import FreeShippingProgress from "../checkout-free-shipping-progress/checkout-free-shipping-progress.component";
+import StripeCheckoutButton from "../../../../components/stripe-button/stripe-button.component";
 
 export default function CheckoutSummary({
   cartSubtotal,
-  promoApplied,
+  appliedPromos,
   shipping,
   tax,
-  discount,
+  totalDiscount,
   total,
 }) {
   return (
-    <div className='checkout-summary-wrapper'>
+    <section className='checkout-summary-wrapper white-background-container'>
       <h2 className='summary-title'>Order Summary</h2>
       <div className='summary-item-container'>
         <div className='summary-item-category'>
@@ -21,11 +21,11 @@ export default function CheckoutSummary({
             <span className='summary-label'>Subtotal:</span>
             <span className='summary-value'>${cartSubtotal.toFixed(2)}</span>
           </p>
-          {promoApplied && (
+          {totalDiscount > 0 && (
             <p className='summary-item'>
-              <span className='summary-label promo'>Promo:</span>
+              <span className='summary-label promo'>Discount:</span>
               <span className='summary-value promo'>
-                -${discount.toFixed(2)}
+                -${totalDiscount.toFixed(2)}
               </span>
             </p>
           )}
@@ -38,7 +38,7 @@ export default function CheckoutSummary({
           <p className='summary-item shipping'>
             <span className='summary-label'>Shipping:</span>
             <span className='summary-value'>
-              {shipping === 0 ? "Free" : `$${cartSubtotal.toFixed(2)}`}
+              {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
             </span>
           </p>
           <FreeShippingProgress subtotal={cartSubtotal} shipping={shipping} />
@@ -49,17 +49,17 @@ export default function CheckoutSummary({
         </p>
       </div>
       <StripeCheckoutButton
-        totals={{ cartSubtotal, shipping, tax, discount, total }}
+        totals={{ cartSubtotal, shipping, tax, totalDiscount, total }}
       />
-    </div>
+    </section>
   );
 }
 
 CheckoutSummary.propTypes = {
   cartSubtotal: PropTypes.number.isRequired,
-  promoApplied: PropTypes.bool.isRequired,
+  appliedPromos: PropTypes.array.isRequired,
   shipping: PropTypes.number.isRequired,
   tax: PropTypes.number.isRequired,
-  discount: PropTypes.number.isRequired,
+  discount: PropTypes.number,
   total: PropTypes.number.isRequired,
 };

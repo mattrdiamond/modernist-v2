@@ -1,8 +1,7 @@
 export const taxRate = 0.0625;
-export const promoPercentage = 0.2;
 export const shippingCostPerItem = 5;
 export const shippingThreshold = 150;
-export const promoCode = "SUPERSALE";
+export const unsplashCollectionId = 1118894;
 export const sortOptions = [
   { value: "Price: Low to High", direction: "asc", sortBy: "price", id: 3 },
   { value: "Price: High to Low", direction: "desc", sortBy: "price", id: 4 },

@@ -6,6 +6,7 @@
 
   .product-link {
     width: 100%;
+
     &:hover {
       opacity: 0.8;
       cursor: pointer;
@@ -34,20 +35,33 @@
     display: block;
   }
 
-  .collection-footer {
+  .collection-item-footer {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
     line-height: 1.25;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+
+    span {
+      display: block;
+    }
+
+    a {
+      display: inline-block;
+      position: relative;
+    }
   }
 
-  .price {
-    font-weight: var(--font-bold);
-    position: relative;
-    line-height: 1.5;
-    margin-left: 1rem;
+  .collection-item-name {
+    margin-bottom: 0.25rem;
+  }
+
+  .collection-item-price {
+    font-size: 0.875rem;
+  }
+
+  .collection-item-more-options {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    color: var(--primary-65);
   }
 }
 

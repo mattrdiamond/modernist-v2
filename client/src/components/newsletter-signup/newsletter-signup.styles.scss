@@ -85,17 +85,6 @@
     width: 100%;
     overflow-wrap: break-word;
   }
-
-  .spinner-overlay {
-    height: unset;
-
-    .spinner-container {
-      width: 20px;
-      height: 20px;
-      border: 2px solid var(--primary-30);
-      border-top-color: var(--primary-85);
-    }
-  }
 }
 
 @media (max-width: 960px) {

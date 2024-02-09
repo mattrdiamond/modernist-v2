@@ -5,13 +5,20 @@
   font-size: 0.8rem;
   margin-top: var(--star-spacing);
 
-  .review-count {
+  .rating-review-count-container {
     margin-left: var(--star-spacing);
+    padding-bottom: 0.03rem;
+  }
+
+  .total-rating {
+    font-weight: bold;
   }
 
   .pipe-spacer {
     margin: 0 var(--star-spacing);
     font-size: 1rem;
     color: var(--primary-20);
+    position: relative;
+    bottom: -0.05rem;
   }
 }

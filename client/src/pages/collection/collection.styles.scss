@@ -5,13 +5,18 @@
   display: flex;
   flex-direction: column;
 
-  .collection-items-container {
-    padding-bottom: var(--window-bottom);
+  .top-breadcrumb-container {
     padding-top: 1.5rem;
-    background: #fff;
+    margin-bottom: 1.5rem;
   }
 
-  .hero-image-margin {
-    margin-top: var(--hero-image-height);
+  .collection-items-container {
+    padding-bottom: var(--window-bottom);
+    background: var(--white);
+
+    &.hero-image-margin {
+      margin-top: var(--hero-image-height);
+      padding-top: 1.5rem;
+    }
   }
 }

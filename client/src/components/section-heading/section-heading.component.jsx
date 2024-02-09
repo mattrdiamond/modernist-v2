@@ -26,7 +26,10 @@ export default function SectionHeading({
         )}
       </div>
       {linkDestination && (
-        <CustomButton textButton onClick={() => history.push(linkDestination)}>
+        <CustomButton
+          buttonStyle='text-button'
+          onClick={() => history.push(linkDestination)}
+        >
           {buttonText}
         </CustomButton>
       )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { productDetailType } from "../../sharedPropTypes/sharedPropTypes";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
@@ -9,46 +9,64 @@ import "./breadcrumb.styles.scss";
 const Breadcrumb = ({ product }) => {
   const location = useLocation();
   const { collectionId, itemId } = useParams();
-  const segments = location.pathname
-    .split("/")
-    .filter((segment) => segment !== "");
+  const [breadcrumbs, setBreadcrumbs] = useState([]);
 
-  const replaceHyphensWithSpaces = (text) => {
-    return text.replace(/-/g, " ");
-  };
+  useEffect(() => {
+    const segments = location.pathname
+      .split("/")
+      .filter((segment) => segment !== "");
 
-  const replaceSpacesWithHyphens = (breadcrumb) => {
-    return breadcrumb.toLowerCase().replace(/\s/g, "-");
-  };
+    const replaceHyphensWithSpaces = (text) => {
+      return text.replace(/-/g, " ");
+    };
 
-  let breadcrumbs = [];
+    const replaceSpacesWithHyphens = (breadcrumb) => {
+      return breadcrumb.toLowerCase().replace(/\s/g, "-");
+    };
 
-  if (segments[0] === "shop") {
-    breadcrumbs.push({ text: "Shop", link: "/shop" });
+    let updatedBreadcrumbs = [];
+    let specialShopPages = [
+      "bestsellers",
+      "top-rated",
+      "new-arrivals",
+      "shop-the-look",
+    ];
 
-    if (collectionId) {
-      breadcrumbs.push({
-        text: replaceHyphensWithSpaces(collectionId),
-        link: `/shop/${replaceSpacesWithHyphens(collectionId)}`,
+    if (segments[0] === "shop") {
+      updatedBreadcrumbs.push({ text: "Shop", link: "/shop" });
+
+      if (segments.length > 1 && specialShopPages.includes(segments[1])) {
+        updatedBreadcrumbs.push({
+          text: replaceHyphensWithSpaces(segments[1]),
+          link: `/${segments.slice(0, 2).join("/")}`,
+        });
+      }
+
+      if (collectionId) {
+        updatedBreadcrumbs.push({
+          text: replaceHyphensWithSpaces(collectionId),
+          link: `/shop/${replaceSpacesWithHyphens(collectionId)}`,
+        });
+      }
+
+      if (itemId) {
+        updatedBreadcrumbs.push({
+          text: product.name,
+          link: `/shop/${replaceSpacesWithHyphens(collectionId)}/${itemId}`,
+        });
+      }
+    } else {
+      updatedBreadcrumbs.push({ text: "Home", link: "/" });
+
+      segments.forEach((segment) => {
+        updatedBreadcrumbs.push({
+          text: replaceHyphensWithSpaces(segment),
+          link: `/${replaceSpacesWithHyphens(segment)}`,
+        });
       });
     }
-
-    if (itemId) {
-      breadcrumbs.push({
-        text: product.name,
-        link: `/shop/${replaceSpacesWithHyphens(collectionId)}/${itemId}`,
-      });
-    }
-  } else {
-    breadcrumbs.push({ text: "Home", link: "/" });
-
-    segments.forEach((segment) => {
-      breadcrumbs.push({
-        text: replaceHyphensWithSpaces(segment),
-        link: `/${replaceSpacesWithHyphens(segment)}`,
-      });
-    });
-  }
+    setBreadcrumbs(updatedBreadcrumbs);
+  }, [location.pathname, product, collectionId, itemId]);
 
   return (
     <div className='breadcrumb-wrapper'>

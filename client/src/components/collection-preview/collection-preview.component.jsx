@@ -5,12 +5,12 @@ import Icon from "../icon/icon.component";
 import "./collection-preview.styles.scss";
 
 const CollectionPreview = ({ title, items, history, match, routeName }) => (
-  <section className="collection-preview">
+  <section className='collection-preview'>
     <Link to={`${match.path}/${routeName}`}>
-      <h2 className="title">{title}</h2>
+      <h2 className='title'>{title}</h2>
     </Link>
-    <div className="preview-wrapper">
-      <div className="preview">
+    <div className='preview-wrapper'>
+      <div className='preview'>
         {items
           .filter((item, index) => index < 5)
           .map((item) => (
@@ -19,10 +19,10 @@ const CollectionPreview = ({ title, items, history, match, routeName }) => (
       </div>
       <button
         onClick={() => history.push(`${match.path}/${routeName}`)}
-        className="view-all"
+        className='view-all'
       >
-        <div className="circle">
-          <Icon icon="arrow-right-long" />
+        <div className='circle'>
+          <Icon icon='arrow-right-long' title='view all' />
         </div>
         View All
       </button>
