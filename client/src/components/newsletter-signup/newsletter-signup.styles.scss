@@ -1,5 +1,3 @@
-@import "../../sharedStyles/breakpoints";
-
 .newsletter-signup {
   --image-extension: 1rem;
   background: var(--beige);
@@ -19,7 +17,7 @@
 
   .img-container {
     height: calc(100% + var(--image-extension));
-    margin-top: calc(var(--image-extension) * -1);
+    margin-top: calc(-1 * var(--image-extension));
     overflow: hidden;
   }
 
