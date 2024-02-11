@@ -3,11 +3,15 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCollectionsForPreview } from "../../redux/shop/shop.selectors";
 import CollectionPreview from "../../components/collection-preview/collection-preview.component";
+import Breadcrumb from "../../components/breadcrumb/breadcrumb.component";
 import "./collections-overview.styles.scss";
 
 const CollectionsOverview = ({ collections }) => {
   return (
     <div className='collections-overview page-width'>
+      <div className='breadcrumb-container'>
+        <Breadcrumb />
+      </div>
       {collections.map(({ id, ...otherCollectionProps }) => (
         <CollectionPreview key={id} {...otherCollectionProps} />
       ))}

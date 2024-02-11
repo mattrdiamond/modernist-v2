@@ -10,6 +10,7 @@
   min-height: 700px;
   max-width: var(--max-element-width);
   margin: 0 auto;
+  background-color: var(--primary-07);
 
   .placeholder-img-wrapper {
     width: 100%;
@@ -297,10 +298,7 @@
 
   .slideshow-nav-wrapper {
     .slideshow-nav-buttons {
-      gap: 0.675rem;
-    }
-    .nav-button {
-      --button-size: 11px;
+      --button-size: 10px;
     }
   }
 }

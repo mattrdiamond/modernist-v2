@@ -31,7 +31,7 @@ const CustomButtonWithSpinner = ({
 
 export default CustomButtonWithSpinner;
 
-CustomButton.propTypes = {
+CustomButtonWithSpinner.propTypes = {
   children: PropTypes.node.isRequired,
   isLoading: PropTypes.bool.isRequired,
   buttonStyle: PropTypes.string,

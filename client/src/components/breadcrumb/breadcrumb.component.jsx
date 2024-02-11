@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { productDetailType } from "../../sharedPropTypes/sharedPropTypes";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
-import { Link, useParams, withRouter, useLocation } from "react-router-dom";
+import { Link, withRouter, useLocation } from "react-router-dom";
 import { selectProductById } from "../../redux/shop/shop.selectors";
 import "./breadcrumb.styles.scss";
 
 const Breadcrumb = ({ product }) => {
   const location = useLocation();
-  const { collectionId, itemId } = useParams();
   const [breadcrumbs, setBreadcrumbs] = useState([]);
 
   useEffect(() => {
@@ -20,53 +19,51 @@ const Breadcrumb = ({ product }) => {
       return text.replace(/-/g, " ");
     };
 
-    const replaceSpacesWithHyphens = (breadcrumb) => {
-      return breadcrumb.toLowerCase().replace(/\s/g, "-");
-    };
-
     let updatedBreadcrumbs = [];
-    let specialShopPages = [
-      "bestsellers",
-      "top-rated",
-      "new-arrivals",
-      "shop-the-look",
-    ];
 
     if (segments[0] === "shop") {
-      updatedBreadcrumbs.push({ text: "Shop", link: "/shop" });
+      // Construct breadcrumbs for shop routes
+      if (segments.length === 1) {
+        // If the route is /shop (only one segment), start with home
+        updatedBreadcrumbs.push({ text: "Home", link: "/" });
+        updatedBreadcrumbs.push({ text: "Shop", link: "/shop" });
+      } else {
+        // If there are multiple segments in /shop route, start with shop
+        updatedBreadcrumbs.push({ text: "Shop", link: "/shop" });
 
-      if (segments.length > 1 && specialShopPages.includes(segments[1])) {
-        updatedBreadcrumbs.push({
-          text: replaceHyphensWithSpaces(segments[1]),
-          link: `/${segments.slice(0, 2).join("/")}`,
-        });
-      }
+        // Construct breadcrumbs for each segment
+        segments.slice(1).forEach((segment, index) => {
+          const isLastSegment = index === segments.length - 2;
+          const isProductPage = isLastSegment && product && product.name;
 
-      if (collectionId) {
-        updatedBreadcrumbs.push({
-          text: replaceHyphensWithSpaces(collectionId),
-          link: `/shop/${replaceSpacesWithHyphens(collectionId)}`,
-        });
-      }
-
-      if (itemId) {
-        updatedBreadcrumbs.push({
-          text: product.name,
-          link: `/shop/${replaceSpacesWithHyphens(collectionId)}/${itemId}`,
+          if (isProductPage) {
+            // Use product name as breadcrumb for product pages
+            updatedBreadcrumbs.push({
+              text: product.name,
+              link: `/${segments.slice(0, index + 2).join("/")}`,
+            });
+          } else {
+            // Otherwise, use segment as breadcrumb
+            updatedBreadcrumbs.push({
+              text: replaceHyphensWithSpaces(segment),
+              link: `/${segments.slice(0, index + 2).join("/")}`,
+            });
+          }
         });
       }
     } else {
+      // Construct breadcrumbs for non-shop routes
       updatedBreadcrumbs.push({ text: "Home", link: "/" });
-
-      segments.forEach((segment) => {
+      segments.forEach((segment, index) => {
         updatedBreadcrumbs.push({
           text: replaceHyphensWithSpaces(segment),
-          link: `/${replaceSpacesWithHyphens(segment)}`,
+          link: `/${segments.slice(0, index + 1).join("/")}`,
         });
       });
     }
+
     setBreadcrumbs(updatedBreadcrumbs);
-  }, [location.pathname, product, collectionId, itemId]);
+  }, [location.pathname, product]);
 
   return (
     <div className='breadcrumb-wrapper'>
