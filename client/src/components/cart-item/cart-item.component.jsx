@@ -30,13 +30,19 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
         </Link>
         <span className='item-price font-bold'>{`$${price}`}</span>
         <div className='item-detail-container'>
-          {hasSelectedOptions &&
+          {hasSelectedOptions ? (
             Object.entries(selectedOptions).map(([category, option], index) => (
               <p key={index} className='item-detail selected-options'>
                 <span className='option-category'>{`${category}: `}</span>
                 <span className='option-value'>{option.value}</span>
               </p>
-            ))}
+            ))
+          ) : (
+            <p className='item-detail'>
+              <span className='option-category'>Size: </span>
+              <span className='option-value'>One Size</span>
+            </p>
+          )}
           <p className='item-detail'>{`Qty: ${quantity}`}</p>
         </div>
         <button

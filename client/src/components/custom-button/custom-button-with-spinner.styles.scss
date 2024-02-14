@@ -9,7 +9,8 @@
 
   .spinner-overlay {
     height: 80%;
-    width: 80%;
+    width: unset;
+    aspect-ratio: 1/1;
     position: absolute;
   }
 

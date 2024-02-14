@@ -27,7 +27,7 @@
     z-index: 1;
     top: 1.75rem;
     right: 0;
-    border: 1px solid var(--primary-20);
+    border: 1px solid var(--primary-15);
     border-radius: $border-radius;
     font-weight: var(--font-normal);
   }
@@ -47,9 +47,11 @@
 
     &:first-of-type {
       border-radius: $border-radius $border-radius 0 0;
+      padding-top: 0.75rem;
     }
     &:last-of-type {
       border-radius: 0 0 $border-radius $border-radius;
+      padding-bottom: 0.75rem;
     }
   }
 }
