@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  heroBannerPropType,
   categoryItemType,
+  responsiveImagePropType,
 } from "../../sharedPropTypes/sharedPropTypes";
 
 import ProductGrid from "../../components/product-grid/product-grid.component";
@@ -13,6 +13,7 @@ import BreadcrumbSortHeader from "../../components/breadcrumb-sort-header/breadc
 import "./collection.styles.scss";
 
 export default function CollectionPage({
+  id,
   title,
   subtitle,
   collectionItems,
@@ -24,6 +25,7 @@ export default function CollectionPage({
     <div className='collection-page'>
       {hasHeroImages ? (
         <HeroImageHeader
+          id={id}
           title={title}
           subtitle={subtitle}
           heroImages={heroImages}
@@ -49,7 +51,8 @@ export default function CollectionPage({
 }
 
 CollectionPage.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   collectionItems: PropTypes.arrayOf(categoryItemType).isRequired,
-  heroImages: heroBannerPropType,
+  heroImages: responsiveImagePropType,
 };

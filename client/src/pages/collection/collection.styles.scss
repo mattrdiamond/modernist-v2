@@ -1,7 +1,7 @@
 @import "../../sharedStyles/breakpoints.scss";
+@import "../../sharedStyles/functions.scss";
 
 .collection-page {
-  --hero-image-height: 300px;
   display: flex;
   flex-direction: column;
 
@@ -15,7 +15,7 @@
     background: var(--white);
 
     &.hero-image-margin {
-      margin-top: var(--hero-image-height);
+      margin-top: scaleValue(300px, 500px, 1000px, 1600px);
       padding-top: 0.5rem;
     }
   }

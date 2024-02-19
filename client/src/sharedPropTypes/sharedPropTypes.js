@@ -64,9 +64,16 @@ export const productDetailType = PropTypes.shape({
   }),
 });
 
-export const heroBannerPropType = PropTypes.shape({
-  large: PropTypes.string.isRequired,
-  small: PropTypes.string.isRequired,
+export const responsiveImagePropType = PropTypes.shape({
+  sources: PropTypes.arrayOf(
+    PropTypes.shape({
+      srcSet: PropTypes.string.isRequired,
+      media: PropTypes.string,
+      type: PropTypes.string,
+    })
+  ),
+  alt: PropTypes.string,
+  styles: PropTypes.string,
 });
 
 export const productTagPropType = PropTypes.shape({
@@ -78,7 +85,7 @@ export const productTagPropType = PropTypes.shape({
 export const categoryItemType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   collection: PropTypes.string.isRequired,
-  images: heroBannerPropType.isRequired,
+  images: responsiveImagePropType.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   rating: PropTypes.number.isRequired,
@@ -104,7 +111,7 @@ export const collectionIdPropType = PropTypes.oneOf([
 ]);
 
 export const collectionPropType = PropTypes.shape({
-  banner: heroBannerPropType,
+  banner: responsiveImagePropType,
   id: PropTypes.string.isRequired,
   items: PropTypes.arrayOf(categoryItemType).isRequired,
   routeName: collectionIdPropType.isRequired,

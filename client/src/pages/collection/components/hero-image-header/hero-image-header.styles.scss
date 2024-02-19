@@ -1,25 +1,15 @@
 @import "../../../../sharedStyles/breakpoints.scss";
+@import "../../../../sharedStyles/functions.scss";
 
 .hero-image-header {
   width: 100%;
-  height: var(--hero-image-height);
+  height: scaleValue(300px, 500px, 1000px, 1600px);
   color: white;
   text-align: center;
   position: fixed;
   backface-visibility: hidden;
   top: var(--nav-height);
   z-index: -1;
-
-  &:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: var(--primary-85);
-    opacity: 0.4;
-    top: 0;
-    left: 0;
-  }
 
   .background-img {
     position: relative;
@@ -29,6 +19,7 @@
     top: 0;
     z-index: -1;
     object-fit: cover;
+    background-color: var(--primary-07);
 
     &.loading {
       visibility: hidden;
@@ -49,25 +40,60 @@
     padding: 0 1.5rem;
   }
 
+  .white-box {
+    background-color: var(--white);
+    color: var(--primary-85);
+    padding: 1.25rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
   .collection-title {
     margin-bottom: 0.5rem;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     line-height: 1;
+  }
+
+  .subtitle {
+    font-size: 0.675rem;
+    letter-spacing: 2.5px;
+    color: var(--primary-70);
   }
 }
 
-@media (max-width: $tablet) {
-  .collection-header-wrapper {
+@media (max-width: 1600px) {
+  .hero-image-header {
+    .white-box {
+      padding: 1.125rem;
+    }
+
     .collection-title {
-      font-size: 2.5rem;
+      font-size: 1.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    &.lighting,
+    &.bedding {
+      .collection-title {
+        margin-bottom: 0.5rem;
+      }
     }
   }
 }
 
-@media (max-width: $mobile) {
-  .collection-header-wrapper {
-    position: relative;
-    top: 0;
+@media (max-width: $mobile-large) {
+  .hero-image-header {
+    .white-box {
+      padding: 1rem;
+    }
+
+    .collection-title {
+      font-size: 1.675rem;
+    }
+
+    .subtitle {
+      font-size: 0.625rem;
+      letter-spacing: 2px;
+    }
   }
 }
