@@ -40,6 +40,7 @@ const CollectionPageContainer = ({
   } else if (!loading && sortedCollectionItems?.length > 0) {
     return (
       <CollectionPage
+        id={collection.id}
         title={collection.title}
         subtitle={collection.subtitle}
         collectionItems={sortedCollectionItems}

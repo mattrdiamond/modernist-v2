@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { responsiveImagePropType } from "../../sharedPropTypes/sharedPropTypes";
 
 export default function ResponsiveImage({ picture, onLoaded, onError }) {
   const { sources, alt, styles } = picture;
@@ -40,17 +41,7 @@ export default function ResponsiveImage({ picture, onLoaded, onError }) {
 }
 
 ResponsiveImage.propTypes = {
-  picture: PropTypes.shape({
-    sources: PropTypes.arrayOf(
-      PropTypes.shape({
-        srcSet: PropTypes.string.isRequired,
-        media: PropTypes.string,
-        type: PropTypes.string,
-      })
-    ).isRequired,
-    alt: PropTypes.string,
-    styles: PropTypes.string,
-  }),
+  picture: responsiveImagePropType.isRequired,
   onLoaded: PropTypes.func,
   onError: PropTypes.func,
 };

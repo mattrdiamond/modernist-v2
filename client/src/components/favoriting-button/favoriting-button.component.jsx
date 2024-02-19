@@ -67,10 +67,10 @@ class FavoritingButton extends Component {
         }`}
         onClick={this.handleClick}
       >
-        <svg className="heart" width="20" height="18" viewBox="0 0 20 18">
+        <svg className='heart' width='18' height='16' viewBox='0 0 18 16'>
           <path
-            d="M17.491 2.794a4.77 4.77 0 0 0-7.347.737A4.77 4.77 0 1 0 2.796 9.54l7.347 7.349L17.49 9.54a4.77 4.77 0 0 0 0-6.746z"
-            fill="none"
+            d='M16.6 1.4c-1.9-1.9-5-1.9-6.9 0-.3.3-.5.5-.7.8C7.5-.1 4.5-.7 2.2.8S-.7 5.4.8 7.6c.2.3.4.6.6.8L9 16l7.6-7.6c1.9-1.9 1.9-5 0-7z'
+            fill='none'
           ></path>
         </svg>
       </div>

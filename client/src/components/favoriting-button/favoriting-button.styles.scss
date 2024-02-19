@@ -11,8 +11,13 @@
   justify-content: center;
   align-items: center;
 
-  .heart path {
-    fill: var(--primary-20);
+  .heart {
+    position: relative;
+    top: 1px;
+
+    path {
+      fill: var(--primary-20);
+    }
   }
 
   &.favorite {

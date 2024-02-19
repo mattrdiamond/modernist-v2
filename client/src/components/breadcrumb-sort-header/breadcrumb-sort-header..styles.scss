@@ -1,8 +1,8 @@
 @import "../../sharedStyles/breakpoints.scss";
 
 .breadcrumb-sort-header {
-  margin-bottom: 0.25rem;
   position: sticky;
+  margin-bottom: 0.5rem;
   top: var(--nav-height);
   background: var(--white);
   z-index: 1;
