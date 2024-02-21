@@ -12,7 +12,7 @@ export default function HeroImageHeader({ id, title, subtitle, heroImages }) {
       <div className='header-text-container'>
         <div className='white-box'>
           <h1 className='collection-title'>{title}</h1>
-          {subtitle && <span className='subtitle'>{subtitle}</span>}
+          <span className='subtitle'>{subtitle}</span>
         </div>
       </div>
     </div>
@@ -22,6 +22,6 @@ export default function HeroImageHeader({ id, title, subtitle, heroImages }) {
 HeroImageHeader.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
+  subtitle: PropTypes.string.isRequired,
   heroImages: responsiveImagePropType.isRequired,
 };
