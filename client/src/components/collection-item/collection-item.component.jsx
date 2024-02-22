@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { baseImgUrl } from "../../utils/constants";
 import FavoritingButton from "../favoriting-button/favoriting-button.component";
 import ImageLoader from "../../components/image-loader/image-loader.component";
 import ProductTag from "../product-tag/product-tag.component";
@@ -11,7 +12,12 @@ const CollectionItem = ({ item }) => {
   return (
     <div className='collection-item'>
       <Link className='product-link' to={`/shop/${collection}/${item.id}`}>
-        <ImageLoader src={images.small} alt={name} styles='image' withSpinner />
+        <ImageLoader
+          src={baseImgUrl + images.small}
+          alt={name}
+          styles='image'
+          withSpinner
+        />
       </Link>
       <FavoritingButton item={item} />
       <div className='collection-item-footer'>

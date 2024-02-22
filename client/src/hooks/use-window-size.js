@@ -2,10 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import debounce from "../utils/debounce";
 import PropTypes from "prop-types";
 
-// Define the breakpoints for different screen sizes
 export const breakpoints = {
-  mobile: 700, // Example breakpoint for mobile devices
-  tablet: 1000, // Example breakpoint for tablet devices
+  mobile: 700,
+  tablet: 1000,
 };
 
 /**

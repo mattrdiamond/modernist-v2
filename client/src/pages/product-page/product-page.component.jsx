@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { productDetailType } from "../../sharedPropTypes/sharedPropTypes";
+import { baseImgUrl } from "../../utils/constants";
 import Stepper from "../../components/stepper/stepper.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import ImageReloader from "../../components/image-loader/image-reloader.component";
@@ -106,7 +107,7 @@ export default function ProductPage({
           <div className='sticky-container'>
             <div className='img-wrapper'>
               <ImageReloader
-                src={images.large}
+                src={baseImgUrl + images.large}
                 alt={name}
                 styles='product-img'
                 withSpinner

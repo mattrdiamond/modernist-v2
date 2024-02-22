@@ -6,8 +6,7 @@ export const hotspotData = [
     collection: "sofas",
     name: "Sloan 5-Piece Sectional",
     price: "$2190",
-    thumbnail:
-      "https://raw.githubusercontent.com/mattrdiamond/modernist-v2/master/client/src/assets/img/shop/sofas/shop-couches-04-thumb.jpg",
+    thumbnail: "/shop/sofas/shop_sofas_04_thumb.jpg",
     coordinates: {
       mobile: { x: 71, y: 47 },
       tablet: { x: 42, y: 40 },
@@ -20,8 +19,7 @@ export const hotspotData = [
     collection: "tables",
     name: "Ravi Coffee Table",
     price: "$299",
-    thumbnail:
-      "https://raw.githubusercontent.com/mattrdiamond/modernist-v2/master/client/src/assets/img/shop/tables/shop-tables-34-thumb.jpg",
+    thumbnail: "/shop/tables/shop_tables_34_thumb.jpg",
     coordinates: {
       mobile: { x: 87, y: 68 },
       tablet: { x: 50.5, y: 64 },
@@ -34,8 +32,7 @@ export const hotspotData = [
     collection: "decor",
     name: "Hand-Knit Boho Pillow Cover",
     price: "$39",
-    thumbnail:
-      "https://raw.githubusercontent.com/mattrdiamond/modernist-v2/master/client/src/assets/img/shop/decor/shop-decor-58-thumb.jpg",
+    thumbnail: "/shop/decor/shop_decor_58_thumb.jpg",
     coordinates: {
       mobile: { x: 85, y: 48.5 },
       tablet: { x: 61.5, y: 42.5 },
@@ -48,8 +45,7 @@ export const hotspotData = [
     collection: "chairs",
     name: "Sloan Armchair",
     price: "$179",
-    thumbnail:
-      "https://raw.githubusercontent.com/mattrdiamond/modernist-v2/master/client/src/assets/img/shop/chairs/shop-chairs-71-thumb.jpg",
+    thumbnail: "/shop/chairs/shop_chairs_71_thumb.jpg",
     coordinates: {
       mobile: { x: 23, y: 73 },
       tablet: { x: 17, y: 68 },
@@ -62,8 +58,7 @@ export const hotspotData = [
     collection: "decor",
     name: `"Divided By 3" Abstract Wall Art`,
     price: "$199",
-    thumbnail:
-      "https://raw.githubusercontent.com/mattrdiamond/modernist-v2/master/client/src/assets/img/shop/decor/shop-decor-57-thumb.jpg",
+    thumbnail: "/shop/decor/shop_decor_57_thumb.jpg",
     coordinates: {
       mobile: { x: 66.5, y: 24 },
       tablet: { x: 46.5, y: 18 },
@@ -76,8 +71,7 @@ export const hotspotData = [
     collection: "lighting",
     name: "White Terrazzo Table\u00A0Lamp",
     price: "$159",
-    thumbnail:
-      "https://raw.githubusercontent.com/mattrdiamond/modernist-v2/master/client/src/assets/img/shop/lighting/shop-lighting-24-thumb.jpg",
+    thumbnail: "/shop/lighting/shop_lighting_24_thumb.jpg",
     coordinates: {
       mobile: { x: 11, y: 32 },
       tablet: { x: 8.5, y: 23 },

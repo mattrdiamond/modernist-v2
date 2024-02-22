@@ -1,4 +1,5 @@
 import React from "react";
+import { baseImgUrl } from "../../utils/constants";
 import { connect } from "react-redux";
 import { clearItemFromCart } from "../../redux/cart/cart.actions";
 import { Link } from "react-router-dom";
@@ -18,7 +19,7 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
         onClick={toggleCartHidden}
         className='ignore-co-cart'
       >
-        <img src={images.small} alt={name} />
+        <img src={baseImgUrl + images.small} alt={name} />
       </Link>
       <div className='item-content-grid'>
         <Link

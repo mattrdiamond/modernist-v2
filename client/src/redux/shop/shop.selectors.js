@@ -137,7 +137,7 @@ export const selectHotspotItems = createSelector(
   [selectCollections],
   (collections) => {
     if (!collections) return [];
-    console.log("serious", hotspotData, collections);
+
     const hotspotItems = hotspotData.map((hotspot) => {
       const collection = collections[hotspot.collection];
 
