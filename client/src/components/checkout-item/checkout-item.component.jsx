@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { baseImgUrl } from "../../utils/constants";
 import {
   clearItemFromCart,
   addItemToCart,
@@ -27,7 +28,7 @@ const CheckoutItem = ({ cartItem }) => {
 
   return (
     <div className='checkout-item'>
-      <img className='item-img' src={images.small} alt={name} />
+      <img className='item-img' src={baseImgUrl + images.small} alt={name} />
       <div className='content-wrapper'>
         <div className='description-column'>
           <Link

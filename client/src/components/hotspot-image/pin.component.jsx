@@ -6,6 +6,7 @@ import {
   imageDimensionsPropTypes,
   hotspotPropTypes,
 } from "../../sharedPropTypes/sharedPropTypes";
+import { baseImgUrl } from "../../utils/constants";
 import handleKeyPress from "../../utils/handleKeyPress";
 
 import Icon from "../icon/icon.component";
@@ -105,7 +106,7 @@ export default function Pin({
           <div className='pin-content'>
             <div className='pin-content_thumbnail'>
               <ImageLoader
-                src={thumbnail}
+                src={baseImgUrl + thumbnail}
                 alt={name}
                 styles='pin-thumbnail object-contain'
                 withSpinner
