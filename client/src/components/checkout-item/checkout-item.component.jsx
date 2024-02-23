@@ -9,6 +9,7 @@ import {
 } from "../../redux/cart/cart.actions";
 import Stepper from "../stepper/stepper.component";
 import Icon from "../icon/icon.component";
+import ImageLoader from "../image-loader/image-loader.component";
 import "./checkout-item.styles.scss";
 
 const CheckoutItem = ({ cartItem }) => {
@@ -28,7 +29,14 @@ const CheckoutItem = ({ cartItem }) => {
 
   return (
     <div className='checkout-item'>
-      <img className='item-img' src={baseImgUrl + images.small} alt={name} />
+      <div className='checkout-item-img-container'>
+        <ImageLoader
+          styles='item-img'
+          src={baseImgUrl + images.small}
+          alt={name}
+          withSpinner
+        />
+      </div>
       <div className='content-wrapper'>
         <div className='description-column'>
           <Link

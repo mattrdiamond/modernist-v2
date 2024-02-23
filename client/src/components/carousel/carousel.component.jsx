@@ -4,7 +4,7 @@ import { apiFetchUnsplashImages } from "../../api/api";
 import CarouselCard from "../carousel-card/carousel-card.component";
 import Icon from "../icon/icon.component";
 import Spinner from "../spinner/spinner.component";
-import useWindowSize from "../../hooks/use-window-size";
+import { useWindowSize } from "../../contexts/WindowSizeContext";
 import useIntersectionObserver from "../../hooks/use-intersection-observer";
 import "./carousel.styles.scss";
 
@@ -126,25 +126,28 @@ const Carousel = () => {
     return () => (mounted = false);
   }, [fetchImageCount, isIntersecting]);
 
-  const updateScreenSize = useCallback(() => {
-    const currentVisibleImages = imagesFitOnScreen();
-    // 1. Only update if number of visible images changed
-    if (visibleImages === currentVisibleImages) return;
-    // 2. When widening the screen and there are NOT enough images to display after current index,
-    //    move index back and display the last number of visibleImages
-    else if (
-      visibleImages < currentVisibleImages &&
-      index + currentVisibleImages > fetchImageCount
-    ) {
-      return dispatch({ type: "DISPLAY_CAROUSEL_END" });
-    }
-    // 3. When widening the screen and there ARE enough images to display after current index
-    //    or when narrowing the screen, add new images
-    return dispatch({ type: "RESIZE_CAROUSEL" });
-  }, [fetchImageCount, index, visibleImages]);
+  const { width } = useWindowSize();
 
-  // useWindowSize hook - keeps track of window dimensions and calls updateScreenSize when window resized
-  useWindowSize(updateScreenSize, 500);
+  useEffect(() => {
+    const updateScreenSize = () => {
+      const currentVisibleImages = imagesFitOnScreen();
+      // 1. Only update if number of visible images changed
+      if (visibleImages === currentVisibleImages) return;
+      // 2. When widening the screen and there are NOT enough images to display after current index,
+      //    move index back and display the last number of visibleImages
+      else if (
+        visibleImages < currentVisibleImages &&
+        index + currentVisibleImages > fetchImageCount
+      ) {
+        return dispatch({ type: "DISPLAY_CAROUSEL_END" });
+      }
+      // 3. When widening the screen and there ARE enough images to display after current index
+      //    or when narrowing the screen, add new images
+      return dispatch({ type: "RESIZE_CAROUSEL" });
+    };
+
+    updateScreenSize();
+  }, [width, fetchImageCount, index, visibleImages]);
 
   const nextImage = () => {
     // If we've reached the end, return

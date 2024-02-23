@@ -2,6 +2,7 @@ export const taxRate = 0.0625;
 export const shippingCostPerItem = 5;
 export const shippingThreshold = 150;
 export const unsplashCollectionId = 1118894;
+export const navbarHeight = 60;
 export const baseImgUrl =
   "https://raw.githubusercontent.com/mattrdiamond/modernist-v2/assets/client/src/assets/img";
 export const sortOptions = [

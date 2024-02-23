@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { shopDropdownImages } from "./shop-dropdown-images";
 import useLockBodyScroll from "../../hooks/use-lock-body-scroll";
 import useOnClickOutside from "../../hooks/use-onclick-outside";
+import ImageLoader from "../image-loader/image-loader.component";
 import "./shop-dropdown.styles.scss";
 
 const ShopDropdown = ({ toggleShopDropdown, sections }) => {
@@ -82,11 +83,12 @@ const ShopDropdown = ({ toggleShopDropdown, sections }) => {
         {shopDropdownImages.map((image, index) => (
           <Link className='shop-img-link grey-text' to={image.link} key={index}>
             <div className='img-container'>
-              <img
-                className='shop-dropdown-img'
+              <ImageLoader
+                styles='shop-dropdown-img'
                 srcSet={image.srcSet}
                 src={image.src}
                 alt={image.alt}
+                withSpinner
               />
             </div>
             <span className='shop-dropdown-img-caption'>{image.caption}</span>

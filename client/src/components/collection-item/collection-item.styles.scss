@@ -21,15 +21,6 @@
     background-color: var(--primary-07);
   }
 
-  .spinner-overlay {
-    position: absolute;
-
-    > .spinner-container {
-      border: 3px solid var(--primary-20);
-      border-top-color: var(--primary-60);
-    }
-  }
-
   .image {
     object-fit: contain;
     padding: 1.5rem;
