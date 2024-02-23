@@ -123,13 +123,14 @@ const extractFirstWord = (string) => string.replace(/ .*/, "").toLowerCase();
 export const transformCollectionsData = (collections) => {
   // .docs gives us query snapshot, .data() gives us data from db
   const transformedCollection = collections.docs.map((doc) => {
-    const { title, items, banner, collectionId } = doc.data();
+    const { title, subtitle, items, banner, collectionId } = doc.data();
     // encodeURI - encodes URI by replacing characters that a URL cannot process.
     const routeName = encodeURI(extractFirstWord(title));
     return {
       routeName: routeName,
       id: collectionId,
       title,
+      subtitle,
       items,
       banner,
     };
