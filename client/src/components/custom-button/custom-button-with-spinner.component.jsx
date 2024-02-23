@@ -21,7 +21,7 @@ const CustomButtonWithSpinner = ({
 
   return (
     <CustomButton className={buttonClasses} {...otherProps}>
-      {isLoading && <Spinner />}
+      {isLoading && <Spinner stroke={5} />}
       <span className={`button-text${isLoading ? " loading" : ""}`}>
         {children}
       </span>

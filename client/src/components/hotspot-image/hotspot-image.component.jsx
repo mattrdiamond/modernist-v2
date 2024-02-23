@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import PropTypes from "prop-types";
 import useIntersectionObserver from "../../hooks/use-intersection-observer";
-import useWindowSize from "../../hooks/use-window-size";
+import { useWindowSize } from "../../contexts/WindowSizeContext";
+import { getDeviceType } from "../../utils/getDeviceType";
 import { hotspotPropTypes } from "../../sharedPropTypes/sharedPropTypes";
 
 import Spinner from "../spinner/spinner.component";
@@ -20,14 +21,8 @@ export default function HotspotImage({ backgroundImage, hotspots }) {
   const [imageError, setImageError] = useState(null);
   const { targetRef: imageRef, isIntersecting } = useIntersectionObserver();
 
-  const handleResize = useCallback(() => {
-    const width = imageRef.current ? imageRef.current.offsetWidth : 0;
-    const height = imageRef.current ? imageRef.current.offsetHeight : 0;
-
-    setImageDimensions({ width, height });
-  }, [imageRef]);
-
-  const { screenSize } = useWindowSize(handleResize, 500);
+  const { width } = useWindowSize();
+  const screenSize = getDeviceType(width);
 
   useEffect(() => {
     if (isIntersecting && !intersectedOnce) {
@@ -36,6 +31,17 @@ export default function HotspotImage({ backgroundImage, hotspots }) {
       setIntersectedOnce(true);
     }
   }, [isIntersecting, intersectedOnce]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = imageRef.current ? imageRef.current.offsetWidth : 0;
+      const height = imageRef.current ? imageRef.current.offsetHeight : 0;
+
+      setImageDimensions({ width, height });
+    };
+
+    handleResize();
+  }, [imageRef, width]);
 
   const handleImageLoaded = (image) => {
     setLoading(false);

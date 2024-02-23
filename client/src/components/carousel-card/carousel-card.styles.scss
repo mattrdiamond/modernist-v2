@@ -19,21 +19,16 @@
     opacity: 0;
   }
 
-  .spinner-overlay {
-    position: absolute;
-
-    > .spinner-container {
-      border: 3px solid var(--primary-20);
-      border-top-color: var(--primary-60);
-    }
-  }
-
   .spinner-overlay,
   .card-photo {
     min-height: 250px;
     aspect-ratio: 1.25/1;
     border-radius: 4px 4px 0 0;
     background-color: var(--primary-10);
+  }
+
+  .image-loader-wrapper {
+    height: unset;
   }
 
   .card-photo {

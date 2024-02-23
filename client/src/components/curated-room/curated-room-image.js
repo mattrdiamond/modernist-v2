@@ -1,4 +1,4 @@
-import { breakpoints } from "../../hooks/use-window-size";
+import { breakpoints } from "../../utils/getDeviceType";
 import {
   curatedMobile_400w,
   curatedMobile_800w,

@@ -3,6 +3,7 @@ import { baseImgUrl } from "../../utils/constants";
 import { connect } from "react-redux";
 import { clearItemFromCart } from "../../redux/cart/cart.actions";
 import { Link } from "react-router-dom";
+import ImageLoader from "../image-loader/image-loader.component";
 import "./cart-item.styles.scss";
 
 const CartItem = ({ item, clearItem, toggleCartHidden }) => {
@@ -19,7 +20,12 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
         onClick={toggleCartHidden}
         className='ignore-co-cart'
       >
-        <img src={baseImgUrl + images.small} alt={name} />
+        <ImageLoader
+          src={baseImgUrl + images.small}
+          alt={name}
+          styles='cart-item-img'
+          withSpinner
+        />
       </Link>
       <div className='item-content-grid'>
         <Link

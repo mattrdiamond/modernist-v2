@@ -6,6 +6,7 @@ import Reviews from "../../../components/reviews/reviews.component";
 import Dimensions from "../../../components/dimensions/dimensions.component";
 import "./product-page-accordions.styles.scss";
 import ShippingAccordionContent from "./shipping-accordion-content.component";
+import { WindowSizeProvider } from "../../../contexts/WindowSizeContext";
 
 const testDimensions = [
   { type: "Overall", value: '87"w x 78"d x 31"h' },
@@ -45,7 +46,9 @@ export default function ProductPageAccordions({
           }
           title='Reviews'
         >
-          <Reviews {...props} />
+          <WindowSizeProvider debounceDelay={1000}>
+            <Reviews {...props} />
+          </WindowSizeProvider>
         </Accordion>
         <Accordion title='Shipping & Returns'>
           <ShippingAccordionContent />

@@ -58,5 +58,5 @@ export default function Review({
 
 Review.propTypes = {
   ...reviewPropTypes,
-  screenSize: PropTypes.string.isRequired,
+  screenSize: PropTypes.number.isRequired,
 };
