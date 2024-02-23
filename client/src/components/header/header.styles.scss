@@ -153,6 +153,15 @@
     .mobile-only {
       display: block;
     }
+
+    .hamburger {
+      padding-left: 0;
+    }
+
+    .cart-icon {
+      padding-right: 0;
+    }
+
     .desktop-only {
       display: none;
     }
