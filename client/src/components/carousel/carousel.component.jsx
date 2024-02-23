@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useCallback } from "react";
+import React, { useEffect, useReducer } from "react";
 import { unsplashCollectionId } from "../../utils/constants";
 import { apiFetchUnsplashImages } from "../../api/api";
 import CarouselCard from "../carousel-card/carousel-card.component";
