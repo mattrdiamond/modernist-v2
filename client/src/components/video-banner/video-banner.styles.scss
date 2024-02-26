@@ -42,6 +42,10 @@
     align-self: center;
     color: var(--primary-80);
   }
+
+  .spinner-overlay {
+    height: 100%;
+  }
 }
 
 @media (max-width: $tablet) {

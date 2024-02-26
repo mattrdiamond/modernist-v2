@@ -51,7 +51,7 @@ export default function CollectionPage({
 }
 
 CollectionPage.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   title: PropTypes.string.isRequired,
   collectionItems: PropTypes.arrayOf(categoryItemType).isRequired,
   heroImages: responsiveImagePropType,

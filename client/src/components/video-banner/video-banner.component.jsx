@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import useIntersectionObserver from "../../hooks/use-intersection-observer";
 import CustomButton from "../custom-button/custom-button.component";
+import Spinner from "../spinner/spinner.component";
 import PropTypes from "prop-types";
 import "./video-banner.styles.scss";
 
 function VideoBanner({ videoSrc, posterSrc = "", history }) {
+  const [isLoading, setIsLoading] = useState(true);
+
   const { targetRef, isIntersecting } = useIntersectionObserver({
     threshold: 0.125,
     observeOnce: false,
@@ -26,6 +29,7 @@ function VideoBanner({ videoSrc, posterSrc = "", history }) {
 
   return (
     <section className='vidbanner-wrapper'>
+      {isLoading && <Spinner />}
       <video
         ref={targetRef}
         src={videoSrc}
@@ -34,6 +38,7 @@ function VideoBanner({ videoSrc, posterSrc = "", history }) {
         playsInline
         poster={posterSrc}
         preload='none'
+        onLoadedData={() => setIsLoading(false)}
       />
       <div className='content-wrapper page-width'>
         <span className='subtitle'>Available Now</span>
