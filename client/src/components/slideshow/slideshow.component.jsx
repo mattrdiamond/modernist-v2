@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from "react";
 import PropTypes from "prop-types";
 import { slidePropType } from "../../sharedPropTypes/sharedPropTypes";
 import useIntersectionObserver from "../../hooks/use-intersection-observer";
@@ -16,13 +22,24 @@ export default function Slideshow({
 }) {
   const [currentSlide, setCurrentSlide] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
+  const timerIdRef = useRef(null);
 
   const { targetRef, isIntersecting } = useIntersectionObserver({
-    threshold: 0.25,
+    threshold: 0.125,
   });
 
   // Convert children prop into an array to ensure it's safely iterable
-  const slides = React.Children.toArray(children);
+  const slides = useMemo(() => React.Children.toArray(children), [children]);
+
+  const startAutoPlayTimer = useCallback(() => {
+    if (autoPlay) {
+      return setInterval(() => {
+        if (!isPaused) {
+          setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+        }
+      }, interval);
+    }
+  }, [autoPlay, interval, isPaused, slides.length]);
 
   useEffect(() => {
     // set the current slide after component mounts to trigger any animations associated with .active class
@@ -30,25 +47,25 @@ export default function Slideshow({
   }, []);
 
   useEffect(() => {
-    let timer;
-    if (autoPlay) {
-      timer = setInterval(() => {
-        if (!isPaused) {
-          setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-        }
-      }, interval);
-    }
+    // reset interval timer when dependencies change
+    clearInterval(timerIdRef.current);
+    timerIdRef.current = startAutoPlayTimer();
 
-    return () => clearInterval(timer);
-  }, [isPaused, interval, autoPlay, slides.length]);
+    return () => clearInterval(timerIdRef.current);
+  }, [isPaused, interval, autoPlay, slides.length, startAutoPlayTimer]);
 
   useEffect(() => {
     setIsPaused(!isIntersecting);
   }, [isIntersecting]);
 
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
+  const goToSlide = useCallback(
+    (index) => {
+      setCurrentSlide(index);
+      clearInterval(timerIdRef.current);
+      timerIdRef.current = startAutoPlayTimer();
+    },
+    [startAutoPlayTimer]
+  );
 
   return (
     <div

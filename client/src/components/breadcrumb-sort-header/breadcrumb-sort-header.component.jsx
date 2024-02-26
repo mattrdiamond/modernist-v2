@@ -24,7 +24,8 @@ const BreadcrumbSortHeader = ({
   const [isSticky, setIsSticky] = useState(false);
 
   const { targetRef, isIntersecting } = useIntersectionObserver({
-    rootMargin: "-66px 0px 0px 0px", // navheight (65px) + 1px border = 66px
+    rootMargin:
+      window.innerWidth <= 450 ? "-61px 0px 0px 0px" : "-66px 0px 0px 0px", // 60px mobile navheight + 1px border = 61px
     threshold: 1,
   });
 

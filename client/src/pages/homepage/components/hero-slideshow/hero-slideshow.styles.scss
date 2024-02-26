@@ -318,7 +318,8 @@
     $vw-max-mobile: 500px;
     $vw-min-mobile: 350px;
     min-height: 500px;
-    height: calc(100vh - var(--nav-height));
+    height: calc(100vh - var(--nav-height)); // fallback for svh
+    height: calc(100svh - var(--nav-height));
     max-height: 800px;
 
     .hero-slide-heading {
