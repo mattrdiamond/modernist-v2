@@ -50,8 +50,9 @@ const BreadcrumbSortHeader = ({
     >
       <div className={`header-flex-container page-width`}>
         <div className='header-col-left'>
-          {heading && !isSticky && <h2>{heading}</h2>}
-          {(!heading || isSticky) && <Breadcrumb />}
+          {/* {heading && !isSticky && <h2>{heading}</h2>} */}
+          {/* {(!heading || isSticky) && <Breadcrumb />} */}
+          <Breadcrumb />
         </div>
         <div className='header-col-right'>
           <ItemCount count={resultsCount} />
