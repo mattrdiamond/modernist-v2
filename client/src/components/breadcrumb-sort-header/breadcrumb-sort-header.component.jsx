@@ -25,7 +25,7 @@ const BreadcrumbSortHeader = ({
 
   const { targetRef, isIntersecting } = useIntersectionObserver({
     rootMargin:
-      window.innerWidth <= 450 ? "-61px 0px 0px 0px" : "-66px 0px 0px 0px", // 60px mobile navheight + 1px border = 61px
+      window.innerWidth <= 450 ? "-61px 0px 0px 0px" : "-66px 0px 0px 0px", // navHeight (60px mobile, 65px non-mobile) + additional 1px to trigger observer
     threshold: 1,
   });
 
@@ -50,9 +50,8 @@ const BreadcrumbSortHeader = ({
     >
       <div className={`header-flex-container page-width`}>
         <div className='header-col-left'>
-          {/* {heading && !isSticky && <h2>{heading}</h2>} */}
-          {/* {(!heading || isSticky) && <Breadcrumb />} */}
-          <Breadcrumb />
+          {heading && !isSticky && <h2>{heading}</h2>}
+          {(!heading || isSticky) && <Breadcrumb />}
         </div>
         <div className='header-col-right'>
           <ItemCount count={resultsCount} />
