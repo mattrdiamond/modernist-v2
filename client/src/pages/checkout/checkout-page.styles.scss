@@ -2,9 +2,11 @@
 
 .checkout-page-container {
   --checkout-col-gap: 1.5rem;
+  height: 100%;
 
   .checkout-background-screen {
     background-color: var(--primary-07);
+    height: 100%;
   }
 
   .checkout-page-content {
