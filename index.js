@@ -87,7 +87,6 @@ function serveStaticFile(req, res) {
 
 // Stripe - client sends payment req with token object -> express sends payment to Stripe -> Stripe creates charge -> res back to client
 function handlePayment(req, res) {
-  console.log("req", req.body);
   const body = {
     source: req.body.token.id,
     amount: req.body.amount,
