@@ -18,7 +18,6 @@ const CarouselCard = ({ index, image, carouselState }) => (
         src={image.urls.small}
         alt={image.alt_description}
         styles='card-photo'
-        withSpinner
       />
       <div className='card-footer'>
         <div className='user-details-container'>

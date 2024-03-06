@@ -24,7 +24,6 @@ const CartItem = ({ item, clearItem, toggleCartHidden }) => {
           src={baseImgUrl + images.small}
           alt={name}
           styles='cart-item-img'
-          withSpinner
         />
       </Link>
       <div className='item-content-grid'>

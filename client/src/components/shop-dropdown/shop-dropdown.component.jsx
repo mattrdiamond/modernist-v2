@@ -88,7 +88,6 @@ const ShopDropdown = ({ toggleShopDropdown, sections }) => {
                 srcSet={image.srcSet}
                 src={image.src}
                 alt={image.alt}
-                withSpinner
               />
             </div>
             <span className='shop-dropdown-img-caption'>{image.caption}</span>

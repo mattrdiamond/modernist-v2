@@ -109,7 +109,6 @@ export default function Pin({
                 src={baseImgUrl + thumbnail}
                 alt={name}
                 styles='pin-thumbnail object-contain'
-                withSpinner
               />
             </div>
             <div className='pin-content_text'>

@@ -16,7 +16,6 @@ const CollectionItem = ({ item }) => {
           src={baseImgUrl + images.small}
           alt={name}
           styles='image'
-          withSpinner
         />
       </Link>
       <FavoritingButton item={item} />

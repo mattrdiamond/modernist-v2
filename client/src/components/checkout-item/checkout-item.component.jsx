@@ -34,7 +34,6 @@ const CheckoutItem = ({ cartItem }) => {
           styles='item-img'
           src={baseImgUrl + images.small}
           alt={name}
-          withSpinner
         />
       </div>
       <div className='content-wrapper'>
