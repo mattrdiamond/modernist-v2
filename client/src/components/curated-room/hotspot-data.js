@@ -5,7 +5,7 @@ export const hotspotData = [
     shopId: 4,
     collection: "sofas",
     name: "Sloan 5-Piece Sectional",
-    price: "$2190",
+    price: 2190,
     thumbnail: "/shop/sofas/shop_sofas_04_thumb.jpg",
     coordinates: {
       mobile: { x: 71, y: 47 },
@@ -18,7 +18,7 @@ export const hotspotData = [
     shopId: 34,
     collection: "tables",
     name: "Ravi Coffee Table",
-    price: "$299",
+    price: 299,
     thumbnail: "/shop/tables/shop_tables_34_thumb.jpg",
     coordinates: {
       mobile: { x: 87, y: 68 },
@@ -31,7 +31,7 @@ export const hotspotData = [
     shopId: 58,
     collection: "decor",
     name: "Hand-Knit Boho Pillow Cover",
-    price: "$39",
+    price: 39,
     thumbnail: "/shop/decor/shop_decor_58_thumb.jpg",
     coordinates: {
       mobile: { x: 85, y: 48.5 },
@@ -44,7 +44,7 @@ export const hotspotData = [
     shopId: 71,
     collection: "chairs",
     name: "Sloan Armchair",
-    price: "$179",
+    price: 179,
     thumbnail: "/shop/chairs/shop_chairs_71_thumb.jpg",
     coordinates: {
       mobile: { x: 23, y: 73 },
@@ -57,7 +57,7 @@ export const hotspotData = [
     shopId: 57,
     collection: "decor",
     name: `"Divided By 3" Abstract Wall Art`,
-    price: "$199",
+    price: 199,
     thumbnail: "/shop/decor/shop_decor_57_thumb.jpg",
     coordinates: {
       mobile: { x: 66.5, y: 24 },
@@ -70,7 +70,7 @@ export const hotspotData = [
     shopId: 24,
     collection: "lighting",
     name: "White Terrazzo Table\u00A0Lamp",
-    price: "$159",
+    price: 159,
     thumbnail: "/shop/lighting/shop_lighting_24_thumb.jpg",
     coordinates: {
       mobile: { x: 11, y: 32 },

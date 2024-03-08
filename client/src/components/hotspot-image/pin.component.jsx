@@ -113,7 +113,7 @@ export default function Pin({
             </div>
             <div className='pin-content_text'>
               <p className='pin-content_name line-clamp-2'>{name}</p>
-              <p className='pin-content_price'>{price}</p>
+              <p className='pin-content_price'>{`$${price.toFixed(2)}`}</p>
             </div>
             <div className='arrow-container'>
               <Icon icon='arrow-right' />

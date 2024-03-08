@@ -12,7 +12,7 @@ export const hotspotPropTypes = PropTypes.shape({
     "tables",
   ]).isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   thumbnail: PropTypes.string,
   coordinates: PropTypes.shape({
     mobile: PropTypes.shape({
