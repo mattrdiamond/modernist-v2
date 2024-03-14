@@ -11,7 +11,7 @@ const Directory = ({ sections }) => {
     <div className='directory-wrapper page-width'>
       <SectionHeading
         heading='Shop by category.'
-        subheading='Modern designs, crafted for every day adventures.'
+        subheading='Modern designs, crafted for everyday adventures.'
         hideSubheadingOnMobile
         buttonText='Shop All'
         linkDestination='/shop'
