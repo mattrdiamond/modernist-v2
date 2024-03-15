@@ -53,7 +53,7 @@
     border-top: 0;
     background-color: var(--primary-85);
     color: #fff;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     pointer-events: unset;
     font-weight: var(--font-bold);
     margin-bottom: 0.75rem;
