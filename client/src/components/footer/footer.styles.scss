@@ -124,7 +124,6 @@
       flex-wrap: wrap;
       padding-top: 3rem;
       padding-bottom: 3rem;
-      // max-width: 850px;
 
       .footer-links {
         width: 100%;
@@ -156,10 +155,6 @@
 
 @media (max-width: $mobile-large) {
   .footer {
-    .footer-inner {
-      // padding: 3rem 1.675rem;
-    }
-
     .footer-links {
       display: block;
     }
