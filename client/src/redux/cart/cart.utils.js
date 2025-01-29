@@ -46,7 +46,7 @@ export const optionsAreEqual = (options1, options2) => {
 };
 
 export const addItemToCart = (cartItems, cartItemToAdd, newQuantity) => {
-  const { id, selectedOptions } = cartItemToAdd;
+  const { id, selectedOptions = {} } = cartItemToAdd;
 
   // Check if the item with the same id and selected options is already in the cart
   const existingCartItemIndex = cartItems.findIndex(

@@ -3,6 +3,7 @@ import CartActionTypes from "./cart.types";
 import UserActionTypes from "../user/user.types";
 import CheckoutActionTypes from "../checkout/checkout.types";
 import { getUserCartRef } from "../../firebase/firebase.utils";
+import { getDoc, updateDoc } from "firebase/firestore";
 import { selectCurrentUser } from "../user/user.selectors";
 import { selectCartItems } from "./cart.selectors";
 import {
@@ -16,25 +17,40 @@ export function* handleClearCart() {
 }
 
 export function* getCartItemsFromFirebase({ payload: user }) {
-  // Get reference to cart in db
-  const cartRef = yield getUserCartRef(user.id);
-  const cartSnapshot = yield cartRef.get();
-  // Get data from snapshot object and update state
-  yield put(setCartFromFirebase(cartSnapshot.data().cartItems));
+  try {
+    const cartRef = yield call(getUserCartRef, user.id);
+    const cartSnapshot = yield call(getDoc, cartRef);
+
+    const firebaseCartItems = cartSnapshot.data()?.cartItems || [];
+    const localCartItems = yield select(selectCartItems);
+    let finalCartItems = firebaseCartItems;
+
+    if (firebaseCartItems.length === 0 && localCartItems.length > 0) {
+      // Use local cart items if Firebase cart is empty and local cart has items
+      finalCartItems = localCartItems;
+      yield call(updateDoc, cartRef, { cartItems: localCartItems });
+    }
+
+    yield put(setCartFromFirebase(finalCartItems));
+  } catch (error) {
+    console.error("Error fetching cart items:", error);
+  }
 }
 
 export function* updateCartItemsInFirebase() {
   const currentUser = yield select(selectCurrentUser);
   if (currentUser) {
     try {
-      // Get reference to cart in db
-      const cartRef = yield getUserCartRef(currentUser.id);
-      // Select cart items in state
+      // Get reference to cart in Firestore
+      const cartRef = yield call(getUserCartRef, currentUser.id);
+
+      // Select cart items from the state
       const cartItems = yield select(selectCartItems);
-      // Update cart items in db
-      yield cartRef.update({ cartItems });
+
+      // Update cart items in Firestore
+      yield call(updateDoc, cartRef, { cartItems });
     } catch (error) {
-      console.log(error);
+      console.error("Error updating cart items:", error);
     }
   }
 }

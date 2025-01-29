@@ -1,5 +1,6 @@
 import { takeLatest, put, all, call, select } from "redux-saga/effects";
 import { firestore } from "../../firebase/firebase.utils";
+import { collection, getDocs } from "firebase/firestore";
 import { selectAppliedPromos } from "./promo.selectors";
 import {
   fetchPromosSuccess,
@@ -12,8 +13,10 @@ import { apiValidatePromoCode } from "../../api/api";
 
 export function* fetchPromoData() {
   try {
-    const promosCollection = yield firestore.collection("promos").get();
-    const promosData = promosCollection.docs.map((doc) => doc.data());
+    const promosCollectionRef = collection(firestore, "promos");
+    const promosSnapshot = yield call(getDocs, promosCollectionRef);
+    const promosData = promosSnapshot.docs.map((doc) => doc.data());
+
     yield put(fetchPromosSuccess(promosData));
   } catch (error) {
     yield put(fetchPromosFailure(error.message));

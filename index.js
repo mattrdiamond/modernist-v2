@@ -1,19 +1,25 @@
-// Load environment variables into process.env (user environment)
-if (process.env !== "production") require("dotenv").config();
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import path, { dirname } from "path";
+import compression from "compression";
+import { createApi } from "unsplash-js";
+import admin from "firebase-admin";
+import Stripe from "stripe";
+import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const path = require("path");
-const compression = require("compression");
-global.fetch = require("node-fetch"); // allows window.fetch API on Node.js runtime (for unsplash-js)
-const Unsplash = require("unsplash-js").default;
-const toJson = require("unsplash-js").toJson; // convert response from Unsplash to JSON
-const admin = require("firebase-admin"); // firebase SDK - used to interact with firebase from server
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY); // Pass secret key to stripe which returns object that can be used to process charge
+// Create ES module compatible __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Load environment variables
+if (process.env.NODE_ENV !== "production") dotenv.config();
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Service account authenticates server with firebase
-const serviceAccount = require("./config/serviceAccount");
+import serviceAccount from "./config/serviceAccount.js";
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({
@@ -25,8 +31,8 @@ admin.initializeApp({
 // Instantiate a new node server with express
 const app = express();
 
-// Use process environment's port or 5000
-const port = process.env.PORT || 5000;
+// Use process environment's port or 5001
+const port = process.env.PORT || 5001;
 
 /* ---------------------- Middleware ---------------------- */
 app.use(compression()); // Enables gzip compression for the responses sent from server to client
@@ -34,11 +40,8 @@ app.use(bodyParser.json()); // Parse body of all incoming requests to JSON
 app.use(bodyParser.urlencoded({ extended: true })); // Parse incoming URL-encoded data from HTML forms - make sure url contains only valid characters. Extended: true allows for more complex data structures to be parsed, such as nested objects and arrays
 app.use(cors()); // Allows server to respond to requests from a different origin (domain) than the one that served the webpage
 
-// Unsplash configuration
-const unsplash = new Unsplash({
+const unsplash = createApi({
   accessKey: process.env.UNSPLASH_ACCESS_KEY,
-  secret: process.env.UNSPLASH_SECRET,
-  callbackUrl: process.env.CALLBACK_URL || "http://localhost:3000",
 });
 
 /* ---------------------- Routes ---------------------- */
@@ -50,14 +53,13 @@ app.get("/api/photos", getUnsplashPhotos);
 // __dirname - absolute path of the directory containing the currently executing file
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client/build")));
-  // default get request -
+  // default get request
   app.get("*", serveStaticFile);
 }
 
 app.post("/payment", handlePayment);
 app.post("/api/validatePromoCode", validatePromoCode);
 
-// Start the server - listen for connections
 app.listen(port, (error) => {
   if (error) throw error;
   console.log("Server running on port " + port);
@@ -66,14 +68,16 @@ app.listen(port, (error) => {
 /* ---------------------- Route Handlers ---------------------- */
 async function getUnsplashPhotos(req, res) {
   try {
-    const { id, page, perPage } = req.query;
-    const collectionPhotos = await unsplash.collections.getCollectionPhotos(
-      id,
+    const { id, page = 1, perPage = 20, orderBy } = req.query;
+
+    const photoData = await unsplash.collections.getPhotos({
+      collectionId: id,
       page,
-      perPage
-    );
-    const json = await toJson(collectionPhotos);
-    res.json(json);
+      perPage,
+      orderBy,
+    });
+
+    res.json(photoData.response.results);
   } catch (error) {
     console.error("Error fetching Unsplash photos:", error);
     res.status(500).json({ error: "Internal Server Error" });

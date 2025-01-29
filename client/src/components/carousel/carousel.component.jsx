@@ -106,12 +106,7 @@ const Carousel = () => {
     let mounted = true;
 
     if (isIntersecting) {
-      apiFetchUnsplashImages(
-        unsplashCollectionId,
-        1,
-        fetchImageCount,
-        "popular"
-      )
+      apiFetchUnsplashImages(unsplashCollectionId, 1, fetchImageCount, "latest")
         .then((res) => {
           if (mounted) {
             dispatch({ type: "FETCH_IMAGES", payload: res });

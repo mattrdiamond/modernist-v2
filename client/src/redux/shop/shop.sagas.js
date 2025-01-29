@@ -1,6 +1,14 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
 import {
-  firestore,
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  where,
+  doc,
+  getDoc,
+} from "firebase/firestore";
+import {
   transformCollectionsData,
   transformCollectionData,
 } from "../../firebase/firebase.utils";
@@ -14,12 +22,15 @@ import {
 } from "./shop.actions";
 import ShopActionTypes from "./shop.types";
 
+// Initialize Firestore
+const firestore = getFirestore();
+
 export function* fetchCollectionsAsync() {
   try {
-    const collectionRef = firestore.collection("collections");
+    const collectionRef = collection(firestore, "collections");
 
     // 1. Fetch snapshot obj from firestore
-    const snapshot = yield collectionRef.get();
+    const snapshot = yield call(getDocs, collectionRef);
 
     // 2. Convert snapshot's docs array into new object, and include properties needed for front end
     const collectionsMap = transformCollectionsData(snapshot);
@@ -33,12 +44,13 @@ export function* fetchCollectionsAsync() {
 
 export function* fetchCollectionAsync({ payload }) {
   try {
-    const collectionQuery = firestore
-      .collection("collections")
-      .where("collectionId", "==", payload);
+    const collectionQuery = query(
+      collection(firestore, "collections"),
+      where("collectionId", "==", payload)
+    );
 
     // Get the query snapshot
-    const snapshot = yield collectionQuery.get();
+    const snapshot = yield call(getDocs, collectionQuery);
 
     // Check if a document was found
     const collectionData = transformCollectionData(snapshot);
@@ -49,6 +61,7 @@ export function* fetchCollectionAsync({ payload }) {
       yield put(fetchCollectionFailure("Collection not found"));
     }
   } catch (error) {
+    console.log("error", error);
     yield put(fetchCollectionFailure(error.message));
   }
 }
@@ -56,10 +69,10 @@ export function* fetchCollectionAsync({ payload }) {
 export function* fetchProductAsync({ payload }) {
   const productId = payload;
   try {
-    const productRef = firestore.collection("products").doc(productId);
-    const productSnapshot = yield productRef.get();
+    const productRef = doc(firestore, "products", productId);
+    const productSnapshot = yield call(getDoc, productRef);
 
-    if (productSnapshot.exists) {
+    if (productSnapshot.exists()) {
       const productData = productSnapshot.data();
       yield put(fetchProductSuccess(productId, productData));
     } else {
