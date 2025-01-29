@@ -31,5 +31,5 @@
 Please use the following test credit card for payments:
 
 - **Card Number:** 4242 4242 4242 4242
-- **Expiration:** 01/28
+- **Expiration:** The expiration date should always be a future date
 - **CVV:** 123

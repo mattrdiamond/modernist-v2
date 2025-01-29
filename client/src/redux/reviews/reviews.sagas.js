@@ -1,19 +1,22 @@
 import { takeLatest, call, put, all } from "redux-saga/effects";
 import { firestore } from "../../firebase/firebase.utils";
+import { doc, getDoc } from "firebase/firestore";
 import { fetchReviewsSuccess, fetchReviewsFailure } from "./reviews.actions";
 import ReviewsActionTypes from "./reviews.types";
 
 export function* fetchReviewsFromDB({ payload: productId }) {
   try {
-    const reviewsRef = firestore
-      .collection("reviews")
-      .doc(productId.toString()); // firestore requires document IDs to be strings
+    const reviewsRef = doc(firestore, "reviews", productId.toString()); // Firestore requires document IDs to be strings
+    const reviewsSnapshot = yield call(getDoc, reviewsRef);
 
-    const reviewsSnapshot = yield reviewsRef.get();
-    const reviewsData = reviewsSnapshot.data();
-    const { reviews } = reviewsData;
+    if (reviewsSnapshot.exists()) {
+      const reviewsData = reviewsSnapshot.data();
+      const { reviews } = reviewsData;
 
-    yield put(fetchReviewsSuccess(productId, reviews));
+      yield put(fetchReviewsSuccess(productId, reviews));
+    } else {
+      throw new Error("No reviews found");
+    }
   } catch (error) {
     yield put(fetchReviewsFailure(productId, error.message));
   }
