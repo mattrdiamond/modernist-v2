@@ -27,7 +27,7 @@ export const selectCollections = createSelector(
 );
 
 export const selectCollection = createSelector(
-  [selectCollections, (state, props) => props.match.params.collectionId],
+  [selectCollections, (state, props) => props.collectionId],
   (collections, collectionId) =>
     collections ? collections[collectionId] : null
 );
@@ -63,22 +63,20 @@ export const selectCollectionsForPreview = createSelector(
 // Create a private copy of selector that selects collection based on url param, allowing multiple instances of the selector for each collectionId
 export const makeSelectCollection = () =>
   createSelector(
-    [selectCollections, (state, props) => props.match.params.collectionId],
+    [selectCollections, (state, props) => props.collectionId],
     (collections, collectionId) =>
       collections ? collections[collectionId] : null
   );
 
 export const selectCollectionItems = createSelector(
   [selectCollection],
-  (collection) => (collection ? collection.items : null)
+  (collection) => (collection ? collection.items : [])
 );
 
 export const selectSortedCollectionItems = createSelector(
   selectCollectionItems,
   selectSortParam,
-  (items, sortParam) => {
-    return applySortParam(items, sortParam);
-  }
+  (items, sortParam) => applySortParam(items, sortParam)
 );
 
 // Select combined items from all collections

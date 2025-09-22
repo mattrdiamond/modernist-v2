@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group"; // applies CSS transition before removing element from DOM
 import ResponsiveImage from "../../../../components/responsive-image/responsive-image.component";
 
-function PlaceholderImage({ placeholder, id }) {
+function PlaceholderImage({ placeholder, id, placeholderImgRef }) {
   return (
-    <div className={`placeholder-img-wrapper ${id}`}>
+    <div ref={placeholderImgRef} className={`placeholder-img-wrapper ${id}`}>
       <img src={placeholder} alt='' className='hero-image' />
     </div>
   );
@@ -21,6 +21,8 @@ export default function HeroSlide({
   base64LoaderImage,
 }) {
   const [loading, setLoading] = useState(true);
+  const placeholderImgRef = useRef(null);
+
   const handleImageLoad = () => {
     setLoading(false);
   };
@@ -36,8 +38,13 @@ export default function HeroSlide({
         classNames='transition-wrapper'
         timeout={500}
         unmountOnExit
+        nodeRef={placeholderImgRef}
       >
-        <PlaceholderImage placeholder={base64LoaderImage} id={id} />
+        <PlaceholderImage
+          placeholder={base64LoaderImage}
+          id={id}
+          placeholderImgRef={placeholderImgRef}
+        />
       </CSSTransition>
       <div className='content-outer-wrapper'>
         <div className='page-width page-width-container'>

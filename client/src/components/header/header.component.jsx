@@ -1,9 +1,15 @@
-import React, { useCallback, useRef, useEffect } from "react";
+import { useCallback, useRef, useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Link } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import handleKeyPress from "../../utils/handleKeyPress";
+
+import PropTypes from "prop-types";
+import {
+  currentUserType,
+  sectionsType,
+} from "../../sharedPropTypes/sharedPropTypes";
 
 import { selectDropdownHidden } from "../../redux/shop/shop.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
@@ -25,6 +31,7 @@ import CartIcon from "../cart-icon/cart-icon.component";
 import HamburgerButton from "../hamburger-button/hamburger-button.component";
 import SearchDrawer from "../search-drawer/search-drawer.component";
 import MobileNav from "../mobile-nav/mobile-nav.component";
+import useRedirectToSignIn from "../../hooks/use-redirect-to-signin";
 
 import "./header.styles.scss";
 
@@ -41,6 +48,10 @@ const Header = ({
   sections,
 }) => {
   const shopLinkRef = useRef(null);
+  const mobileNavRef = useRef(null);
+  const searchDrawerRef = useRef(null);
+
+  const redirectToSignIn = useRedirectToSignIn();
 
   const handleCartClick = useCallback(() => {
     if (!mobileNavVisible) {
@@ -115,9 +126,13 @@ const Header = ({
                 Sign Out
               </div>
             ) : (
-              <Link className='nav-link sign-in-out' to='/signin'>
+              <button
+                type='button'
+                className='nav-link sign-in-out'
+                onClick={redirectToSignIn}
+              >
                 Sign In
-              </Link>
+              </button>
             )}
           </li>
           <li className='nav-link-wrapper'>
@@ -173,19 +188,21 @@ const Header = ({
       */}
       <CSSTransition
         in={mobileNavVisible}
+        nodeRef={mobileNavRef}
         classNames='mobile-nav'
         timeout={200}
         unmountOnExit
       >
-        <MobileNav />
+        <MobileNav ref={mobileNavRef} />
       </CSSTransition>
       <CSSTransition
         in={!searchDrawerHidden}
+        nodeRef={searchDrawerRef}
         classNames='search-drawer'
         timeout={500}
         unmountOnExit
       >
-        <SearchDrawer />
+        <SearchDrawer ref={searchDrawerRef} />
       </CSSTransition>
       {!shopDropdownHidden && (
         <ShopDropdown
@@ -214,3 +231,16 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
+
+Header.propTypes = {
+  currentUser: currentUserType,
+  signOutStart: PropTypes.func.isRequired,
+  mobileNavVisible: PropTypes.bool.isRequired,
+  toggleMobileNav: PropTypes.func.isRequired,
+  toggleCartHidden: PropTypes.func.isRequired,
+  shopDropdownHidden: PropTypes.bool.isRequired,
+  toggleShopDropdown: PropTypes.func.isRequired,
+  searchDrawerHidden: PropTypes.bool.isRequired,
+  toggleInputHidden: PropTypes.func.isRequired,
+  sections: sectionsType.isRequired,
+};

@@ -1,13 +1,17 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
+import { sectionImageType } from "../../sharedPropTypes/sharedPropTypes";
 import ResponsiveImage from "../responsive-image/responsive-image.component";
 import "./menu-item.styles.scss";
 
-const MenuItem = ({ title, linkUrl, history, match, images }) => {
+const MenuItem = ({ title, linkUrl, images }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
     <div
       className='menu-item'
-      onClick={() => history.push(`${match.url}${linkUrl}`)}
+      onClick={() => navigate(`${location.pathname}${linkUrl}`)}
     >
       <ResponsiveImage
         picture={{
@@ -24,4 +28,10 @@ const MenuItem = ({ title, linkUrl, history, match, images }) => {
   );
 };
 
-export default withRouter(MenuItem);
+export default MenuItem;
+
+MenuItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  linkUrl: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(sectionImageType).isRequired,
+};

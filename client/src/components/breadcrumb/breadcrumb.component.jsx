@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { productDetailType } from "../../sharedPropTypes/sharedPropTypes";
-import { createStructuredSelector } from "reselect";
-import { connect } from "react-redux";
-import { Link, withRouter, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { selectProductById } from "../../redux/shop/shop.selectors";
 import "./breadcrumb.styles.scss";
 
-const Breadcrumb = ({ product }) => {
+const Breadcrumb = () => {
   const location = useLocation();
+  const { itemId } = useParams();
+  const product = useSelector((state) => selectProductById(itemId)(state));
   const [breadcrumbs, setBreadcrumbs] = useState([]);
 
   useEffect(() => {
@@ -85,13 +85,4 @@ const Breadcrumb = ({ product }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  product: (state, ownProps) =>
-    selectProductById(ownProps.match.params.itemId)(state),
-});
-
-export default withRouter(connect(mapStateToProps, null)(Breadcrumb));
-
-Breadcrumb.propTypes = {
-  product: productDetailType,
-};
+export default Breadcrumb;

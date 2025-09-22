@@ -1,6 +1,7 @@
-import React, { useEffect, lazy, Suspense } from "react";
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import { useEffect, lazy, Suspense } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import Header from "./components/header/header.component";
 import Portal from "./components/portal/portal.component";
@@ -10,7 +11,6 @@ import Spinner from "./components/spinner/spinner.component";
 import ErrorBoundary from "./components/error-boundary/error-boundary.component";
 
 import { createStructuredSelector } from "reselect";
-import { selectCurrentUser } from "./redux/user/user.selectors";
 import { selectInputHidden } from "./redux/search/search.selectors";
 import { selectCartHidden } from "./redux/cart/cart.selectors";
 import { selectDropdownHidden } from "./redux/shop/shop.selectors";
@@ -42,11 +42,9 @@ const Confirmation = lazy(() =>
 
 const App = ({
   checkUserSession,
-  currentUser,
   inputHidden,
   cartHidden,
   shopDropdownHidden,
-  history,
   checkoutComplete,
 }) => {
   useEffect(() => {
@@ -67,40 +65,37 @@ const App = ({
     >
       <Header />
       <div className='content-window'>
-        <Switch>
-          <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<Spinner />}>
+          <Routes>
             <Route
-              exact
               path='/'
-              render={() => (
+              element={
                 <ErrorBoundary>
                   <HomePage />
                 </ErrorBoundary>
-              )}
+              }
             />
             <Route
-              path='/shop'
-              render={(props) => (
+              path='/shop/*'
+              element={
                 <ErrorBoundary>
-                  <ShopPage {...props} />
+                  <ShopPage />
                 </ErrorBoundary>
-              )}
+              }
             />
             <Route
-              exact
               path='/favorites'
-              render={() => (
+              element={
                 <ErrorBoundary>
                   <FavoritesPage />
                 </ErrorBoundary>
-              )}
+              }
             />
             <Route
-              exact
               path='/checkout'
-              render={() =>
+              element={
                 checkoutComplete ? (
-                  <Redirect to='/confirmation' />
+                  <Navigate to='/confirmation' />
                 ) : (
                   <ErrorBoundary>
                     <CheckoutPage />
@@ -109,11 +104,10 @@ const App = ({
               }
             />
             <Route
-              exact
               path='/confirmation'
-              render={() =>
+              element={
                 !checkoutComplete ? (
-                  <Redirect to='/' />
+                  <Navigate to='/' />
                 ) : (
                   <ErrorBoundary>
                     <Confirmation />
@@ -121,31 +115,24 @@ const App = ({
                 )
               }
             />
-            {/* If user signed in, redirect to previous page when navigating to /signin.
-              Also redirect to previous page after user signs in. */}
             <Route
-              exact
               path='/signin'
-              render={() =>
-                currentUser ? (
-                  history.goBack()
-                ) : (
-                  <ErrorBoundary>
-                    <SignInAndSignUpPage />
-                  </ErrorBoundary>
-                )
+              element={
+                <ErrorBoundary>
+                  <SignInAndSignUpPage />
+                </ErrorBoundary>
               }
             />
             <Route
               path='/search'
-              render={(props) => (
+              element={
                 <ErrorBoundary>
-                  <SearchPage {...props} />
+                  <SearchPage />
                 </ErrorBoundary>
-              )}
+              }
             />
-          </Suspense>
-        </Switch>
+          </Routes>
+        </Suspense>
       </div>
       <Footer />
       <Portal>
@@ -156,7 +143,6 @@ const App = ({
 };
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
   inputHidden: selectInputHidden,
   cartHidden: selectCartHidden,
   shopDropdownHidden: selectDropdownHidden,
@@ -168,4 +154,12 @@ const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+App.propTypes = {
+  checkUserSession: PropTypes.func.isRequired,
+  inputHidden: PropTypes.bool.isRequired,
+  cartHidden: PropTypes.bool.isRequired,
+  shopDropdownHidden: PropTypes.bool.isRequired,
+  checkoutComplete: PropTypes.bool.isRequired,
+};

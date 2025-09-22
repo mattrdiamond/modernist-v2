@@ -1,7 +1,11 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import { useState, useEffect } from "react";
+import { connect, useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
-import { selectErrorMessage } from "../../redux/user/user.selectors";
+import {
+  selectErrorMessage,
+  selectCurrentUser,
+} from "../../redux/user/user.selectors";
 import { clearError } from "../../redux/user/user.actions";
 import SignIn from "../../components/sign-in/sign-in.component";
 import SignUp from "../../components/sign-up/sign-up.component";
@@ -10,17 +14,30 @@ import "./sign-in-and-sign-up.styles.scss";
 const SignInAndSignUpPage = ({ error, clearError }) => {
   const [activeTab, setActiveTab] = useState("signIn");
 
+  const currentUser = useSelector(selectCurrentUser);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get the page the user came from before navigating to /signin
+  const from = location.state?.from || "/";
+
+  useEffect(() => {
+    // Navigate back to the page the user came from if they are already signed in
+    if (currentUser) {
+      navigate(from, { replace: true });
+    }
+  }, [currentUser, from, navigate]);
+
   const toggleTab = () => {
     if (error) clearError();
-    if (activeTab === "signUp") setActiveTab("signIn");
-    else setActiveTab("signUp");
+    setActiveTab(activeTab === "signUp" ? "signIn" : "signUp");
   };
 
   return (
-    <section className="sign-in-and-sign-up">
-      <div className="page-width">
-        <div className="sign-in-window">
-          <div className="tabs-container">
+    <section className='sign-in-and-sign-up'>
+      <div className='page-width'>
+        <div className='sign-in-window'>
+          <div className='tabs-container'>
             <div
               className={
                 "tabs-inner" +
@@ -29,15 +46,15 @@ const SignInAndSignUpPage = ({ error, clearError }) => {
             >
               <button
                 className={"tab"}
-                role="tab"
+                role='tab'
                 disabled={activeTab === "signIn"}
                 onClick={toggleTab}
               >
                 Sign in
               </button>
               <button
-                className="tab"
-                role="tab"
+                className='tab'
+                role='tab'
                 disabled={activeTab === "signUp"}
                 onClick={toggleTab}
               >
@@ -45,7 +62,7 @@ const SignInAndSignUpPage = ({ error, clearError }) => {
               </button>
             </div>
           </div>
-          <div className="sign-in-content">
+          <div className='sign-in-content'>
             {activeTab === "signIn" ? <SignIn /> : <SignUp />}
           </div>
         </div>

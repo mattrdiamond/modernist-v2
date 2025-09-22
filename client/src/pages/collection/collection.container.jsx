@@ -1,13 +1,6 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import {
-  collectionPropType,
-  categoryItemType,
-  errorPropType,
-  collectionIdPropType,
-} from "../../sharedPropTypes/sharedPropTypes";
-import { connect } from "react-redux";
-import { createStructuredSelector } from "reselect";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectIsCollectionLoaded,
   selectSortedCollectionItems,
@@ -19,25 +12,34 @@ import Spinner from "../../components/spinner/spinner.component";
 import CollectionPage from "./collection.component";
 import ErrorMessage from "../../components/error-message/error-message.component";
 
-const CollectionPageContainer = ({
-  fetchCollectionStart,
-  collection,
-  loading,
-  collectionId,
-  sortedCollectionItems,
-  error,
-}) => {
+const CollectionPageContainer = () => {
+  const { collectionId } = useParams();
+  const dispatch = useDispatch();
+
+  const collection = useSelector((state) =>
+    makeSelectCollection()(state, { collectionId })
+  );
+
+  const loading = useSelector(
+    (state) => !selectIsCollectionLoaded(state, { collectionId })
+  );
+  const sortedCollectionItems = useSelector((state) =>
+    selectSortedCollectionItems(state, { collectionId })
+  );
+  const error = useSelector(selectCollectionsError);
+
   useEffect(() => {
-    if (!collection) {
-      fetchCollectionStart(collectionId);
+    if (collectionId && !collection) {
+      console.log("Fetching collection for ID:", collectionId);
+      dispatch(fetchCollectionStart(collectionId));
     }
-  }, [fetchCollectionStart, collection, collectionId]);
+  }, [dispatch, collection, collectionId]);
 
   if (loading && !error) {
     return <Spinner />;
   } else if (error) {
     return <ErrorMessage errorType='loading' />;
-  } else if (!loading && sortedCollectionItems?.length > 0) {
+  } else if (!loading && sortedCollectionItems?.length > 0 && collection) {
     return (
       <CollectionPage
         id={collection.id}
@@ -52,30 +54,4 @@ const CollectionPageContainer = ({
   }
 };
 
-const mapStateToProps = createStructuredSelector({
-  collectionId: (state, ownProps) => ownProps.match.params.collectionId,
-  loading: (state, ownProps) => !selectIsCollectionLoaded(state, ownProps),
-  collection: (state, ownProps) => makeSelectCollection()(state, ownProps),
-  sortedCollectionItems: (state, ownProps) =>
-    selectSortedCollectionItems(state, ownProps),
-  error: (state, ownProps) => selectCollectionsError(state, ownProps),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchCollectionStart: (collectionId) =>
-    dispatch(fetchCollectionStart(collectionId)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CollectionPageContainer);
-
-CollectionPageContainer.propTypes = {
-  fetchCollectionStart: PropTypes.func.isRequired,
-  collection: collectionPropType,
-  loading: PropTypes.bool.isRequired,
-  collectionId: collectionIdPropType,
-  sortedCollectionItems: PropTypes.arrayOf(categoryItemType),
-  error: errorPropType,
-};
+export default CollectionPageContainer;

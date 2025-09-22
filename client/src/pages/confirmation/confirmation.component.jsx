@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
+import PropTypes from "prop-types";
+
 import { checkoutComplete } from "../../redux/checkout/checkout.actions";
 import { selectCheckoutConfirmation } from "../../redux/checkout/checkout.selectors";
 import "./confirmation.styles.scss";
@@ -18,18 +19,12 @@ const Confirmation = ({
   },
   checkoutSessionComplete,
 }) => {
-  let history = useHistory();
-
   useEffect(() => {
     // Clear checkout data when leaving page
-    let unlisten = history.listen(() => {
-      //
+    return () => {
       checkoutSessionComplete();
-    });
-
-    // When component unmounts, stop listening for changes
-    return () => unlisten();
-  }, [history, checkoutSessionComplete]);
+    };
+  }, [checkoutSessionComplete]);
 
   const orderDate = new Date(created * 1000); // convert timestamp into date
 
@@ -125,3 +120,19 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Confirmation);
+
+Confirmation.propTypes = {
+  confirmationData: PropTypes.shape({
+    amount: PropTypes.number.isRequired,
+    card: PropTypes.shape({
+      brand: PropTypes.string.isRequired,
+      last4: PropTypes.string.isRequired,
+    }).isRequired,
+    created: PropTypes.number.isRequired,
+    discount: PropTypes.number,
+    cartSubtotal: PropTypes.number.isRequired,
+    shipping: PropTypes.number.isRequired,
+    tax: PropTypes.number.isRequired,
+  }).isRequired,
+  checkoutSessionComplete: PropTypes.func.isRequired,
+};

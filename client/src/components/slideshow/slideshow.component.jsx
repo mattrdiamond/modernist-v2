@@ -14,11 +14,11 @@ import "./slideshow.styles.scss";
 
 export default function Slideshow({
   children,
-  className,
-  interval,
-  showNavButtons,
-  darkenBottom,
-  autoPlay,
+  className = "",
+  interval = 4000,
+  showNavButtons = false,
+  darkenBottom = false,
+  autoPlay = false,
 }) {
   const [currentSlide, setCurrentSlide] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
@@ -103,12 +103,4 @@ Slideshow.propTypes = {
   showNavButtons: PropTypes.bool,
   darkenBottom: PropTypes.bool,
   autoPlay: PropTypes.bool,
-};
-
-Slideshow.defaultProps = {
-  className: "",
-  interval: 4000,
-  showNavButtons: false,
-  darkenBottom: false,
-  autoPlay: false,
 };

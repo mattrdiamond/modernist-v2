@@ -1,6 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import CustomButton from "../custom-button/custom-button.component";
 import "./error-message.styles.scss";
 
@@ -12,18 +11,18 @@ const errorTypes = {
 };
 
 const ErrorMessage = ({ errorType }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const errorMessage = errorTypes[errorType] || errorTypes.default;
 
   const handleGoBack = () => {
-    if (history.length > 1) {
-      history.goBack();
+    if (window.history.length > 1) {
+      navigate(-1);
     } else if (location.pathname.includes("/shop")) {
-      history.push("/shop");
+      navigate("/shop");
     } else {
-      history.push("/");
+      navigate("/");
     }
   };
 
