@@ -1,6 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CustomButton from "../custom-button/custom-button.component";
 import "./section-heading.styles.scss";
 
@@ -11,7 +10,7 @@ export default function SectionHeading({
   buttonText,
   linkDestination,
 }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <div className='section-heading-wrapper'>
       <div className='section-heading-text'>
@@ -28,7 +27,7 @@ export default function SectionHeading({
       {linkDestination && (
         <CustomButton
           buttonStyle='text-button'
-          onClick={() => history.push(linkDestination)}
+          onClick={() => navigate(linkDestination)}
         >
           {buttonText}
         </CustomButton>

@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import {
   categoryItemType,
@@ -25,6 +24,7 @@ export default function CollectionPage({
     <div className='collection-page'>
       {hasHeroImages ? (
         <HeroImageHeader
+          key={id}
           id={id}
           title={title}
           subtitle={subtitle}

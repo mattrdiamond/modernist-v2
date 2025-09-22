@@ -43,7 +43,7 @@ export const optionPropType = PropTypes.shape({
   priceModifier: PropTypes.number,
 });
 
-export const productDetailType = PropTypes.shape({
+export const productDetailShape = {
   collection: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
@@ -62,6 +62,24 @@ export const productDetailType = PropTypes.shape({
     topRated: PropTypes.bool,
     new: PropTypes.bool,
   }),
+};
+
+export const productDetailType = PropTypes.shape(productDetailShape);
+
+export const cartItemType = PropTypes.shape({
+  ...productDetailShape,
+  quantity: PropTypes.number.isRequired,
+  selectedOptions: PropTypes.object,
+});
+
+export const currentUserType = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  displayName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  createdAt: PropTypes.shape({
+    seconds: PropTypes.number.isRequired,
+    nanoseconds: PropTypes.number.isRequired,
+  }).isRequired,
 });
 
 export const responsiveImagePropType = PropTypes.shape({
@@ -74,6 +92,11 @@ export const responsiveImagePropType = PropTypes.shape({
   ),
   alt: PropTypes.string,
   styles: PropTypes.string,
+});
+
+export const sectionImageType = PropTypes.shape({
+  media: PropTypes.string,
+  srcSet: PropTypes.string.isRequired,
 });
 
 export const productTagPropType = PropTypes.shape({
@@ -117,6 +140,16 @@ export const collectionPropType = PropTypes.shape({
   routeName: collectionIdPropType.isRequired,
   title: collectionTitlePropType.isRequired,
 });
+
+export const sectionType = PropTypes.shape({
+  title: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(sectionImageType).isRequired,
+  id: PropTypes.number.isRequired,
+  linkUrl: PropTypes.string.isRequired,
+  size: PropTypes.string,
+});
+
+export const sectionsType = PropTypes.arrayOf(sectionType);
 
 export const errorPropType = PropTypes.oneOfType([
   PropTypes.string,

@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { withRouter } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useIntersectionObserver from "../../hooks/use-intersection-observer";
 import CustomButton from "../custom-button/custom-button.component";
-import Spinner from "../spinner/spinner.component";
 import PropTypes from "prop-types";
 import "./video-banner.styles.scss";
 
-function VideoBanner({ videoSrc, posterSrc = "", history }) {
-  const [isLoading, setIsLoading] = useState(true);
+function VideoBanner({
+  videoData: { videoSrc, posterSrc, title, subtitle, ctaText, ctaLink },
+}) {
+  const navigate = useNavigate();
 
   const { targetRef, isIntersecting } = useIntersectionObserver({
     threshold: 0.125,
@@ -17,9 +18,9 @@ function VideoBanner({ videoSrc, posterSrc = "", history }) {
   useEffect(() => {
     const video = targetRef.current;
     if (!video) return;
+
     if (isIntersecting) {
       video.play().catch((error) => {
-        // TO DO: Handle play error here
         console.error("Error playing video:", error);
       });
     } else {
@@ -29,7 +30,6 @@ function VideoBanner({ videoSrc, posterSrc = "", history }) {
 
   return (
     <section className='vidbanner-wrapper'>
-      {isLoading && <Spinner />}
       <video
         ref={targetRef}
         src={videoSrc}
@@ -38,26 +38,29 @@ function VideoBanner({ videoSrc, posterSrc = "", history }) {
         playsInline
         poster={posterSrc}
         preload='none'
-        onLoadedData={() => setIsLoading(false)}
       />
       <div className='content-wrapper page-width'>
-        <span className='subtitle'>Available Now</span>
-        <h2 className='video-title'>Our all-new curtain&nbsp;lineup</h2>
-        <CustomButton
-          buttonStyle='white'
-          onClick={() => history.push("/shop/decor/53")}
-        >
-          Shop Now
-        </CustomButton>
+        {subtitle && <span className='subtitle'>{subtitle}</span>}
+        {title && <h2 className='video-title'>{title}</h2>}
+        {ctaText && ctaLink && (
+          <CustomButton buttonStyle='white' onClick={() => navigate(ctaLink)}>
+            {ctaText}
+          </CustomButton>
+        )}
       </div>
     </section>
   );
 }
 
-VideoBanner.propTypes = {
-  videoSrc: PropTypes.string.isRequired,
-  posterSrc: PropTypes.string,
-  history: PropTypes.object.isRequired,
-};
+export default VideoBanner;
 
-export default withRouter(VideoBanner);
+VideoBanner.propTypes = {
+  videoData: PropTypes.shape({
+    videoSrc: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string,
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    ctaText: PropTypes.string,
+    ctaLink: PropTypes.string,
+  }).isRequired,
+};

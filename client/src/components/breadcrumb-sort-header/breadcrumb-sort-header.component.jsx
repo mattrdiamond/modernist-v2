@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import { createStructuredSelector } from "reselect";
 import { selectSortParam } from "../../redux/shop/shop.selectors";
@@ -20,7 +20,7 @@ const BreadcrumbSortHeader = ({
   setSortParam,
   heading,
 }) => {
-  const history = useHistory();
+  const location = useLocation();
   const [isSticky, setIsSticky] = useState(false);
 
   const { targetRef, isIntersecting } = useIntersectionObserver({
@@ -29,15 +29,10 @@ const BreadcrumbSortHeader = ({
     threshold: 1,
   });
 
+  // Reset the sorting parameter when the route changes
   useEffect(() => {
-    let unlisten = history.listen(() => {
-      if (sortParam) {
-        setSortParam("");
-      }
-    });
-
-    return () => unlisten();
-  }, [history, sortParam, setSortParam]);
+    setSortParam((prev) => (prev ? "" : prev));
+  }, [location.pathname, setSortParam]);
 
   useEffect(() => {
     setIsSticky(!isIntersecting);

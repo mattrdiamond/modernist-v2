@@ -29,7 +29,7 @@ export const chairsMobile2x = require("../../assets/img/chairs_mobile_2x.jpg");
 export const chairsMobile1x = require("../../assets/img/chairs_mobile_1x.jpg");
 
 // video banner
-export const videoPoster = require("../../assets/img/video_poster.jpg");
+export const lightingVideoPoster = require("../../assets/img/lighting_video/lighting_poster.jpg");
 
 // curated room
 export const curatedMobile_400w = require("../../assets/img/home/curated-space/curated_mobile_400w.jpg");

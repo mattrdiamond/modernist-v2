@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import FormInput from "../form-input/form-input.component";
 import CustomButtonWithSpinner from "../custom-button/custom-button-with-spinner.component";
 import { newsletter2x, newsletter1x } from "../../assets/img/_images";
@@ -22,6 +22,13 @@ const NewsletterSignup = () => {
   });
   const { message, result, loading } = mailchimpStatus;
 
+  // When the component mounts, focus on the status message if it exists
+  useEffect(() => {
+    if (message && statusMessage.current) {
+      statusMessage.current.focus();
+    }
+  }, [message]);
+
   const handleChange = (e) => {
     const { value } = e.target;
     setEmail(value);
@@ -35,6 +42,19 @@ const NewsletterSignup = () => {
 
     setMailchimpStatus({ ...mailchimpStatus, loading: true });
     submitMailChimpForm(event.target);
+  };
+
+  // Display the form status on the page
+  const displayMailChimpStatus = function (data) {
+    // Make sure the data is in the right format and has both keys
+    if (!data.result || !data.msg) return;
+
+    // Update state and display error (remove the number and dash that appears before the error)
+    setMailchimpStatus({
+      message: data.msg.replace(/^([0-9] - )/g, ""),
+      result: data.result,
+      loading: false,
+    });
   };
 
   const submitMailChimpForm = (form) => {
@@ -64,56 +84,9 @@ const NewsletterSignup = () => {
     };
   };
 
-  // Serialize the form data into a query string
-  const serialize = function (form) {
-    // Setup our serialized data
-    let serialized = "";
-
-    // Loop through each field in the form
-    for (let i = 0; i < form.elements.length; i++) {
-      const field = form.elements[i];
-
-      // Don't serialize fields without a name, submits, buttons, file and reset inputs, and disabled fields
-      if (
-        !field.name ||
-        field.disabled ||
-        field.type === "file" ||
-        field.type === "reset" ||
-        field.type === "submit" ||
-        field.type === "button"
-      )
-        continue;
-
-      // If it's not a checkbox or radio (catchall for select, textarea and various input types) or it is and it's checked,
-      // convert it to key/value pair and add an '&' at the beginning and append to serialized string
-      // also encode the key and value for use in a url, and then return serialized string
-      if (
-        (field.type !== "checkbox" && field.type !== "radio") ||
-        field.checked
-      ) {
-        serialized +=
-          "&" +
-          encodeURIComponent(field.name) +
-          "=" +
-          encodeURIComponent(field.value);
-      }
-    }
-    return serialized;
-  };
-
-  // Display the form status on the page
-  const displayMailChimpStatus = function (data) {
-    // Make sure the data is in the right format and has both keys
-    if (!data.result || !data.msg) return;
-
-    // Update state and display error (remove the number and dash that appears before the error)
-    setMailchimpStatus({
-      message: data.msg.replace(/^([0-9] - )/g, ""),
-      result: data.result,
-      loading: false,
-    });
-    // Focus on error message
-    statusMessage.current.focus();
+  // Serialize the form data into a query string using URLSearchParams
+  const serialize = (form) => {
+    return "&" + new URLSearchParams(new FormData(form)).toString();
   };
 
   return (
@@ -164,7 +137,6 @@ const NewsletterSignup = () => {
                     name='subscribe'
                     value='Subscribe'
                     id='mc-embedded-subscribe'
-                    onClick={handleSubmit}
                     disabled={!email}
                   >
                     Submit

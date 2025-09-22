@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
+import PropTypes from "prop-types";
+import { cartItemType } from "../../sharedPropTypes/sharedPropTypes";
 import {
   selectCartItems,
   selectCartSubtotal,
@@ -14,8 +16,10 @@ import CustomButton from "../custom-button/custom-button.component";
 import CartItem from "../cart-item/cart-item.component";
 import "./cart-dropdown.styles.scss";
 
-const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
+const CartDropdown = ({ cartItems, cartTotal, toggleCartHidden }) => {
   const cartRef = useRef(null);
+  const navigate = useNavigate();
+
   // Close cart when clicking outside
   useOnClickOutside({
     ref: cartRef,
@@ -45,7 +49,7 @@ const CartDropdown = ({ cartItems, cartTotal, history, toggleCartHidden }) => {
             <CustomButton
               className='custom-button ignore-co-cart'
               onClick={() => {
-                history.push("/checkout");
+                navigate("/checkout");
                 toggleCartHidden();
               }}
             >
@@ -70,6 +74,10 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCartHidden()),
 });
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CartDropdown)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(CartDropdown);
+
+CartDropdown.propTypes = {
+  cartItems: PropTypes.arrayOf(cartItemType).isRequired,
+  cartTotal: PropTypes.number.isRequired,
+  toggleCartHidden: PropTypes.func.isRequired,
+};

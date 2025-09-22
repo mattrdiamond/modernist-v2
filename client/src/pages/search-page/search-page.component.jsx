@@ -1,5 +1,6 @@
-import React from "react";
+import { useEffect } from "react";
 import { createStructuredSelector } from "reselect";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   selectAllCollectionItems,
   selectAreAllCollectionsLoaded,
@@ -15,24 +16,39 @@ const SearchPage = ({
   collectionItems,
   fetchCollectionsStart,
   allCollectionsLoaded,
-  location,
 }) => {
-  if (!allCollectionsLoaded) {
-    fetchCollectionsStart();
-    return <Spinner />;
-  }
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // get search results based on URL query string
   const params = new URLSearchParams(location.search); // returns ?q=searchParams
   const query = params.get("q"); // returns everything after ?q=
+
+  useEffect(() => {
+    if (!allCollectionsLoaded) {
+      fetchCollectionsStart();
+    }
+  }, [allCollectionsLoaded, fetchCollectionsStart]);
+
+  // Redirect to home if no query param is provided
+  useEffect(() => {
+    if (!query?.trim()) {
+      navigate("/", { replace: true });
+    }
+  }, [query, navigate]);
+
+  if (!allCollectionsLoaded) {
+    return <Spinner />;
+  }
+
   const searchResults = getSearchResults(query, collectionItems);
 
   return (
-    <div className='search-page page-width'>
-      <h1 className='title'>Search results</h1>
+    <div className='search-page'>
+      <h1 className='title page-width'>Search results</h1>
       {searchResults.length ? (
         <>
-          <span className='search-intro'>
+          <span className='search-intro page-width'>
             Showing <span className='font-bold'>{searchResults.length}</span>{" "}
             results for{" "}
             <span className='font-bold'>"{query.toLowerCase()}"</span>
@@ -40,7 +56,7 @@ const SearchPage = ({
           <ProductGrid items={searchResults} />
         </>
       ) : (
-        <p>
+        <p className='page-width'>
           Sorry, no search results for{" "}
           <span className='font-bold'>"{query}"</span>
         </p>

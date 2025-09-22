@@ -1,5 +1,5 @@
-import React, { lazy, Suspense } from "react";
-import { Route, Switch } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
 import Spinner from "../../components/spinner/spinner.component";
 import ErrorBoundary from "../../components/error-boundary/error-boundary.component";
 
@@ -25,74 +25,68 @@ const ShopTheLookPage = lazy(() =>
   import("../shop-the-look/shop-the-look.component")
 );
 
-const ShopPage = ({ match }) => {
+const ShopPage = () => {
   return (
     <section className='shop-page'>
       <Suspense fallback={<Spinner />}>
-        <Switch>
+        <Routes>
           <Route
-            exact
-            path={`${match.path}`}
-            render={(props) => (
+            index
+            element={
               <ErrorBoundary>
-                <CollectionsOverviewContainer {...props} />
+                <CollectionsOverviewContainer />
               </ErrorBoundary>
-            )}
+            }
           />
           <Route
-            exact
-            path={`${match.path}/bestsellers`}
-            render={(props) => (
+            path='bestsellers'
+            element={
               <ErrorBoundary>
-                <BestsellersPageContainer {...props} />
+                <BestsellersPageContainer />
               </ErrorBoundary>
-            )}
+            }
           />
           <Route
-            exact
-            path={`${match.path}/top-rated`}
-            render={(props) => (
+            path='top-rated'
+            element={
               <ErrorBoundary>
-                <TopRatedPageContainer {...props} />
+                <TopRatedPageContainer />
               </ErrorBoundary>
-            )}
+            }
           />
           <Route
-            exact
-            path={`${match.path}/new-arrivals`}
-            render={(props) => (
+            path='new-arrivals'
+            element={
               <ErrorBoundary>
-                <NewArrivalsPageContainer {...props} />
+                <NewArrivalsPageContainer />
               </ErrorBoundary>
-            )}
+            }
           />
           <Route
-            exact
-            path={`${match.path}/shop-the-look`}
-            render={(props) => (
+            path='shop-the-look'
+            element={
               <ErrorBoundary>
-                <ShopTheLookPage {...props} />
+                <ShopTheLookPage />
               </ErrorBoundary>
-            )}
+            }
           />
           <Route
-            exact
-            path={`${match.path}/:collectionId`}
-            render={(props) => (
+            path=':collectionId'
+            element={
               <ErrorBoundary>
-                <CollectionPageContainer {...props} />
+                <CollectionPageContainer />
               </ErrorBoundary>
-            )}
+            }
           />
           <Route
-            path={`${match.path}/:collectionId/:itemId`}
-            render={(props) => (
+            path=':collectionId/:itemId'
+            element={
               <ErrorBoundary>
-                <ProductPageContainer {...props} />
+                <ProductPageContainer />
               </ErrorBoundary>
-            )}
+            }
           />
-        </Switch>
+        </Routes>
       </Suspense>
     </section>
   );

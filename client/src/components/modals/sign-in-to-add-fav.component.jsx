@@ -1,11 +1,14 @@
-import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import ModalShell from "../modal-shell/modal-shell.component";
 import CustomButton from "../custom-button/custom-button.component";
-import { withRouter } from "react-router-dom";
 import { closeModal } from "../../redux/modal/modal.actions";
+import useRedirectToSignIn from "../../hooks/use-redirect-to-signin";
 
-const SignInToAddFav = ({ closeModal, history }) => {
+const SignInToAddFav = ({ closeModal }) => {
+  const redirectToSignIn = useRedirectToSignIn();
+
   return (
     <ModalShell>
       <h1>Save this product</h1>
@@ -13,7 +16,7 @@ const SignInToAddFav = ({ closeModal, history }) => {
       <div className='modal-button-container'>
         <CustomButton
           onClick={() => {
-            history.push("/signin");
+            redirectToSignIn();
             closeModal();
           }}
         >
@@ -31,4 +34,8 @@ const mapDispatchToProps = (dispatch) => ({
   closeModal: () => dispatch(closeModal()),
 });
 
-export default withRouter(connect(null, mapDispatchToProps)(SignInToAddFav));
+export default connect(null, mapDispatchToProps)(SignInToAddFav);
+
+SignInToAddFav.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+};
